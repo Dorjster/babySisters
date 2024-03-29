@@ -1,2 +1,2 @@
 export * from "./create-info";
-export * from "./get_info";
+export * from "./get-info";

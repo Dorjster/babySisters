@@ -20,13 +20,23 @@ export const tokenGenerate = async (userId: string) => {
   return token;
 };
 export const getUserByEmail = async (email: string) => {
-  const user = await ParentModel.findOne({ email: email });
-  console.log(user, "parent");
-  
-  if (!user) {
-    const user1 = await BabysitterModel.findOne({ email: email });
+
+  try {
+    const user = await ParentModel.findOne({ email: email });
+    console.log(user, "parent");
+    
+    if (!user) {
+      const user1 = await BabysitterModel.findOne({ email: email });
+      
+      return user1;
+
+    } else return user;
+    
+  } catch (error: any) {
+    console.log(error);
     
     
-    return user1;
-  } else return user;
+  }
+ 
+ 
 };
