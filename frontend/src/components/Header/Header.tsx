@@ -2,8 +2,9 @@
 // Imports -----
 import React, { useState } from "react";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 // Mui Imports -----
 import Button from "@mui/material/Button";
 import { useRouter } from "next/navigation";

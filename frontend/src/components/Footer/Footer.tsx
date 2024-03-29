@@ -2,17 +2,115 @@
 // Imports -----
 import React from "react";
 import Image from "next/image";
-
-// Mui Imports -----
-import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import YouTubeIcon from "@mui/icons-material/YouTube";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import PinterestIcon from "@mui/icons-material/Pinterest";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import RadioGroupRating from "../ui/footerIcons";
 
+// Navigation -----
+type navigationItem = {
+  href: string;
+  label: string;
+};
+
+// Navigation Left How it works? -----
+const navigationleftItems: navigationItem[] = [
+  {
+    href: "/about-us/how-it-works",
+    label: "How it works",
+  },
+  {
+    href: "/Help",
+    label: "Help",
+  },
+  {
+    href: "/Terms-Privacy",
+    label: "Terms & Privacy",
+  },
+  {
+    href: "/pricing",
+    label: "Pricing",
+  },
+  {
+    href: "/About-us",
+    label: "Company details",
+  },
+  {
+    href: "/Babysits-for-Work",
+    label: "Babysits for Work",
+  },
+  {
+    href: "/Shop",
+    label: "Babysits Shop",
+  },
+];
+
+// Navigation Middle What ya looking for? -----
+const navigationmiddleItems: navigationItem[] = [
+  {
+    href: "/Babysitter",
+    label: "Babysitters",
+  },
+  {
+    href: "/Childminders",
+    label: "Childminders",
+  },
+  {
+    href: "/Special-needs-care",
+    label: "Special Needs Care",
+  },
+  {
+    href: "/Parents-help-Parents",
+    label: "Parents help Parents",
+  },
+  {
+    href: "/Babysitting-Jobs",
+    label: "Babysitting Jobs",
+  },
+  {
+    href: "/Childminder-for-Work",
+    label: "Childminder Jobs",
+  },
+  {
+    href: "/Agencies",
+    label: "Childcare Agencies",
+  },
+];
+
+// Navigation Right Discovery? -----
+const navigationrightItems: navigationItem[] = [
+  {
+    href: "/About-us",
+    label: "About us",
+  },
+  {
+    href: "/Tips",
+    label: "Tips & Articles",
+  },
+  {
+    href: "/Trust-Safety",
+    label: "Trust & Safety",
+  },
+  {
+    href: "/Community-standards",
+    label: "Community Standards",
+  },
+  {
+    href: "/Partners",
+    label: "Partners",
+  },
+  {
+    href: "/Share-your-experience",
+    label: "Share your experience",
+  },
+  {
+    href: "/Babysitters-for-Special-Needs",
+    label: "Babysitters for Special Needs",
+  },
+];
+
+// Footer -----
 export const Footer = () => {
+  const pathname = usePathname();
   //   const textArray: Array<{ label: string; link: string }> = [
   //     { label: "Home", link: "/" },
   //     { label: "About", link: "/about" },
@@ -31,48 +129,66 @@ export const Footer = () => {
           />
         </div>
         <div className="">
-          <h1 className="text-[16px]">Babysits</h1>
+          <h1 className="text-[18px] gap-5">Babysits</h1>
           <ul>
-            <li className="text-[14px]">How it works</li>
-            <li className="text-[14px]">Help</li>
-            <li className="text-[14px]">Terms & Privacy</li>
-            <li className="text-[14px]">Pricing</li>
-            <li className="text-[14px]">Company details</li>
-            <li className="text-[14px]">Babysits for Work</li>
-            <li className="text-[14px]">Babysits Shop</li>
+            <div className="flex flex-col gap-1 text-[16px] font-[400] text-gray-700 pt-3">
+              {navigationleftItems.map(({ href, label }, index) => (
+                <Link
+                  href={href}
+                  key={index}
+                  className={`cursor-pointer ${
+                    pathname === href ? "text-[#EDF7F8]" : "black"
+                  }`}
+                >
+                  {label}
+                </Link>
+              ))}
+            </div>
           </ul>
         </div>
         <div className="">
-          <h1>What are you looking for?</h1>
+          <h1 className="text-[18px] gap-5">What are you looking for?</h1>
           <ul>
-            <li>Babysitters</li>
-            <li> Childminders</li>
-            <li> Special Needs Care</li>
-            <li> Parents-help-parents</li>
-            <li> Babysitting jobs</li>
-            <li> Childminder jobs</li>
-            <li> Childcare agencies</li>
+            <div className="flex flex-col gap-1 text-[16px] font-[400] text-gray-700 pt-3">
+              {navigationmiddleItems.map(({ href, label }, index) => (
+                <Link
+                  href={href}
+                  key={index}
+                  className={`cursor-pointer ${
+                    pathname === href ? "text-[#EDF7F8]" : "black"
+                  }`}
+                >
+                  {label}
+                </Link>
+              ))}
+            </div>
           </ul>
         </div>
         <div className="">
-          <h1>Discover</h1>
+          <h1 className="text-[18px]">Discover</h1>
           <ul>
-            <li>About us</li>
-            <li>Tips & Articles</li>
-            <li>Trust & Safety</li>
-            <li>Community standards</li>
-            <li>Partners</li>
-            <li>Share your experience</li>
-            <li>Babysits for Special Needs</li>
+            <div className="flex flex-col gap-1 text-[16px] font-[400] text-gray-700 pt-3">
+              {navigationrightItems.map(({ href, label }, index) => (
+                <Link
+                  href={href}
+                  key={index}
+                  className={`cursor-pointer ${
+                    pathname === href ? "text-[#EDF7F8]" : "black"
+                  }`}
+                >
+                  {label}
+                </Link>
+              ))}
+            </div>
           </ul>
         </div>
       </div>
       <hr className="w-full border-white" />
       <div className="flex flex-col items-center font-[200] text-[16px] gap-4">
         <h1 className="text-[20px] font-[400] ">Follow us on</h1>
-        <div>
-          <RadioGroupRating />
-        </div>
+      </div>
+      <div>
+        <RadioGroupRating />
       </div>
     </div>
   );

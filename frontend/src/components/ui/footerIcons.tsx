@@ -1,12 +1,15 @@
+// Imports -----
 import * as React from "react";
 import { styled } from "@mui/material/styles";
+import { Link } from "@mui/material";
+
+// Mui Imports -----
 import Rating, { IconContainerProps } from "@mui/material/Rating";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied";
 import SentimentSatisfiedIcon from "@mui/icons-material/SentimentSatisfied";
 import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAltOutlined";
 import SentimentVerySatisfiedIcon from "@mui/icons-material/SentimentVerySatisfied";
-
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
@@ -20,32 +23,37 @@ const StyledRating = styled(Rating)(({ theme }) => ({
   },
 }));
 
+// Custom Icons -----
 const customIcons: {
   [index: string]: {
+    href: string;
     icon: React.ReactElement;
     label: string;
   };
 } = {
   1: {
+    href: "www.facebook.com",
     icon: <FacebookRoundedIcon className="text-[#389ba7] w-[45px] h-[45px]" />,
     label: "facebook",
   },
   2: {
+    href: "www.instagram.com",
     icon: <InstagramIcon className="text-[#389ba7] w-[45px] h-[45px]" />,
     label: "instagramm",
   },
   3: {
+    href: "www.pinterest.com",
     icon: <PinterestIcon className="text-[#389ba7] w-[45px] h-[45px]" />,
     label: "pinteres",
   },
   4: {
+    href: "www.linkedin.com",
     icon: <LinkedInIcon className="text-[#389ba7] w-[45px] h-[45px]" />,
     label: "linkedin",
   },
   5: {
-    icon: (
-      <YouTubeIcon className="text-[#389ba7] w-[45px] h-[45px]" />
-    ),
+    href: "www.youtube.com",
+    icon: <YouTubeIcon className="text-[#389ba7] w-[45px] h-[45px]" />,
     label: "Youtube",
   },
 };
@@ -62,8 +70,8 @@ export default function RadioGroupRating() {
       name="highlight-selected-only"
       defaultValue={2}
       IconContainerComponent={IconContainer}
-      getLabelText={(value: number) => customIcons[value].label}
       highlightSelectedOnly
+      getLabelText={(value: number) => customIcons[value].label}
     />
   );
 }
