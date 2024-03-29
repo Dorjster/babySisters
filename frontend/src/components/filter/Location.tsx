@@ -9,7 +9,7 @@ export function LocationSelect() {
     return (
         <Select>
             <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Бакалавр" />
+                <SelectValue placeholder="Улаанбаатар" defaultValue="Улаанбаатар"/>
             </SelectTrigger>
             <SelectContent>
                 <SelectGroup>
