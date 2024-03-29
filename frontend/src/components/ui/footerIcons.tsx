@@ -60,12 +60,7 @@ const customIcons: {
 
 function IconContainer(props: IconContainerProps) {
   const { value, ...other } = props;
-  return (
-    <link>
-      {" "}
-      <span {...other}>{customIcons[value].icon}</span>
-    </link>
-  );
+  return <span {...other}>{customIcons[value].icon}</span>;
 }
 
 export default function RadioGroupRating() {
