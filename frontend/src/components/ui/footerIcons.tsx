@@ -75,8 +75,8 @@ export default function RadioGroupRating() {
       name="highlight-selected-only"
       defaultValue={2}
       IconContainerComponent={IconContainer}
-      getLabelText={(value: number) => customIcons[value].label}
       highlightSelectedOnly
+      getLabelText={(value: number) => customIcons[value].label}
     />
   );
 }
