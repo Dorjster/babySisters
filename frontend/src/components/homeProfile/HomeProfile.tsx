@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react'
 import Card from './Card'
 import axios from 'axios';
@@ -24,8 +26,10 @@ export default async function HomeProfile() {
   const babysitterData: any = await GetAllData();
 
   return (
-    <div className="w-[1200px] h-[300px] m-auto mt-1 ">
+    <div className="w-[1200px] h-fit m-auto mt-1 flex flex-col gap-10 border">
       <Card data={{ infoData, babysitterData }} />
+
+      <button className="w-[300px] h-[40px] bg-[#389BA7] rounded-3xl text-white m-auto">See all Babysitters</button>
     </div>
   )
 }
