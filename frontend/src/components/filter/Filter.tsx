@@ -101,6 +101,7 @@ export const Filter = () => {
                 <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Нэмэлт мэдээлэл</p>
                 <Info/>
             </div>
+            <button className="bg-[#c9e8ec] cursor-pointer rounded-[20px] py-2 sticky bottom-3">Button </button>
 
 
 

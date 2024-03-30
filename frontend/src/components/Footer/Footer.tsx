@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import RadioGroupRating from "../ui/footerIcons";
+import { Stack } from "@mui/system";
+import { Typography } from "@mui/material";
 
 // Navigation -----
 type navigationItem = {
@@ -116,9 +118,28 @@ export const Footer = () => {
   //     { label: "About", link: "/about" },
   //     { label: "Contact", link: "/contact" },
   //   ];
+  const FooterArray = [
+    { title: "Ашиглах заавар", href: "/how-it-works" },
+    { title: "Эцэг эхэд", href: "/tipsParent" },
+    { title: "Асрагчид", href: "/tipsBabysitter" },
+    { title: "Аюулгүй байдал", href: "/safety" },
+  ];
 
   return (
-    <div className="relative bottom-0 left-0 bg-[#c9e8ec] w-screen h-[545px] md:px-[120px] flex flex-col justify-center items-center text-black gap-[45px] px-[100px">
+    <div className="relative bottom-0 left-0 bg-[#c9e8ec] w-screen h-full md:px-[120px] flex flex-col justify-center items-center text-black gap-[45px] px-[100px] py-[50px] ">
+      <div className="flex justify-center items-center gap-10 text-[20px] font-[400] text-gray-700  ">
+        {FooterArray.map(({ href, title }, index) => (
+          <Link
+            href={href}
+            key={index}
+            className={`cursor-default${
+              pathname === href ? "text-[#389BA7]" : "black"
+            }`}
+          >
+            {title}
+          </Link>
+        ))}
+      </div>
       <div className="flex gap-[150px]">
         <div>
           <Image
@@ -128,65 +149,9 @@ export const Footer = () => {
             alt="barry waving"
           />
         </div>
-        <div className="">
-          <h1 className="text-[18px] gap-5">Babysits</h1>
-          <ul>
-            <div className="flex flex-col gap-1 text-[16px] font-[400] text-gray-700 pt-3">
-              {navigationleftItems.map(({ href, label }, index) => (
-                <Link
-                  href={href}
-                  key={index}
-                  className={`cursor-pointer ${
-                    pathname === href ? "text-[#EDF7F8]" : "black"
-                  }`}
-                >
-                  {label}
-                </Link>
-              ))}
-            </div>
-          </ul>
-        </div>
-        <div className="">
-          <h1 className="text-[18px] gap-5">What are you looking for?</h1>
-          <ul>
-            <div className="flex flex-col gap-1 text-[16px] font-[400] text-gray-700 pt-3">
-              {navigationmiddleItems.map(({ href, label }, index) => (
-                <Link
-                  href={href}
-                  key={index}
-                  className={`cursor-pointer ${
-                    pathname === href ? "text-[#EDF7F8]" : "black"
-                  }`}
-                >
-                  {label}
-                </Link>
-              ))}
-            </div>
-          </ul>
-        </div>
-        <div className="">
-          <h1 className="text-[18px]">Discover</h1>
-          <ul>
-            <div className="flex flex-col gap-1 text-[16px] font-[400] text-gray-700 pt-3">
-              {navigationrightItems.map(({ href, label }, index) => (
-                <Link
-                  href={href}
-                  key={index}
-                  className={`cursor-pointer ${
-                    pathname === href ? "text-[#EDF7F8]" : "black"
-                  }`}
-                >
-                  {label}
-                </Link>
-              ))}
-            </div>
-          </ul>
-        </div>
       </div>
       <hr className="w-full border-white" />
-      <div className="flex flex-col items-center font-[200] text-[16px] gap-4">
-        <h1 className="text-[20px] font-[400] ">Follow us on</h1>
-      </div>
+
       <div>
         <RadioGroupRating />
       </div>

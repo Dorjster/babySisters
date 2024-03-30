@@ -73,38 +73,41 @@ export const Signup = () => {
   return (
     <div>
       {page === 1 && (
-        <div className="flex ">
+        <div className="flex p-20 items-center justify-center h-[550px] gap-8">
           <Button
+            className="border-[1px] border-[#c9e8ec] rounded-[20px] px-6 py-6 hover:bg-[#c9e8ec]"
             onClick={() => {
               setPage(2);
             }}
           >
-            sign as a parent
+           Эцэг эхээр бүртгүүлэх
           </Button>
           <Button
+            className="  rounded-[20px] px-6 py-6 border-[1px] border-[#c9e8ec] hover:bg-[#c9e8ec]"
             onClick={() => {
               setPage(3);
             }}
           >
-            sign as a nanny
+            Хүүхэд асрагчаар бүртгүүлэх
           </Button>
         </div>
       )}
       {page === 2 && (
-        <Card className="w-[800px] h-fit divide-y-2 ">
+        <div className="flex items-center justify-center py-10">
+          <Card className="w-[550px] h-fit divide-y-2  ">
           <CardHeader className="">
             <CardTitle className="text-center text-[30px] font-[500]">
-              Welcome to Babysits
+              Babysits-д тавтай морил
             </CardTitle>
           </CardHeader>
           <CardContent className="p-[30px] flex flex-col gap-[50px] ">
             <Label htmlFor="email" className="text-[25px]">
-              sign up as a parent
+              Эцэг эхээр бүртгүүлэх
             </Label>
             <Input
               name="name"
               type="name"
-              placeholder="Name"
+              placeholder="Нэр"
               className="h-[60px] rounded-[25px] border-1px"
               onChange={handleChange}
             />
@@ -112,7 +115,7 @@ export const Signup = () => {
               required
               name="email"
               type="email"
-              placeholder="Email"
+              placeholder="И-мэйл"
               className="h-[60px] rounded-[25px] border-1px"
               onChange={handleChange}
             />
@@ -120,7 +123,7 @@ export const Signup = () => {
               required
               name="phone"
               type="phone"
-              placeholder="Phone"
+              placeholder="Утас"
               className="h-[60px] rounded-[25px] border-1px"
               onChange={handleChange}
             />
@@ -128,7 +131,7 @@ export const Signup = () => {
               required
               name="password"
               type="password"
-              placeholder="Password"
+              placeholder="Нууц үг"
               className="h-[60px] rounded-[25px] border-1px"
               onChange={handleChange}
             />
@@ -136,16 +139,16 @@ export const Signup = () => {
               required
               name="Repassword"
               type="Repassword"
-              placeholder="Re - Password"
+              placeholder="Нууц үг давтах"
               className="h-[60px] rounded-[25px] border-1px"
               onChange={handleChange}
             />{" "}
             <Button
               onClick={handleCreateParent}
               variant="outline"
-              className="bg-[#0077b6] w-full text-white text-[20px] font-[300] h-[60px] rounded-[25px] "
+              className="bg-[#389BA7] w-full text-white text-[20px] font-[300] h-[60px] rounded-[25px] hover:border-[#389BA7] "
             >
-              Continue
+              Үргэлжлүүлэх
             </Button>
             {error && (
               <p className=" text-center text-red-500 font-sans-serif ">
@@ -154,22 +157,25 @@ export const Signup = () => {
             )}
           </CardContent>
         </Card>
+        </div>
+        
       )}
       {page === 3 && (
-        <Card className="w-[800px] h-fit divide-y-2">
+        <div className="flex items-center justify-center py-10">
+           <Card className="w-[550px] h-fit divide-y-2">
           <CardHeader className="">
             <CardTitle className="text-center text-[30px] font-[500]">
-              Welcome to Babysits
+              Babysits-д тавтай морил
             </CardTitle>
           </CardHeader>
           <CardContent className="p-[30px] flex flex-col gap-[30px] ">
             <Label htmlFor="email" className="text-[25px]">
-              sign up as a parent
+              Хүүхэд асрагчаар бүртгүүлэх
             </Label>
             <Input
               name="name"
               type="name"
-              placeholder="Name"
+              placeholder="Нэр"
               className="h-[60px] rounded-[25px] border-1px"
               onChange={handleChange}
             />
@@ -177,7 +183,7 @@ export const Signup = () => {
               required
               name="email"
               type="email"
-              placeholder="Email"
+              placeholder="И-мэйл"
               className="h-[60px] rounded-[25px] border-1px"
               onChange={handleChange}
             />
@@ -185,7 +191,7 @@ export const Signup = () => {
               required
               name="phone"
               type="phone"
-              placeholder="Phone"
+              placeholder="Утас"
               className="h-[60px] rounded-[25px] border-1px"
               onChange={handleChange}
             />
@@ -193,7 +199,7 @@ export const Signup = () => {
               required
               name="password"
               type="password"
-              placeholder="Password"
+              placeholder="Нууц үг"
               className="h-[60px] rounded-[25px] border-1px"
               onChange={handleChange}
             />
@@ -201,16 +207,16 @@ export const Signup = () => {
               required
               name="Repassword"
               type="Repassword"
-              placeholder="Re - Password"
+              placeholder="Нууц үг давтах"
               className="h-[60px] rounded-[25px] border-1px"
               onChange={handleChange}
             />
             <Button
               onClick={handleCreateNanny}
               variant="outline"
-              className="bg-[#389BA7] w-full text-white text-[20px] font-[300] h-[60px] rounded-[25px] "
+              className="bg-[#389BA7] w-full text-white text-[20px] font-[300] h-[60px] rounded-[25px] hover:bg-[#008291] hover:text-white hover:border-none "
             >
-              Continue
+              Үргэлжлүүлэх
             </Button>{" "}
             {error && (
               <p className=" text-center text-red-500 font-sans-serif ">
@@ -219,6 +225,8 @@ export const Signup = () => {
             )}
           </CardContent>
         </Card>
+        </div>
+       
       )}
     </div>
   );

@@ -66,21 +66,21 @@ export const Login = () => {
     }
   };
   return (
-    <div>
+    <div className="flex items-center justify-center py-14">
       {page === 1 && (
-        <Card className="w-[800px] h-[430px] divide-y-2 ">
+        <Card className="w-[550px] h-[430px] divide-y-2 ">
           <CardHeader className="">
             <CardTitle className="text-center text-[30px] font-[500]">
               Babysits-д тавтай морил
             </CardTitle>
           </CardHeader>
-          <CardContent className="p-[30px] flex flex-col gap-[50px] ">
-            <Label>Нэвтрэх эсвэл Бүртгүүлэх</Label>
+          <CardContent className="p-[30px] flex flex-col gap-[30px] items-center ">
+            <Label className="text-[20px]">Нэвтрэх</Label>
             <Input
               required
               name="email"
               type="email"
-              placeholder="Email"
+              placeholder="И-мэйл"
               className="h-[60px] rounded-[25px] border-1px"
               onChange={handleChange}
             />
@@ -88,7 +88,7 @@ export const Login = () => {
             <Button
               onClick={handleLogin}
               variant="outline"
-              className="bg-[#389ba7] w-full text-white text-[20px] font-[300] h-[60px] rounded-[25px] "
+              className="bg-[#389ba7] w-full text-white text-[20px] font-[300] h-[60px] rounded-[25px] hover:bg-[#008291] hover:text-white hover:border-none "
             >
               Үргэлжлүүлэх
             </Button>
@@ -97,8 +97,8 @@ export const Login = () => {
                 {error} <p className="text-black"> or</p> <hr />
               </p>
             )}
-            <div className="flex justify-center gap-[10px] text-[black] mt-[-35px]">
-              <p>Та бүртгэлтэй юу?</p>
+            <div className="  flex justify-center gap-[10px] text-[black] mt-[8px]">
+              <p>Шинэ хэрэглэгч үүсгэх?</p>
               <button
                 onClick={() => {
                   push("/signup");
