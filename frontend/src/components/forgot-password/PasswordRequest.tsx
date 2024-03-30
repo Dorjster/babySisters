@@ -21,15 +21,9 @@ export const PasswordRequest = (props: Email) => {
           <Input
             name="email"
             placeholder="Имэйл"
-            className="rounded-2xl h-[48px]  text-base font-normal"
+            className="rounded-2xl h-[48px] text-gray-300 text-base font-normal"
             onChange={handleChange}
           ></Input>
-
-          {/* <hr />
-          <div className="flex justify-center gap-[10px]">
-            <p>Don't have an account?</p>
-            <button className="font-semibold"> Sign up</button>
-          </div> */}
         </div>
       </div>
     </div>

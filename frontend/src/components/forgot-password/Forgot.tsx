@@ -82,12 +82,12 @@ export const Forgot = () => {
           {step === 1 && <NewCode handleChange={handleChange} />}
           {step === 2 && <ChangePassword handleChange={handleChange} />}
 
-          <Button
+          <button
             onClick={ChangeComponent}
             className="bg-[#389BA7] w-full rounded-3xl h-[48px] mt-[20px] font-normal text-xl text-white"
           >
             Continue
-          </Button>
+          </button>
           <div className="flex justify-center">
             {error && <div className="text-red-500 mt-[10px]">{error}</div>}
           </div>
