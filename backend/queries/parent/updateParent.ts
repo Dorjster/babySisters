@@ -17,38 +17,39 @@ export const updateParentQuery = async (req: Request) => {
             image,
             passport_id,
         } = req.body;
-        4;
+
         const { id } = req.params;
 
         const hash = passwordHash(newPassword);
 
-        const parent = await ParentModel.findById({ id });
+        const parent = await ParentModel.findById({ _id: id });
         const pass = parent?.password;
 
         if (!pass) {
-            throw new Error("Not found");
+            throw new Error("Хэрэглэгч олдсонгүй");
         }
 
         const checkPass = compareHash(oldPassword, pass);
 
         if (!checkPass) {
-            throw new Error("Password is wrong");
+            throw new Error("Нууц үгээ шалгаад дахин оролдоно уу");
         }
 
         const updatedParent = await ParentModel.findOneAndUpdate(
             { _id: id },
             {
                 $set: {
-                    email,
+                    email: email,
                     password: hash,
-                    name,
-                    phone,
-                    address,
-                    job_description,
-                    wage,
-                    available_time,
-                    image,
-                    passport_id,
+                    name: name,
+                    phone: phone,
+                    address: address,
+                    job_description: job_description,
+                    wage: wage,
+                    available_time: available_time,
+                    image: image,
+                    passport_id: passport_id,
+                
                 },
             },
             { new: true }

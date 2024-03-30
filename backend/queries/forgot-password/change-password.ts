@@ -9,6 +9,10 @@ export const changePasswordQuery = async (req: Request) => {
 
   const user = await getUserByEmail(email);
 
+  if(!user){
+    throw new Error("Хэрэглэгч олдсонгүй"); 
+  }
+
   const newPassword = await passwordHash(password);
 
   await ParentModel.findOneAndUpdate(
@@ -16,10 +20,11 @@ export const changePasswordQuery = async (req: Request) => {
     { $set: { password: newPassword } },
     { new: true }
   );
+  
   await BabysitterModel.findOneAndUpdate(
     { email: email },
     { $set: { password: newPassword } },
     { new: true }
   );
-  return "succes changed password";
+  return "Нууц үг амжилттай шинэчлэгдлээ";
 };

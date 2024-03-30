@@ -10,7 +10,7 @@ export const forgotPasswordQuery = async (req: Request, res: Response) => {
 
   const isUser = await getUserByEmail(email);
   if (!isUser) {
-    throw new Error("Email not found");
+    throw new Error("Хэрэглэгч олдсонгүй");
   }
 
   const transporter = nodemailer.createTransport({
@@ -29,9 +29,8 @@ export const forgotPasswordQuery = async (req: Request, res: Response) => {
   const options = {
     from: "binderiyabilguun@gmail.com",
     to: email,
-    subject: "Hello",
-    text: `Verifcation for ${email}
-    Your code is: ${code}`,
+    subject: "Babysitter",
+    text: `${email} хаягт илгээсэн нэг удаагийн нууц үг: ${code}`,
   };
 
   await ParentModel.findOneAndUpdate({ email: email }, { $set: { otp: code } });

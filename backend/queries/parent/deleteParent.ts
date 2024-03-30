@@ -8,15 +8,18 @@ export const deleteParentQuery = async (req: Request) => {
 
         const { id } = req.params;
 
-        const parent = await ParentModel.findById({ id });
+        const parent = await ParentModel.findById({ _id: id });
 
         const pass = parent?.password;
+        
+        
 
         if (!pass) {
             throw new Error("Хэрэглэгч олдсонгүй");
         }
 
         const comparePassword = compareHash(password, pass);
+        
 
         if (!comparePassword || password !== rePassword) {
             throw new Error("Нууц үгээ шалгаад дахин оролдоно уу");

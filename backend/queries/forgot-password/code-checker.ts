@@ -6,12 +6,12 @@ export const codeCheckerQuery = async (req: Request) => {
   const user = await getUserByEmail(email);
 
   if (!user) {
-    throw new Error("Хэрэлэгч олдсонгүй");
+    throw new Error("Хэрэглэгч олдсонгүй");
   }
 
   if (user.otp === OTP) {
-    return "Нууц код зөв байна";
+    return "Нууц үг зөв байна";
   } else {
-    throw new Error("Нууц код буруу байна");
+    throw new Error("Нууц үг буруу байна");
   }
 };

@@ -2,8 +2,7 @@
 import express from "express";
 import cors from "cors";
 import { connectDb } from "./db";
-import { loginRouter, userRouter } from "./router";
-import { forgotRouter } from "./router";
+import { loginRouter, userRouter, forgotRouter, reviewRouter } from "./router";
 
 // const port = process.env.PORT;
 
@@ -14,6 +13,7 @@ connectDb();
 app.use(userRouter);
 app.use(loginRouter);
 app.use(forgotRouter);
+app.use(reviewRouter);
 
 app.listen(8000, () => {
   console.log(`http://localhost:8000`);

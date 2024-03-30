@@ -7,6 +7,11 @@ export const getAllParentsQuery = async (req: Request) => {
 
     const parents = await ParentModel.find();
 
+    if(parents === null){
+      throw new Error("Бүртгэлтэй хэрэглэгч олдсонгүй");
+      
+    }
+
     return parents;
     
   } catch (error: any) {

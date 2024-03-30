@@ -15,18 +15,21 @@ export const compareHash = (password: string, hashedPassword: string) => {
 
 export const tokenGenerate = async (userId: string) => {
   const token = await jwt.sign({ userId }, "defaultSecret", {
-    expiresIn: "1h",
+    expiresIn: "1d",
   });
   return token;
 };
 export const getUserByEmail = async (email: string) => {
   const user = await ParentModel.findOne({ email: email });
-  console.log(user, "parent");
   
   if (!user) {
+    
     const user1 = await BabysitterModel.findOne({ email: email });
-    
-    
     return user1;
-  } else return user;
+
+  } else {
+
+    return user;
+
+  };
 };

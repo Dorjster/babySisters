@@ -33,7 +33,7 @@ export const updateBabysitterQuery = async (req: Request) => {
 
         const hash = passwordHash(newPassword);
 
-        const babysitter = await BabysitterModel.findById({id});
+        const babysitter = await BabysitterModel.findById({_id: id});
 
         const pass = babysitter?.password;
 
@@ -51,46 +51,52 @@ export const updateBabysitterQuery = async (req: Request) => {
             { email: email },
             {
                 $set: {
-                    email,
+                    email: email,
                     password: hash,
-                    name,
-                    phone,
-                    address,
-                    about,
-                    gender,
-                    image,
-                    passport_id
+                    name: name,
+                    phone: phone,
+                    address: address,
+                    about: about,
+                    gender: gender,
+                    image: image,
+                    passport_id: passport_id
                 },
             },
             { new: true }
         );
 
-        const info_id = babysitter.info_id;
+        const info_id = babysitter?.info_id;
 
-        const updatedInfo = await InfoModel.findOneAndUpdate(
+        const updatedInfo = await InfoModel.findByIdAndUpdate(
             { _id: info_id },
             {
                 $set: {
-                    driver_license,
-                    has_children,
-                    education,
-                    car,
-                    smoker,
-                    language,
-                    skills,
-                    year_of_experience,
-                    character,
-                    rating,
-                    available_time,
-                    wage,
+                    driver_license: driver_license,
+                    has_children: has_children,
+                    education: education,
+                    car: car,
+                    smoker: smoker,
+                    language: language,
+                    skills: skills,
+                    year_of_experience: year_of_experience,
+                    character: character,
+                    rating: rating,
+                    available_time: available_time,
+                    wage: wage
                 },
             },
             { new: true }
         );
 
 
+        const populatedBabysitterInfo = {
+            babysitter: updatedBabysitter,
+            info: updatedInfo 
+        };
+
+
         if (updatedInfo && updatedBabysitter) { 
-            return updatedInfo && updatedBabysitter
+            return populatedBabysitterInfo
         }
     
     } catch (error: any) {

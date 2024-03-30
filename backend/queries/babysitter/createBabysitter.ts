@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
-import { BabysitterModel } from "../../db";
-import { passwordHash } from "../../utils";
+import { Request } from "express";
+import { BabysitterModel, InfoModel } from "../../db";
+import { passwordHash, getUserByEmail } from "../../utils";
 
 export const createBabysitterQuery = async (req: Request) => {
   const { name, email, phone, password } = req.body;
@@ -8,12 +8,23 @@ export const createBabysitterQuery = async (req: Request) => {
   try {
     const hash = passwordHash(password);
 
-    const user = await BabysitterModel.create({
-      name,
-      email,
-      phone,
-      password: hash,
+    const isUserCreated = await getUserByEmail(email);
+
+    if(isUserCreated){
+      throw new Error("Бүртгэлтэй хэрэглэгч байна");
+    }
+    const info = await InfoModel.create({
+      
     });
+
+    const user = await BabysitterModel.create({
+      name: name,
+      email: email,
+      phone: phone,
+      password: hash,
+      info_id: info._id
+    });
+
 
     return user._id;
   } catch (error: any) {

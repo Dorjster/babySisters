@@ -6,9 +6,5 @@ export const loginFirst = async (req: Request, res: Response) => {
 
   const user = await getUserByEmail(email);
 
-  if (!user) {
-    return "user not found";
-  }
-
   return user;
 };
