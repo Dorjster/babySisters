@@ -18,20 +18,20 @@ type navigationItem = {
 
 const navigationItems: navigationItem[] = [
   {
+    href: "/",
+    label: "Нүүр",
+  },
+  {
     href: "/babysitter",
-    label: "Babysitters",
+    label: "Хүүхэд асрагч",
   },
   {
-    href: "/babysitting",
-    label: "Babysitting Jobs",
+    href: "/parent",
+    label: "Гэр бүл",
   },
   {
-    href: "/about-us/how-it-works",
-    label: "How it works",
-  },
-  {
-    href: "/pricing",
-    label: "Pricing",
+    href: "/how-it-works",
+    label: "Ашиглах заавар",
   },
 ];
 
@@ -48,16 +48,7 @@ export const Header = () => {
     setDrawer(!TemporaryDrawer);
   };
 
-  // Search Area just in case -----
 
-  //   const [search, setSearch] = useState("");
-
-  //   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-  //     const { name, value } = event.target;
-  //     if (name === "search") {
-  //       setSearch(value);
-  //     }
-  //   };
 
   // -----
   return (
@@ -71,7 +62,7 @@ export const Header = () => {
           onClick={() => {
             window.location.href = "/";
           }}
-          className="cursor-pointer"
+          className="cursor-default"
         />
       </div>
       <div className="flex justify-center items-center gap-10 text-[16px] font-[400] text-gray-700 ">
@@ -79,8 +70,8 @@ export const Header = () => {
           <Link
             href={href}
             key={index}
-            className={`cursor-pointer ${
-              pathname === href ? "text-[#EDF7F8]" : "black"
+            className={`cursor-default hover:text-[#389BA7] ${
+              pathname === href ? "text-[#389BA7]" : "black"
             }`}
           >
             {label}
@@ -90,7 +81,7 @@ export const Header = () => {
       <div className="flex justify-end items-center gap-4">
         <button
           onClick={() => router.push("./login")}
-          className="text-[16px] font-[400] text-[#4d565e]"
+          className="text-[16px] font-[400] text-[#4d565e] hover:text-[#000] cursor-default"
         >
           Log in
           <hr
@@ -103,7 +94,7 @@ export const Header = () => {
         </button>
         <button
           onClick={() => router.push("./signup")}
-          className="text-[16px] font-[400] w-[88px] h-[38px] text-white  rounded-[15px] bg-[#389BA7]"
+          className="text-[16px] font-[400] w-[88px] h-[38px] text-white  rounded-[15px] bg-[#389BA7] hover:bg-[#058b9c] cursor-default"
         >
           Sign up
         </button>
@@ -112,7 +103,7 @@ export const Header = () => {
           variant="text"
           startIcon={<MenuIcon />}
           className="text-[3px]
-          font-[700] leading-2"
+          font-[700] leading-2 cursor-default"
           color="inherit"
         ></Button>
       </div>
