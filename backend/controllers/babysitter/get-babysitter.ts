@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { getBabySitterQuery } from "../../queries";
+import { getBabysitterQuery } from "../../queries";
 
 export const getBabysitterController = async (req: Request, res: Response) => {
   try {
-    const result = await getBabySitterQuery(req);
+    const result = await getBabysitterQuery(req);
 
     res.send(result);
   } catch (error: any) {
