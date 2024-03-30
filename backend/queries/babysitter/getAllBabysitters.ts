@@ -4,7 +4,6 @@ import { BabysitterModel } from "../../db";
 export const getAllBabySittersQuery = async (req: Request) => {
   try {
 
-
     const babysitters = await BabysitterModel.find();
 
     return babysitters;

@@ -15,7 +15,7 @@ export const createBabysitterQuery = async (req: Request) => {
       password: hash,
     });
 
-    return user;
+    return user._id;
   } catch (error: any) {
     throw new Error(error.message);
   }

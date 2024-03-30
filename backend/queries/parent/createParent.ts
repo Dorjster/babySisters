@@ -15,7 +15,7 @@ export const createParentQuery = async (req: Request) => {
       password: hash,
     });
 
-    return user;
+    return user._id;
   } catch (error: any) {
     throw new Error(error.message);
   }

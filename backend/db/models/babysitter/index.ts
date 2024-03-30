@@ -12,6 +12,7 @@ export type BabysitterModelType = {
     image?: string;
     passport_id?: string;
     otp?: string;
+    info_id: Schema.Types.ObjectId;
 };
 
 const BabysitterSchema = new Schema<BabysitterModelType>(
@@ -26,6 +27,7 @@ const BabysitterSchema = new Schema<BabysitterModelType>(
         image: { type: String, required: false },
         passport_id: { type: String, required: false },
         otp: { type: String, required: false },
+        info_id: { type: Schema.Types.ObjectId, ref: "Info", required: true },
     },
     {
         timestamps: true,

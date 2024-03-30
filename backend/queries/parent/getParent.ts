@@ -4,9 +4,12 @@ import { ParentModel } from "../../db";
 export const getParentQuery = async (req: Request) => {
   try {
 
-    const {email} = req.body;
+    const { id } = req.body;
+    
+    console.log(id);
+    
 
-    const parent = await ParentModel.findOne({email: email});
+    const parent = await ParentModel.findById({id});
 
     return parent;
     
