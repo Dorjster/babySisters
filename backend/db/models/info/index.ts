@@ -2,6 +2,7 @@ import { model, Schema, models, Model } from "mongoose";
 
 export type InfoModelType = {
     _id: Schema.Types.ObjectId;
+    // babysitter_id: Schema.Types.ObjectId;
     driver_license?: boolean;
     has_children?: boolean;
     education?: string[];
@@ -19,6 +20,7 @@ export type InfoModelType = {
 const InfoSchema = new Schema<InfoModelType>(
     {
         driver_license: { type: Boolean, required: false },
+        // babysitter_id: { type: Schema.Types.ObjectId, required: true},
         has_children: { type: Boolean, required: false },
         education: { type: [String], required: false },
         car: { type: Boolean, required: false },

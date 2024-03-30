@@ -17,14 +17,14 @@ export const userRouter = Router();
 userRouter.post("/signup", createBabyController);
 userRouter.post("/parent/signup", createParentController);
 
-userRouter.get("/parent", getParentController);
-userRouter.get("/babysitter", getBabysitterController);
+userRouter.get("/parent/:id", getParentController);
+userRouter.get("/babysitter/:id", getBabysitterController);
 
 userRouter.get("/allParents", getAllParentsController);
 userRouter.get("/allBabysitters", getAllBabySittersController);
 
-userRouter.put("/parent", updateParentController);
-userRouter.put("/babysitter", updateBabysitterController);
+userRouter.put("/parent/:id", updateParentController);
+userRouter.put("/babysitter/:id", updateBabysitterController);
 
-userRouter.delete("/parent", deleteParentController);
-userRouter.delete("/babysitter", deleteBabysitterController);
+userRouter.delete("/parent/:id", deleteParentController);
+userRouter.delete("/babysitter/:id", deleteBabysitterController);

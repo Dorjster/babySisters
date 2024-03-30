@@ -6,6 +6,11 @@ export const getAllBabySittersQuery = async (req: Request) => {
 
     const babysitters = await BabysitterModel.find();
 
+    if(babysitters === null){
+      throw new Error("Бүртгэлтэй хэрэглэгч олдсонгүй");
+      
+    }
+
     return babysitters;
     
   } catch (error: any) {
