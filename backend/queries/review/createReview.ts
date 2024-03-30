@@ -7,14 +7,16 @@ export const createReviewQuery = async (req: Request) => {
 
         const review = await ReviewModel.create({ babysitter_id: babysitter_id, parent_id: parent_id, point: point, description: description });
 
-        // await BabysitterModel.findByIdAndUpdate(
-        //     { _id: babysitter_id },
-        //     {
-        //         $set: {
-        //             review: 
-        //         }
-        //     }
-        // )
+        await BabysitterModel.findByIdAndUpdate(
+            { _id: babysitter_id },
+            {
+                $addToSet: {
+                    review:review._id
+                }
+            }
+        )
+        
+    
 
         return review;
     } catch (error: any) {
