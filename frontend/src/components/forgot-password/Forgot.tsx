@@ -75,24 +75,27 @@ export const Forgot = () => {
   };
 
   return (
-    <Card className="w-[606px] h-[fit-content] m-auto mt-[100px]">
+    <div className="flex items-center justify-center py-24">
+      <Card className="w-[550px] py-[20px] h-[fit-content] ">
       <CardContent className="flex flex-col gap-[15px]">
-        <div>
+        <div className="">
           {step === 0 && <PasswordRequest handleChange={handleChange} />}
           {step === 1 && <NewCode handleChange={handleChange} />}
           {step === 2 && <ChangePassword handleChange={handleChange} />}
 
           <button
             onClick={ChangeComponent}
-            className="bg-[#389BA7] w-full rounded-3xl h-[48px] mt-[20px] font-normal text-xl text-white"
+            className="bg-[#389BA7] hover:bg-[#008291] w-full rounded-3xl h-[48px] mt-[20px] font-normal text-xl text-white"
           >
             Continue
           </button>
-          <div className="flex justify-center">
+          <div className="flex justify-center ">
             {error && <div className="text-red-500 mt-[10px]">{error}</div>}
           </div>
         </div>
       </CardContent>
     </Card>
+    </div>
+    
   );
 };

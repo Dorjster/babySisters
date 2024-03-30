@@ -27,7 +27,7 @@ const navigationItems: navigationItem[] = [
   },
   {
     href: "/parent",
-    label: "Гэр бүл",
+    label: "Эцэг эх",
   },
   {
     href: "/how-it-works",
@@ -52,7 +52,7 @@ export const Header = () => {
 
   // -----
   return (
-    <div className="flex justify-between items-center py-6 bg-[#c9e8ec]">
+    <div className="flex justify-between items-center py-6 bg-[#c9e8ec] sticky top-0 z-10">
       <div className="flex  ml-[30px] ">
         <Image
           src="/babysits.logo.png"
@@ -70,7 +70,7 @@ export const Header = () => {
           <Link
             href={href}
             key={index}
-            className={`cursor-default hover:text-[#389BA7] ${
+            className={`cursor-default ${
               pathname === href ? "text-[#389BA7]" : "black"
             }`}
           >
@@ -81,9 +81,9 @@ export const Header = () => {
       <div className="flex justify-end items-center gap-4">
         <button
           onClick={() => router.push("./login")}
-          className="text-[16px] font-[400] text-[#4d565e] hover:text-[#000] cursor-default"
+          className="text-[16px] font-[400] cursor-default text-[#4d565e] hover:text-black"
         >
-          Log in
+          Нэвтрэх
           <hr
             style={{
               color: "red",
@@ -94,9 +94,9 @@ export const Header = () => {
         </button>
         <button
           onClick={() => router.push("./signup")}
-          className="text-[16px] font-[400] w-[88px] h-[38px] text-white  rounded-[15px] bg-[#389BA7] hover:bg-[#058b9c] cursor-default"
+          className="text-[16px] cursor-default font-[400] p-2 text-white  rounded-[15px] bg-[#389BA7] hover:bg-[#008291]"
         >
-          Sign up
+          Бүртгүүлэх
         </button>
         <Button
           onClick={handleDrawer}
