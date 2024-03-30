@@ -1,5 +1,5 @@
 export * from "./createBabysitter";
-export * from "./getBabysitter";
+export * from "./getBabySitter";
 export * from "./getAllBabysitters";
 export * from "./updateBabysitter";
 export * from "./deleteBabysitter";
