@@ -44,8 +44,8 @@ export const Card: React.FC<CardProps> = ({ data }) => {
       </div>
 
       <div className="w-[150px] h-[150px] ml-4">
-        <div className="text-lg font-semibold mb-5 text-[#31393F] bg-gray-300 animate-pulse " />
-        <div className="w-full h-[120px] text-[#222222] bg-gray-300 animate-pulse" />
+        <div className="text-lg  font-semibold mb-5 text-[#31393F] bg-gray-300 animate-pulse " />
+        <div className="w-full h-[120px] text-[#222222] bg-gray-400 animate-pulse" />
       </div>
     </div>
   );
