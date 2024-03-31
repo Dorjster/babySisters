@@ -3,16 +3,14 @@ import { BabysitterModel } from "../../db";
 
 export const getAllBabySittersQuery = async (req: Request) => {
   try {
-
     const babysitters = await BabysitterModel.find();
 
-    if(babysitters === null){
-      throw new Error("Бүртгэлтэй хэрэглэгч олдсонгүй");
-      
+    if (babysitters === null) {
+      // throw new Error("Бүртгэлтэй хэрэглэгч олдсонгүй");
+      return "asd";
     }
 
     return babysitters;
-    
   } catch (error: any) {
     throw new Error(error.message);
   }
