@@ -8,11 +8,12 @@ import { Characters } from "./Characters";
 import { Gender } from "./Gender";
 import { Education } from "./Education";
 import { Info } from "./Info";
+import { Wage } from "./Wage";
 import RatingSlider from "./Rating";
 import { useState } from "react";
 import { FaStar } from "react-icons/fa";
 
-export const Filter = () => {
+export const FilterBabysitter = () => {
   const [sliderValue, setSliderValue] = useState<number>(2);
 
   const handleSliderChange = (value: number | number[]) => {
@@ -26,7 +27,13 @@ export const Filter = () => {
   };
 
   return (
-    <div className="w-[300px] bg-[#f5f5f5] rounded-l p-10 grid gap-5 rounded-2xl">
+    <div className="w-[300px] h-[1000px] bg-[#f5f5f5] p-10 grid gap-5 rounded-xl overflow-scroll sticky top-[200px]">
+      <div className="grid gap-3">
+        <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+          Цалин
+        </p>
+        <Wage/>
+      </div>
       <div className="grid gap-3">
         <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
           Үнэлгээ

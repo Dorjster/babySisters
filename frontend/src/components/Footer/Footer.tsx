@@ -14,8 +14,7 @@ export const Footer = () => {
 
   const FooterArray = [
     { title: "Ашиглах заавар", href: "/how-it-works" },
-    { title: "Эцэг эхэд", href: "/tipsParent" },
-    { title: "Асрагчид", href: "/tipsBabysitter" },
+    { title: "Зөвлөгөө", href: "/tips" },
     { title: "Аюулгүй байдал", href: "/safety" },
   ];
 
