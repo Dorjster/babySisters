@@ -27,7 +27,7 @@ export const FilterBabysitter = () => {
   };
 
   return (
-    <div className="w-[300px] h-[1000px] bg-[#f5f5f5] p-10 grid gap-5 rounded-xl overflow-scroll sticky top-[200px]">
+    <div className="w-[300px] bg-[#f5f5f5] p-10 grid gap-5 rounded-xl overflow-hidden hover:overflow-y-scroll overflow-x-hidden sticky top-[200px]">
       <div className="grid gap-3">
         <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
           Цалин
@@ -117,7 +117,7 @@ export const FilterBabysitter = () => {
         </p>
         <Info />
       </div>
-      <button className="bg-[#c9e8ec] cursor-pointer rounded-[20px] py-2 sticky bottom-3">
+      <button className="bg-[#c9e8ec] cursor-pointer rounded-[20px] py-2 sticky bottom-1">
         Button{" "}
       </button>
     </div>

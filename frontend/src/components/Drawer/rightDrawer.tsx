@@ -3,15 +3,14 @@ import * as React from "react";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 import { Stack, Typography } from "@mui/material";
-import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import { relative } from "path";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Bubblegum_Sans } from "next/font/google";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { getToken } from "@/utils/getToken";
+
 
 type Anchor = "right";
 type navigationItem = {
@@ -42,11 +41,13 @@ const navigationItems: navigationItem[] = [
   },
 ];
 
+
 export default function AnchorTemporaryDrawer(props: any) {
   const { toggle } = props;
   const [state, setState] = React.useState({
     right: false,
   });
+
 
   const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
@@ -63,6 +64,11 @@ export default function AnchorTemporaryDrawer(props: any) {
     };
   const router = useRouter();
   const pathname = usePathname();
+
+  const menuOnClick = async () => {
+    
+  }
+
 
   return (
     <Stack padding={""}>
@@ -90,24 +96,25 @@ export default function AnchorTemporaryDrawer(props: any) {
                 </Typography>
               </Stack>
               <Stack alignItems={"center"} gap={"15px"} py={4} px={"25px"}>
-                <div className="w-[150px]  h-[150px] white items-center rounded-full justify-center overflow-hidden ">
+                <div className="w-[100px]  h-[100px] white items-center rounded-full justify-center overflow-hidden ">
                   <Image
-                    src={"/Negga.jpeg"}
+                    src={"/profile-avatar.png"}
                     height={200}
-                    width={150}
+                    width={200}
                     alt="negga"
                   />
                 </div>
-                <p className="font-bold">My Name is Negga </p>
+                <Link href="/edit-profile">
+                  <p onClick={toggleDrawer(anchor, false)} className="font-bold underline underline-offset-1 cursor-pointer">Хувийн мэдээлэл</p>
+                </Link>
               </Stack>
               <div className="flex flex-col justify-center items-center gap-10 text-[16px] font-[400] text-gray-700   ">
                 {navigationItems.map(({ href, label }, index) => (
                   <Link
+                    onClick={toggleDrawer(anchor, false)}
                     href={href}
                     key={index}
-                    className={`cursor-default ${
-                      pathname === href ? "text-[#389BA7]" : "black"
-                    }`}
+                    className="cursor-default text-black"
                   >
                     <div className="bg-[#F7F9FA] p-3 rounded-[20px] flex items-center justify-center w-[300px] hover:bg-[#e3e7e8]">
                       {label}
@@ -115,7 +122,7 @@ export default function AnchorTemporaryDrawer(props: any) {
                   </Link>
                 ))}
               </div>
-              <div className="flex items-center justify-center w-full p-10 font-bold text-[20px]">
+              <div className="flex items-center justify-center w-full p-10 font-bold text-[16px]">
                 Гарах
               </div>
             </Stack>

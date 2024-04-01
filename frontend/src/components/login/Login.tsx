@@ -34,25 +34,26 @@ export const Login = () => {
       //   setError("И-майл эсвэл нууц үг хоосон байна.");
       // }
 
-      const { data } = await AxiosInstance.post<string>("/login", {
-        email: userdata.email,
-        password: userdata.password,
-      });
-
-      if (data === "Нууц үгээ шалгаад дахин оролдоно уу") {
-        setError("Нууц үгээ шалгаад дахин оролдоно уу");
-
-      } else if (data === "Нэвтрэхээсээ өмнө бүртгүүлнэ үү") {
+      const {data} = await AxiosInstance.post("/login", {
+          email: userdata.email,
+          password: userdata.password,
+        }
+      )
+      if (data === "Нэвтрэхээсээ өмнө бүртгүүлнэ үү") {
         setError("Нэвтрэхээсээ өмнө бүртгүүлнэ үү");
+      } else if (data === "Нууц үгээ эсвэл и-мэйл хаягаа шалгаад дахин оролдоно уу") {
+        setError("Нууц үгээ эсвэл и-мэйл хаягаа шалгаад дахин оролдоно уу");
       }
 
       localStorage.setItem("token", data);
-      
 
+      setError("");
+      push("/");
 
-      return data;
     } catch (error: any) {
-      console.error(error.message);
+      console.log(error.message);
+      
+  
     }
   };
   return (
@@ -101,7 +102,7 @@ export const Login = () => {
           
           {error && (
             <p className="text-center text-red-500 font-sans-serif  mt-[-35px]">
-              {error} <p className="text-black"></p> <hr />
+              {error}
             </p>
           )}
           <div className="  flex justify-center gap-[10px] text-[black] mt-[10px]">
