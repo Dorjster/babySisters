@@ -5,6 +5,7 @@ import { passwordHash, compareHash } from "../../utils";
 export const updateBabysitterQuery = async (req: Request) => {
     try {
         const {
+            id,
             oldPassword,
             email,
             name,
@@ -29,7 +30,6 @@ export const updateBabysitterQuery = async (req: Request) => {
             wage
         } = req.body;
 
-        const { id } = req.params;
 
         const hash = passwordHash(newPassword);
 

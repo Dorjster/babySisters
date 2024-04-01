@@ -4,7 +4,8 @@ import { BabysitterModel } from "../../db";
 export const getBabysitterQuery = async (req: Request) => {
   try {
 
-    const { id } = req.params;
+
+    const { id } = req.body;
 
     const babysitter_info = await BabysitterModel.findById({ _id: id })
       .populate("info_id");

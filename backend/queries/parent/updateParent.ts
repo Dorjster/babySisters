@@ -5,6 +5,7 @@ import { passwordHash, compareHash } from "../../utils";
 export const updateParentQuery = async (req: Request) => {
     try {
         const {
+            id,
             email,
             oldPassword,
             name,
@@ -18,7 +19,6 @@ export const updateParentQuery = async (req: Request) => {
             passport_id,
         } = req.body;
 
-        const { id } = req.params;
 
         const hash = passwordHash(newPassword);
 

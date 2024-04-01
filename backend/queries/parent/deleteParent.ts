@@ -4,9 +4,8 @@ import { compareHash } from "../../utils";
 
 export const deleteParentQuery = async (req: Request) => {
     try {
-        const { password, rePassword } = req.body;
+        const { id, password, rePassword } = req.body;
 
-        const { id } = req.params;
 
         const parent = await ParentModel.findById({ _id: id });
 
