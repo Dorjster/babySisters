@@ -67,52 +67,67 @@ export const Login = () => {
   };
   return (
     <div className="flex items-center justify-center py-14">
-      {page === 1 && (
-        <Card className="w-[550px] h-[430px] divide-y-2 ">
-          <CardHeader className="">
-            <CardTitle className="text-center text-[30px] font-[500]">
-              Babysits-д тавтай морил
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="p-[30px] flex flex-col gap-[30px] items-center ">
-            <Label className="text-[20px]">Нэвтрэх</Label>
-            <Input
-              required
-              name="email"
-              type="email"
-              placeholder="И-мэйл"
-              className="h-[60px] rounded-[25px] border-1px"
-              onChange={handleChange}
-            />
-
-            <Button
-              onClick={handleLogin}
-              variant="outline"
-              className="bg-[#389ba7] w-full text-white text-[20px] font-[300] h-[60px] rounded-[25px] hover:bg-[#008291] hover:text-white hover:border-none "
+      {/* {page === 1 && ( */}
+      <Card className="w-[550px] h-[570px] divide-y-2 ">
+        <CardHeader className="">
+          <CardTitle className="text-center text-[30px] font-[500]">
+            Babysits-д тавтай морил
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="p-[30px] flex flex-col gap-[30px] items-center ">
+          <Label className="text-[20px]">Нэвтрэх</Label>
+          <Input
+            required
+            name="email"
+            type="email"
+            placeholder="И-мэйл"
+            className="h-[60px] rounded-[25px] border-1px"
+            onChange={handleChange}
+          />
+          <Input
+            required
+            name="password"
+            type="password"
+            placeholder="Нууц үг"
+            className="h-[60px] rounded-[25px] border-1px"
+            onChange={handleChange}
+          />
+          <Button
+            className="mt-[-35px]"
+            onClick={() => {
+              push("/password-request");
+            }}
+          >
+            Нууц үг мартсан?
+          </Button>
+          <Button
+            onClick={handleLogin}
+            variant="outline"
+            className="bg-[#389ba7] w-full text-white text-[20px] font-[300] h-[60px] rounded-[25px] hover:bg-[#008291] hover:text-white hover:border-none "
+          >
+            Үргэлжлүүлэх
+          </Button>
+          {error && (
+            <p className="text-center text-red-500 font-sans-serif  mt-[-35px]">
+              {error} <p className="text-black"> or</p> <hr />
+            </p>
+          )}
+          <div className="  flex justify-center gap-[10px] text-[black] mt-[8px]">
+            <p>Шинэ хэрэглэгч үүсгэх?</p>
+            <button
+              onClick={() => {
+                push("/signup");
+              }}
+              className="font-semibold"
             >
-              Үргэлжлүүлэх
-            </Button>
-            {error && (
-              <p className="text-center text-red-500 font-sans-serif  mt-[-35px]">
-                {error} <p className="text-black"> or</p> <hr />
-              </p>
-            )}
-            <div className="  flex justify-center gap-[10px] text-[black] mt-[8px]">
-              <p>Шинэ хэрэглэгч үүсгэх?</p>
-              <button
-                onClick={() => {
-                  push("/signup");
-                }}
-                className="font-semibold"
-              >
-                {" "}
-                Бүртгүүлэх
-              </button>
-            </div>
-          </CardContent>
-        </Card>
-      )}
-      {page === 2 && (
+              {" "}
+              Бүртгүүлэх
+            </button>
+          </div>
+        </CardContent>
+      </Card>
+      {/* // )} */}
+      {/* {page === 2 && (
         <Card className="w-[800px] h-[430px] divide-y-2 ">
           <CardHeader className="">
             <CardTitle className="text-center text-[20px] font-[300] gap-2">
@@ -151,7 +166,7 @@ export const Login = () => {
             </Button>
           </CardContent>
         </Card>
-      )}
+      )} */}
     </div>
   );
 };
