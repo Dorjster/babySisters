@@ -28,35 +28,42 @@ export const Login = () => {
     console.log(userdata);
   };
 
-  const handleLogin = async () => {
-    try {
-      const { data } = await AxiosInstance.post("/loginFirst", {
-        email: userdata.email,
-      });
-      if (data === "user not found") {
-        setError("User not found");
-        return;
-      }
-      console.log(data);
+  // const handleLogin = async () => {
+  //   try {
+  //     const { data } = await AxiosInstance.post("/loginFirst", {
+  //       email: userdata.email,
+  //     });
+  //     if (data === "user not found") {
+  //       setError("User not found");
+  //       return;
+  //     }
+  //     console.log(data);
 
-      setName(data?.name);
+  //     setName(data?.name);
 
-      setPage(2);
-      return data;
-    } catch (error: any) {
-      console.error(error.message);
-    }
-  };
+  //     setPage(2);
+  //     return data;
+  //   } catch (error: any) {
+  //     console.error(error.message);
+  //   }
+  // };
 
   const handleLogin2 = async () => {
     try {
+      // if (userdata.email === "" || userdata.password === "") {
+      //   setError("И-майл эсвэл нууц үг хоосон байна.");
+      // }
+
       const { data } = await AxiosInstance.post<string>("/login", {
         email: userdata.email,
         password: userdata.password,
       });
 
-      if (data === "Wrong Email or Password") {
-        setError("Wrong Email or Password");
+      if (data === "Нэвтрэхээсээ өмнө бүртгүүлнэ үү") {
+        setError("Нэвтрэхээсээ өмнө бүртгүүлнэ үү");
+      }
+      if (data === "Нууц үгээ эсвэл майл ээ шалгаад дахин оролдоно уу") {
+        setError("Нууц үгээ эсвэл майл ээ шалгаад дахин оролдоно уу");
       }
       console.log(data);
 
@@ -67,7 +74,6 @@ export const Login = () => {
   };
   return (
     <div className="flex items-center justify-center py-14">
-      {/* {page === 1 && ( */}
       <Card className="w-[550px] h-[570px] divide-y-2 ">
         <CardHeader className="">
           <CardTitle className="text-center text-[30px] font-[500]">
@@ -101,18 +107,18 @@ export const Login = () => {
             Нууц үг мартсан?
           </Button>
           <Button
-            onClick={handleLogin}
+            onClick={handleLogin2}
             variant="outline"
             className="bg-[#389ba7] w-full text-white text-[20px] font-[300] h-[60px] rounded-[25px] hover:bg-[#008291] hover:text-white hover:border-none "
           >
             Үргэлжлүүлэх
           </Button>
           {error && (
-            <p className="text-center text-red-500 font-sans-serif  mt-[-35px]">
-              {error} <p className="text-black"> or</p> <hr />
+            <p className="text-center text-red-500 font-sans-serif mb-[-20px] absolute top-[615px]">
+              {error}
             </p>
           )}
-          <div className="  flex justify-center gap-[10px] text-[black] mt-[8px]">
+          <div className="  flex justify-center gap-[10px] text-[black] mt-[10px]">
             <p>Шинэ хэрэглэгч үүсгэх?</p>
             <button
               onClick={() => {
