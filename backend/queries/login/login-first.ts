@@ -6,5 +6,9 @@ export const loginFirst = async (req: Request, res: Response) => {
 
   const user = await getUserByEmail(email);
 
+  if (!user) {
+    throw new Error("hereglegch oldsongui");
+  }
+
   return user;
 };
