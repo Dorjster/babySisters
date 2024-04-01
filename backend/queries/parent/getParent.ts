@@ -4,7 +4,7 @@ import { ParentModel } from "../../db";
 export const getParentQuery = async (req: Request) => {
   try {
 
-    const { id } = req.params;
+    const { id } = req.body;
 
     const parent = await ParentModel.findById({_id: id});
 

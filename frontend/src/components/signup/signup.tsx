@@ -11,7 +11,7 @@ interface UserData {
   name: string;
   password: string;
   phone: string;
-  Repassword: string;
+  rePassword: string;
 }
 export const Signup = () => {
   const [page, setPage] = useState(1);
@@ -21,7 +21,7 @@ export const Signup = () => {
     name: "",
     password: "",
     phone: "",
-    Repassword: "",
+    rePassword: "",
   });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -37,7 +37,7 @@ export const Signup = () => {
       if (emptyFields.length > 0) {
         setError("Please fill in all fields");
       } else {
-        if (userdata.password !== userdata.Repassword) {
+        if (userdata.password !== userdata.rePassword) {
           setError("Passwords do not match");
         }
         const { data } = await AxiosInstance.post<string>(
@@ -59,7 +59,7 @@ export const Signup = () => {
       if (emptyFields.length > 0) {
         setError("Please fill in all fields");
       } else {
-        if (userdata.password !== userdata.Repassword) {
+        if (userdata.password !== userdata.rePassword) {
           setError("Passwords do not match");
         }
         const { data } = await AxiosInstance.post<string>("/signup", userdata);
@@ -137,8 +137,8 @@ export const Signup = () => {
             />
             <Input
               required
-              name="Repassword"
-              type="Repassword"
+              name="rePassword"
+              type="rePassword"
               placeholder="Нууц үг давтах"
               className="h-[60px] rounded-[25px] border-1px"
               onChange={handleChange}
@@ -205,8 +205,8 @@ export const Signup = () => {
             />
             <Input
               required
-              name="Repassword"
-              type="Repassword"
+              name="rePassword"
+              type="rePassword"
               placeholder="Нууц үг давтах"
               className="h-[60px] rounded-[25px] border-1px"
               onChange={handleChange}
