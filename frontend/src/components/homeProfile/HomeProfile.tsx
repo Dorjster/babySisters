@@ -78,7 +78,7 @@ const HomeProfile = () => {
   }, []);
 
   return (
-    <div className="w-[1200px] h-fit m-auto mt-1 flex flex-col gap-10 ">
+    <div className=" h-fit w-full mt-1 flex justify-between ml-[50px] flex-wrap">
       {babysitterData.map((babysitter) => (
         <Card key={babysitter._id} data={babysitter} />
       ))}

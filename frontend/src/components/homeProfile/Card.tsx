@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Rating, Box } from "@mui/material";
 import Image from "next/image";
+import { Skeleton } from "../ui";
 
 type CardProps = {
   data: ProfileType;
@@ -16,7 +17,7 @@ export const Card: React.FC<CardProps> = ({ data }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowSkeleton(false);
-    }, 2000);
+    }, 1800);
 
     return () => clearTimeout(timer);
   }, []);
@@ -24,9 +25,9 @@ export const Card: React.FC<CardProps> = ({ data }) => {
   const letter = data.name.charAt(0);
 
   const SkeletonLoader = () => (
-    <div className="w-[400px] h-[220px] flex rounded-2xl overflow-hidden shadow-lg bg-[#F6F9FA]">
-      <div className="w-[230px] h-full flex flex-col justify-between">
-        <div className="w-[230px] h-[180px] rounded-e-xl bg-gray-300 animate-pulse" />
+    <Skeleton className="w-[400px] h-[220px] flex rounded-2xl overflow-hidden shadow-lg mb-[40px]">
+      <Skeleton className="w-[230px] h-full flex flex-col justify-between">
+        <Skeleton className="w-[230px] h-[180px] rounded-e-xl bg-gray-300 animate-pulse" />
 
         <Box
           sx={{
@@ -34,20 +35,15 @@ export const Card: React.FC<CardProps> = ({ data }) => {
             "& > legend": { mt: 2 },
           }}
         >
-          <Rating
-            sx={{ color: "#59BEC9" }}
-            name="read-only"
-            value={0}
-            readOnly
-          />
+          <Rating sx={{ color: "#59BEC9" }} name="read-only" value={0} />
         </Box>
-      </div>
+      </Skeleton>
 
-      <div className="w-[150px] h-[150px] ml-4">
-        <div className="text-lg  font-semibold mb-5 text-[#31393F] bg-gray-300 animate-pulse " />
-        <div className="w-full h-[120px] text-[#222222] bg-gray-400 animate-pulse" />
-      </div>
-    </div>
+      <Skeleton className="w-[150px] h-[150px] ml-4 mt-[10px]">
+        <Skeleton className="text-lg  font-semibold mb-5 text-[#31393F] animate-pulse " />
+        <Skeleton className="w-full h-[120px] text-[#222222]  animate-pulse" />
+      </Skeleton>
+    </Skeleton>
   );
 
   return (
@@ -55,7 +51,7 @@ export const Card: React.FC<CardProps> = ({ data }) => {
       {showSkeleton ? (
         <SkeletonLoader />
       ) : (
-        <div className="w-[400px] h-[220px] flex rounded-2xl overflow-hidden shadow-lg bg-[#F6F9FA]">
+        <div className="w-[400px] h-[220px] flex rounded-2xl overflow-hidden shadow-xl bg-[#F6F9FA] mb-[40px] ">
           <div className="w-[230px] h-full flex flex-col justify-between">
             {data?.image ? (
               <Image
@@ -86,11 +82,11 @@ export const Card: React.FC<CardProps> = ({ data }) => {
             </Box>
           </div>
 
-          <div className="w-[150px] h-[150px] ml-4">
+          <div className="w-[150px] h-[150px] ml-[5px] mt-[10px]">
             <div className="text-lg font-semibold mb-5 text-[#31393F]">
               {data.name}
             </div>
-            <div className="w-full h-[120px] text-[#222222]">{data.about}</div>
+            <div className="w-fit h-fit text-[#222222] ">{data.about}</div>
           </div>
         </div>
       )}
