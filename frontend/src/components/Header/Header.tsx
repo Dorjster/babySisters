@@ -4,11 +4,11 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import AnchorTemporaryDrawer from "../Drawer/rightDrawer";
 
 // Mui Imports -----
 import Button from "@mui/material/Button";
 import { useRouter } from "next/navigation";
-import MenuIcon from "@mui/icons-material/Menu";
 
 // Navigation -----
 type navigationItem = {
@@ -47,8 +47,6 @@ export const Header = () => {
   const handleDrawer = () => {
     setDrawer(!TemporaryDrawer);
   };
-
-
 
   // -----
   return (
@@ -93,19 +91,12 @@ export const Header = () => {
           />
         </button>
         <button
-          onClick={() => router.push("./signup")}
+          onClick={() => router.push("/signup")}
           className="text-[16px] cursor-default font-[400] p-2 text-white  rounded-[15px] bg-[#389BA7] hover:bg-[#008291]"
         >
           Бүртгүүлэх
         </button>
-        <Button
-          onClick={handleDrawer}
-          variant="text"
-          startIcon={<MenuIcon />}
-          className="text-[3px]
-          font-[700] leading-2 cursor-default"
-          color="inherit"
-        ></Button>
+        <AnchorTemporaryDrawer />
       </div>
     </div>
   );
