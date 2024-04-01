@@ -1,7 +1,10 @@
 import { Request, Response } from "express";
 import { getAllBabySittersQuery } from "../../queries";
 
-export const getAllBabySittersController = async (req: Request, res: Response) => {
+export const getAllBabySittersController = async (
+  req: Request,
+  res: Response
+) => {
   try {
     const result = await getAllBabySittersQuery(req);
 

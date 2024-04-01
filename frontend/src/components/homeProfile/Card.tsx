@@ -1,44 +1,95 @@
-"use client"
+"use client";
 
-import React from 'react'
-import { Rating, Box, Typography } from '@mui/material';
+import React, { useState, useEffect } from "react";
+import { Rating, Box } from "@mui/material";
+import Image from "next/image";
+import { Skeleton } from "../ui";
 
-
-
-type IntrinsicAttributes = any;
-
-type Datas = {
-  data: ProfileType[] & IntrinsicAttributes;
+type CardProps = {
+  data: ProfileType;
 };
 
-export default function Card(props: Datas) {
+export const Card: React.FC<CardProps> = ({ data }) => {
+  const [showSkeleton, setShowSkeleton] = useState(true);
+
   const [value, setValue] = React.useState<number | null>(2);
-  const { data } = props
-  
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowSkeleton(false);
+    }, 1800);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const letter = data.name.charAt(0);
+
+  const SkeletonLoader = () => (
+    <Skeleton className="w-[400px] h-[220px] flex rounded-2xl overflow-hidden shadow-lg mb-[40px]">
+      <Skeleton className="w-[230px] h-full flex flex-col justify-between">
+        <Skeleton className="w-[230px] h-[180px] rounded-e-xl bg-gray-300 animate-pulse" />
+
+        <Box
+          sx={{
+            marginLeft: "30px",
+            "& > legend": { mt: 2 },
+          }}
+        >
+          <Rating sx={{ color: "#59BEC9" }} name="read-only" value={0} />
+        </Box>
+      </Skeleton>
+
+      <Skeleton className="w-[150px] h-[150px] ml-4 mt-[10px]">
+        <Skeleton className="text-lg  font-semibold mb-5 text-[#31393F] animate-pulse " />
+        <Skeleton className="w-full h-[120px] text-[#222222]  animate-pulse" />
+      </Skeleton>
+    </Skeleton>
+  );
+
   return (
     <div>
-      {/* {data?.slice(0).map((el: ProfileType, index: number) => ( */}
-        <div className="w-[400px] h-[220px] flex rounded-2xl overflow-hidden shadow-lg bg-[#F6F9FA]">
+      {showSkeleton ? (
+        <SkeletonLoader />
+      ) : (
+        <div className="w-[400px] h-[220px] flex rounded-2xl overflow-hidden shadow-xl bg-[#F6F9FA] mb-[40px] ">
           <div className="w-[230px] h-full flex flex-col justify-between">
-            <img src="/profile.jpeg" className="w-[230px] h-[180px] rounded-e-xl"/>
-  
+            {data?.image ? (
+              <Image
+                src={data.image}
+                className="w-[230px] h-[180px] rounded-e-xl"
+                alt=""
+                width={230}
+                height={180}
+              />
+            ) : (
+              <div className="w-[230px] h-[180px] rounded-e-xl bg-gray-300 text-white text-[60px] flex items-center justify-center ">
+                {letter}
+              </div>
+            )}
+
             <Box
               sx={{
-                marginLeft:"30px",
-                '& > legend': { mt: 2 },
-                
+                marginLeft: "30px",
+                "& > legend": { mt: 2 },
               }}
             >
-              <Rating sx={{color:"#59BEC9"}} name="read-only" value={value} readOnly />
+              <Rating
+                sx={{ color: "#59BEC9" }}
+                name="read-only"
+                value={value}
+                readOnly
+              />
             </Box>
           </div>
-  
-          <div className="w-[150px] h-[150px] ml-4">
-              <div className="text-lg font-semibold mb-5 text-[#31393F]">Name</div>
-              <div className="w-full h-[120px] text-[#222222]">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero, placeat?</div>
-          </div>
+
+          <div className="w-[150px] h-[150px] ml-[5px] mt-[10px]">
+            <div className="text-lg font-semibold mb-5 text-[#31393F]">
+              {data.name}
             </div>
-      {/*))} */}
+            <div className="w-fit h-fit text-[#222222] ">{data.about}</div>
+          </div>
+        </div>
+      )}
     </div>
-  )
-}
+  );
+};

@@ -5,10 +5,8 @@ import { compareHash } from "../../utils";
 export const deleteBabysitterQuery = async (req: Request) => {
     try {
         const {
-            password, rePassword
+            id, password, rePassword
         } = req.body;
-
-        const { id } = req.params;
 
 
         const babysitter = await BabysitterModel.findById({ _id: id });

@@ -79,7 +79,7 @@ export const Header = () => {
       <div className="flex justify-end items-center gap-4">
         <button
           onClick={() => router.push("./login")}
-          className="text-[16px] font-[400] cursor-default text-[#4d565e] hover:text-black"
+          className="text-[16px] font-[400] cursor-pointer text-[#4d565e] hover:text-black"
         >
           Нэвтрэх
           <hr
@@ -91,8 +91,10 @@ export const Header = () => {
           />
         </button>
         <button
+
           onClick={() => router.push("/signup")}
           className="text-[16px] cursor-default font-[400] p-2 text-white  rounded-[15px] bg-[#389BA7] hover:bg-[#008291]"
+
         >
           Бүртгүүлэх
         </button>
