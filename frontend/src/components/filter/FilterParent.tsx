@@ -20,7 +20,7 @@ export const FilterParent = () => {
     };
 
     return (
-        <div className="w-[300px] bg-[#f5f5f5] p-10 grid gap-5 rounded-xl h-fit sticky top-[200px]">
+        <div className="w-[300px]  bg-[#f5f5f5] p-10 grid gap-5 rounded-xl h-fit sticky top-[20%]">
             <div className="grid gap-3">
                 <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
                     Цалин
