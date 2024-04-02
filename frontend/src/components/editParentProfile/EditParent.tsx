@@ -1,18 +1,14 @@
 "use client";
 import React from "react";
+import { Container } from "@mui/material";
 import Image from "next/image";
-import { Container } from "@mui/system";
-import { AboutMe } from "./AboutMe";
-import { Languages } from "./Languages";
-import { Character } from "./ Character";
-import { Experience } from "./Experience";
-import { AddInformation } from "./AddInformation";
-import { Skill } from "./Skill";
-import { Condition } from "./Condition";
-import { General } from "./General";
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
+import { GeneralParent } from "./GeneralParent";
+import { AboutParent } from "./AboutParent";
+import { AgeChildren } from "./AgeChildren";
+import { Wage } from "./Wage";
 
-export const EditBabysitProfile = () => {
+export const EditParent = () => {
   return (
     <Container
       sx={{
@@ -34,24 +30,18 @@ export const EditBabysitProfile = () => {
             <ModeEditOutlineOutlinedIcon className="w-[20px] h-[20px] text-[#389BA7]" />
           </div>
         </div>
-        <General />
+        <GeneralParent />
       </div>
 
       <hr />
       <div className="flex flex-col gap-[45px] mb-[80px]">
-        <AboutMe />
-        <Languages />
-        <Character />
+        <AboutParent />
+        <AgeChildren />
       </div>
       <hr />
-      <div className="mt-[50px] flex flex-col gap-[45px] mb-[70px]">
-        <Experience />
-        <AddInformation />
-        <Skill />
-      </div>
-      <hr />
+
       <div className="mt-[50px] flex flex-col gap-[45px]">
-        <Condition />
+        <Wage />
       </div>
       <button className="w-[100%] bg-[#389BA7] text-white rounded-3xl font-[400] text-[20px] mt-[65px] h-[40px]">
         Хадгалах

@@ -1,7 +1,5 @@
 import React from "react";
-import { Input } from "../ui/input";
-import { useEffect, useState } from "react";
-import axios from "axios";
+
 import {
   Select,
   SelectContent,
@@ -35,7 +33,7 @@ const locations = [
   { label: "Ховд" },
   { label: "Хөвсгөл" },
 ];
-export const AboutMe = () => {
+export const AboutParent = () => {
   return (
     <div className="flex flex-col gap-4 mt-[45px]">
       <h3 className="text-2xl font-medium text-gray-700">Миний тухай</h3>
@@ -55,7 +53,7 @@ export const AboutMe = () => {
         </div>
         <div>
           <p className="text-gray-600 text-base font-[500] mb-[15px]">
-            Өөрийнхөө тухай товч мэдээллийг бичнэ үү
+            Гэр бүлийнхээ талаар товч мэдээллийг бичнэ үү
           </p>
           <textarea className="w-[100%] h-[130px] rounded-2xl border-zinc-200 border-[1px] p-3 " />
         </div>
@@ -81,12 +79,20 @@ export const AboutMe = () => {
         </div>
         <div>
           <p className="text-gray-600 text-base font-[500] mb-[15px]">
-            Төрсөн өдөр
+            Хүүхдийн тоо
           </p>
-          <Input
-            className="w-[100%] rounded-2xl text-gray-500 text-lg border-zinc-200 "
-            type="date"
-          />
+          <Select>
+            <SelectTrigger className="w-[100%] border-zinc-200 rounded-2xl text-gray-500 ">
+              <SelectValue placeholder="Хүүхдийн тоо" defaultValue="1" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="1">1</SelectItem>
+              <SelectItem value="2">2</SelectItem>
+              <SelectItem value="3">3</SelectItem>
+              <SelectItem value="4">4</SelectItem>
+              <SelectItem value="4-ээс олон">4-ээс олон</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
       </div>
     </div>
