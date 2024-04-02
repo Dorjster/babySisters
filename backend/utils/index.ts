@@ -23,9 +23,6 @@ export const tokenGenerate = async (userId: string) => {
 export const decodeToken = (token: string) => {
   const userId = jwt.verify(token, "defaultSecret");
   return userId;
-
-  const userId = jwt.verify(token, "defaultSecret");
-  return userId;
 };
 
 export const getUserByEmail = async (email: string) => {
