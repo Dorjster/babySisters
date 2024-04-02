@@ -10,3 +10,4 @@ export * from "./select";
 export * from "./switch";
 export * from "./slider";
 export * from "./skeleton";
+export * from "./table";
