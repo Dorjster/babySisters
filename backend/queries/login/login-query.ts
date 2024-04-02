@@ -1,31 +1,25 @@
 import { Request, Response } from "express";
-import { compareHash, tokenGenerate, getUserByEmail } from "../../utils";
-
+import { compareHash, tokenGenerate } from "../../utils";
+import { getUserByEmail } from "../../utils";
 
 export const loginQuery = async (req: Request, res: Response) => {
-  try {
-    const { email, password } = req.body;
+  const { email, password } = req.body;
 
-    const user = await getUserByEmail(email);
+  const user = await getUserByEmail(email);
 
-    if (!user) {
-      return("Нэвтрэхээсээ өмнө бүртгүүлнэ үү");
-    }
-
-    const isPasswordTrue = await compareHash(password, user.password);
-
-    if (!isPasswordTrue) {
-      return("Нууц үгээ эсвэл и-мэйл хаягаа шалгаад дахин оролдоно уу");
-    }
-
-    const token = await tokenGenerate(user._id.toString());
-    
-
-    return token;
-
-    
-  } catch (error: any) {
-    throw new Error(error.message);
+  if (email === "" || password === "") {
+    throw new Error("И-майл эсвэл нууц үг хоосон байна.");
+  }
+  if (!user) {
+    throw new Error("Бүртгэлтэй хэрэглэгч олдсонгүй.");
   }
 
-}
+  const isPasswordTrue = await compareHash(password, user.password);
+
+  if (!isPasswordTrue) {
+    throw new Error("Нууц үгээ эсвэл майл ээ шалгаад дахин оролдоно уу");
+  }
+
+  const token = await tokenGenerate(user._id.toString());
+  return token;
+};
