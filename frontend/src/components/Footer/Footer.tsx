@@ -20,13 +20,13 @@ export const Footer = () => {
 
   return (
     <div className="relative bottom-0 left-0 bg-[#c9e8ec] w-screen h-full md:px-[120px] flex flex-col justify-center items-center text-black gap-[45px] px-[100px] py-[50px] ">
-      <div className="flex justify-center items-center gap-10 text-[20px] font-[400] text-gray-700  ">
+      <div className="flex justify-center items-center gap-10 text-[16px] font-[400] text-gray-700  ">
         {FooterArray.map(({ href, title }, index) => (
           <Link
             href={href}
             key={index}
-            className={`cursor-default${
-              pathname === href ? "text-[#389BA7]" : "black"
+            className={`cursor-default ${
+              pathname === href ? "text-[#389BA7] hover:text-[#008291]"  : "black hover:text-black"
             }`}
           >
             {title}

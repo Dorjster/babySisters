@@ -6,10 +6,8 @@ import { Stack, Typography } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import MenuIcon from "@mui/icons-material/Menu";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { getToken } from "@/utils/getToken";
+import { removeToken } from "@/utils/removeToken";
 
 
 type Anchor = "right";
@@ -62,20 +60,27 @@ export default function AnchorTemporaryDrawer(props: any) {
 
       setState({ ...state, [anchor]: open });
     };
-  const router = useRouter();
-  const pathname = usePathname();
+  
+  const [isTokenValid, setIsTokenValid] = React.useState("");
 
-  const menuOnClick = async () => {
-    
-  }
+  const getToken = () => {
+    const token = localStorage.getItem("token");
+    if(token){
+      setIsTokenValid(token);
+    } else {
+      setIsTokenValid("");
+    }
+  };
+
+
 
 
   return (
     <Stack padding={""}>
       {(["right"] as const).map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button sx={{ color: "green" }} onClick={toggleDrawer(anchor, true)}>
-            <MenuIcon className="text-[#389BA7]" />
+          <Button sx={{ color: "green", cursor: "default" }} onClick={toggleDrawer(anchor, true)}>
+            <MenuIcon onClick={getToken} className="text-[#389BA7]" />
           </Button>
           <Drawer
             anchor={anchor}
@@ -90,7 +95,7 @@ export default function AnchorTemporaryDrawer(props: any) {
 
                 <Typography
                   className="text-[#323940]"
-                  sx={{ marginLeft: "120px", fontSize: "20px" }}
+                  sx={{ marginLeft: "120px", fontSize: "20px", cursor: "default" }}
                 >
                   Хэрэглэгч
                 </Typography>
@@ -104,9 +109,15 @@ export default function AnchorTemporaryDrawer(props: any) {
                     alt="negga"
                   />
                 </div>
-                <Link href="/edit-profile">
-                  <p onClick={toggleDrawer(anchor, false)} className="font-bold underline underline-offset-1 cursor-pointer">Хувийн мэдээлэл</p>
-                </Link>
+                {(isTokenValid === "") ?
+                  <Link href="/login">
+                    <p onClick={toggleDrawer(anchor, false)} className="font-bold underline underline-offset-1 cursor-default">Хувийн мэдээлэл</p>
+                  </Link> :
+                  <Link href="/edit-profile">
+                    <p onClick={toggleDrawer(anchor, false)} className="font-bold underline underline-offset-1 cursor-default">Хувийн мэдээлэл</p>
+                  </Link> 
+
+                }
               </Stack>
               <div className="flex flex-col justify-center items-center gap-10 text-[16px] font-[400] text-gray-700   ">
                 {navigationItems.map(({ href, label }, index) => (
@@ -122,9 +133,11 @@ export default function AnchorTemporaryDrawer(props: any) {
                   </Link>
                 ))}
               </div>
-              <div className="flex items-center justify-center w-full p-10 font-bold text-[16px]">
-                Гарах
-              </div>
+              <Link href="/" onClick={toggleDrawer(anchor, false)}>
+                <p onClick={removeToken} className="flex items-center justify-center w-full p-10 font-bold text-[16px] cursor-default">
+                  Гарах
+                </p>
+              </Link>
             </Stack>
           </Drawer>
         </React.Fragment>
