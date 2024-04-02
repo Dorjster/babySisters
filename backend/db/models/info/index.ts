@@ -13,7 +13,7 @@ export type InfoModelType = {
     year_of_experience?: number;
     character?: string[];
     rating?: number;
-    available_time?: string[];
+    available_time?: object[];
     wage?: number;
 };
 
@@ -30,7 +30,7 @@ const InfoSchema = new Schema<InfoModelType>(
         year_of_experience: { type: Number, required: false },
         character: { type: [String], required: false },
         rating: { type: Number, required: false },
-        available_time: { type: [String], required: false },
+        available_time: { type: [Object], required: false },
         wage: { type: Number, required: false }
     },
     {

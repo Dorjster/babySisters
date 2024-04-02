@@ -11,6 +11,7 @@ import { Skill } from "./Skill";
 import { Condition } from "./Condition";
 import { General } from "./General";
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
+import { Schedule } from "../filter/Schedule";
 
 export const EditBabysitProfile = () => {
   return (
@@ -35,6 +36,16 @@ export const EditBabysitProfile = () => {
           </div>
         </div>
         <General />
+  
+      <div className="w-[160px]  object-fit flex flex-col justify-center items-center gap-3 mb-[50px]">
+        <Image
+          src="/profile.png"
+          alt=""
+          className=" w-[100%] h-[160px] object-cover rounded-[15px]"
+          width={160}
+          height={160}
+        />
+        <p className="font-normal text-base text-gray-400">Profile photo</p>
       </div>
 
       <hr />
@@ -53,9 +64,11 @@ export const EditBabysitProfile = () => {
       <div className="mt-[50px] flex flex-col gap-[45px]">
         <Condition />
       </div>
+      <Schedule/>
       <button className="w-[100%] bg-[#389BA7] text-white rounded-3xl font-[400] text-[20px] mt-[65px] h-[40px]">
         Хадгалах
       </button>
+      </div>
     </Container>
   );
 };

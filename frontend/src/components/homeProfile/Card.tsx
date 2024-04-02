@@ -47,26 +47,34 @@ export const Card: React.FC<CardProps> = ({ data }) => {
   );
 
   return (
-    <div>
+    <div className="">
       {showSkeleton ? (
         <SkeletonLoader />
       ) : (
-        <div className="w-[400px] h-[220px] flex rounded-2xl overflow-hidden shadow-xl bg-[#F6F9FA] mb-[40px] ">
-          <div className="w-[230px] h-full flex flex-col justify-between">
+        <div className="w-[400px] h-[220px] flex rounded-2xl overflow-hidden shadow-xl bg-[#F6F9FA] mb-[40px] mx-[50px]">
+          <div className="w-[230px] h-[220px] flex flex-col justify-between items-center">
             {data?.image ? (
               <Image
                 src={data.image}
-                className="w-[230px] h-[180px] rounded-e-xl"
+                className="w-[150px] h-[130px] rounded-e-xl"
                 alt=""
                 width={230}
-                height={180}
+                height={220}
               />
             ) : (
-              <div className="w-[230px] h-[180px] rounded-e-xl bg-gray-300 text-white text-[60px] flex items-center justify-center ">
+              <div className="w-[150px] h-[130px] rounded-e-xl bg-gray-300 text-white text-[60px] flex items-center justify-center ">
                 {letter}
               </div>
             )}
 
+            
+          </div>
+
+          <div className="w-[150px] h-[150px] ml-[5px] mt-[10px]">
+            <div className="text-lg font-semibold mb-5 text-[#31393F]">
+              {data.name}
+            </div>
+            <div className="w-fit h-fit text-[#222222] ">{data.about}</div>
             <Box
               sx={{
                 marginLeft: "30px",
@@ -80,13 +88,6 @@ export const Card: React.FC<CardProps> = ({ data }) => {
                 readOnly
               />
             </Box>
-          </div>
-
-          <div className="w-[150px] h-[150px] ml-[5px] mt-[10px]">
-            <div className="text-lg font-semibold mb-5 text-[#31393F]">
-              {data.name}
-            </div>
-            <div className="w-fit h-fit text-[#222222] ">{data.about}</div>
           </div>
         </div>
       )}
