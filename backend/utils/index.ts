@@ -20,27 +20,21 @@ export const tokenGenerate = async (userId: string) => {
   return token;
 };
 
-
-
-
 export const decodeToken = (token: string) => {
+  const userId = jwt.verify(token, "defaultSecret");
+  return userId;
 
   const userId = jwt.verify(token, "defaultSecret");
   return userId;
 };
 
-
 export const getUserByEmail = async (email: string) => {
   const user = await ParentModel.findOne({ email: email });
 
   if (!user) {
-
     const user1 = await BabysitterModel.findOne({ email: email });
     return user1;
-
   } else {
-
     return user;
-
-  };
+  }
 };

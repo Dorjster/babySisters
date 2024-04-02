@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Roboto } from "next/font/google";
+import { DataProvider } from "@/context/userProvider";
 
 // Dem Font
 const roboto = Roboto({
@@ -27,9 +28,12 @@ export default function RootLayout({
       <body>
         {" "}
         <div className={roboto.className}>
-          <Header />
-          {children}
-          <Footer />
+          <DataProvider>
+            <Header />
+
+            {children}
+            <Footer />
+          </DataProvider>
         </div>
       </body>
     </html>

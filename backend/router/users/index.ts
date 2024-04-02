@@ -1,16 +1,17 @@
 import { Router } from "express";
 import {
-    createBabyController,
-    createParentController,
-    getParentController,
-    getBabysitterController,
-    getAllParentsController,
-    getAllBabySittersController,
-    updateParentController,
-    updateBabysitterController,
-    deleteBabysitterController,
-    deleteParentController
+  createBabyController,
+  createParentController,
+  getParentController,
+  getBabysitterController,
+  getAllParentsController,
+  getAllBabySittersController,
+  updateParentController,
+  updateBabysitterController,
+  deleteBabysitterController,
+  deleteParentController,
 } from "../../controllers";
+import { getRefreshTokenService } from "../../controllers/user/refresh";
 
 export const userRouter = Router();
 
@@ -28,3 +29,5 @@ userRouter.put("/babysitter", updateBabysitterController);
 
 userRouter.delete("/parent", deleteParentController);
 userRouter.delete("/babysitter", deleteBabysitterController);
+
+userRouter.get("/refresh", getRefreshTokenService);
