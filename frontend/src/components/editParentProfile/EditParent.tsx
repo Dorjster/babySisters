@@ -7,6 +7,7 @@ import { GeneralParent } from "./GeneralParent";
 import { AboutParent } from "./AboutParent";
 import { AgeChildren } from "./AgeChildren";
 import { Wage } from "./Wage";
+import { Schedule } from "../filter/Schedule";
 
 export const EditParent = () => {
   return (
@@ -43,6 +44,8 @@ export const EditParent = () => {
       <div className="mt-[50px] flex flex-col gap-[45px]">
         <Wage />
       </div>
+      <Schedule/>
+
       <button className="w-[100%] bg-[#389BA7] text-white rounded-3xl font-[400] text-[20px] mt-[65px] h-[40px]">
         Хадгалах
       </button>
