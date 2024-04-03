@@ -36,6 +36,7 @@ const ParentSchema = new Schema<ParentModelType>(
   {
     timestamps: true,
   }
+
 );
 
 ParentSchema.index({ email: 1 }, { unique: true });
