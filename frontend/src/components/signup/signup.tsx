@@ -35,10 +35,10 @@ export const Signup = () => {
         ([key, value]) => !value.trim()
       );
       if (emptyFields.length > 0) {
-        setError("Please fill in all fields");
+        setError("Бүх талбарыг бөглөнө үү");
       } else {
         if (userdata.password !== userdata.rePassword) {
-          setError("Passwords do not match");
+          setError("Нууц үг тохирохгүй байна");
         }
         const { data } = await AxiosInstance.post<string>(
           "/parent/signup",
@@ -57,10 +57,10 @@ export const Signup = () => {
         ([key, value]) => !value.trim()
       );
       if (emptyFields.length > 0) {
-        setError("Please fill in all fields");
+        setError("Бүх талбарыг бөглөнө үү");
       } else {
         if (userdata.password !== userdata.rePassword) {
-          setError("Passwords do not match");
+          setError("Нууц үг тохирохгүй байна");
         }
         const { data } = await AxiosInstance.post<string>("/signup", userdata);
 
@@ -68,6 +68,7 @@ export const Signup = () => {
       }
     } catch (error: any) {
       console.error(error.message);
+      setError(error.response.data);
     }
   };
   return (
@@ -101,7 +102,7 @@ export const Signup = () => {
             </CardTitle>
           </CardHeader>
           <CardContent className="p-[30px] flex flex-col gap-[50px] ">
-            <Label htmlFor="email" className="text-[25px]">
+            <Label htmlFor="email" className="text-[22px] self-center">
               Эцэг эхээр бүртгүүлэх
             </Label>
             <Input
@@ -138,7 +139,7 @@ export const Signup = () => {
             <Input
               required
               name="rePassword"
-              type="rePassword"
+              type="password"
               placeholder="Нууц үг давтах"
               className="h-[60px] rounded-[25px] border-1px"
               onChange={handleChange}
