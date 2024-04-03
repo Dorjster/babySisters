@@ -12,7 +12,7 @@ export type BabysitterModelType = {
   about?: string;
   gender?: boolean;
   image?: string;
-  passport_id?: string;
+  verification?: boolean;
   review?: string[];
   otp?: string;
   info_id: Schema.Types.ObjectId;
@@ -30,7 +30,7 @@ const BabysitterSchema = new Schema<BabysitterModelType>(
     about: { type: String, required: false },
     gender: { type: Boolean, required: false },
     image: { type: String, required: false },
-    passport_id: { type: String, required: false },
+    verification: { type: Boolean, required: false, default: false },
     review: { type: [String], required: false, ref: "Review" },
     otp: { type: String, required: false },
     info_id: { type: Schema.Types.ObjectId, ref: "Info", required: true },

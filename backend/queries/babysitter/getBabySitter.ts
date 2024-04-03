@@ -13,7 +13,6 @@ export const getBabysitterQuery = async (req: Request) => {
     
     if (!babysitter_info) {
       throw new Error("Хэрэглэгч олдсонгүй");
-      
     }
     
     const populatedBabysitterInfo = {

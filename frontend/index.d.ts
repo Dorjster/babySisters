@@ -1,9 +1,4 @@
 type ProfileType = {
-  // _id: string;
-  // name: string;
-  // image: string;
-  // raiting: number;
-  // description: string;
   _id: string;
   name: string;
   email: string;
@@ -13,6 +8,16 @@ type ProfileType = {
   about?: string;
   gender?: boolean;
   image?: string;
+  verification?: boolean;
+  info_id: {
+    wage: number;
+    rating: number;
+    driver_license: boolean;
+    car: boolean;
+    smoker: boolean;
+    year_of_experience: number;
+        // Other properties...
+  };
   passport_id?: string;
   review?: string[];
   otp?: string;
