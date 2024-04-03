@@ -34,7 +34,7 @@ const navigationItems: navigationItem[] = [
     label: "Ашиглах заавар",
   },
   {
-    href: "/Contact",
+    href: "/tips",
     label: "Зөвлөгөө",
   },
 ];
@@ -111,7 +111,7 @@ export default function AnchorTemporaryDrawer(props: any) {
                 </div>
                 {(isTokenValid === "") ?
                   <Link href="/login">
-                    <p onClick={toggleDrawer(anchor, false)} className="font-bold underline underline-offset-1 cursor-default">Хувийн мэдээлэл</p>
+                    <p onClick={toggleDrawer(anchor, false)} className="font-bold underline underline-offset-1 cursor-default">Нэвтрэх</p>
                   </Link> :
                   <Link href="/edit-profile">
                     <p onClick={toggleDrawer(anchor, false)} className="font-bold underline underline-offset-1 cursor-default">Хувийн мэдээлэл</p>
