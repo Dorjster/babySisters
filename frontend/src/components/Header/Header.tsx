@@ -1,14 +1,15 @@
 "use client";
 // Imports -----
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import AnchorTemporaryDrawer from "../Drawer/rightDrawer";
-
+import PersonIcon from "@mui/icons-material/Person";
 // Mui Imports -----
 import Button from "@mui/material/Button";
 import { useRouter } from "next/navigation";
+import { useData } from "@/context/userProvider";
 
 // Navigation -----
 type navigationItem = {
@@ -37,9 +38,11 @@ const navigationItems: navigationItem[] = [
 
 // -----
 export const Header = () => {
+  const { loggedInUserData } = useData();
+  const { isLoggedIn } = useData();
   const router = useRouter();
   const pathname = usePathname();
-
+  const { push } = useRouter();
   // Button's Modal Placeholder -----
 
   const [TemporaryDrawer, setDrawer] = useState(false);
@@ -78,28 +81,54 @@ export const Header = () => {
           </Link>
         ))}
       </div>
-      <div className="flex justify-end items-center gap-4 md:">
-        <button
-          onClick={() => router.push("./login")}
-          className="text-[16px] font-[400] cursor-default text-[#4d565e] md:flex hidden hover:text-black"
-        >
-          Нэвтрэх
-          <hr
-            style={{
-              color: "red",
-              backgroundColor: "red",
-              border: "0.5px solid gray",
+      {isLoggedIn ? (
+        <div className="flex justify-end items-center gap-4 md:">
+          <Button
+            onClick={() => {
+              push("/edit-profile");
             }}
-          />
-        </button>
-        <button
-          onClick={() => router.push("/signup")}
-          className="text-[16px] cursor-default font-[400] p-2 text-white  rounded-[15px] bg-[#389BA7] md:flex hidden hover:bg-[#008291]"
-        >
-          Бүртгүүлэх
-        </button>
-        <AnchorTemporaryDrawer />
-      </div>
+            sx={{
+              fontWeight: "700px",
+              color: "#389BA7",
+              fontSize: "20px",
+              height: "20px",
+              width: "100px",
+              px: "20px",
+              display: "flex",
+              gap: "20px",
+              marginRight: "30px",
+            }}
+          >
+            {" "}
+            <PersonIcon sx={{ fontSize: "30px", color: "#389BA7" }} />
+            {loggedInUserData.name}
+          </Button>
+          <AnchorTemporaryDrawer />
+        </div>
+      ) : (
+        <div className="flex justify-end items-center gap-4 md:">
+          <button
+            onClick={() => router.push("./login")}
+            className="text-[16px] font-[400] cursor-default text-[#4d565e] md:flex hidden hover:text-black"
+          >
+            Нэвтрэх
+            <hr
+              style={{
+                color: "red",
+                backgroundColor: "red",
+                border: "0.5px solid gray",
+              }}
+            />
+          </button>
+          <button
+            onClick={() => router.push("/signup")}
+            className="text-[16px] cursor-default font-[400] p-2 text-white  rounded-[15px] bg-[#389BA7] md:flex hidden hover:bg-[#008291]"
+          >
+            Бүртгүүлэх
+          </button>
+          <AnchorTemporaryDrawer />
+        </div>
+      )}
     </div>
   );
 };

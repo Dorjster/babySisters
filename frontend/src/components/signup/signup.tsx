@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import axios from "axios";
 import { AxiosInstance } from "@/utils/axiosInstance";
+import { useRouter } from "next/navigation";
 interface UserData {
   email: string;
   name: string;
@@ -23,7 +24,7 @@ export const Signup = () => {
     phone: "",
     rePassword: "",
   });
-
+  const { push } = useRouter();
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUserdata({ ...userdata, [name]: value });
@@ -46,6 +47,7 @@ export const Signup = () => {
         );
 
         console.log(data);
+        push("/login");
       }
     } catch (error: any) {
       console.error(error.message);
@@ -65,6 +67,7 @@ export const Signup = () => {
         const { data } = await AxiosInstance.post<string>("/signup", userdata);
 
         console.log(data);
+        push("/login");
       }
     } catch (error: any) {
       console.error(error.message);
@@ -81,7 +84,7 @@ export const Signup = () => {
               setPage(2);
             }}
           >
-           Эцэг эхээр бүртгүүлэх
+            Эцэг эхээр бүртгүүлэх
           </Button>
           <Button
             className="  rounded-[20px] px-6 py-6 border-[1px] border-[#c9e8ec] hover:bg-[#c9e8ec]"
@@ -96,138 +99,136 @@ export const Signup = () => {
       {page === 2 && (
         <div className="flex items-center justify-center py-10">
           <Card className="w-[550px] h-fit divide-y-2  ">
-          <CardHeader className="">
-            <CardTitle className="text-center text-[30px] font-[500]">
-              Babysits-д тавтай морил
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="p-[30px] flex flex-col gap-[50px] ">
-            <Label htmlFor="email" className="text-[22px] self-center">
-              Эцэг эхээр бүртгүүлэх
-            </Label>
-            <Input
-              name="name"
-              type="name"
-              placeholder="Нэр"
-              className="h-[60px] rounded-[25px] border-1px"
-              onChange={handleChange}
-            />
-            <Input
-              required
-              name="email"
-              type="email"
-              placeholder="И-мэйл"
-              className="h-[60px] rounded-[25px] border-1px"
-              onChange={handleChange}
-            />
-            <Input
-              required
-              name="phone"
-              type="phone"
-              placeholder="Утас"
-              className="h-[60px] rounded-[25px] border-1px"
-              onChange={handleChange}
-            />
-            <Input
-              required
-              name="password"
-              type="password"
-              placeholder="Нууц үг"
-              className="h-[60px] rounded-[25px] border-1px"
-              onChange={handleChange}
-            />
-            <Input
-              required
-              name="rePassword"
-              type="password"
-              placeholder="Нууц үг давтах"
-              className="h-[60px] rounded-[25px] border-1px"
-              onChange={handleChange}
-            />{" "}
-            <Button
-              onClick={handleCreateParent}
-              variant="outline"
-              className="bg-[#389BA7] w-full text-white text-[20px] font-[300] h-[60px] rounded-[25px] hover:border-[#389BA7] "
-            >
-              Үргэлжлүүлэх
-            </Button>
-            {error && (
-              <p className=" text-center text-red-500 font-sans-serif ">
-                {error}
-              </p>
-            )}
-          </CardContent>
-        </Card>
+            <CardHeader className="">
+              <CardTitle className="text-center text-[30px] font-[500]">
+                Babysits-д тавтай морил
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-[30px] flex flex-col gap-[50px] ">
+              <Label htmlFor="email" className="text-[22px] self-center">
+                Эцэг эхээр бүртгүүлэх
+              </Label>
+              <Input
+                name="name"
+                type="name"
+                placeholder="Нэр"
+                className="h-[60px] rounded-[25px] border-1px"
+                onChange={handleChange}
+              />
+              <Input
+                required
+                name="email"
+                type="email"
+                placeholder="И-мэйл"
+                className="h-[60px] rounded-[25px] border-1px"
+                onChange={handleChange}
+              />
+              <Input
+                required
+                name="phone"
+                type="phone"
+                placeholder="Утас"
+                className="h-[60px] rounded-[25px] border-1px"
+                onChange={handleChange}
+              />
+              <Input
+                required
+                name="password"
+                type="password"
+                placeholder="Нууц үг"
+                className="h-[60px] rounded-[25px] border-1px"
+                onChange={handleChange}
+              />
+              <Input
+                required
+                name="rePassword"
+                type="password"
+                placeholder="Нууц үг давтах"
+                className="h-[60px] rounded-[25px] border-1px"
+                onChange={handleChange}
+              />{" "}
+              <Button
+                onClick={handleCreateParent}
+                variant="outline"
+                className="bg-[#389BA7] w-full text-white text-[20px] font-[300] h-[60px] rounded-[25px] hover:border-[#389BA7] "
+              >
+                Үргэлжлүүлэх
+              </Button>
+              {error && (
+                <p className=" text-center text-red-500 font-sans-serif ">
+                  {error}
+                </p>
+              )}
+            </CardContent>
+          </Card>
         </div>
-        
       )}
       {page === 3 && (
         <div className="flex items-center justify-center py-10">
-           <Card className="w-[550px] h-fit divide-y-2">
-          <CardHeader className="">
-            <CardTitle className="text-center text-[30px] font-[500]">
-              Babysits-д тавтай морил
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="p-[30px] flex flex-col gap-[30px] ">
-            <Label htmlFor="email" className="text-[25px]">
-              Хүүхэд асрагчаар бүртгүүлэх
-            </Label>
-            <Input
-              name="name"
-              type="name"
-              placeholder="Нэр"
-              className="h-[60px] rounded-[25px] border-1px"
-              onChange={handleChange}
-            />
-            <Input
-              required
-              name="email"
-              type="email"
-              placeholder="И-мэйл"
-              className="h-[60px] rounded-[25px] border-1px"
-              onChange={handleChange}
-            />
-            <Input
-              required
-              name="phone"
-              type="phone"
-              placeholder="Утас"
-              className="h-[60px] rounded-[25px] border-1px"
-              onChange={handleChange}
-            />
-            <Input
-              required
-              name="password"
-              type="password"
-              placeholder="Нууц үг"
-              className="h-[60px] rounded-[25px] border-1px"
-              onChange={handleChange}
-            />
-            <Input
-              required
-              name="rePassword"
-              type="rePassword"
-              placeholder="Нууц үг давтах"
-              className="h-[60px] rounded-[25px] border-1px"
-              onChange={handleChange}
-            />
-            <Button
-              onClick={handleCreateNanny}
-              variant="outline"
-              className="bg-[#389BA7] w-full text-white text-[20px] font-[300] h-[60px] rounded-[25px] hover:bg-[#008291] hover:text-white hover:border-none "
-            >
-              Үргэлжлүүлэх
-            </Button>{" "}
-            {error && (
-              <p className=" text-center text-red-500 font-sans-serif ">
-                {error}
-              </p>
-            )}
-          </CardContent>
-        </Card>
+          <Card className="w-[550px] h-fit divide-y-2">
+            <CardHeader className="">
+              <CardTitle className="text-center text-[30px] font-[500]">
+                Babysits-д тавтай морил
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-[30px] flex flex-col gap-[30px] ">
+              <Label htmlFor="email" className="text-[25px]">
+                Хүүхэд асрагчаар бүртгүүлэх
+              </Label>
+              <Input
+                name="name"
+                type="name"
+                placeholder="Нэр"
+                className="h-[60px] rounded-[25px] border-1px"
+                onChange={handleChange}
+              />
+              <Input
+                required
+                name="email"
+                type="email"
+                placeholder="И-мэйл"
+                className="h-[60px] rounded-[25px] border-1px"
+                onChange={handleChange}
+              />
+              <Input
+                required
+                name="phone"
+                type="phone"
+                placeholder="Утас"
+                className="h-[60px] rounded-[25px] border-1px"
+                onChange={handleChange}
+              />
+              <Input
+                required
+                name="password"
+                type="password"
+                placeholder="Нууц үг"
+                className="h-[60px] rounded-[25px] border-1px"
+                onChange={handleChange}
+              />
+              <Input
+                required
+                name="rePassword"
+                type="rePassword"
+                placeholder="Нууц үг давтах"
+                className="h-[60px] rounded-[25px] border-1px"
+                onChange={handleChange}
+              />
+              <Button
+                onClick={handleCreateNanny}
+                variant="outline"
+                className="bg-[#389BA7] w-full text-white text-[20px] font-[300] h-[60px] rounded-[25px] hover:bg-[#008291] hover:text-white hover:border-none "
+              >
+                Үргэлжлүүлэх
+              </Button>{" "}
+              {error && (
+                <p className=" text-center text-red-500 font-sans-serif ">
+                  {error}
+                </p>
+              )}
+            </CardContent>
+          </Card>
         </div>
-       
       )}
     </div>
   );
