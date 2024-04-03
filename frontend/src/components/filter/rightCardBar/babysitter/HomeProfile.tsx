@@ -9,7 +9,6 @@ const HomeProfile = () => {
   const [babysitterData, setBabysitterData] = useState<ProfileType[]>([]);
   const [infoData, setInfoData] = useState<ProfileType[]>([]);
 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -24,26 +23,24 @@ const HomeProfile = () => {
       }
     };
 
-
     fetchData();
     console.log(babysitterData);
   }, []);
 
-
   return (
-    <div className=" h-fit w-full mt-1 flex justify-between ml-[50px] flex-wrap">
+    <div className=" h-fit w-full mt-1 flex  flex-wrap">
       {babysitterData.map((babysitter) => (
-        <Card 
-          key={babysitter._id} 
-          data={babysitter} 
-          wage={babysitter.info_id.wage} 
+        <Card
+          key={babysitter._id}
+          data={babysitter}
+          wage={babysitter.info_id.wage}
           rating={babysitter.info_id.rating}
-          about={babysitter.about || ''} 
+          about={babysitter.about || ""}
           driver={babysitter.info_id.driver_license}
           car={babysitter.info_id.car}
           smoker={babysitter.info_id.smoker}
           exp={babysitter.info_id.year_of_experience}
-          />
+        />
       ))}
     </div>
   );
