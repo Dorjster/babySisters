@@ -50,7 +50,7 @@ export const Header = () => {
 
   // -----
   return (
-    <div className="flex justify-between items-center py-6 bg-[#c9e8ec] sticky top-0 z-10">
+    <div className="flex justify-between items-center    py-6 bg-[#c9e8ec] sticky top-0 z-30">
       <div className="flex  ml-[30px] ">
         <Image
           src="/babysits.logo.png"
@@ -63,23 +63,25 @@ export const Header = () => {
           className="cursor-default"
         />
       </div>
-      <div className="flex justify-center items-center gap-10 text-[16px] font-[400] text-gray-700 ">
+      <div className="md:flex justify-center items-center gap-10 text-[16px] font-[400] text-gray-700 hidden">
         {navigationItems.map(({ href, label }, index) => (
           <Link
             href={href}
             key={index}
             className={`cursor-default ${
-              pathname === href ? "text-[#389BA7] hover:text-[#008291]"  : "black hover:text-black"
+              pathname === href
+                ? "text-[#389BA7] hover:text-[#008291]"
+                : "black hover:text-black"
             }`}
           >
             {label}
           </Link>
         ))}
       </div>
-      <div className="flex justify-end items-center gap-4">
+      <div className="flex justify-end items-center gap-4 md:">
         <button
           onClick={() => router.push("./login")}
-          className="text-[16px] font-[400] cursor-default text-[#4d565e] hover:text-black"
+          className="text-[16px] font-[400] cursor-default text-[#4d565e] md:flex hidden hover:text-black"
         >
           Нэвтрэх
           <hr
@@ -91,10 +93,8 @@ export const Header = () => {
           />
         </button>
         <button
-
           onClick={() => router.push("/signup")}
-          className="text-[16px] cursor-default font-[400] p-2 text-white  rounded-[15px] bg-[#389BA7] hover:bg-[#008291]"
-
+          className="text-[16px] cursor-default font-[400] p-2 text-white  rounded-[15px] bg-[#389BA7] md:flex hidden hover:bg-[#008291]"
         >
           Бүртгүүлэх
         </button>
