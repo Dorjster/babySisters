@@ -16,10 +16,14 @@ const behaviors = [
 ];
 export const Character = () => {
   const [buttonStates, setButtonStates] = useState(behaviors.map(() => false));
+  const [charac, setCharac] = useState([]);
   const handleClickButton = (index: number) => {
     const updatedButtonStates = [...buttonStates];
     updatedButtonStates[index] = !updatedButtonStates[index];
     setButtonStates(updatedButtonStates);
+    // const characters = [];
+
+    // setCharac(characters);
   };
   return (
     <div>
@@ -33,7 +37,7 @@ export const Character = () => {
             <div
               key={index}
               onClick={() => handleClickButton(index)}
-              className={`py-1 px-2 text-sm rounded-xl flex gap-2 bg-[#F6F9FA] items-center  ${
+              className={`py-1 px-3  text-sm rounded-xl flex gap-2 bg-[#F6F9FA] items-center  ${
                 buttonStates[index] ? "bg-[#c9e8ec]  " : ""
               }`}
             >

@@ -21,7 +21,10 @@ export const EditBabysitProfile = () => {
         marginBottom: "100px",
       }}
     >
-      <div className="flex p-[50px] gap-[250px]">
+      <div
+        className="flex p-[50px] gap-[250px] flex-col
+      "
+      >
         <div className="w-[200px]  object-fit flex flex-col justify-center items-center gap-3 mb-[50px]">
           <Image
             src="/profile.png"
@@ -37,7 +40,7 @@ export const EditBabysitProfile = () => {
         </div>
         <General />
 
-        <div className="w-[160px]  object-fit flex flex-col justify-center items-center gap-3 mb-[50px]">
+        {/* <div className="w-[160px]  object-fit flex flex-col justify-center items-center gap-3 mb-[50px]">
           <Image
             src="/profile.png"
             alt=""
@@ -46,13 +49,12 @@ export const EditBabysitProfile = () => {
             height={160}
           />
           <p className="font-normal text-base text-gray-400">Profile photo</p>
-        </div>
+        </div> */}
 
         <hr />
         <div className="flex flex-col gap-[45px] mb-[80px]">
           <AboutMe />
           <Languages />
-
           <Character />
         </div>
         <hr />

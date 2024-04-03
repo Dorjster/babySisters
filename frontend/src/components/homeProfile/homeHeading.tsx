@@ -2,7 +2,7 @@ import Image from "next/image";
 const HomeHeading = () => {
   return (
     <div>
-      <div className="bg-[#c9e8ec] w-[2240px] h-[527px] relative -ml-[120px] -mt-[50px] overflow-hidden">
+      <div className="bg-[#c9e8ec] w-screen h-[527px] relative -ml-[120px] -mt-[50px] overflow-hidden">
         <div className="  inset-x-0 bg- w-full h-10" />
 
         <svg
