@@ -15,7 +15,7 @@ export const updateBabysitterQuery = async (req: Request) => {
             about,
             gender,
             image,
-            passport_id,
+            verification,
             driver_license,
             has_children,
             education,
@@ -35,11 +35,10 @@ export const updateBabysitterQuery = async (req: Request) => {
 
         const babysitter = await BabysitterModel.findById({_id: id});
 
-        const pass = babysitter?.password;
-
-        if (!pass) {
+        if (!babysitter) {
             throw new Error("Хэрэглэгч олдсонгүй");
         }
+        const pass = babysitter?.password;
 
         const checkPass = compareHash(oldPassword, pass);
 
@@ -59,7 +58,7 @@ export const updateBabysitterQuery = async (req: Request) => {
                     about: about,
                     gender: gender,
                     image: image,
-                    passport_id: passport_id
+                    verification: verification
                 },
             },
             { new: true }

@@ -18,7 +18,7 @@ export const updateParentQuery = async (req: Request) => {
             age_of_children,
             available_time,
             image,
-            passport_id,
+            verification,
         } = req.body;
 
 
@@ -52,7 +52,7 @@ export const updateParentQuery = async (req: Request) => {
                     age_of_children: age_of_children,
                     available_time: available_time,
                     image: image,
-                    passport_id: passport_id,
+                    verification: verification,
                 
                 },
             },

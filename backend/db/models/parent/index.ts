@@ -13,7 +13,7 @@ export type ParentModelType = {
   wage?: number;
   available_time?: object[];
   image?: String;
-  passport_id?: String;
+  verification?: boolean;
   otp?: string;
   role: string;
 };
@@ -30,7 +30,7 @@ const ParentSchema = new Schema<ParentModelType>(
     wage: { type: Number, required: false },
     available_time: { type: [Object], required: false },
     image: { type: String, required: false },
-    passport_id: { type: String, required: false },
+    verification: { type: Boolean, required: false, default: false },
     otp: { type: String, required: false },
   },
   {
