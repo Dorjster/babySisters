@@ -7,7 +7,7 @@ import { GeneralParent } from "./GeneralParent";
 import { AboutParent } from "./AboutParent";
 import { AgeChildren } from "./AgeChildren";
 import { Wage } from "./Wage";
-import { Schedule } from "../filter/Schedule";
+import { Schedule } from "./Schedule";
 
 export const EditParent = () => {
   return (
@@ -18,12 +18,12 @@ export const EditParent = () => {
       }}
     >
       <div className="flex p-[50px] gap-[250px]">
-        <div className="w-[200px]  object-fit flex flex-col justify-center items-center gap-3 mb-[50px]">
+        <div className="w-[180px]  object-fit flex flex-col justify-center items-center gap-3 mb-[50px]">
           <Image
             src="/profile.png"
             alt=""
-            className=" w-[200px] h-[180px] object-cover rounded-[15px]"
-            width={200}
+            className=" w-[100%] h-[180px] object-cover rounded-[15px]"
+            width={180}
             height={180}
           />
           <div className="flex gap-2">
@@ -41,10 +41,10 @@ export const EditParent = () => {
       </div>
       <hr />
 
-      <div className="mt-[50px] flex flex-col gap-[45px]">
+      <div className="mt-[50px] flex flex-col mb-[50px] gap-[45px]">
         <Wage />
       </div>
-      <Schedule/>
+      <Schedule />
 
       <button className="w-[100%] bg-[#389BA7] text-white rounded-3xl font-[400] text-[20px] mt-[65px] h-[40px]">
         Хадгалах
