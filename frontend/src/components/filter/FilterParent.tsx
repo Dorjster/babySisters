@@ -6,6 +6,7 @@ import { Wage } from "./Wage";
 import { useState } from "react";
 import { MdVerified } from "react-icons/md";
 
+
 export const FilterParent = () => {
     const [sliderValue, setSliderValue] = useState<number>(2);
 
