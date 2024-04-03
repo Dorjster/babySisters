@@ -36,8 +36,6 @@ export const Schedule = () => {
     setTime(updatedTime);
   };
 
-  console.log(time);
-
   return (
     <div>
       {" "}

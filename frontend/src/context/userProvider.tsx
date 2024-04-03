@@ -3,12 +3,13 @@ import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { AxiosInstance } from "@/utils/axiosInstance";
 
-type UserData = {
+export type UserData = {
   _id: string;
   name: string;
   email: string;
   phone: string;
   password: string;
+  role: string;
 };
 
 type DataContextType = {
@@ -31,6 +32,7 @@ export const DataProvider = ({ children }: any) => {
     email: "",
     phone: "",
     password: "",
+    role: "",
   });
 
   const accessToken =
