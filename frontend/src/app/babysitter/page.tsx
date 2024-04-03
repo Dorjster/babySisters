@@ -1,5 +1,5 @@
 import { FilterBabysitter } from "@/components/filter/FilterBabysitter";
-import HomeProfile from "@/components/homeProfile/HomeProfile";
+import HomeProfile from "@/components/filter/rightCardBar/babysitter/HomeProfile";
 
 export default function babysitter() {
   return (
