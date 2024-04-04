@@ -9,7 +9,12 @@ const informations = [
   "Тамхи татдаггүй",
 ];
 
-export const AddInformation = () => {
+type All = {
+  handleAdd: (value: string) => void;
+};
+
+export const AddInformation = (props: All) => {
+  const { handleAdd } = props;
   const [buttonStates, setButtonStates] = useState(
     informations.map(() => false)
   );
@@ -29,7 +34,10 @@ export const AddInformation = () => {
           {informations.map((el, index) => (
             <div
               key={index}
-              onClick={() => handleClickButton(index)}
+              onClick={() => {
+                handleAdd(el);
+                handleClickButton(index);
+              }}
               className={`py-1 px-2 text-sm rounded-xl flex gap-2 bg-[#F6F9FA] items-center  ${
                 buttonStates[index] ? "bg-[#c9e8ec]  " : ""
               }`}

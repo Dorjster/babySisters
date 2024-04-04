@@ -8,7 +8,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Link from "next/link";
 import Image from "next/image";
 import { removeToken } from "@/utils/removeToken";
-
+import { useData } from "@/context/userProvider";
 
 type Anchor = "right";
 type navigationItem = {
@@ -39,13 +39,12 @@ const navigationItems: navigationItem[] = [
   },
 ];
 
-
 export default function AnchorTemporaryDrawer(props: any) {
   const { toggle } = props;
+  const { loggedInUserData } = useData();
   const [state, setState] = React.useState({
     right: false,
   });
-
 
   const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
@@ -60,26 +59,26 @@ export default function AnchorTemporaryDrawer(props: any) {
 
       setState({ ...state, [anchor]: open });
     };
-  
+  const letter = loggedInUserData.name.charAt(0);
   const [isTokenValid, setIsTokenValid] = React.useState("");
 
   const getToken = () => {
     const token = localStorage.getItem("token");
-    if(token){
+    if (token) {
       setIsTokenValid(token);
     } else {
       setIsTokenValid("");
     }
   };
 
-
-
-
   return (
     <Stack padding={""}>
       {(["right"] as const).map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button sx={{ color: "green", cursor: "default" }} onClick={toggleDrawer(anchor, true)}>
+          <Button
+            sx={{ color: "green", cursor: "default" }}
+            onClick={toggleDrawer(anchor, true)}
+          >
             <MenuIcon onClick={getToken} className="text-[#389BA7]" />
           </Button>
           <Drawer
@@ -95,29 +94,62 @@ export default function AnchorTemporaryDrawer(props: any) {
 
                 <Typography
                   className="text-[#323940]"
-                  sx={{ marginLeft: "120px", fontSize: "20px", cursor: "default" }}
+                  sx={{
+                    marginLeft: "120px",
+                    fontSize: "20px",
+                    cursor: "default",
+                  }}
                 >
                   Хэрэглэгч
                 </Typography>
               </Stack>
               <Stack alignItems={"center"} gap={"15px"} py={4} px={"25px"}>
-                <div className="w-[100px]  h-[100px] white items-center rounded-full justify-center overflow-hidden ">
-                  <Image
-                    src={"/profile-avatar.png"}
-                    height={200}
-                    width={200}
-                    alt="negga"
-                  />
-                </div>
-                {(isTokenValid === "") ?
-                  <Link href="/login">
-                    <p onClick={toggleDrawer(anchor, false)} className="font-bold underline underline-offset-1 cursor-default">Нэвтрэх</p>
-                  </Link> :
-                  <Link href="/edit-profile">
-                    <p onClick={toggleDrawer(anchor, false)} className="font-bold underline underline-offset-1 cursor-default">Хувийн мэдээлэл</p>
-                  </Link> 
-
-                }
+                {isTokenValid === "" ? (
+                  <div className="flex flex-col items-center gap-[25px]">
+                    <div className="w-[100px]  h-[100px] white items-center rounded-full justify-center overflow-hidden ">
+                      <Image
+                        src={"/profile-avatar.png"}
+                        height={200}
+                        width={200}
+                        alt="negga"
+                      />{" "}
+                    </div>
+                    <Link href="/login">
+                      <p
+                        onClick={toggleDrawer(anchor, false)}
+                        className="font-bold underline underline-offset-1 cursor-default"
+                      >
+                        Нэвтрэх
+                      </p>
+                    </Link>
+                  </div>
+                ) : (
+                  <div className="flex flex-col items-center gap-[25px]">
+                    <div className="w-[100px]  h-[100px] white items-center rounded-full justify-center overflow-hidden ">
+                      {loggedInUserData?.image ? (
+                        <Image
+                          src={loggedInUserData.image}
+                          // className="w-[170px] h-[170px] mt-[25px] rounded-e-xl self-center justify-center items-center"
+                          alt=""
+                          width={200}
+                          height={200}
+                        />
+                      ) : (
+                        <div className="w-[100px] h-[100px] rounded-xl bg-gray-300 text-white text-[60px] flex self-center justify-center items-center">
+                          {letter}
+                        </div>
+                      )}
+                    </div>
+                    <Link href="/edit-profile">
+                      <p
+                        onClick={toggleDrawer(anchor, false)}
+                        className="font-bold underline underline-offset-1 cursor-default"
+                      >
+                        Хувийн мэдээлэл
+                      </p>
+                    </Link>
+                  </div>
+                )}
               </Stack>
               <div className="flex flex-col justify-center items-center gap-10 text-[16px] font-[400] text-gray-700   ">
                 {navigationItems.map(({ href, label }, index) => (
@@ -134,7 +166,10 @@ export default function AnchorTemporaryDrawer(props: any) {
                 ))}
               </div>
               <Link href="/" onClick={toggleDrawer(anchor, false)}>
-                <p onClick={removeToken} className="flex items-center justify-center w-full p-10 font-bold text-[16px] cursor-default">
+                <p
+                  onClick={removeToken}
+                  className="flex items-center justify-center w-full p-10 font-bold text-[16px] cursor-default"
+                >
                   Гарах
                 </p>
               </Link>

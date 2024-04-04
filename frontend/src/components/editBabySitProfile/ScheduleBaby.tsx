@@ -10,33 +10,20 @@ import {
 } from "@/components/ui";
 import { Button } from "@mui/base";
 import { ChangeEvent, MouseEvent, useState } from "react";
+type ScheduleProps = {
+  handleClick: (day: string, time: string) => void;
+};
+export const ScheduleBaby = (props: ScheduleProps) => {
+  const { handleClick } = props;
+  // const [time, setTime] = useState<any[]>([]);
 
-export const ScheduleBaby = () => {
-  //  const [time,setTime]=useState([])
+  // const click = (day: string, timeValue: string) => {
+  //   const updatedTime = [...time, { day, time: timeValue }];
 
-  //   let available_time :any= [];
-
-  //   const click = ( day: string, time: string) => {
-
-  //     const object = {
-  //       day: day,
-  //       time: time
-  //     };
-  //     available_time.push(object)
-  //     setTime(available_time)
-  //   }
+  //   setTime(updatedTime);
+  // };
 
   // console.log(time);
-
-  const [time, setTime] = useState<any[]>([]);
-
-  const click = (day: string, timeValue: string) => {
-    const updatedTime = [...time, { day, time: timeValue }];
-
-    setTime(updatedTime);
-  };
-
-  console.log(time);
 
   return (
     <div>
@@ -63,43 +50,43 @@ export const ScheduleBaby = () => {
             <TableCell>
               <Checkbox
                 className="rounded-[4px]"
-                onClick={() => click("Даваа", "Өглөө")}
+                onClick={() => handleClick("Даваа", "Өглөө")}
               />
             </TableCell>
             <TableCell>
               <Checkbox
                 className="rounded-[4px]"
-                onClick={() => click("Мягмар", "Өглөө")}
+                onClick={() => handleClick("Мягмар", "Өглөө")}
               />
             </TableCell>
             <TableCell>
               <Checkbox
                 className="rounded-[4px]"
-                onClick={() => click("Лхагва", "Өглөө")}
+                onClick={() => handleClick("Лхагва", "Өглөө")}
               />
             </TableCell>
             <TableCell>
               <Checkbox
                 className="rounded-[4px]"
-                onClick={() => click("Пүрэв", "Өглөө")}
+                onClick={() => handleClick("Пүрэв", "Өглөө")}
               />
             </TableCell>
             <TableCell>
               <Checkbox
                 className="rounded-[4px]"
-                onClick={() => click("Баасан", "Өглөө")}
+                onClick={() => handleClick("Баасан", "Өглөө")}
               />
             </TableCell>
             <TableCell>
               <Checkbox
                 className="rounded-[4px]"
-                onClick={() => click("Бямба", "Өглөө")}
+                onClick={() => handleClick("Бямба", "Өглөө")}
               />
             </TableCell>
             <TableCell>
               <Checkbox
                 className="rounded-[4px]"
-                onClick={() => click("Ням", "Өглөө")}
+                onClick={() => handleClick("Ням", "Өглөө")}
               />
             </TableCell>
           </TableRow>
@@ -108,43 +95,43 @@ export const ScheduleBaby = () => {
             <TableCell>
               <Checkbox
                 className="rounded-[4px]"
-                onClick={() => click("Даваа", "Өдөр")}
+                onClick={() => handleClick("Даваа", "Өдөр")}
               />
             </TableCell>
             <TableCell>
               <Checkbox
                 className="rounded-[4px]"
-                onClick={() => click("Мягмар", "Өдөр")}
+                onClick={() => handleClick("Мягмар", "Өдөр")}
               />
             </TableCell>
             <TableCell>
               <Checkbox
                 className="rounded-[4px]"
-                onClick={() => click("Лхагва", "Өдөр")}
+                onClick={() => handleClick("Лхагва", "Өдөр")}
               />
             </TableCell>
             <TableCell>
               <Checkbox
                 className="rounded-[4px]"
-                onClick={() => click("Пүрэв", "Өдөр")}
+                onClick={() => handleClick("Пүрэв", "Өдөр")}
               />
             </TableCell>
             <TableCell>
               <Checkbox
                 className="rounded-[4px]"
-                onClick={() => click("Баасан", "Өдөр")}
+                onClick={() => handleClick("Баасан", "Өдөр")}
               />
             </TableCell>
             <TableCell>
               <Checkbox
                 className="rounded-[4px]"
-                onClick={() => click("Бямба", "Өдөр")}
+                onClick={() => handleClick("Бямба", "Өдөр")}
               />
             </TableCell>
             <TableCell>
               <Checkbox
                 className="rounded-[4px]"
-                onClick={() => click("Ням", "Өдөр")}
+                onClick={() => handleClick("Ням", "Өдөр")}
               />
             </TableCell>
           </TableRow>
@@ -153,43 +140,43 @@ export const ScheduleBaby = () => {
             <TableCell>
               <Checkbox
                 className="rounded-[4px]"
-                onClick={() => click("Даваа", "Орой")}
+                onClick={() => handleClick("Даваа", "Орой")}
               />
             </TableCell>
             <TableCell>
               <Checkbox
                 className="rounded-[4px]"
-                onClick={() => click("Мягмар", "Орой")}
+                onClick={() => handleClick("Мягмар", "Орой")}
               />
             </TableCell>
             <TableCell>
               <Checkbox
                 className="rounded-[4px]"
-                onClick={() => click("Лхагва", "Орой")}
+                onClick={() => handleClick("Лхагва", "Орой")}
               />
             </TableCell>
             <TableCell>
               <Checkbox
                 className="rounded-[4px]"
-                onClick={() => click("Пүрэв", "Орой")}
+                onClick={() => handleClick("Пүрэв", "Орой")}
               />
             </TableCell>
             <TableCell>
               <Checkbox
                 className="rounded-[4px]"
-                onClick={() => click("Баасан", "Орой")}
+                onClick={() => handleClick("Баасан", "Орой")}
               />
             </TableCell>
             <TableCell>
               <Checkbox
                 className="rounded-[4px]"
-                onClick={() => click("Бямба", "Орой")}
+                onClick={() => handleClick("Бямба", "Орой")}
               />
             </TableCell>
             <TableCell>
               <Checkbox
                 className="rounded-[4px]"
-                onClick={() => click("Ням", "Орой")}
+                onClick={() => handleClick("Ням", "Орой")}
               />
             </TableCell>
           </TableRow>
@@ -198,43 +185,43 @@ export const ScheduleBaby = () => {
             <TableCell>
               <Checkbox
                 className="rounded-[4px]"
-                onClick={() => click("Даваа", "Шөнө")}
+                onClick={() => handleClick("Даваа", "Шөнө")}
               />
             </TableCell>
             <TableCell>
               <Checkbox
                 className="rounded-[4px]"
-                onClick={() => click("Мягмар", "Шөнө")}
+                onClick={() => handleClick("Мягмар", "Шөнө")}
               />
             </TableCell>
             <TableCell>
               <Checkbox
                 className="rounded-[4px]"
-                onClick={() => click("Лхагва", "Шөнө")}
+                onClick={() => handleClick("Лхагва", "Шөнө")}
               />
             </TableCell>
             <TableCell>
               <Checkbox
                 className="rounded-[4px]"
-                onClick={() => click("Пүрэв", "Шөнө")}
+                onClick={() => handleClick("Пүрэв", "Шөнө")}
               />
             </TableCell>
             <TableCell>
               <Checkbox
                 className="rounded-[4px]"
-                onClick={() => click("Баасан", "Шөнө")}
+                onClick={() => handleClick("Баасан", "Шөнө")}
               />
             </TableCell>
             <TableCell>
               <Checkbox
                 className="rounded-[4px]"
-                onClick={() => click("Бямба", "Шөнө")}
+                onClick={() => handleClick("Бямба", "Шөнө")}
               />
             </TableCell>
             <TableCell>
               <Checkbox
                 className="rounded-[4px]"
-                onClick={() => click("Ням", "Шөнө")}
+                onClick={() => handleClick("Ням", "Шөнө")}
               />
             </TableCell>
           </TableRow>

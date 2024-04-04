@@ -22,7 +22,13 @@ const languages = [
   "Франц",
 ];
 
-export const Languages = () => {
+type All = {
+  handleLan: (value: string) => void;
+  handleEdu: (value: string) => void;
+};
+
+export const Languages = (props: All) => {
+  const { handleLan, handleEdu } = props;
   const [buttonStates, setButtonStates] = useState(languages.map(() => false));
   const handleClickButton = (index: number) => {
     const updatedButtonStates = [...buttonStates];
@@ -40,7 +46,10 @@ export const Languages = () => {
           {languages.map((el, index) => (
             <div
               key={index}
-              onClick={() => handleClickButton(index)}
+              onClick={() => {
+                handleLan(el);
+                handleClickButton(index);
+              }}
               className={`py-1 px-2 text-sm rounded-xl flex gap-2 bg-[#F6F9FA] items-center  ${
                 buttonStates[index] ? "bg-[#c9e8ec]  " : ""
               }`}
@@ -49,7 +58,9 @@ export const Languages = () => {
               {buttonStates[index] ? (
                 <CloseIcon
                   className="w-[14px] h-[14px] cursor-pointer"
-                  onClick={() => handleClickButton(index)}
+                  onClick={() => {
+                    handleClickButton(index);
+                  }}
                 />
               ) : (
                 ""
@@ -62,7 +73,7 @@ export const Languages = () => {
         <p className="text-gray-600 text-base font-[500] mb-[15px]">
           Таны боловсролын зэрэг?
         </p>
-        <Select>
+        <Select onValueChange={handleEdu}>
           <SelectTrigger className="w-[100%] border-zinc-200 rounded-2xl text-gray-500 ">
             <SelectValue placeholder="Боловсролын зэрэгээ сонгоно уу" />
           </SelectTrigger>

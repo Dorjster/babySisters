@@ -11,7 +11,12 @@ const skill = [
   "Бүжиг",
 ];
 
-export const Skill = () => {
+type All = {
+  handleSki: (value: string) => void;
+};
+
+export const Skill = (props: All) => {
+  const { handleSki } = props;
   const [buttonStates, setButtonStates] = useState(skill.map(() => false));
   const handleClickButton = (index: number) => {
     const updatedButtonStates = [...buttonStates];
@@ -29,7 +34,10 @@ export const Skill = () => {
           {skill.map((el, index) => (
             <div
               key={index}
-              onClick={() => handleClickButton(index)}
+              onClick={() => {
+                handleSki(el);
+                handleClickButton(index);
+              }}
               className={`py-1 px-2 text-sm rounded-xl flex gap-2 bg-[#F6F9FA] items-center  ${
                 buttonStates[index] ? "bg-[#c9e8ec]  " : ""
               }`}

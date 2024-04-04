@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import {
   Select,
   SelectContent,
@@ -7,7 +7,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-export const Experience = () => {
+
+type All = {
+  handleExp: (label: string) => void;
+};
+export const Experience = (props: All) => {
+  const { handleExp } = props;
   return (
     <div>
       <h3 className="text-2xl font-medium text-gray-700">
@@ -16,7 +21,7 @@ export const Experience = () => {
       <p className="text-gray-600 text-base font-[500] mb-[15px] mt-[45px] ">
         Та хэдэн жилийн туршлагатай вэ?
       </p>
-      <Select>
+      <Select onValueChange={handleExp}>
         <SelectTrigger className="w-[100%] border-zinc-200 rounded-2xl text-gray-600 ">
           <SelectValue placeholder="" />
         </SelectTrigger>

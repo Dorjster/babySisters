@@ -10,6 +10,7 @@ export type UserData = {
   phone: string;
   password: string;
   role: string;
+  image: string;
 };
 
 type DataContextType = {
@@ -33,6 +34,7 @@ export const DataProvider = ({ children }: any) => {
     phone: "",
     password: "",
     role: "",
+    image: "",
   });
 
   const accessToken =
