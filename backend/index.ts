@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import { connectDb } from "./db";
 import { loginRouter, userRouter, forgotRouter, reviewRouter } from "./router";
+import { Imagerouter } from "./router/uploadImg";
 
 // const port = process.env.PORT;
 
@@ -14,6 +15,7 @@ app.use(userRouter);
 app.use(loginRouter);
 app.use(forgotRouter);
 app.use(reviewRouter);
+app.use(Imagerouter);
 
 app.listen(8000, () => {
   console.log(`http://localhost:8000`);

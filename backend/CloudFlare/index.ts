@@ -1,5 +1,6 @@
 import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import { Request, Response } from "express";
 import { v4 } from "uuid";
 const S3 = new S3Client({
   endpoint:
@@ -12,8 +13,9 @@ const S3 = new S3Client({
   region: "auto",
 });
 
-export async function GET(request: Request) {
+export async function getPresignedUrl(request: Request, res: Response) {
   const id = v4();
+
   const url = await getSignedUrl(
     S3,
     new PutObjectCommand({
@@ -25,8 +27,8 @@ export async function GET(request: Request) {
     }
   );
 
-  return Response.json({
+  res.send({
     uploadUrl: url,
-    accessUrls: "public-URL/" + id,
+    accessUrls: "https://pub-7d235c2012ed49c3a88f3abd2211d7e6.r2.dev" + id,
   });
 }

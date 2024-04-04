@@ -12,6 +12,8 @@ import { Condition } from "./Condition";
 import { General } from "./General";
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
 import { ScheduleBaby } from "./ScheduleBaby";
+import axios from "axios";
+import { AxiosInstance } from "@/utils/axiosInstance";
 
 type stateType = {
   image: string;
@@ -33,7 +35,17 @@ type Schedule = {
   [day: string]: string[];
 };
 
+const getPresignedURL = async () => {
+  const { data } = await AxiosInstance.get("/upload-image-into-r2");
+
+  return data as { uploadUrl: string; accessUrls: string };
+};
+
 export const EditBabysitProfile = () => {
+  const [image, setImage] = useState<FileList | null>(null);
+  const [accessUrl, setAccessUrl] = useState<string>("");
+  const [loading, setLoading] = useState(false);
+
   const [userdata, setUserdata] = useState<stateType>({
     image: "",
     register: "",
@@ -110,6 +122,28 @@ export const EditBabysitProfile = () => {
       skills: [...prevUserData.skills, value],
     }));
   };
+
+  const handleChangeImg = (event: ChangeEvent<HTMLInputElement>) => {
+    setImage(event.target.files);
+  };
+
+  const uploadImage = async () => {
+    if (image) {
+      setLoading(true);
+      const img = image[0] as File;
+
+      const { uploadUrl, accessUrls } = await getPresignedURL();
+
+      await axios.put(uploadUrl, img, {
+        headers: {
+          "Content-Type": img.type,
+        },
+      });
+
+      setAccessUrl(accessUrls);
+      setLoading(false);
+    }
+  };
   return (
     <Container
       sx={{
@@ -121,7 +155,7 @@ export const EditBabysitProfile = () => {
         className="flex gap-[300px] p-[80px]
       "
       >
-        <div className="w-[180px]  object-fit flex flex-col items-center  gap-3 mb-[50px]">
+        {/* <div className="w-[180px]  object-fit flex flex-col items-center  gap-3 mb-[50px]">
           <Image
             src="/profile.png"
             alt=""
@@ -133,6 +167,19 @@ export const EditBabysitProfile = () => {
             <p className="font-normal text-base text-gray-400">Profile photo</p>
             <ModeEditOutlineOutlinedIcon className="w-[20px] h-[20px] text-[#389BA7]" />
           </div>
+        </div> */}
+        <div>
+          <div>{accessUrl}</div>
+          <Image
+            src={image ? URL.createObjectURL(image[0]) : ""}
+            alt=""
+            width={200}
+            height={200}
+          />
+          <input type="file" onChange={handleChangeImg} />
+          <button onClick={uploadImage}>
+            {loading ? "Loading" : "Submit"}{" "}
+          </button>
         </div>
         <General />
       </div>
