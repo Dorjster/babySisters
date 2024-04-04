@@ -10,17 +10,24 @@ type ProfileType = {
   image?: string;
   verification?: boolean;
   info_id: {
-    wage: number;
-    rating: number;
-    driver_license: boolean;
-    car: boolean;
-    smoker: boolean;
-    year_of_experience: number;
+    driver_license?: boolean;
+    has_children?: boolean;
+    location?: string;
+    education?: string;
+    car?: boolean;
+    smoker?: boolean;
+    language?: string[];
+    skills?: string[];
+    year_of_experience?: number;
+    character?: string[];
+    rating?: number;
+    available_time?: object[];
+    wage?: number;
   };
   passport_id?: string;
   review?: string[];
   otp?: string;
-  info_id: string;
+  role: string;
 };
 
 type ParentType = {
@@ -31,10 +38,13 @@ type ParentType = {
   password: string;
   address?: string;
   job_description?: string;
-  wage?: string;
+  wage?: number;
   available_time?: object[];
   image?: string;
+  number_of_children: string[];
+  age_of_children: string[];
   verification?: boolean;
   otp?: string;
   role: string;
-};
+
+}
