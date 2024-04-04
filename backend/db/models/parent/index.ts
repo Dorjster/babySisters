@@ -10,9 +10,9 @@ export type ParentModelType = {
   password: string;
   address?: string;
   job_description?: string;
-  wage?: number;
+  wage?: string;
   available_time?: object[];
-  image?: String;
+  image?: string;
   verification?: boolean;
   otp?: string;
   role: string;
@@ -27,7 +27,7 @@ const ParentSchema = new Schema<ParentModelType>(
     password: { type: String, required: true },
     address: { type: String, required: false },
     job_description: { type: String, required: false },
-    wage: { type: Number, required: false },
+    wage: { type: String, required: false },
     available_time: { type: [Object], required: false },
     image: { type: String, required: false },
     verification: { type: Boolean, required: false, default: false },
@@ -36,7 +36,6 @@ const ParentSchema = new Schema<ParentModelType>(
   {
     timestamps: true,
   }
-
 );
 
 ParentSchema.index({ email: 1 }, { unique: true });

@@ -1,5 +1,5 @@
 "use client";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import Image from "next/image";
 import { Container } from "@mui/system";
 import { AboutMe } from "./AboutMe";
@@ -14,6 +14,9 @@ import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutl
 import { ScheduleBaby } from "./ScheduleBaby";
 import axios from "axios";
 import { AxiosInstance } from "@/utils/axiosInstance";
+import { Button } from "../ui";
+import { StepButton } from "@mui/material";
+import { useData } from "@/context/userProvider";
 
 type stateType = {
   image: string;
@@ -42,6 +45,7 @@ const getPresignedURL = async () => {
 };
 
 export const EditBabysitProfile = () => {
+  const { loggedInUserData } = useData();
   const [image, setImage] = useState<FileList | null>(null);
   const [accessUrl, setAccessUrl] = useState<string>("");
   const [loading, setLoading] = useState(false);
@@ -63,19 +67,32 @@ export const EditBabysitProfile = () => {
   });
 
   const click = (day: string, timeValue: string) => {
-    const { schedule } = userdata;
+    setUserdata((prevUserData) => {
+      const { schedule } = prevUserData;
+      const existingTimes = schedule[day] || [];
 
-    const existingTimes = schedule[day] || [];
+      let updatedTimes;
+      if (existingTimes.includes(timeValue)) {
+        updatedTimes = existingTimes.filter((time) => time !== timeValue);
+      } else {
+        updatedTimes = [...existingTimes, timeValue];
+      }
 
-    const updatedSchedule = {
-      ...schedule,
-      [day]: [...existingTimes, timeValue],
-    };
+      const updatedSchedule = {
+        ...schedule,
+      };
 
-    setUserdata((prevUserData) => ({
-      ...prevUserData,
-      schedule: updatedSchedule,
-    }));
+      if (updatedTimes.length > 0) {
+        updatedSchedule[day] = updatedTimes;
+      } else {
+        delete updatedSchedule[day];
+      }
+
+      return {
+        ...prevUserData,
+        schedule: updatedSchedule,
+      };
+    });
   };
 
   const handleChange = (
@@ -98,34 +115,87 @@ export const EditBabysitProfile = () => {
     console.log(label);
   };
 
+  const handleSki = (value: string) => {
+    setUserdata((prevUserData) => {
+      const isSkillExist = prevUserData.skills.includes(value);
+      let updatedSkills;
+
+      if (isSkillExist) {
+        updatedSkills = prevUserData.skills.filter((skill) => skill !== value);
+      } else {
+        updatedSkills = [...prevUserData.skills, value];
+      }
+
+      return {
+        ...prevUserData,
+        skills: updatedSkills,
+      };
+    });
+  };
   const handleLan = (value: string) => {
-    setUserdata((prevUserData) => ({
-      ...prevUserData,
-      languages: [...prevUserData.languages, value],
-    }));
+    setUserdata((prevUserData) => {
+      const isLanExist = prevUserData.languages.includes(value);
+      let updatedLan;
+
+      if (isLanExist) {
+        updatedLan = prevUserData.languages.filter((lan) => lan !== value);
+      } else {
+        updatedLan = [...prevUserData.languages, value];
+      }
+
+      return {
+        ...prevUserData,
+        languages: updatedLan,
+      };
+    });
   };
   const handleChar = (value: string) => {
-    setUserdata((prevUserData) => ({
-      ...prevUserData,
-      character: [...prevUserData.character, value],
-    }));
+    setUserdata((prevUserData) => {
+      const isCharExist = prevUserData.character.includes(value);
+      let updatedChar;
+
+      if (isCharExist) {
+        updatedChar = prevUserData.character.filter((char) => char !== value);
+      } else {
+        updatedChar = [...prevUserData.character, value];
+      }
+
+      return {
+        ...prevUserData,
+        character: updatedChar,
+      };
+    });
   };
   const handleAdd = (value: string) => {
-    setUserdata((prevUserData) => ({
-      ...prevUserData,
-      additional: [...prevUserData.additional, value],
-    }));
-  };
-  const handleSki = (value: string) => {
-    setUserdata((prevUserData) => ({
-      ...prevUserData,
-      skills: [...prevUserData.skills, value],
-    }));
+    setUserdata((prevUserData) => {
+      const isAddExist = prevUserData.additional.includes(value);
+      let updatedAdd;
+
+      if (isAddExist) {
+        updatedAdd = prevUserData.additional.filter((add) => add !== value);
+      } else {
+        updatedAdd = [...prevUserData.additional, value];
+      }
+
+      return {
+        ...prevUserData,
+        additional: updatedAdd,
+      };
+    });
   };
 
   const handleChangeImg = (event: ChangeEvent<HTMLInputElement>) => {
     setImage(event.target.files);
   };
+
+  useEffect(() => {
+    if (accessUrl) {
+      setUserdata((prevUserData) => ({
+        ...prevUserData,
+        image: accessUrl,
+      }));
+    }
+  }, [accessUrl]);
 
   const uploadImage = async () => {
     if (image) {
@@ -141,7 +211,35 @@ export const EditBabysitProfile = () => {
       });
 
       setAccessUrl(accessUrls);
+
       setLoading(false);
+    }
+  };
+
+  const handleUpdate = async () => {
+    try {
+      const response = await AxiosInstance.post("/babysitter", {
+        id: loggedInUserData._id,
+        email: loggedInUserData.email,
+        address: userdata.location,
+        about: userdata.about,
+        image: userdata.image,
+        driver_licence: userdata.additional.includes("Жолооны үнэмлэх"),
+        has_children: userdata.additional.includes("Хүүхэдтэй"),
+        car: userdata.additional.includes("Mашинтай"),
+        smoker: userdata.additional.includes("Тамхи татдаг"),
+        education: userdata.education,
+        language: userdata.languages,
+        skills: userdata.skills,
+        year_of_experience: userdata.experience,
+        character: userdata.character,
+        available_time: userdata.schedule,
+        wage: userdata.wage,
+      });
+
+      console.log("User updated successfully:", response.data);
+    } catch (error) {
+      console.error("Error updating user:", error);
     }
   };
   return (
@@ -155,31 +253,38 @@ export const EditBabysitProfile = () => {
         className="flex gap-[300px] p-[80px]
       "
       >
-        {/* <div className="w-[180px]  object-fit flex flex-col items-center  gap-3 mb-[50px]">
-          <Image
-            src="/profile.png"
-            alt=""
-            className=" w-[100%] h-[180px] object-cover rounded-[15px]"
-            width={180}
-            height={180}
+        <div className="w-[300px]  object-fit flex flex-col items-center  gap-3 mb-[50px]">
+          {image && (
+            <Image
+              src={image ? URL.createObjectURL(image[0]) : ""}
+              alt=""
+              width={300}
+              height={200}
+              className="w-[300px] h-[200px] border-[2px]"
+            />
+          )}
+          {!image && (
+            <div
+              style={{
+                width: "300px",
+                height: "200px",
+                backgroundColor: "#c9e8ec",
+                border: "1px solid #389BA7",
+              }}
+            />
+          )}
+
+          <input
+            type="file"
+            onChange={handleChangeImg}
+            className="text-[#389BA7]"
           />
-          <div className="flex gap-2">
-            <p className="font-normal text-base text-gray-400">Profile photo</p>
-            <ModeEditOutlineOutlinedIcon className="w-[20px] h-[20px] text-[#389BA7]" />
-          </div>
-        </div> */}
-        <div>
-          <div>{accessUrl}</div>
-          <Image
-            src={image ? URL.createObjectURL(image[0]) : ""}
-            alt=""
-            width={200}
-            height={200}
-          />
-          <input type="file" onChange={handleChangeImg} />
-          <button onClick={uploadImage}>
+          <Button
+            onClick={uploadImage}
+            className="bg-[#389BA7] text-[#fff] w-full"
+          >
             {loading ? "Loading" : "Submit"}{" "}
-          </button>
+          </Button>
         </div>
         <General />
       </div>
@@ -204,7 +309,10 @@ export const EditBabysitProfile = () => {
         <Condition handleChange={handleChange} />
       </div>
       <ScheduleBaby handleClick={click} />
-      <button className="w-[100%] bg-[#389BA7] text-white rounded-3xl font-[400] text-[20px] mt-[65px] h-[40px]">
+      <button
+        onClick={handleUpdate}
+        className="w-[100%] bg-[#389BA7] text-white rounded-3xl font-[400] text-[20px] mt-[65px] h-[40px]"
+      >
         Хадгалах
       </button>
     </Container>

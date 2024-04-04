@@ -29,6 +29,7 @@ export async function getPresignedUrl(request: Request, res: Response) {
 
   res.send({
     uploadUrl: url,
-    accessUrls: "https://pub-7d235c2012ed49c3a88f3abd2211d7e6.r2.dev" + id,
+    accessUrls:
+      "https://pub-7d235c2012ed49c3a88f3abd2211d7e6.r2.dev/babysit%2F" + id,
   });
 }

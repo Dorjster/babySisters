@@ -30,6 +30,7 @@ export const getUserByEmail = async (email: string) => {
 
   if (!user) {
     const user1 = await BabysitterModel.findOne({ email: email });
+
     return user1;
   } else {
     return user;

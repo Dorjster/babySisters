@@ -24,8 +24,8 @@ userRouter.get("/babysitter", getBabysitterController);
 userRouter.get("/allParents", getAllParentsController);
 userRouter.get("/allBabysitters", getAllBabySittersController);
 
-userRouter.put("/parent", updateParentController);
-userRouter.put("/babysitter", updateBabysitterController);
+userRouter.post("/parentUpdate", updateParentController);
+userRouter.post("/babysitter", updateBabysitterController);
 
 userRouter.delete("/parent", deleteParentController);
 userRouter.delete("/babysitter", deleteBabysitterController);

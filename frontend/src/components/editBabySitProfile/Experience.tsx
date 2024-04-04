@@ -27,17 +27,17 @@ export const Experience = (props: All) => {
         </SelectTrigger>
         <SelectContent>
           <SelectGroup className="">
-            <SelectItem value="1-ээс доош жил">1-ээс доош жил</SelectItem>
-            <SelectItem value="1-ээс дээш жил">1-ээс дээш жил</SelectItem>
-            <SelectItem value="2-ээс дээш жил">2-ээс дээш жил</SelectItem>
-            <SelectItem value="3-ээс дээш жил">3-ээс дээш жил</SelectItem>
-            <SelectItem value="4-ээс дээш жил">4-ээс дээш жил</SelectItem>
-            <SelectItem value="5-ээс дээш жил">5-ээс дээш жил</SelectItem>
-            <SelectItem value="6-ээс дээш жил">6-ээс дээш жил</SelectItem>
-            <SelectItem value="7-ээс дээш жил">7-ээс дээш жил</SelectItem>
-            <SelectItem value="8-ээс дээш жил">8-ээс дээш жил</SelectItem>
-            <SelectItem value="9-ээс дээш жил">9-ээс дээш жил</SelectItem>
-            <SelectItem value="10-ээс дээш жил">10-ээс дээш жил</SelectItem>
+            <SelectItem value="<-1">1-ээс доош жил</SelectItem>
+            <SelectItem value="1">1-ээс дээш жил</SelectItem>
+            <SelectItem value="2">2-ээс дээш жил</SelectItem>
+            <SelectItem value="3">3-ээс дээш жил</SelectItem>
+            <SelectItem value="4">4-ээс дээш жил</SelectItem>
+            <SelectItem value="5">5-ээс дээш жил</SelectItem>
+            <SelectItem value="6">6-ээс дээш жил</SelectItem>
+            <SelectItem value="7">7-ээс дээш жил</SelectItem>
+            <SelectItem value="8">8-ээс дээш жил</SelectItem>
+            <SelectItem value="9">9-ээс дээш жил</SelectItem>
+            <SelectItem value="10">10-ээс дээш жил</SelectItem>
           </SelectGroup>
         </SelectContent>
       </Select>

@@ -46,7 +46,9 @@ export const Skill = (props: All) => {
               {buttonStates[index] ? (
                 <CloseIcon
                   className="w-[14px] h-[14px] cursor-pointer"
-                  onClick={() => handleClickButton(index)}
+                  onClick={() => {
+                    handleClickButton(index);
+                  }}
                 />
               ) : (
                 ""
