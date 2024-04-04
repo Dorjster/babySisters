@@ -49,7 +49,7 @@ export const DataProvider = ({ children }: any) => {
             },
           });
 
-          console.log("logged user", data);
+          // console.log("logged user", data);
 
           setIsLoggedIn(true);
           setLoggedInUserData(data);

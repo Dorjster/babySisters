@@ -10,6 +10,7 @@ import {
   updateBabysitterController,
   deleteBabysitterController,
   deleteParentController,
+  getUserIdFromTokenController,
 } from "../../controllers";
 import { getRefreshTokenService } from "../../controllers/user/refresh";
 
@@ -19,7 +20,7 @@ userRouter.post("/signup", createBabyController);
 userRouter.post("/parent/signup", createParentController);
 
 userRouter.get("/parent", getParentController);
-userRouter.get("/babysitter", getBabysitterController);
+userRouter.post("/get/babysitter", getBabysitterController);
 
 userRouter.get("/allParents", getAllParentsController);
 userRouter.get("/allBabysitters", getAllBabySittersController);
@@ -31,3 +32,5 @@ userRouter.delete("/parent", deleteParentController);
 userRouter.delete("/babysitter", deleteBabysitterController);
 
 userRouter.get("/refresh", getRefreshTokenService);
+
+userRouter.post("/getUserId", getUserIdFromTokenController);

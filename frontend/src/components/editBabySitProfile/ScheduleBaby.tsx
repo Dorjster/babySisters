@@ -12,21 +12,6 @@ import { Button } from "@mui/base";
 import { ChangeEvent, MouseEvent, useState } from "react";
 
 export const ScheduleBaby = () => {
-  //  const [time,setTime]=useState([])
-
-  //   let available_time :any= [];
-
-  //   const click = ( day: string, time: string) => {
-
-  //     const object = {
-  //       day: day,
-  //       time: time
-  //     };
-  //     available_time.push(object)
-  //     setTime(available_time)
-  //   }
-
-  // console.log(time);
 
   const [time, setTime] = useState<any[]>([]);
 
@@ -36,11 +21,10 @@ export const ScheduleBaby = () => {
     setTime(updatedTime);
   };
 
-  console.log(time);
 
   return (
     <div>
-      {" "}
+
       <p className="text-gray-600 text-base font-[500] mb-[15px]">
         Ажиллах боломжтой цаг
       </p>

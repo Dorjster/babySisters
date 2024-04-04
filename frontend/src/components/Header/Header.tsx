@@ -53,7 +53,7 @@ export const Header = () => {
 
   // -----
   return (
-    <div className="flex justify-between items-center    py-6 bg-[#c9e8ec] sticky top-0 z-30">
+    <div className="flex justify-between items-center py-6 bg-[#c9e8ec] sticky top-0 z-30">
       <div className="flex  ml-[30px] ">
         <Image
           src="/babysits.logo.png"

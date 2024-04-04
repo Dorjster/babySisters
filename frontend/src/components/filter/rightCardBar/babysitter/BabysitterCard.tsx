@@ -4,16 +4,17 @@ import React, { useState, useEffect } from "react";
 import { Card } from "./Card";
 import { AxiosInstance } from "@/utils/axiosInstance";
 import babysitter from "@/app/babysitter/page";
+import { decodeToken } from "@/utils/decodeToken";
 
-const HomeProfile = () => {
+const HomeProfile: React.FC = () => {
   const [babysitterData, setBabysitterData] = useState<ProfileType[]>([]);
-  const [infoData, setInfoData] = useState<ProfileType[]>([]);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const { data } = await AxiosInstance.get<ProfileType[]>(
-          "/allBabysitters"
+          "/allBabysitters" 
         );
         console.log(data);
 
@@ -26,6 +27,38 @@ const HomeProfile = () => {
     fetchData();
     console.log(babysitterData);
   }, []);
+
+  const getToken = () => {
+    const token = localStorage.getItem("token");
+    
+    if(token === null || token === undefined || token === "") {
+      setError("login")
+    } else {
+      const userId = decodeToken(token);
+      return userId;
+    }
+  }
+
+
+  const showProfile = () => {
+    const [role, setRole] = useState("");
+
+    const userId = getToken();
+
+    const fetchData = async () => {
+      try {
+        const { data } = await AxiosInstance.get<ProfileType[]>(
+          "/babysitter", {
+          }
+        )
+        console.log(data);
+
+      } catch (error: any) {
+        console.log(error);
+      }
+    };
+ 
+  }
 
   return (
     <div className=" h-fit w-full mt-1 flex  flex-wrap">
