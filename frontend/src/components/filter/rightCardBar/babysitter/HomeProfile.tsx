@@ -28,7 +28,7 @@ const HomeProfile = () => {
   }, []);
 
   return (
-    <div className=" h-fit w-full mt-1 flex  flex-wrap">
+    <div className=" h-fit w-screen  flex  flex-wrap">
       {babysitterData.map((babysitter) => (
         <Card
           key={babysitter._id}

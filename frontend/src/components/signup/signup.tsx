@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import axios from "axios";
 import { AxiosInstance } from "@/utils/axiosInstance";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 interface UserData {
   email: string;
   name: string;
@@ -77,23 +78,32 @@ export const Signup = () => {
   return (
     <div>
       {page === 1 && (
-        <div className="flex p-20 items-center justify-center h-[550px] gap-8">
-          <Button
-            className="border-[1px] border-[#c9e8ec] rounded-[20px] px-6 py-6 hover:bg-[#c9e8ec]"
-            onClick={() => {
-              setPage(2);
-            }}
-          >
-            Эцэг эхээр бүртгүүлэх
-          </Button>
-          <Button
-            className="  rounded-[20px] px-6 py-6 border-[1px] border-[#c9e8ec] hover:bg-[#c9e8ec]"
-            onClick={() => {
-              setPage(3);
-            }}
-          >
-            Хүүхэд асрагчаар бүртгүүлэх
-          </Button>
+        <div className="relative">
+          <div className="absolute md:left-[20%] left-0 top-14">
+            <Image src="/fmly.png" height={100} width={200} alt="zurag" />
+          </div>
+
+          <div className="flex p-20 items-center justify-center h-[550px] gap-1 md:gap-8">
+            <Button
+              className="border-[1px] border-[#c9e8ec] rounded-[20px] md:px-6 py-6 hover:bg-[#c9e8ec]"
+              onClick={() => {
+                setPage(2);
+              }}
+            >
+              Эцэг эхээр бүртгүүлэх
+            </Button>
+            <Button
+              className="  rounded-[20px] md:px-6 py-6 border-[1px] border-[#c9e8ec] hover:bg-[#c9e8ec]"
+              onClick={() => {
+                setPage(3);
+              }}
+            >
+              Хүүхэд асрагчаар бүртгүүлэх
+            </Button>
+          </div>
+          <div className="absolute md:right-[15%] right-[0%] top-7">
+            <Image src="/signImage3.png" height={100} width={220} alt="zurag" />
+          </div>
         </div>
       )}
       {page === 2 && (

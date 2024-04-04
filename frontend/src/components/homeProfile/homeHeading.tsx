@@ -2,14 +2,24 @@ import Image from "next/image";
 const HomeHeading = () => {
   return (
     <div className="">
-      <div className="w-screen flex justify-end items-start h-[200px] bg-[#c9e8ec]">
+      <div className="w-screen flex justify-end items-start h-[200px] bg-[#c9e8ec] ">
+        
         <Image
-          className="z-40 hidden md:flex"
+          className="z-30 hidden md:flex"
           src="/WOMANN.png"
           width={250}
           height={200}
           alt="Woman"
         />
+        <div className="rounded-full w-[300px] ml-[200px] mt-4 md:hidden flex">
+          <Image
+            className="z-30 "
+            src="/Market.png"
+            width={200}
+            height={200}
+            alt="Woman"
+          />
+        </div>
       </div>
 
       <div className="bg-[#c9e8ec] w-screen  relative  z-4   overflow-hidden bg-red">
@@ -30,11 +40,13 @@ const HomeHeading = () => {
             fill="#FCCFDD"
           ></path>
         </svg>
-        <div className="bg-[#EDF7F8]  w-[400px] h-[400px]  rounded-full absolute  right-[400px] top-[100px] "></div>
+
+        <div className="bg-[#EDF7F8]  w-[400px] h-[400px]  rounded-full absolute  right-[400px] top-4 "></div>
         <div className="bg-[#EDF7F8] w-[700px] h-[700px]  rounded-full absolute -right-[260px] top-0 "></div>
-        <div className="w-[400px] h-[600px]  rounded-full absolute right-[310px] top-24 ">
+        <div className="w-[400px] h-[600px]  rounded-full absolute right-[310px] top-10 ">
           <Image src="/Readingpp.png" width={250} height={250} alt="reading" />
         </div>
+
         <div className="w-[700px] h-[700px]  rounded-full absolute -right-[430px] -top-[100px] z-6"></div>
       </div>
     </div>
@@ -42,4 +54,3 @@ const HomeHeading = () => {
 };
 
 export default HomeHeading;
-
