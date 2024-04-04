@@ -1,6 +1,6 @@
 "use client";
 
-import React, { MouseEvent, useState } from "react";
+import React, { ChangeEvent, MouseEvent, useState } from "react";
 
 import {
   Select,
@@ -12,6 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { MenuItem } from "@mui/base";
+import { Button } from "../ui";
 
 const locations = [
   { label: "Улаанбаатар" },
@@ -36,28 +37,16 @@ const locations = [
   { label: "Ховд" },
   { label: "Хөвсгөл" },
 ];
-export const AboutParent = () => {
-  const [about, setAbout] = useState([]);
 
-  const [address, setAddress] = useState<string>(" ");
-  const [child, setChild] = useState<string>("1");
-
-  // const handleSelectItem = (event: MouseEvent<HTMLButtonElement>) => {
-  //   const label = event.currentTarget.value;
-  //   if (label) {
-  //     setAddress(label);
-  //   }
-  //   console.log(address);
-  // };
-  const handleSelectItem = (label: any) => {
-    setAddress(label);
-    console.log(address);
-  };
-  const handleSelect = (value: string) => {
-    setChild(value);
-    console.log(child);
-  };
-
+type About = {
+  hamndleLoc: (label: string) => void;
+  handlechild: (value: string) => void;
+  handleChange: (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+};
+export const AboutParent = (props: About) => {
+  const { hamndleLoc, handlechild, handleChange } = props;
   return (
     <div className="flex flex-col gap-4 mt-[45px]">
       <h3 className="text-2xl font-medium text-gray-700">Миний тухай</h3>
@@ -67,9 +56,11 @@ export const AboutParent = () => {
             Регистрийн дугаар
           </p>
           <input
+            name="register"
             className="w-[100%] border-[1px] h-[40px] p-2  rounded-2xl text-gray-800 border-zinc-200"
             type="text"
             placeholder="УУ:12345678"
+            onChange={handleChange}
           />
           <p className="text-gray-300">
             Регистрийн дугаарыг хийснээр таны хаяг баталгаажих болно
@@ -79,11 +70,15 @@ export const AboutParent = () => {
           <p className="text-gray-600 text-base font-[500] mb-[15px]">
             Гэр бүлийнхээ талаар товч мэдээллийг бичнэ үү
           </p>
-          <textarea className="w-[100%] h-[130px] rounded-2xl border-zinc-200 border-[1px] p-3 " />
+          <textarea
+            name="about"
+            onChange={handleChange}
+            className="w-[100%] h-[130px] rounded-2xl border-zinc-200 border-[1px] p-3 "
+          />
         </div>
         <div>
           <p className="text-gray-600 text-base font-[500] mb-[15px]">Хаяг</p>
-          <Select>
+          <Select onValueChange={hamndleLoc}>
             <SelectTrigger className="w-[100%] border-zinc-200 rounded-2xl text-gray-500 ">
               <SelectValue
                 placeholder="Улаанбаатар"
@@ -93,11 +88,7 @@ export const AboutParent = () => {
             <SelectContent>
               <SelectGroup>
                 {locations.map((el, index) => (
-                  <SelectItem
-                    key={index}
-                    value={el.label}
-                    onClick={() => handleSelectItem(el.label)}
-                  >
+                  <SelectItem key={index} value={el.label}>
                     {el.label}
                   </SelectItem>
                 ))}
@@ -109,24 +100,16 @@ export const AboutParent = () => {
           <p className="text-gray-600 text-base font-[500] mb-[15px]">
             Хүүхдийн тоо
           </p>
-          <Select>
+          <Select onValueChange={handlechild}>
             <SelectTrigger className="w-[100%] border-zinc-200 rounded-2xl text-gray-500 ">
-              <SelectValue placeholder="Хүүхдийн тоо" defaultValue="1" />
+              <SelectValue placeholder="1" defaultValue="1" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="1">1</SelectItem>
-              <SelectItem onClick={() => handleSelect("2")} value="2">
-                2
-              </SelectItem>
-              <SelectItem onClick={() => handleSelect("3")} value="3">
-                3
-              </SelectItem>
-              <SelectItem onClick={() => handleSelect("4")} value="4">
-                4
-              </SelectItem>
-              <SelectItem onClick={() => handleSelect("+4")} value="4-ээс олон">
-                4-ээс олон
-              </SelectItem>
+              <SelectItem value="2">2</SelectItem>
+              <SelectItem value="3">3</SelectItem>
+              <SelectItem value="4">4</SelectItem>
+              <SelectItem value="4-ээс олон">4-ээс олон</SelectItem>
             </SelectContent>
           </Select>
         </div>

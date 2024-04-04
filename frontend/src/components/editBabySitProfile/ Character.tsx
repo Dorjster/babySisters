@@ -14,7 +14,12 @@ const behaviors = [
   "Өрөвч",
   "Тэвчээртэй",
 ];
-export const Character = () => {
+
+type All = {
+  handleChar: (value: string) => void;
+};
+export const Character = (props: All) => {
+  const { handleChar } = props;
   const [buttonStates, setButtonStates] = useState(behaviors.map(() => false));
   const [charac, setCharac] = useState([]);
   const handleClickButton = (index: number) => {
@@ -36,7 +41,10 @@ export const Character = () => {
           {behaviors.map((el, index) => (
             <div
               key={index}
-              onClick={() => handleClickButton(index)}
+              onClick={() => {
+                handleChar(el);
+                handleClickButton(index);
+              }}
               className={`py-1 px-3  text-sm rounded-xl flex gap-2 bg-[#F6F9FA] items-center  ${
                 buttonStates[index] ? "bg-[#c9e8ec]  " : ""
               }`}

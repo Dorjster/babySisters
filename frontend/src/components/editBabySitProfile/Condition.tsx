@@ -1,7 +1,13 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import { Input } from "@mui/base";
 
-export const Condition = () => {
+type All = {
+  handleChange: (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+};
+export const Condition = (props: All) => {
+  const { handleChange } = props;
   return (
     <div>
       <h3 className="text-2xl font-medium text-gray-700 mb-[45px]">
@@ -15,7 +21,12 @@ export const Condition = () => {
           <div className="w-[3%] bg-gray-100 rounded-tl-2xl flex items-center justify-center rounded-bl-2xl text-gray-600">
             ₮
           </div>
-          <input className="w-[94%] h-[100%] p-2 " />
+          <input
+            name="wage"
+            type="number"
+            onChange={handleChange}
+            className="w-[94%] h-[100%] p-2 "
+          />
           <div className="w-[3%] text-gray-600 bg-gray-100 rounded-tr-2xl rounded-br-2xl flex items-center justify-center">
             /цаг
           </div>

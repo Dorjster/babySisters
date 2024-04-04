@@ -10,17 +10,21 @@ const ages = [
   "11 - 15 нас",
   "15 - 17 нас",
 ];
+type All = {
+  handleCount: (value: string) => void;
+};
 
-export const AgeChildren = () => {
+export const AgeChildren = (props: All) => {
+  const { handleCount } = props;
   const [buttonStates, setButtonStates] = useState(ages.map(() => false));
   const handleClickButton = (index: number) => {
     const updatedButtonStates = [...buttonStates];
     updatedButtonStates[index] = !updatedButtonStates[index];
     setButtonStates(updatedButtonStates);
   };
+
   return (
     <div>
-      {" "}
       <div className="">
         <p className="text-gray-600 text-base font-[500] mb-[15px]">
           Хүүхдүүдийн нас
@@ -29,7 +33,10 @@ export const AgeChildren = () => {
           {ages.map((el, index) => (
             <div
               key={index}
-              onClick={() => handleClickButton(index)}
+              onClick={() => {
+                handleCount(el);
+                handleClickButton(index);
+              }}
               className={`py-1 px-2 text-sm rounded-xl flex gap-2 bg-[#F6F9FA] items-center  ${
                 buttonStates[index] ? "bg-[#c9e8ec]  " : ""
               }`}

@@ -16,10 +16,25 @@ type ProfileType = {
     car: boolean;
     smoker: boolean;
     year_of_experience: number;
-        // Other properties...
   };
   passport_id?: string;
   review?: string[];
   otp?: string;
   info_id: string;
+};
+
+type ParentType = {
+  _id: string;
+  name: string;
+  email: string;
+  phone: string;
+  password: string;
+  address?: string;
+  job_description?: string;
+  wage?: string;
+  available_time?: object[];
+  image?: string;
+  verification?: boolean;
+  otp?: string;
+  role: string;
 };

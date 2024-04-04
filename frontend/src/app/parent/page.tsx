@@ -1,12 +1,11 @@
 import { FilterParent } from "@/components/filter/FilterParent";
+import HomeProfile from "@/components/filter/rightCardBar/parent/HomeProfile";
 
 export default function parent() {
   return (
-    <div className="px-[100px] py-10 flex gap-10">
-      <FilterParent/>
-      <div className="h-fit bg-red-600">
-
-      </div>
+    <div className="px-[120px] py-10 md:flex gap-10 h-screen">
+      <FilterParent />
+      <HomeProfile />
     </div>
   );
 }
