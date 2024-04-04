@@ -19,7 +19,7 @@ export const Gender = () => {
     <>
       {genders.map((el, index) => (
         <div key={index} className="flex items-center space-x-2">
-          <Checkbox id={el.id} />
+          <Checkbox className="rounded-[4px]" id={el.id} />
           <label
             htmlFor="terms"
             className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
