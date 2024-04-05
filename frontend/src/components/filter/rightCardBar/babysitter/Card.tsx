@@ -11,13 +11,13 @@ import { FaCar, FaAddressCard, } from "react-icons/fa";
 
 type CardProps = {
   data: ProfileType;
-  rating: number;
+  rating: number |undefined;
   about: string;
-  wage: number;
-  driver: boolean;
-  car: boolean;
-  smoker: boolean;
-  exp: number;
+  wage: number | undefined;
+  driver: boolean | undefined;
+  car: boolean |undefined;
+  smoker: boolean |undefined;
+  exp: number |undefined;
 };
 
 export const Card: React.FC<CardProps> = ({ data, rating, about, wage, driver, car, smoker, exp }) => {
@@ -72,77 +72,77 @@ export const Card: React.FC<CardProps> = ({ data, rating, about, wage, driver, c
   );
 
   return (
-    <div className="">
-      {showSkeleton ? (
-        <SkeletonLoader />
-      ) : (
-        <div className="w-[450px] h-[220px] flex rounded-2xl overflow-hidden shadow-xl bg-[#F6F9FA] mb-[40px] mx-[50px]">
-          <div className="w-[200px] h-[220px] flex flex-col justify-between items-center">
-            {data?.image ? (
-              <Image
-                src={data.image}
-                className="w-[170px] h-[170px] mt-[25px] rounded-e-xl self-center justify-center items-center"
-                alt=""
-                width={230}
-                height={220}
-              />
-            ) : (
-              <div className="w-[170px] h-[170px] mt-[25px] rounded-xl bg-gray-300 text-white text-[60px] flex self-center justify-center items-center">
-                {letter}
-              </div>
-            )}
+      <div className="">
+        {showSkeleton ? (
+          <SkeletonLoader />
+        ) : (
+          <div className="w-[450px] h-[220px] flex rounded-2xl overflow-hidden shadow-xl bg-[#F6F9FA] mb-[40px] mx-[50px]">
+            <div className="w-[200px] h-[220px] flex flex-col justify-between items-center">
+              {data?.image ? (
+                <Image
+                  src={data.image}
+                  className="w-[170px] h-[170px] mt-[25px] rounded-xl self-center justify-center items-center"
+                  alt=""
+                  width={230}
+                  height={220}
+                />
+              ) : (
+                <div className="w-[170px] h-[170px] mt-[25px] rounded-xl bg-gray-300 text-white text-[60px] flex self-center justify-center items-center">
+                  {letter}
+                </div>
+              )}
 
 
-          </div>
-
-          <div className="w-[150px] h-[150px] ml-[5px] mt-[30px]">
-
-            <div className="flex gap-5">
-              <div className="text-lg font-semibold text-[#31393F] w-[150px] flex flex-wrap">
-                {data.name}
-              </div>
-              <Rating
-                // sx={{ color: "#59BEC9" }}
-                name="read-only"
-                value={rating}
-                readOnly
-              />
             </div>
 
+            <div className="w-[150px] h-[150px] ml-[5px] mt-[30px]">
 
-            <Box
-              sx={{
-                alignItems: "center",
-                paddingBottom: "10px"
-              }}
-            >
-              <div className="flex gap-2">
-                <MdLocationOn className="self-center " />
-                <p className="">{data.address}</p>
+              <div className="flex gap-5">
+                <div className="text-lg font-semibold text-[#31393F] w-[150px] flex flex-wrap">
+                  {data.name}
+                </div>
+                <Rating
+                  // sx={{ color: "#59BEC9" }}
+                  name="read-only"
+                  value={rating}
+                  readOnly
+                />
               </div>
-              <div className="flex gap-2">
-                <TbCurrencyTugrik className="self-center " />
-                <p className="">{wage}/цагт</p>
-              </div>
-              <div className="flex gap-2">
-                <MdBabyChangingStation className="self-center " />
-                <p className="">{exp} жил</p>
-              </div>
-            </Box>
 
-            <div className="flex gap-4">
-              {car && <FaCar className="h-6 w-6 text-[#008291]" />}
-              {driver && <FaAddressCard className="h-6 w-6 text-[#008291]" />}
-              {data.verification && <MdVerified className="h-6 w-6 text-[#008291]" />}
-              {!smoker && <MdOutlineSmokeFree className="h-6 w-6 text-[#008291]" />}
+
+              <Box
+                sx={{
+                  alignItems: "center",
+                  paddingBottom: "10px"
+                }}
+              >
+                <div className="flex gap-2">
+                  <MdLocationOn className="self-center " />
+                  <p className="">{data.address}</p>
+                </div>
+                <div className="flex gap-2">
+                  <TbCurrencyTugrik className="self-center " />
+                  <p className="">{wage}/цагт</p>
+                </div>
+                <div className="flex gap-2">
+                  <MdBabyChangingStation className="self-center " />
+                  <p className="">{exp} жил</p>
+                </div>
+              </Box>
+
+              <div className="flex gap-4">
+                {car && <FaCar className="h-6 w-6 text-[#008291]" />}
+                {driver && <FaAddressCard className="h-6 w-6 text-[#008291]" />}
+                {data.verification && <MdVerified className="h-6 w-6 text-[#008291]" />}
+                {!smoker && <MdOutlineSmokeFree className="h-6 w-6 text-[#008291]" />}
+              </div>
+
+              <p style={{ width: '200px', paddingTop: "8px", textWrap: "wrap", overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis', }}>
+                {about}
+              </p>
             </div>
-
-            <p style={{ width: '200px', paddingTop: "8px", textWrap: "wrap", overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis', }}>
-              {about}
-            </p>
           </div>
+        )}
         </div>
-      )}
-    </div>
   );
 };

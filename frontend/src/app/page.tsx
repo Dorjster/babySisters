@@ -1,4 +1,4 @@
-import RealHome from "@/components/homeProfile/realHome";
+import RealHome from "@/components/home/realHome";
 export default function Home() {
   return (
     <div className="flex gap-10">
