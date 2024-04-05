@@ -71,6 +71,7 @@ export const Header = () => {
           <Link
             href={href}
             key={index}
+            style={{ cursor: "pointer" }}
             className={`cursor-default ${
               pathname === href
                 ? "text-[#389BA7] hover:text-[#008291]"
@@ -109,7 +110,7 @@ export const Header = () => {
         <div className="flex justify-end items-center gap-4 md:">
           <button
             onClick={() => router.push("./login")}
-            className="text-[16px] font-[400] cursor-default text-[#4d565e] md:flex hidden hover:text-black"
+            className="text-[16px] font-[400] cursor-pointer text-[#4d565e] md:flex hidden hover:text-black"
           >
             Нэвтрэх
             <hr
@@ -122,7 +123,7 @@ export const Header = () => {
           </button>
           <button
             onClick={() => router.push("/signup")}
-            className="text-[16px] cursor-default font-[400] p-2 text-white  rounded-[15px] bg-[#389BA7] md:flex hidden hover:bg-[#008291]"
+            className="text-[16px] cursor-pointer font-[400] p-2 text-white  rounded-[15px] bg-[#389BA7] md:flex hidden hover:bg-[#008291]"
           >
             Бүртгүүлэх
           </button>

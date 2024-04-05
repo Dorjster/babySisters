@@ -1,7 +1,7 @@
 import { BabysitterProfile } from "@/components/profile/BabysitterProfile";
 
 const page = () => {
-    return <BabysitterProfile/>
-}
+  return <BabysitterProfile />;
+};
 
 export default page;
