@@ -81,7 +81,7 @@ export const Card: React.FC<CardProps> = ({ data, rating, about, wage, driver, c
               {data?.image ? (
                 <Image
                   src={data.image}
-                  className="w-[170px] h-[170px] mt-[25px] rounded-e-xl self-center justify-center items-center"
+                  className="w-[170px] h-[170px] mt-[25px] rounded-xl self-center justify-center items-center"
                   alt=""
                   width={230}
                   height={220}

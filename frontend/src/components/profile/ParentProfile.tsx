@@ -25,7 +25,7 @@ import babysitter from "@/app/babysitter/page";
 import { CheckedSchedule } from "./CheckedSchedule";
 
 
-export const BabysitterProfile = () => {
+export const ParentProfile = () => {
     const [token, setToken] = useState("");
     const [userId, setUserId] = useState("");
     const [userData, setUserData] = useState<ProfileType | undefined>(undefined);
@@ -49,19 +49,19 @@ export const BabysitterProfile = () => {
 
         getUserId();
 
-        const getData = async () => {
-            try {
-                const { data } = await AxiosInstance.post("/get/babysitter", {
-                    id: userId,
-                });
+        // const getData = async () => {
+        //     try {
+        //         const { data } = await AxiosInstance.post("/get/babysitter", {
+        //             id: userId,
+        //         });
 
-                setUserData(data);
-            } catch (error: any) {
-                console.log(error);
-            }
-        };
+        //         setUserData(data);
+        //     } catch (error: any) {
+        //         console.log(error);
+        //     }
+        // };
 
-        getData();
+        // getData();
 
         // const userId = getUserData();
         // console.log("11", userId);
