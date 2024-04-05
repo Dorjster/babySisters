@@ -63,20 +63,20 @@ const HomeProfile: React.FC = () => {
     return (
         <div className=" h-fit w-screen  flex  flex-wrap">
             {babysitterData.map((babysitter) => (
-              <Link href="/profile">
-                <Card
-                    key={babysitter._id}
-                    data={babysitter}
-                    wage={babysitter.info_id.wage}
-                    rating={babysitter.info_id.rating}
-                    about={babysitter.about || ""}
-                    driver={babysitter.info_id.driver_license}
-                    car={babysitter.info_id.car}
-                    smoker={babysitter.info_id.smoker}
-                    exp={babysitter.info_id.year_of_experience}
-                   
-                    />
-              </Link>
+
+              <Card
+                  key={babysitter._id}
+                  data={babysitter}
+                  wage={babysitter.info_id.wage}
+                  rating={babysitter.info_id.rating}
+                  about={babysitter.about || ""}
+                  driver={babysitter.info_id.driver_license}
+                  car={babysitter.info_id.car}
+                  smoker={babysitter.info_id.smoker}
+                  exp={babysitter.info_id.year_of_experience}
+                  
+                  />
+
             ))}
         </div>
     );
