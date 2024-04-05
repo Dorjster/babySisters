@@ -29,7 +29,7 @@ const page = async ({ params }: { params: { id: string } }) => {
 
   return (
     <div>
-      <BabysitterProfile result={result as ProfileType} />
+      <BabysitterProfile result={result} />
     </div>
   );
 };

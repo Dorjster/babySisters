@@ -30,9 +30,9 @@ type All = {
 
 export const BabysitterProfile = (props: All) => {
   const { result } = props;
-  const [token, setToken] = useState("");
-  const [userId, setUserId] = useState("");
-  const [userData, setUserData] = useState<ProfileType | undefined>(undefined);
+  // const [token, setToken] = useState("");
+  // const [userId, setUserId] = useState("");
+  // const [userData, setUserData] = useState<ProfileType | undefined>(undefined);
   console.log(result, "result");
 
   useEffect(() => {
