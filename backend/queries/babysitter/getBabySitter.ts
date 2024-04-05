@@ -5,22 +5,20 @@ export const getBabysitterQuery = async (req: Request) => {
   try {
     const { id } = req.body;
 
-    const babysitter_info = await BabysitterModel.findById({ _id: id })
-      .populate("info_id");
-      
-    
+    const babysitter_info = await BabysitterModel.findById(id).populate(
+      "info_id"
+    );
+
     if (!babysitter_info) {
       throw new Error("Хэрэглэгч олдсонгүй");
     }
-    
+
     // const populatedBabysitterInfo = {
     //     babysitter: babysitter_info,
-    //     info: babysitter_info.info_id, 
+    //     info: babysitter_info.info_id,
     // };
 
     return babysitter_info;
-    
-
   } catch (error: any) {
     throw new Error(error.message);
   }
