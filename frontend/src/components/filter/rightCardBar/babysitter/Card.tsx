@@ -11,13 +11,13 @@ import { FaCar, FaAddressCard, } from "react-icons/fa";
 
 type CardProps = {
   data: ProfileType;
-  rating: number;
+  rating: number |undefined;
   about: string;
-  wage: number;
-  driver: boolean;
-  car: boolean;
-  smoker: boolean;
-  exp: number;
+  wage: number | undefined;
+  driver: boolean | undefined;
+  car: boolean |undefined;
+  smoker: boolean |undefined;
+  exp: number |undefined;
 };
 
 export const Card: React.FC<CardProps> = ({ data, rating, about, wage, driver, car, smoker, exp }) => {
