@@ -107,22 +107,22 @@ export const Signup = () => {
         </div>
       )}
       {page === 2 && (
-        <div className="flex items-center justify-center py-10">
-          <Card className="w-[550px] h-fit divide-y-2  ">
+        <div className="flex items-center justify-center py-10 mb-[200px] mt-[80px]">
+          <Card className="w-[450px] h-fit divide-y-2  ">
             <CardHeader className="">
-              <CardTitle className="text-center text-[30px] font-[500]">
+              <CardTitle className="text-center text-[26px] font-[500]">
                 Babysits-д тавтай морил
               </CardTitle>
             </CardHeader>
-            <CardContent className="p-[30px] flex flex-col gap-[50px] ">
-              <Label htmlFor="email" className="text-[22px] self-center">
+            <CardContent className="p-[30px] flex flex-col gap-[30px] ">
+              <Label htmlFor="email" className="text-[20px] self-center">
                 Эцэг эхээр бүртгүүлэх
               </Label>
               <Input
                 name="name"
                 type="name"
                 placeholder="Нэр"
-                className="h-[60px] rounded-[25px] border-1px"
+                className="h-[50px] rounded-[20px] border-1px"
                 onChange={handleChange}
               />
               <Input
@@ -130,7 +130,7 @@ export const Signup = () => {
                 name="email"
                 type="email"
                 placeholder="И-мэйл"
-                className="h-[60px] rounded-[25px] border-1px"
+                className="h-[50px] rounded-[20px] border-1px"
                 onChange={handleChange}
               />
               <Input
@@ -138,7 +138,7 @@ export const Signup = () => {
                 name="phone"
                 type="phone"
                 placeholder="Утас"
-                className="h-[60px] rounded-[25px] border-1px"
+                className="h-[50px] rounded-[20px] border-1px"
                 onChange={handleChange}
               />
               <Input
@@ -146,7 +146,7 @@ export const Signup = () => {
                 name="password"
                 type="password"
                 placeholder="Нууц үг"
-                className="h-[60px] rounded-[25px] border-1px"
+                className="h-[50px] rounded-[20px] border-1px"
                 onChange={handleChange}
               />
               <Input
@@ -154,13 +154,13 @@ export const Signup = () => {
                 name="rePassword"
                 type="password"
                 placeholder="Нууц үг давтах"
-                className="h-[60px] rounded-[25px] border-1px"
+                className="h-[50px] rounded-[20px] border-1px"
                 onChange={handleChange}
               />{" "}
               <Button
                 onClick={handleCreateParent}
                 variant="outline"
-                className="bg-[#389BA7] w-full text-white text-[20px] font-[300] h-[60px] rounded-[25px] hover:border-[#389BA7] "
+                className="bg-[#389BA7] w-full text-white text-[18px] font-[500] h-[50px] rounded-[25px] hover:border-[#389BA7] "
               >
                 Үргэлжлүүлэх
               </Button>
@@ -174,22 +174,22 @@ export const Signup = () => {
         </div>
       )}
       {page === 3 && (
-        <div className="flex items-center justify-center py-10">
-          <Card className="w-[550px] h-fit divide-y-2">
+        <div className="flex items-center justify-center py-10 mb-[200px] mt-[80px]">
+          <Card className="w-[450px] h-fit divide-y-2">
             <CardHeader className="">
-              <CardTitle className="text-center text-[30px] font-[500]">
+              <CardTitle className="text-center text-[26px] font-[500]">
                 Babysits-д тавтай морил
               </CardTitle>
             </CardHeader>
-            <CardContent className="p-[30px] flex flex-col gap-[30px] ">
-              <Label htmlFor="email" className="text-[25px]">
+            <CardContent className="p-[30px] flex flex-col gap-[30px] items-center ">
+              <Label htmlFor="email" className="text-[20px]">
                 Хүүхэд асрагчаар бүртгүүлэх
               </Label>
               <Input
                 name="name"
                 type="name"
                 placeholder="Нэр"
-                className="h-[60px] rounded-[25px] border-1px"
+                className="h-[50px] rounded-[20px] border-1px"
                 onChange={handleChange}
               />
               <Input
@@ -197,7 +197,7 @@ export const Signup = () => {
                 name="email"
                 type="email"
                 placeholder="И-мэйл"
-                className="h-[60px] rounded-[25px] border-1px"
+                className="h-[50px] rounded-[20px] border-1px"
                 onChange={handleChange}
               />
               <Input
@@ -205,7 +205,7 @@ export const Signup = () => {
                 name="phone"
                 type="phone"
                 placeholder="Утас"
-                className="h-[60px] rounded-[25px] border-1px"
+                className="h-[50px] rounded-[20px] border-1px"
                 onChange={handleChange}
               />
               <Input
@@ -213,7 +213,7 @@ export const Signup = () => {
                 name="password"
                 type="password"
                 placeholder="Нууц үг"
-                className="h-[60px] rounded-[25px] border-1px"
+                className="h-[50px] rounded-[20px] border-1px"
                 onChange={handleChange}
               />
               <Input
@@ -221,13 +221,13 @@ export const Signup = () => {
                 name="rePassword"
                 type="rePassword"
                 placeholder="Нууц үг давтах"
-                className="h-[60px] rounded-[25px] border-1px"
+                className="h-[50px] rounded-[20px] border-1px"
                 onChange={handleChange}
               />
               <Button
                 onClick={handleCreateNanny}
                 variant="outline"
-                className="bg-[#389BA7] w-full text-white text-[20px] font-[300] h-[60px] rounded-[25px] hover:bg-[#008291] hover:text-white hover:border-none "
+                className="bg-[#389BA7] w-full text-white text-[18px] font-[500] h-[50px] rounded-[25px] hover:bg-[#008291] hover:text-white hover:border-none "
               >
                 Үргэлжлүүлэх
               </Button>{" "}

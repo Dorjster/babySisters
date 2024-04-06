@@ -22,10 +22,9 @@ const page = async ({ params }: { params: { id: string } }) => {
     }
   };
   const result = await getData();
-  //   if (!result) {
-  //     throw new Error("data irsengui aldaa garlaa");
-  //   }
-  console.log(result, "res");
+  if (!result) {
+    throw new Error("data irsengui aldaa garlaa");
+  }
 
   return (
     <div>

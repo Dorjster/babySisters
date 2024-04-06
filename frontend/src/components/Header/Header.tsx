@@ -10,6 +10,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import Button from "@mui/material/Button";
 import { useRouter } from "next/navigation";
 import { useData } from "@/context/userProvider";
+import { bgcolor } from "@mui/system";
 
 // Navigation -----
 type navigationItem = {
@@ -23,16 +24,16 @@ const navigationItems: navigationItem[] = [
     label: "Нүүр",
   },
   {
+    href: "/how-it-works",
+    label: "Ашиглах заавар",
+  },
+  {
     href: "/babysitter",
     label: "Хүүхэд асрагч",
   },
   {
     href: "/parent",
     label: "Эцэг эх",
-  },
-  {
-    href: "/how-it-works",
-    label: "Ашиглах заавар",
   },
 ];
 
@@ -53,7 +54,13 @@ export const Header = () => {
 
   // -----
   return (
-    <div className="flex justify-between items-center py-6 bg-[#c9e8ec] sticky top-0 z-30">
+    <div
+      className={`${
+        pathname === "/"
+          ? "flex justify-between items-center py-6 bg-[#c9e8ec]   sticky top-0 z-30"
+          : "flex justify-between items-center py-6 bg-[white] border-b-[0.5px] border-gray-300  sticky top-0 z-30"
+      }`}
+    >
       <div className="flex  ml-[30px] ">
         <Image
           src="/babysits.logo.png"
@@ -63,7 +70,7 @@ export const Header = () => {
           onClick={() => {
             window.location.href = "/";
           }}
-          className="cursor-default"
+          className="cursor-pointer"
         />
       </div>
       <div className="md:flex justify-center items-center gap-10 text-[16px] font-[400] text-gray-700 hidden">
@@ -72,7 +79,7 @@ export const Header = () => {
             href={href}
             key={index}
             style={{ cursor: "pointer" }}
-            className={`cursor-default ${
+            className={`cursor-pointer ${
               pathname === href
                 ? "text-[#389BA7] hover:text-[#008291]"
                 : "black hover:text-black"
@@ -109,7 +116,7 @@ export const Header = () => {
       ) : (
         <div className="flex justify-end items-center gap-4 md:">
           <button
-            onClick={() => router.push("./login")}
+            onClick={() => router.push("/login")}
             className="text-[16px] font-[400] cursor-pointer text-[#4d565e] md:flex hidden hover:text-black"
           >
             Нэвтрэх

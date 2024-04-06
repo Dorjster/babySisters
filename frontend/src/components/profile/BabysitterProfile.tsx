@@ -30,61 +30,24 @@ type All = {
 
 export const BabysitterProfile = (props: All) => {
   const { result } = props;
-  // const [token, setToken] = useState("");
-  // const [userId, setUserId] = useState("");
-  // const [userData, setUserData] = useState<ProfileType | undefined>(undefined);
-  console.log(result, "result");
 
   useEffect(() => {
     const token: string | null = localStorage.getItem("token");
-
-    //     const getUserId = async () => {
-    //       try {
-    //         if (token) {
-    //           const { data } = await AxiosInstance.post("/getUserId", {
-    //             token: token,
-    //           });
-    //           setToken(token);
-    //           setUserId(data);
-    //         }
-    //       } catch (error: any) {
-    //         console.log(error);
-    //       }
-    //     };
-
-    //     getUserId();
-
-    //     const getData = async () => {
-    //       try {
-    //         const { data } = await AxiosInstance.post("/get/babysitter", {
-    //           id: userId,
-    //         });
-
-    //         setUserData(data);
-    //       } catch (error: any) {
-    //         console.log(error);
-    //       }
-    //     };
-
-    //     getData();
-
-    //     // const userId = getUserData();
-    //     // console.log("11", userId);
   });
 
   return (
-    <div className="bg-gradient-to-b from-[#c9e8ec] to-white h-fit flex justify-start py-32 px-[400px]">
+    <div className="bg-gradient-to-b m-auto   h-fit flex justify-start py-32 px-[400px]">
       <div className="w-[60%]">
-        <div className="flex border-b-[1px] flex-col gap-4 border-black pb-[40px]">
-          <p className="text-[28px] ">Миний тухай</p>
+        <div className="flex border-b-[0.5px] flex-col gap-4 border-gray-600 pb-[40px]">
+          <p className="text-[28px] text-gray-900 ">Миний тухай</p>
           <p className="overflow-wrap break-word">{result?.about}</p>
           <div className="flex gap-6 pt-4">
             <div className="flex gap-8">
-              <div className="flex items-center gap-1 text-[20px] ">
+              <div className="flex items-center gap-1 text-[18px] ">
                 <MdBabyChangingStation className="text-[#008291]" size={24} />
                 <div>{result?.info_id.year_of_experience} жил</div>
               </div>
-              <div className="flex items-center gap-1 text-[20px]">
+              <div className="flex items-center gap-1 text-[18px]">
                 <FaTransgender className="text-[#008291]" size={24} />
                 {result?.gender === true ? (
                   <div>Эмэгтэй</div>
@@ -92,25 +55,25 @@ export const BabysitterProfile = (props: All) => {
                   <div>Эрэгтэй</div>
                 )}
               </div>
-              <div className="flex items-center gap-1 text-[20px]">
+              <div className="flex items-center gap-1 text-[18px]">
                 <MdLocationOn className="text-[#008291]" size={24} />
                 {result?.address}
               </div>
-              <div className="flex items-center gap-1 text-[20px]">
-                <FaUserGraduate className="text-[#008291]" size={24} />
+              <div className="flex items-center gap-1 text-[18px]">
+                <FaUserGraduate className="text-[#008291] ]" size={22} />
                 {result?.info_id.education}
               </div>
             </div>
             <div></div>
           </div>
         </div>
-        <div className="border-b-[1px] border-black py-10 flex gap-10">
+        <div className="border-b-[0.5px] border-gray-600 py-10 flex gap-10">
           <div>
-            <h1 className="text-[25px] pb-5">Ур чадвар</h1>
-            <div className="bg-[#edf7f8] rounded-2xl px-8 py-4 flex w-[400px] gap-[30px] text-[18px] flex-wrap">
+            <h1 className="text-[23px] pb-5 ml-[20px]">Ур чадвар</h1>
+            <div className=" rounded-2xl px-8 py-4 flex w-[400px] gap-[30px] text-[18px] flex-wrap">
               {result?.info_id.skills?.map((el, index) => (
                 <div
-                  className="flex gap-2 bg-[#c9e8ec] shadow-md shadow-[#c5c5c5] w-fit rounded-xl px-4 py-2 text-black"
+                  className="flex gap-2 bg-[#c9e8ec] shadow-md shadow-[#c5c5c5] w-fit rounded-xl px-4 py-2 text-gray-700 text-[16px]"
                   key={index}
                 >
                   {el}
@@ -119,11 +82,11 @@ export const BabysitterProfile = (props: All) => {
             </div>
           </div>
           <div>
-            <h1 className="text-[25px] pb-5">Зан чанар</h1>
-            <div className="bg-[#edf7f8] rounded-2xl px-8 py-4 flex w-[400px] gap-[30px] text-[18px] flex-wrap">
+            <h1 className="text-[23px] pb-5 ml-[20px]">Зан чанар</h1>
+            <div className=" rounded-2xl px-8 py-4 flex w-[400px] gap-[30px] text-[18px] flex-wrap">
               {result?.info_id.character?.map((el, index) => (
                 <div
-                  className="flex gap-2 bg-[#c9e8ec] shadow-md shadow-[#c5c5c5] w-fit rounded-xl px-4 py-2 text-black"
+                  className="flex gap-2 bg-[#c9e8ec] shadow-md shadow-[#c5c5c5] w-fit rounded-xl px-4 py-2 text-[16px] text-gray-700"
                   key={index}
                 >
                   {el}
@@ -135,8 +98,8 @@ export const BabysitterProfile = (props: All) => {
         <div className="py-24">
           <CheckedSchedule />
         </div>
-        <div className="flex flex-wrap gap-8 border-t-[1px] border-black py-10">
-          <div className="flex flex-col gap-4 bg-[#c9e8ec] w-[380px] rounded-2xl p-4">
+        <div className="flex flex-wrap gap-8 border-t-[0.5px] border-gray-600 py-10">
+          <div className="flex flex-col gap-4 bg-[#EDF7F8] w-[380px] rounded-2xl p-4">
             <div className="flex justify-between">
               <div className="flex gap-2 ">
                 <div className="flex items-center justify-center">
@@ -160,7 +123,7 @@ export const BabysitterProfile = (props: All) => {
             <p>comments:sdfsdfsdfsdfsdfsdf</p>
             <div>Feb,13,2023</div>
           </div>
-          <div className="flex flex-col gap-4 bg-[#c9e8ec] w-[380px] rounded-2xl p-4">
+          <div className="flex flex-col gap-4 bg-[#EDF7F8] w-[380px] rounded-2xl p-4">
             <div className="flex justify-between">
               <div className="flex gap-2 ">
                 <div className="flex items-center justify-center">
@@ -184,7 +147,7 @@ export const BabysitterProfile = (props: All) => {
             <p>comments:sdfsdfsdfsdfsdfsdf</p>
             <div>Feb,13,2023</div>
           </div>
-          <div className="flex flex-col gap-4 bg-[#c9e8ec] w-[380px] rounded-2xl p-4">
+          <div className="flex flex-col gap-4 bg-[#EDF7F8] w-[380px] rounded-2xl p-4">
             <div className="flex justify-between">
               <div className="flex gap-2 ">
                 <div className="flex items-center justify-center">
@@ -208,7 +171,7 @@ export const BabysitterProfile = (props: All) => {
             <p>comments:sdfsdfsdfsdfsdfsdf</p>
             <div>Feb,13,2023</div>
           </div>
-          <div className="flex flex-col gap-4 bg-[#c9e8ec] w-[380px] rounded-2xl p-4">
+          <div className="flex flex-col gap-4 bg-[#EDF7F8] w-[380px] rounded-2xl p-4">
             <div className="flex justify-between">
               <div className="flex gap-2 ">
                 <div className="flex items-center justify-center">
@@ -246,13 +209,13 @@ export const BabysitterProfile = (props: All) => {
               />
             </div>
           </div>
-          <div className=" w-[530px] flex items-center py-2 border-2 rounded-2xl px-2 border-slate-400">
+          <div className=" w-[530px] flex items-center py-2 border-2 rounded-2xl px-2 border-slate-300">
             <input
               className=" w-[450px] outline-none "
               placeholder="Comment"
               type="text "
             />
-            <button className="bg-[#c9e8ec] text-black rounded-xl py-[2px] px-4">
+            <button className="bg-[#389BA7] text-white rounded-xl py-[2px] px-4">
               Илгээх
             </button>
           </div>
@@ -264,7 +227,7 @@ export const BabysitterProfile = (props: All) => {
             className="rounded-full"
             src="/Mother.avif"
             height={200}
-            width={300}
+            width={200}
             alt="profile"
           />
         </div>

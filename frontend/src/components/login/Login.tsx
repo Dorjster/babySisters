@@ -74,10 +74,10 @@ export const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center py-14">
-      <Card className="w-[550px] h-fit divide-y-2 ">
+    <div className="flex items-center justify-center py-14 mt-[100px] mb-[350px]">
+      <Card className="w-[450px] h-fit divide-y-2 ">
         <CardHeader className="">
-          <CardTitle className="text-center text-[30px] font-[500]">
+          <CardTitle className="text-center text-[26px] font-[500]">
             Babysits-д тавтай морил
           </CardTitle>
         </CardHeader>
@@ -88,7 +88,7 @@ export const Login = () => {
             name="email"
             type="email"
             placeholder="И-мэйл"
-            className="h-[60px] rounded-[25px] border-1px"
+            className="h-[50px] rounded-[20px] border-1px"
             onChange={handleChange}
           />
           <Input
@@ -96,7 +96,7 @@ export const Login = () => {
             name="password"
             type="password"
             placeholder="Нууц үг"
-            className="h-[60px] rounded-[25px] border-1px"
+            className="h-[50px] rounded-[20px] border-1px"
             onChange={handleChange}
           />
           <Button
@@ -110,7 +110,7 @@ export const Login = () => {
           <Button
             onClick={handleLogin2}
             variant="outline"
-            className="bg-[#389ba7] w-full text-white text-[20px] font-[300] h-[60px] rounded-[25px] hover:bg-[#008291] hover:text-white hover:border-none "
+            className="bg-[#389ba7] w-full text-white text-[18px] font-[300] h-[50px] rounded-[25px] hover:bg-[#008291] hover:text-white hover:border-none "
           >
             Үргэлжлүүлэх
           </Button>
