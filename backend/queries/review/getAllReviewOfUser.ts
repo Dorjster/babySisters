@@ -13,36 +13,14 @@ export const getReviewsQuery = async (req: Request) => {
 
         const babysitter = await BabysitterModel.findById(
             { _id: babysitter_id },
-        )
+        ).populate("review")
 
-        const reviewArray = babysitter?.review;
 
-        if (!reviewArray) {
-            throw new Error("asd");
-            
+        if (!babysitter) {
+            throw new Error("babysitter not");
         }
-
-        const array: any = [];
         
-        const arrayy = await Promise.all(reviewArray.map(async (item: string) => {
-            
-            
-        
-            const reviewInfo = await ReviewModel.findById({ _id: item });
-
-            array.push(reviewInfo)
-            // console.log( reviewInfo);
-            
-
-            
-        }));
-        
-        return arrayy;
-
-        
-        
-
-
+        return babysitter;
     } catch (error: any) {
         throw new Error(error.message);
     }
