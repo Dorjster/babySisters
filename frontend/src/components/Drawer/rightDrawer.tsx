@@ -9,11 +9,32 @@ import Link from "next/link";
 import Image from "next/image";
 import { removeToken } from "@/utils/removeToken";
 import { useData } from "@/context/userProvider";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import { borderRadius, display } from "@mui/system";
+import { AlignCenter } from "lucide-react";
 
 type Anchor = "right";
 type navigationItem = {
   href: string;
   label: string;
+};
+
+const style = {
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+  borderRadius: "20px",
+  display: "flex",
+  flexDirection: "column",
+  gap: "20px",
+  alignItems: "center",
 };
 
 const navigationItems: navigationItem[] = [
@@ -42,6 +63,9 @@ const navigationItems: navigationItem[] = [
 export default function AnchorTemporaryDrawer(props: any) {
   const { toggle } = props;
   const { loggedInUserData } = useData();
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const [state, setState] = React.useState({
     right: false,
   });
@@ -106,7 +130,7 @@ export default function AnchorTemporaryDrawer(props: any) {
               <Stack alignItems={"center"} gap={"15px"} py={4} px={"25px"}>
                 {isTokenValid === "" ? (
                   <div className="flex flex-col items-center gap-[25px]">
-                    <div className="w-[100px]  h-[100px] white items-center rounded-full justify-center overflow-hidden ">
+                    <div className="w-[100px] h-[100px] flex   justify-center overflow-hidden rounded-full ">
                       <Image
                         src={"/profile-avatar.png"}
                         height={200}
@@ -125,11 +149,10 @@ export default function AnchorTemporaryDrawer(props: any) {
                   </div>
                 ) : (
                   <div className="flex flex-col items-center gap-[25px]">
-                    <div className="w-[100px]  h-[100px] white items-center rounded-full justify-center overflow-hidden ">
+                    <div className="w-[100px]  h-[100px] flex  rounded-full justify-center overflow-hidden ">
                       {loggedInUserData?.image ? (
                         <Image
                           src={loggedInUserData.image}
-                          // className="w-[170px] h-[170px] mt-[25px] rounded-e-xl self-center justify-center items-center"
                           alt=""
                           width={200}
                           height={200}
@@ -165,14 +188,41 @@ export default function AnchorTemporaryDrawer(props: any) {
                   </Link>
                 ))}
               </div>
-              <Link href="/" onClick={toggleDrawer(anchor, false)}>
+              <div>
                 <p
-                  onClick={removeToken}
+                  onClick={handleOpen}
                   className="flex items-center justify-center w-full p-10 font-bold text-[16px] cursor-pointer"
                 >
                   Гарах
                 </p>
-              </Link>
+                <Modal
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                >
+                  <Box sx={style}>
+                    <Typography
+                      id="modal-modal-description"
+                      sx={{ mt: 1, fontSize: "20px" }}
+                    >
+                      Гарахдаа итгэлтэй байна уу?
+                    </Typography>
+                    <div>
+                      {" "}
+                      <Button
+                        onClick={() => {
+                          removeToken();
+                          toggleDrawer(anchor, false);
+                        }}
+                      >
+                        Тийм
+                      </Button>
+                      <Button onClick={handleClose}>Үгүй</Button>
+                    </div>
+                  </Box>
+                </Modal>
+              </div>
             </Stack>
           </Drawer>
         </React.Fragment>
