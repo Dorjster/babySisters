@@ -76,7 +76,7 @@ export default function AnchorTemporaryDrawer(props: any) {
       {(["right"] as const).map((anchor) => (
         <React.Fragment key={anchor}>
           <Button
-            sx={{ color: "green", cursor: "default" }}
+            sx={{ color: "green", cursor: "pointer" }}
             onClick={toggleDrawer(anchor, true)}
           >
             <MenuIcon onClick={getToken} className="text-[#389BA7]" />
