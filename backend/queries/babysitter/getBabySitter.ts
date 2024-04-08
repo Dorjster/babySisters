@@ -6,7 +6,7 @@ export const getBabysitterQuery = async (req: Request) => {
     const { id } = req.body;
 
     const babysitter_info = await BabysitterModel.findById(id).populate(
-      "info_id"
+      "info_id", "review"
     );
 
     if (!babysitter_info) {
