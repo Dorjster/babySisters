@@ -224,7 +224,7 @@ export const EditBabysitProfile = () => {
         address: userdata.location,
         about: userdata.about,
         image: userdata.image,
-        driver_licence: userdata.additional.includes("Жолооны үнэмлэх"),
+        driver_licence: userdata.additional.includes("Жолооны үнэмлэхтэй"),
         has_children: userdata.additional.includes("Хүүхэдтэй"),
         car: userdata.additional.includes("Mашинтай"),
         smoker: userdata.additional.includes("Тамхи татдаг"),

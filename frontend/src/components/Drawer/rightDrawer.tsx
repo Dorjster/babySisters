@@ -9,11 +9,33 @@ import Link from "next/link";
 import Image from "next/image";
 import { removeToken } from "@/utils/removeToken";
 import { useData } from "@/context/userProvider";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import { borderRadius, display } from "@mui/system";
+import { AlignCenter } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 type Anchor = "right";
 type navigationItem = {
   href: string;
   label: string;
+};
+
+const style = {
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+  borderRadius: "20px",
+  display: "flex",
+  flexDirection: "column",
+  gap: "20px",
+  alignItems: "center",
 };
 
 const navigationItems: navigationItem[] = [
@@ -39,9 +61,17 @@ const navigationItems: navigationItem[] = [
   },
 ];
 
+const handlePush = (href: string) => {
+  window.location.href = `${href}`;
+};
+
 export default function AnchorTemporaryDrawer(props: any) {
   const { toggle } = props;
   const { loggedInUserData } = useData();
+  const pathname = usePathname();
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const [state, setState] = React.useState({
     right: false,
   });
@@ -106,7 +136,7 @@ export default function AnchorTemporaryDrawer(props: any) {
               <Stack alignItems={"center"} gap={"15px"} py={4} px={"25px"}>
                 {isTokenValid === "" ? (
                   <div className="flex flex-col items-center gap-[25px]">
-                    <div className="w-[100px]  h-[100px] white items-center rounded-full justify-center overflow-hidden ">
+                    <div className="w-[100px] h-[100px] flex   justify-center overflow-hidden rounded-full ">
                       <Image
                         src={"/profile-avatar.png"}
                         height={200}
@@ -125,11 +155,10 @@ export default function AnchorTemporaryDrawer(props: any) {
                   </div>
                 ) : (
                   <div className="flex flex-col items-center gap-[25px]">
-                    <div className="w-[100px]  h-[100px] white items-center rounded-full justify-center overflow-hidden ">
+                    <div className="w-[100px]  h-[100px] flex  rounded-full justify-center overflow-hidden ">
                       {loggedInUserData?.image ? (
                         <Image
                           src={loggedInUserData.image}
-                          // className="w-[170px] h-[170px] mt-[25px] rounded-e-xl self-center justify-center items-center"
                           alt=""
                           width={200}
                           height={200}
@@ -153,26 +182,59 @@ export default function AnchorTemporaryDrawer(props: any) {
               </Stack>
               <div className="flex flex-col justify-center items-center gap-10 text-[16px] font-[400] text-gray-700   ">
                 {navigationItems.map(({ href, label }, index) => (
-                  <Link
-                    onClick={toggleDrawer(anchor, false)}
-                    href={href}
+                  <button
+                    onClick={() => {
+                      handlePush(href);
+                      toggleDrawer(anchor, false);
+                    }}
                     key={index}
-                    className="cursor-pointer text-black"
+                    className={`cursor-pointer ${
+                      pathname === href
+                        ? "text-[#389BA7] hover:text-[#008291]"
+                        : "black hover:text-black"
+                    }`}
                   >
                     <div className="bg-[#F7F9FA] p-3 rounded-[20px] flex items-center justify-center w-[300px] hover:bg-[#e3e7e8]">
                       {label}
                     </div>
-                  </Link>
+                  </button>
                 ))}
               </div>
-              <Link href="/" onClick={toggleDrawer(anchor, false)}>
-                <p
-                  onClick={removeToken}
+              <div>
+                <button
+                  onClick={handleOpen}
                   className="flex items-center justify-center w-full p-10 font-bold text-[16px] cursor-pointer"
                 >
                   Гарах
-                </p>
-              </Link>
+                </button>
+                <Modal
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                >
+                  <Box sx={style}>
+                    <Typography
+                      id="modal-modal-description"
+                      sx={{ mt: 1, fontSize: "20px" }}
+                    >
+                      Гарахдаа итгэлтэй байна уу?
+                    </Typography>
+                    <div>
+                      {" "}
+                      <Button
+                        onClick={() => {
+                          removeToken();
+                          toggleDrawer(anchor, false);
+                        }}
+                      >
+                        Тийм
+                      </Button>
+                      <Button onClick={handleClose}>Үгүй</Button>
+                    </div>
+                  </Box>
+                </Modal>
+              </div>
             </Stack>
           </Drawer>
         </React.Fragment>

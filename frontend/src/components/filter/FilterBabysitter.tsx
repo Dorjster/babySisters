@@ -27,7 +27,7 @@ export const FilterBabysitter = () => {
   };
 
   return (
-    <div className="w-[400px] bg-slate-50 p-10 grid gap-5 rounded-xl overflow-hidden hover:overflow-y-scroll sticky top-[200px]">
+    <div className="w-[400px]  bg-slate-50 p-10 grid gap-5 rounded-xl overflow-hidden hover:overflow-y-scroll sticky">
       <div className="grid gap-3">
         <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
           Цалин

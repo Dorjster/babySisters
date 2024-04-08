@@ -64,8 +64,10 @@ export const Login = () => {
       console.log(data);
       localStorage.setItem("token", data);
 
-      push("/");
-      window.location.reload();
+      // push("/");
+      // window.location.reload();
+
+      window.location.href = "/";
       return data;
     } catch (error: any) {
       setError(error.response.data);

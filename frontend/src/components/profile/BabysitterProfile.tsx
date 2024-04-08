@@ -45,7 +45,7 @@ export const BabysitterProfile = (props: All) => {
             <div className="flex gap-8">
               <div className="flex items-center gap-1 text-[18px] ">
                 <MdBabyChangingStation className="text-[#008291]" size={24} />
-                <div>{result?.info_id.year_of_experience} жил</div>
+                {/* <div>{result?.info_id.year_of_experience} жил</div> */}
               </div>
               <div className="flex items-center gap-1 text-[18px]">
                 <FaTransgender className="text-[#008291]" size={24} />
@@ -61,7 +61,7 @@ export const BabysitterProfile = (props: All) => {
               </div>
               <div className="flex items-center gap-1 text-[18px]">
                 <FaUserGraduate className="text-[#008291] ]" size={22} />
-                {result?.info_id.education}
+                {/* {result?.info_id.education} */}
               </div>
             </div>
             <div></div>
@@ -71,27 +71,27 @@ export const BabysitterProfile = (props: All) => {
           <div>
             <h1 className="text-[23px] pb-5 ml-[20px]">Ур чадвар</h1>
             <div className=" rounded-2xl px-8 py-4 flex w-[400px] gap-[30px] text-[18px] flex-wrap">
-              {result?.info_id.skills?.map((el, index) => (
+              {/* {result?.info_id.skills?.map((el, index) => (
                 <div
                   className="flex gap-2 bg-[#c9e8ec] shadow-md shadow-[#c5c5c5] w-fit rounded-xl px-4 py-2 text-gray-700 text-[16px]"
                   key={index}
                 >
                   {el}
                 </div>
-              ))}
+              ))} */}
             </div>
           </div>
           <div>
             <h1 className="text-[23px] pb-5 ml-[20px]">Зан чанар</h1>
             <div className=" rounded-2xl px-8 py-4 flex w-[400px] gap-[30px] text-[18px] flex-wrap">
-              {result?.info_id.character?.map((el, index) => (
+              {/* {result?.info_id.character?.map((el, index) => (
                 <div
                   className="flex gap-2 bg-[#c9e8ec] shadow-md shadow-[#c5c5c5] w-fit rounded-xl px-4 py-2 text-[16px] text-gray-700"
                   key={index}
                 >
                   {el}
                 </div>
-              ))}
+              ))} */}
             </div>
           </div>
         </div>
@@ -240,18 +240,18 @@ export const BabysitterProfile = (props: All) => {
           </div>
           <div className="flex flex-col justify-center items-center">
             <div>
-              {result?.info_id.rating && (
+              {/* {result?.info_id.rating && (
                 <Rating
                   // sx={{ color: "#59BEC9" }}
                   name="read-only"
                   defaultValue={result.info_id.rating}
                   readOnly
                 />
-              )}
+              )} */}
             </div>
           </div>
           <div className="flex gap-4 bg-[#edf7f8] items-center justify-center rounded-2xl py-2 px-4 mt-[20px]">
-            {result?.info_id.smoker === false && (
+            {/* {result?.info_id.smoker === false && (
               <MdOutlineSmokeFree className="h-6 w-6 text-[#008291]" />
             )}
             {result?.info_id.car === true && (
@@ -262,14 +262,14 @@ export const BabysitterProfile = (props: All) => {
             )}
             {result?.info_id.has_children === true && (
               <FaChild className="h-6 w-6 text-[#008291]" />
-            )}
+            )} */}
           </div>
         </div>
 
         <div className="bg-[#edf7f8] w-fill flex flex-col gap-3 rounded-2xl px-2 py-4 sticky top-24 ">
           <h1 className="text-[20px] flex gap-1 items-center justify-center">
             <TbCurrencyTugrik />
-            {result?.info_id.wage}/цагт
+            {/* {result?.info_id.wage}/цагт */}
           </h1>
           <button className="text-white bg-[#008291] rounded-[20px] w-[200px] px-6 py-1 mx-10">
             Холбогдох {}
