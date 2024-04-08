@@ -8,7 +8,7 @@ type All = {
 };
 
 const page = async ({ params }: { params: { id: string } }) => {
-  console.log("params:", params); // Log params object
+  console.log("params:", params);
   const { id } = params;
   console.log(id);
 
