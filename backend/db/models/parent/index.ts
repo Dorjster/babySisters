@@ -15,7 +15,7 @@ export type ParentModelType = {
   number_of_children?: string[];
   age_of_children?: string[];
   image?: string;
-  verification?: boolean;
+  verifyCode?: string;
   otp?: string;
   role: string;
 };
@@ -34,7 +34,7 @@ const ParentSchema = new Schema<ParentModelType>(
     number_of_children: {type: [String], required: false},
     age_of_children: {type: [String], required: false},
     image: { type: String, required: false },
-    verification: { type: Boolean, required: false, default: false },
+    verifyCode: {type: String},
     otp: { type: String, required: false },
   },
   {
