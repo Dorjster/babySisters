@@ -17,10 +17,8 @@ export const getReviewsQuery = async (req: Request) => {
 
 
         if (!babysitter) {
-            throw new Error("babysitter not found");
+            throw new Error("babysitter not");
         }
-        // console.log(babysitter); 
-
         
         return babysitter;
     } catch (error: any) {
