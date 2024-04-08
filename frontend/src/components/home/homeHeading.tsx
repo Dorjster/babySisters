@@ -3,9 +3,8 @@ const HomeHeading = () => {
   return (
     <div className="">
       <div className="w-screen flex justify-end items-start h-[200px] bg-[#c9e8ec] ">
-        
         <Image
-          className="z-30 hidden md:flex"
+          className="z-10 hidden md:flex"
           src="/WOMANN.png"
           width={250}
           height={200}

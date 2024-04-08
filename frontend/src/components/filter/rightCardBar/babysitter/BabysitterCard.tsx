@@ -70,9 +70,14 @@ const HomeProfile: React.FC = () => {
   };
 
   return (
-    <div className=" h-fit w-screen  flex  flex-wrap">
+    <div className=" h-fit w-screen  flex  flex-wrap ">
       {babysitterData.map((babysitter) => (
-        <div key={babysitter._id} onClick={getIdHandle} id={babysitter._id}>
+        <div
+          key={babysitter._id}
+          onClick={getIdHandle}
+          id={babysitter._id}
+          className="cursor-pointer"
+        >
           <Card
             key={babysitter._id}
             data={babysitter}

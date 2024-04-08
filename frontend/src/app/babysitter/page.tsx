@@ -3,7 +3,7 @@ import HomeProfile from "@/components/filter/rightCardBar/babysitter/BabysitterC
 
 export default function babysitter() {
   return (
-    <div className="px-[120px] py-10 md:flex gap-10 h-screen">
+    <div className="px-[120px] py-10 md:flex gap-10 h-screen mt-[100px] mb-[200px]">
       <FilterBabysitter />
       <HomeProfile />
     </div>

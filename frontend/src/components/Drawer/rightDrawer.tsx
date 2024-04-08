@@ -143,7 +143,7 @@ export default function AnchorTemporaryDrawer(props: any) {
                     <Link href="/edit-profile">
                       <p
                         onClick={toggleDrawer(anchor, false)}
-                        className="font-bold underline underline-offset-1 cursor-default"
+                        className="font-bold underline underline-offset-1 cursor-pointer"
                       >
                         Хувийн мэдээлэл
                       </p>
@@ -157,7 +157,7 @@ export default function AnchorTemporaryDrawer(props: any) {
                     onClick={toggleDrawer(anchor, false)}
                     href={href}
                     key={index}
-                    className="cursor-default text-black"
+                    className="cursor-pointer text-black"
                   >
                     <div className="bg-[#F7F9FA] p-3 rounded-[20px] flex items-center justify-center w-[300px] hover:bg-[#e3e7e8]">
                       {label}
@@ -168,7 +168,7 @@ export default function AnchorTemporaryDrawer(props: any) {
               <Link href="/" onClick={toggleDrawer(anchor, false)}>
                 <p
                   onClick={removeToken}
-                  className="flex items-center justify-center w-full p-10 font-bold text-[16px] cursor-default"
+                  className="flex items-center justify-center w-full p-10 font-bold text-[16px] cursor-pointer"
                 >
                   Гарах
                 </p>
