@@ -13,6 +13,7 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import { borderRadius, display } from "@mui/system";
 import { AlignCenter } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 type Anchor = "right";
 type navigationItem = {
@@ -60,9 +61,14 @@ const navigationItems: navigationItem[] = [
   },
 ];
 
+const handlePush = (href: string) => {
+  window.location.href = `${href}`;
+};
+
 export default function AnchorTemporaryDrawer(props: any) {
   const { toggle } = props;
   const { loggedInUserData } = useData();
+  const pathname = usePathname();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -176,25 +182,31 @@ export default function AnchorTemporaryDrawer(props: any) {
               </Stack>
               <div className="flex flex-col justify-center items-center gap-10 text-[16px] font-[400] text-gray-700   ">
                 {navigationItems.map(({ href, label }, index) => (
-                  <Link
-                    onClick={toggleDrawer(anchor, false)}
-                    href={href}
+                  <button
+                    onClick={() => {
+                      handlePush(href);
+                      toggleDrawer(anchor, false);
+                    }}
                     key={index}
-                    className="cursor-pointer text-black"
+                    className={`cursor-pointer ${
+                      pathname === href
+                        ? "text-[#389BA7] hover:text-[#008291]"
+                        : "black hover:text-black"
+                    }`}
                   >
                     <div className="bg-[#F7F9FA] p-3 rounded-[20px] flex items-center justify-center w-[300px] hover:bg-[#e3e7e8]">
                       {label}
                     </div>
-                  </Link>
+                  </button>
                 ))}
               </div>
               <div>
-                <p
+                <button
                   onClick={handleOpen}
                   className="flex items-center justify-center w-full p-10 font-bold text-[16px] cursor-pointer"
                 >
                   Гарах
-                </p>
+                </button>
                 <Modal
                   open={open}
                   onClose={handleClose}

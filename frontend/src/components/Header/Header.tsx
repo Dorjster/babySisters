@@ -52,6 +52,9 @@ export const Header = () => {
     setDrawer(!TemporaryDrawer);
   };
 
+  const handlePush = (href: string) => {
+    window.location.href = `${href}`;
+  };
   // -----
   return (
     <div
@@ -75,8 +78,9 @@ export const Header = () => {
       </div>
       <div className="md:flex justify-center items-center gap-10 text-[16px] font-[400] text-gray-700 hidden">
         {navigationItems.map(({ href, label }, index) => (
-          <Link
-            href={href}
+          <button
+            // href={href}
+            onClick={() => handlePush(href)}
             key={index}
             style={{ cursor: "pointer" }}
             className={`cursor-pointer ${
@@ -86,7 +90,7 @@ export const Header = () => {
             }`}
           >
             {label}
-          </Link>
+          </button>
         ))}
       </div>
       {isLoggedIn ? (
@@ -134,9 +138,8 @@ export const Header = () => {
           >
             Бүртгүүлэх
           </button>
-          <button className="">
-            <AnchorTemporaryDrawer />
-          </button>
+
+          <AnchorTemporaryDrawer />
         </div>
       )}
     </div>

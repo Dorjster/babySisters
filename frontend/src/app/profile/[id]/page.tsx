@@ -8,13 +8,16 @@ type All = {
 };
 
 const page = async ({ params }: { params: { id: string } }) => {
+  console.log("params:", params); // Log params object
   const { id } = params;
+  console.log(id);
 
   const getData = async () => {
     try {
       const { data } = await AxiosInstance.post("/get/babysitter", {
         id: id,
       });
+      console.log("data", data);
 
       return data;
     } catch (error: any) {
