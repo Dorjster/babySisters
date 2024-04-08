@@ -114,7 +114,7 @@ export const Header = () => {
           <AnchorTemporaryDrawer />
         </div>
       ) : (
-        <div className="flex justify-end items-center gap-4 md:">
+        <div className="flex justify-end items-center gap-4 cursor-pointer ">
           <button
             onClick={() => router.push("/login")}
             className="text-[16px] font-[400] cursor-pointer text-[#4d565e] md:flex hidden hover:text-black"
@@ -134,7 +134,9 @@ export const Header = () => {
           >
             Бүртгүүлэх
           </button>
-          <AnchorTemporaryDrawer />
+          <button className="">
+            <AnchorTemporaryDrawer />
+          </button>
         </div>
       )}
     </div>
