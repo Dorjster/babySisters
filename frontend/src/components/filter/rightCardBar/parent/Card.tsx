@@ -28,7 +28,7 @@ export const Card: React.FC<CardProps> = ({ data }) => {
   const letter = data.name.charAt(0);
 
   const SkeletonLoader = () => (
-    <Skeleton className="w-[450px] h-[220px] flex rounded-2xl overflow-hidden shadow-xl bg-[#F6F9FA] mb-[40px] mx-[50px]">
+    <Skeleton className="md:w-[450px] md:h-[220px] w-[260px] h-[450px] md:flex-row flex flex-col  rounded-2xl overflow-hidden shadow-xl bg-[#F6F9FA] mb-[40px] mx-[50px]">
 
         {/* {data?.image ? (
           <Image
@@ -69,7 +69,7 @@ export const Card: React.FC<CardProps> = ({ data }) => {
       {showSkeleton ? (
         <SkeletonLoader />
       ) : (
-        <div className="w-[450px] h-[220px] flex rounded-2xl overflow-hidden shadow-xl bg-[#F6F9FA] mb-[40px] mx-[50px]">
+        <div className="md:w-[450px] md:h-[220px] md:pb-0 pb-[40px] px-[30px] md:flex-row flex flex-col rounded-2xl overflow-hidden shadow-xl bg-[#F6F9FA] mb-[40px] mx-[50px]">
           <div className="w-[200px] h-[220px] flex flex-col justify-between items-center">
             {data?.image ? (
               <Image

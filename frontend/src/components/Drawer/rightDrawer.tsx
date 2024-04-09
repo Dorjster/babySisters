@@ -116,7 +116,7 @@ export default function AnchorTemporaryDrawer(props: any) {
             open={state[anchor]}
             onClose={toggleDrawer(anchor, false)}
           >
-            <Stack height={"100vw"} width={"430px"}>
+            <Stack height={"100vw"} width={"400px"}>
               <Stack px={4} py="29px" direction={"row"} bgcolor={"#dcf2f5"}>
                 <div onClick={toggleDrawer(anchor, false)}>
                   <ArrowBackIosIcon className="text-[#389BA7] justify-start" />
