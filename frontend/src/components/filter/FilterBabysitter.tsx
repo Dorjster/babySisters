@@ -14,7 +14,7 @@ import { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { AxiosInstance } from "@/utils/axiosInstance";
 
-type stateType = {
+export type stateType = {
   location: string;
 
   languages: string[];
