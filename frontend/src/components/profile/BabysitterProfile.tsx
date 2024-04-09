@@ -2,7 +2,6 @@
 import { AxiosInstance } from "@/utils/axiosInstance";
 import { useContext, useEffect, useState } from "react";
 import { TbCurrencyTugrik } from "react-icons/tb";
-import { TfiMenuAlt } from "react-icons/tfi";
 import {
   FaAddressCard,
   FaCar,
@@ -10,9 +9,6 @@ import {
   FaUserGraduate,
   FaChild,
 } from "react-icons/fa";
-import { GiStoneCrafting } from "react-icons/gi";
-import { ScheduleBaby } from "../editBabySitProfile/ScheduleBaby";
-import { LuShare } from "react-icons/lu";
 import {
   MdLocationOn,
   MdVerified,
@@ -21,18 +17,26 @@ import {
 } from "react-icons/md";
 import Image from "next/image";
 import { Rating } from "@mui/material";
-import babysitter from "@/app/babysitter/page";
 import { CheckedSchedule } from "./CheckedSchedule";
-
+import { ProfileType } from "../../..";
 type All = {
   result: ProfileType[] & any;
+};
+
+type ReviewType = {
+  point: string;
+  description: string;
+  parent_id: string;
+  babysitter_id: string;
+  createdAt: string;
 };
 
 export const BabysitterProfile = (props: All) => {
   const { result } = props;
 
   const info = result[0].info_id[0];
-  console.log(info);
+  const review = result[0].review;
+  console.log(review, "rev");
 
   // useEffect(() => {
   //   const token: string | null = localStorage.getItem("token");
@@ -102,103 +106,34 @@ export const BabysitterProfile = (props: All) => {
           <CheckedSchedule />
         </div>
         <div className="flex flex-wrap gap-8 border-t-[0.5px] border-gray-600 py-10">
-          <div className="flex flex-col gap-4 bg-[#EDF7F8] w-[380px] rounded-2xl p-4">
-            <div className="flex justify-between">
-              <div className="flex gap-2 ">
-                <div className="flex items-center justify-center">
-                  <Image
-                    className="rounded-full"
-                    src="/Mother.avif"
-                    height={50}
-                    width={50}
-                    alt="photo"
-                  />
+          {review.map((el: ReviewType, index: number) => (
+            <div
+              className="flex flex-col gap-4 bg-[#EDF7F8] w-[380px] rounded-2xl p-4"
+              key={index}
+            >
+              <div className="flex justify-between">
+                <div className="flex gap-2 ">
+                  <div className="flex items-center justify-center">
+                    <Image
+                      className="rounded-full"
+                      src="/Mother.avif"
+                      height={50}
+                      width={50}
+                      alt="photo"
+                    />
+                  </div>
+                  <h1 className="text-[20px]"></h1>
                 </div>
-                <h1 className="text-[20px]">my name is</h1>
+                <Rating
+                  // sx={{ color: "#59BEC9" }}
+                  name="read-only"
+                  readOnly
+                />
               </div>
-              <Rating
-                // sx={{ color: "#59BEC9" }}
-                name="read-only"
-                // value=""
-                readOnly
-              />
+              <p>{el.description}</p>
+              <div>{el.createdAt}</div>
             </div>
-            <p>comments:sdfsdfsdfsdfsdfsdf</p>
-            <div>Feb,13,2023</div>
-          </div>
-          <div className="flex flex-col gap-4 bg-[#EDF7F8] w-[380px] rounded-2xl p-4">
-            <div className="flex justify-between">
-              <div className="flex gap-2 ">
-                <div className="flex items-center justify-center">
-                  <Image
-                    className="rounded-full"
-                    src="/Mother.avif"
-                    height={50}
-                    width={50}
-                    alt="photo"
-                  />
-                </div>
-                <h1 className="text-[20px]">my name is</h1>
-              </div>
-              <Rating
-                // sx={{ color: "#59BEC9" }}
-                name="read-only"
-                // value=""
-                readOnly
-              />
-            </div>
-            <p>comments:sdfsdfsdfsdfsdfsdf</p>
-            <div>Feb,13,2023</div>
-          </div>
-          <div className="flex flex-col gap-4 bg-[#EDF7F8] w-[380px] rounded-2xl p-4">
-            <div className="flex justify-between">
-              <div className="flex gap-2 ">
-                <div className="flex items-center justify-center">
-                  <Image
-                    className="rounded-full"
-                    src="/Mother.avif"
-                    height={50}
-                    width={50}
-                    alt="photo"
-                  />
-                </div>
-                <h1 className="text-[20px]">my name is</h1>
-              </div>
-              <Rating
-                // sx={{ color: "#59BEC9" }}
-                name="read-only"
-                // value=""
-                readOnly
-              />
-            </div>
-            <p>comments:sdfsdfsdfsdfsdfsdf</p>
-            <div>Feb,13,2023</div>
-          </div>
-          <div className="flex flex-col gap-4 bg-[#EDF7F8] w-[380px] rounded-2xl p-4">
-            <div className="flex justify-between">
-              <div className="flex gap-2 ">
-                <div className="flex items-center justify-center">
-                  <Image
-                    className="rounded-full"
-                    src="/Mother.avif"
-                    height={50}
-                    width={50}
-                    alt="photo"
-                  />
-                </div>
-                <h1 className="text-[20px]">my name is</h1>
-              </div>
-              <Rating
-                // sx={{ color: "#59BEC9" }}
-                name="read-only"
-                // value=""
-                readOnly
-              />
-            </div>
-            <p>comments:sdfsdfsdfsdfsdfsdf</p>
-
-            <div>Feb,13,2023</div>
-          </div>
+          ))}
         </div>
         <div className="flex flex-col ">
           <div>

@@ -5,6 +5,7 @@ import { Card } from "./Card";
 import { AxiosInstance } from "@/utils/axiosInstance";
 import babysitter from "@/app/babysitter/page";
 import { decodeToken } from "@/utils/decodeToken";
+import { ProfileType } from "../../../../..";
 import Link from "next/link";
 import { MouseEvent } from "react";
 import { useRouter } from "next/navigation";
@@ -29,36 +30,6 @@ const HomeProfile: React.FC = () => {
     };
 
     fetchData();
-
-    // const getUserId = async () => {
-    //     try {
-    //         if (token) {
-    //             const { data } = await AxiosInstance.post("/getUserId", {
-    //                 token: token,
-    //             });
-    //             setToken(token);
-    //             setUserId(data);
-    //         }
-    //     } catch (error: any) {
-    //         console.log(error);
-    //     }
-    // };
-
-    // getUserId();
-
-    // const getRole = async () => {
-    //     try {
-    //         const { data } = await AxiosInstance.post("/get/babysitter", {
-    //             id: userId,
-    //         });
-
-    //         setRole(data);
-    //     } catch (error: any) {
-    //         console.log(error);
-    //     }
-    // };
-
-    // getRole();
   }, []);
 
   const getIdHandle = async (event: MouseEvent<HTMLDivElement>) => {
