@@ -13,6 +13,7 @@ import {
   getUserIdFromTokenController,
 } from "../../controllers";
 import { getRefreshTokenService } from "../../controllers/user/refresh";
+// import { searchBabysitterController } from "../../controllers/babysitter/search";
 
 export const userRouter = Router();
 
@@ -34,3 +35,5 @@ userRouter.delete("/babysitter", deleteBabysitterController);
 userRouter.get("/refresh", getRefreshTokenService);
 
 userRouter.post("/getUserId", getUserIdFromTokenController);
+
+// userRouter.post("/search", searchBabysitterController);

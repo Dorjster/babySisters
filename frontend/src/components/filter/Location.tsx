@@ -7,9 +7,14 @@ import {
   SelectValue,
 } from "@/components/ui";
 
-export function LocationSelect() {
+type All = {
+  handleLoc: (label: string) => void;
+};
+
+export function LocationSelect(props: All) {
+  const { handleLoc } = props;
   return (
-    <Select>
+    <Select onValueChange={handleLoc}>
       <SelectTrigger className="w-[180px] rounded-[8px]">
         <SelectValue placeholder="Улаанбаатар" defaultValue="Улаанбаатар" />
       </SelectTrigger>

@@ -1,14 +1,22 @@
-"use client";
 import { useState } from "react";
 
-export const Skills = () => {
+type All = {
+  handleSki: (value: string) => void;
+};
+
+export const Skills = ({ handleSki }: All) => {
   const skills = ["Зураг", "Гар урлал", "Хөгжим", "Хоол", "Спорт", "Бүжиг"];
 
   const [buttonStates, setButtonStates] = useState(skills.map(() => false));
+
   const handleClickButton = (index: number) => {
     const updatedButtonStates = [...buttonStates];
     updatedButtonStates[index] = !updatedButtonStates[index];
     setButtonStates(updatedButtonStates);
+
+    // Pass the selected skill value to the handleSki function
+    const selectedSkill = skills[index];
+    handleSki(selectedSkill);
   };
 
   return (

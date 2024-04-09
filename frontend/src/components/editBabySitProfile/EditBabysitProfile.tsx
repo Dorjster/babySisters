@@ -54,7 +54,7 @@ export const EditBabysitProfile = () => {
     image: "",
     register: "",
     about: "",
-    location: "",
+    location: "Улаанбаатар",
     birthdate: "",
     languages: [],
     education: "",
@@ -102,6 +102,7 @@ export const EditBabysitProfile = () => {
     setUserdata({ ...userdata, [name]: value });
   };
   console.log(userdata);
+
   const handleLocationChange = (label: string) => {
     setUserdata({ ...userdata, location: label });
     console.log(label);
@@ -224,9 +225,9 @@ export const EditBabysitProfile = () => {
         address: userdata.location,
         about: userdata.about,
         image: userdata.image,
-        driver_licence: userdata.additional.includes("Жолооны үнэмлэхтэй"),
+        driver_license: userdata.additional.includes("Жолооны үнэмлэхтэй"),
         has_children: userdata.additional.includes("Хүүхэдтэй"),
-        car: userdata.additional.includes("Mашинтай"),
+        car: userdata.additional.includes("Машинтай"),
         smoker: userdata.additional.includes("Тамхи татдаг"),
         education: userdata.education,
         language: userdata.languages,

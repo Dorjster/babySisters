@@ -19,13 +19,23 @@ export const FilterParent = () => {
     setSliderRatingValue(value as number);
   };
 
+  const handleWageChange = (value: string | string[]) => {
+    // setFilterdata({ ...filterdata, wage: value });
+    console.log(value);
+  };
+
+  const handleLocationChange = (label: string) => {
+    // setFilterdata({ ...filterdata, location: label });
+    console.log(label);
+  };
+
   return (
     <div className="w-[300px]  bg-slate-50 p-10 grid gap-5 rounded-xl h-fit sticky top-[20%]">
       <div className="grid gap-3">
         <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
           Цалин
         </p>
-        <Wage />
+        <Wage onChange={handleWageChange} />
       </div>
 
       <Separator />
@@ -34,7 +44,7 @@ export const FilterParent = () => {
         <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
           Байршил
         </p>
-        <LocationSelect />
+        <LocationSelect handleLoc={handleLocationChange} />
       </div>
 
       <Separator />

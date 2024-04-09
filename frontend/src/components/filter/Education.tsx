@@ -8,9 +8,13 @@ import {
   SelectValue,
 } from "@/components/ui";
 
-export const Education = () => {
+type All = {
+  handleEdu: (value: string) => void;
+};
+
+export const Education = ({ handleEdu }: All) => {
   return (
-    <Select>
+    <Select onValueChange={handleEdu}>
       <SelectTrigger className="w-[180px] rounded-[7px]">
         <SelectValue placeholder="Бүрэн" defaultValue="Бүрэн" />
       </SelectTrigger>
