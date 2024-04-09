@@ -43,13 +43,13 @@ export const BabysitterProfile = (props: All) => {
   // });
 
   return (
-    <div className="bg-gradient-to-b m-auto   h-fit flex justify-start py-32 px-[400px]">
-      <div className="w-[60%]">
+    <div className="bg-gradient-to-b m-auto   h-fit md:flex-row md:gap-[130px]  flex flex-col-reverse md:py-32 justify-center py-10 px-2">
+      <div className="mt-[30px] md:w-[60%] md:mt-0">
         <div className="flex border-b-[0.5px] flex-col gap-4 border-gray-600 pb-[40px]">
           <p className="text-[28px] text-gray-900 ">Миний тухай</p>
           <p className="overflow-wrap break-word">{result[0]?.about}</p>
           <div className="flex gap-6 pt-4">
-            <div className="flex gap-8">
+            <div className="flex md:gap-8 gap-3">
               <div className="flex items-center gap-1 text-[18px] ">
                 <MdBabyChangingStation className="text-[#008291]" size={24} />
                 <div>{info?.year_of_experience} жил</div>
@@ -74,7 +74,7 @@ export const BabysitterProfile = (props: All) => {
             <div></div>
           </div>
         </div>
-        <div className="border-b-[0.5px] border-gray-600 py-10 flex gap-10">
+        <div className="border-b-[0.5px] border-gray-600 py-10 md:flex  gap-10">
           <div>
             <h1 className="text-[23px] pb-5 ml-[20px]">Ур чадвар</h1>
             <div className=" rounded-2xl px-8 py-4 flex w-[400px] gap-[30px] text-[18px] flex-wrap">
@@ -147,7 +147,7 @@ export const BabysitterProfile = (props: All) => {
               />
             </div>
           </div>
-          <div className=" w-[530px] flex items-center py-2 border-2 rounded-2xl px-2 border-slate-300">
+          <div className=" w-[300px] flex items-center py-2 border-2 rounded-2xl px-2 border-slate-300">
             <input
               className=" w-[450px] outline-none "
               placeholder="Comment"
@@ -159,7 +159,7 @@ export const BabysitterProfile = (props: All) => {
           </div>
         </div>
       </div>
-      <div className="w-[40%] flex flex-col items-center  gap-10">
+      <div className=" flex flex-col items-center  gap-10">
         <div className="">
           <Image
             className="rounded-full"
@@ -202,7 +202,7 @@ export const BabysitterProfile = (props: All) => {
           </div>
         </div>
 
-        <div className="bg-[#edf7f8] w-fill flex flex-col gap-3 rounded-2xl px-2 py-4 sticky top-24 ">
+        <div className="bg-[#edf7f8] w-fill flex flex-col gap-3 rounded-2xl px-2 py-4 md:sticky md:top-24 ">
           <h1 className="text-[20px] flex gap-1 items-center justify-center">
             <TbCurrencyTugrik />
             {info?.wage}/цагт
