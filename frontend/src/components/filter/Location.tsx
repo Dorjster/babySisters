@@ -14,11 +14,11 @@ type All = {
 export function LocationSelect(props: All) {
   const { handleLoc } = props;
   return (
-    <Select onValueChange={handleLoc}>
-      <SelectTrigger className="w-[180px] rounded-[8px]">
+    <Select>
+      <SelectTrigger className="w-[180px] rounded-[8px]  ">
         <SelectValue placeholder="Улаанбаатар" defaultValue="Улаанбаатар" />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent className="z-50">
         <SelectGroup>
           {locations.map((el, index) => (
             <SelectItem key={index} value={el.label}>

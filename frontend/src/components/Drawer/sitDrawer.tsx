@@ -11,7 +11,8 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import { FilterDrawer } from '../filter/FilterDrawer';
+import { FilterDrawer } from '../filter/SitsFilterDrawer';
+import FilterListIcon from '@mui/icons-material/FilterList';
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
@@ -50,11 +51,12 @@ export default function SitDrawer() {
   );
 
   return (
-    <div className='  md:hidden flex '>
+    <div className='  md:hidden flex items-center justify-center'>
       {([ 'top'] as const).map((anchor) => (
         <React.Fragment key={anchor}>
-          <div onClick={toggleDrawer(anchor, true)} className='bg-green-200 flex items-center justify-center rounded-2xl '>hhe zaaza ndder darlda ho</div>
+          <div onClick={toggleDrawer(anchor, true)} className='bg-[#389BA7] flex items-center w-[80px] justify-center rounded-2xl '><FilterListIcon className='text-[30px] text-white'/></div>
           <SwipeableDrawer
+             sx={{ zIndex: 10 }}
             anchor={anchor}
             open={state[anchor]}
             onClose={toggleDrawer(anchor, false)}
