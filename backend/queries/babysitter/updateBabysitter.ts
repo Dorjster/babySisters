@@ -1,6 +1,11 @@
 import { Request } from "express";
 import { BabysitterModel, InfoModel } from "../../db";
-import { passwordHash, compareHash } from "../../utils";
+import {
+  passwordHash,
+  compareHash,
+  transformDataForAlgolia,
+} from "../../utils";
+import { algoliaIndex } from "../../algogia/algolia";
 
 export const updateBabysitterQuery = async (req: Request) => {
   try {
@@ -85,7 +90,12 @@ export const updateBabysitterQuery = async (req: Request) => {
       },
       { new: true }
     );
-    console.log("asd");
+
+    if (updatedInfo) {
+      const transformedData = transformDataForAlgolia(updatedInfo);
+      await algoliaIndex.saveObject(transformedData);
+    }
+
     const populatedBabysitterInfo = {
       babysitter: updatedBabysitter,
       info: updatedInfo,

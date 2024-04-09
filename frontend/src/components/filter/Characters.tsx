@@ -1,7 +1,11 @@
 "use client";
 import { useState } from "react";
 
-export const Characters = () => {
+type All = {
+  handleChar: (value: string) => void;
+};
+
+export const Characters = ({ handleChar }: All) => {
   const characters = [
     "Хариуцлагатай",
     "Хөгжилтэй",
@@ -23,6 +27,9 @@ export const Characters = () => {
     const updatedCharacterStates = [...characterStates];
     updatedCharacterStates[index] = !updatedCharacterStates[index];
     setCharacterStates(updatedCharacterStates);
+
+    const selectedSkill = characters[index];
+    handleChar(selectedSkill);
   };
 
   return (

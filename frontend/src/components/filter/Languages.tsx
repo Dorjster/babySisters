@@ -1,7 +1,11 @@
 "use client";
 import { useState } from "react";
 
-export const Languages = () => {
+type All = {
+  handleLan: (value: string) => void;
+};
+
+export const Languages = ({ handleLan }: All) => {
   const languages = [
     "Англи",
     "Орос",
@@ -18,6 +22,9 @@ export const Languages = () => {
     const updatedButtonStates = [...buttonStates];
     updatedButtonStates[index] = !updatedButtonStates[index];
     setButtonStates(updatedButtonStates);
+
+    const selectedSkill = languages[index];
+    handleLan(selectedSkill);
   };
 
   return (

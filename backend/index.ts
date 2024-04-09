@@ -1,9 +1,10 @@
 // export { connectDb } from "./db";
-import express from "express";
+import express, { Request, Response } from "express";
 import cors from "cors";
 import { connectDb } from "./db";
 import { loginRouter, userRouter, forgotRouter, reviewRouter } from "./router";
 import { Imagerouter } from "./router/uploadImg";
+import { algoliaIndex } from "./algogia/algolia";
 
 // const port = process.env.PORT;
 
