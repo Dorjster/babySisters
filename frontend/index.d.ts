@@ -1,4 +1,4 @@
-type ProfileType = {
+export type ProfileType = {
   _id: string;
   name: string;
   email: string;
@@ -30,7 +30,7 @@ type ProfileType = {
   role: string;
 };
 
-type ParentType = {
+export type ParentType = {
   _id: string;
   name: string;
   email: string;
@@ -46,5 +46,4 @@ type ParentType = {
   verification?: boolean;
   otp?: string;
   role: string;
-
-}
+};
