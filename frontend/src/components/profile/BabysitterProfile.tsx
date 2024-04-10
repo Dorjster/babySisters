@@ -135,7 +135,7 @@ export const BabysitterProfile = (props: All) => {
             </div>
           ))}
         </div>
-        <div className="flex flex-col ">
+        <div className="flex flex-col items-center md:items-start">
           <div>
             <h1 className="font-medium">Сэтгэгдэл үлдээх</h1>
             <div>
@@ -159,7 +159,7 @@ export const BabysitterProfile = (props: All) => {
           </div>
         </div>
       </div>
-      <div className=" flex flex-col items-center  gap-10">
+      <div className=" flex flex-col items-center gap-10">
         <div className="">
           <Image
             className="rounded-full"

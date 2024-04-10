@@ -24,8 +24,8 @@ export const ParentProfile = (props: All) => {
   const { result } = props;
 
   return (
-    <div className="bg-gradient-to-b  h-fit flex justify-start py-32 px-[400px]">
-      <div className="w-[60%]">
+    <div className="bg-gradient-to-b m-auto   h-fit md:flex-row md:gap-[130px]  flex flex-col-reverse md:py-32 justify-center py-10 px-4">
+      <div className="mt-[30px] md:w-[60%] md:mt-0">
         <div className="flex border-b-[0.5px] flex-col gap-4 border-gray-600 pb-[40px]">
           <p className="text-[28px] text-gray-900 ">Ажлын санал</p>
           <p className="overflow-wrap break-word">{result?.job_description}</p>
@@ -63,7 +63,7 @@ export const ParentProfile = (props: All) => {
         </div>
         <div className="flex flex-wrap gap-8 border-t-[1px] border-black py-10"></div>
       </div>
-      <div className="w-[40%] flex flex-col items-center  gap-10">
+      <div className="flex flex-col items-center  gap-10">
         <div className="">
           <Image
             className="rounded-full"
