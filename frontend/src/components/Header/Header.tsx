@@ -37,14 +37,12 @@ const navigationItems: navigationItem[] = [
   },
 ];
 
-// -----
 export const Header = () => {
   const { loggedInUserData } = useData();
   const { isLoggedIn } = useData();
   const router = useRouter();
   const pathname = usePathname();
   const { push } = useRouter();
-  // Button's Modal Placeholder -----
 
   const [TemporaryDrawer, setDrawer] = useState(false);
 
@@ -55,13 +53,13 @@ export const Header = () => {
   const handlePush = (href: string) => {
     window.location.href = `${href}`;
   };
-  // -----
+
   return (
     <div
       className={`${
         pathname === "/"
-          ? "flex justify-between items-center py-6 bg-[#c9e8ec]   sticky top-0 z-30"
-          : "flex justify-between items-center py-6 bg-[white] border-b-[0.5px] border-gray-300  sticky top-0 z-30"
+          ? "flex justify-between items-center py-6 bg-[#c9e8ec]   sticky top-0 md:z-30"
+          : "flex justify-between items-center py-6 bg-[white] border-b-[0.5px] border-gray-300  sticky top-0 md:z-30"
       }`}
     >
       <div className="flex  ml-[30px] ">
