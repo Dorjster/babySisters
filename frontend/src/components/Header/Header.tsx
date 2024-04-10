@@ -37,14 +37,12 @@ const navigationItems: navigationItem[] = [
   },
 ];
 
-// -----
 export const Header = () => {
   const { loggedInUserData } = useData();
   const { isLoggedIn } = useData();
   const router = useRouter();
   const pathname = usePathname();
   const { push } = useRouter();
-  // Button's Modal Placeholder -----
 
   const [TemporaryDrawer, setDrawer] = useState(false);
 
@@ -55,7 +53,7 @@ export const Header = () => {
   const handlePush = (href: string) => {
     window.location.href = `${href}`;
   };
-  // -----
+
   return (
     <div
       className={`${

@@ -26,6 +26,85 @@ export const FilterDrawer = () => {
     setSliderRatingValue(value as number);
   };
 
+  const handleWageChange = (value: string | string[]) => {
+    let updatedWage: string | string[];
+
+    // if (typeof value === "string") {
+    //   updatedWage = value;
+    // } else {
+    //   const currentWageArray = Array.isArray(filterdata.wage)
+    //     ? filterdata.wage
+    //     : [filterdata.wage];
+
+    //   updatedWage = [...currentWageArray, ...value];
+    // }
+
+    // setFilterdata((prevFilterdata) => ({
+    //   ...prevFilterdata,
+    //   wage: updatedWage,
+    // }));
+  };
+
+  const handleLocationChange = (label: string) => {
+    // setFilterdata({ ...filterdata, location: label });
+    console.log(label);
+  };
+
+  const handleSki = (value: string) => {
+    // setFilterdata((prevUserData) => {
+    //   const isSkillExist = prevUserData.skills.includes(value);
+    //   let updatedSkills;
+    //   if (isSkillExist) {
+    //     updatedSkills = prevUserData.skills.filter((skill) => skill !== value);
+    //   } else {
+    //     updatedSkills = [...prevUserData.skills, value];
+    //   }
+    //   return {
+    //     ...prevUserData,
+    //     skills: updatedSkills,
+    //   };
+    // });
+  };
+  const handleLan = (value: string) => {
+    // setFilterdata((prevUserData) => {
+    //   const isLanExist = prevUserData.languages.includes(value);
+    //   let updatedLan;
+    //   if (isLanExist) {
+    //     updatedLan = prevUserData.languages.filter((lan) => lan !== value);
+    //   } else {
+    //     updatedLan = [...prevUserData.languages, value];
+    //   }
+    //   return {
+    //     ...prevUserData,
+    //     languages: updatedLan,
+    //   };
+    // });
+  };
+  const handleChar = (value: string) => {
+    // setFilterdata((prevUserData) => {
+    //   const isCharExist = prevUserData.character.includes(value);
+    //   let updatedChar;
+    //   if (isCharExist) {
+    //     updatedChar = prevUserData.character.filter((char) => char !== value);
+    //   } else {
+    //     updatedChar = [...prevUserData.character, value];
+    //   }
+    //   return {
+    //     ...prevUserData,
+    //     character: updatedChar,
+    //   };
+    // });
+  };
+
+  const handleEdu = (label: string) => {
+    // setFilterdata({ ...filterdata, education: label });
+    console.log(label);
+  };
+
+  const handleInfoChange = (value: string[]) => {
+    // setFilterdata({ ...filterdata, additional: value });
+  };
+
   return (
     <div className="flex  items-center justify-center py-4 ">
       <div className="w-[360px] h-[500px] bg-slate-50 p-10 gap-5  rounded-xl grid pr-20 scroll-smooth ">
@@ -33,7 +112,7 @@ export const FilterDrawer = () => {
           <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
             Цалин
           </p>
-          <Wage />
+          <Wage onChange={handleWageChange} />
         </div>
         <div className="grid gap-3">
           <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
@@ -52,7 +131,7 @@ export const FilterDrawer = () => {
           <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
             Байршил
           </p>
-          <LocationSelect />
+          <LocationSelect handleLoc={handleLocationChange} />
         </div>
 
         <Separator />
@@ -70,7 +149,7 @@ export const FilterDrawer = () => {
           <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
             Эзэмшсэн хэл
           </p>
-          <Languages />
+          <Languages handleLan={handleLan} />
         </div>
 
         <Separator />
@@ -89,7 +168,7 @@ export const FilterDrawer = () => {
           <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
             Зан ааш
           </p>
-          <Characters />
+          <Characters handleChar={handleChar} />
         </div>
 
         <Separator />
@@ -98,7 +177,7 @@ export const FilterDrawer = () => {
           <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
             Боловсролын зэрэг
           </p>
-          <Education />
+          <Education handleEdu={handleEdu} />
         </div>
 
         <Separator />
@@ -107,7 +186,7 @@ export const FilterDrawer = () => {
           <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
             Ур чадвар
           </p>
-          <Skills />
+          <Skills handleSki={handleSki} />
         </div>
 
         <Separator />
@@ -116,7 +195,7 @@ export const FilterDrawer = () => {
           <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
             Нэмэлт мэдээлэл
           </p>
-          <Info />
+          <Info onChange={handleInfoChange} />
         </div>
         <button className="bg-[#389BA7] cursor-pointer text-white rounded-[20px] py-2 sticky  bottom-1 ">
           Хайх

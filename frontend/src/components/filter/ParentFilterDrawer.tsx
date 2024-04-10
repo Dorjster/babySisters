@@ -19,6 +19,30 @@ export const FilterParentDrawer = () => {
     setSliderRatingValue(value as number);
   };
 
+  const handleWageChange = (value: string | string[]) => {
+    // let updatedWage: string | string[];
+
+    // if (typeof value === "string") {
+    //   updatedWage = value;
+    // } else {
+    //   const currentWageArray = Array.isArray(filterdata.wage)
+    //     ? filterdata.wage
+    //     : [filterdata.wage];
+
+    //   updatedWage = [...currentWageArray, ...value];
+    // }
+
+    // setFilterdata((prevFilterdata) => ({
+    //   ...prevFilterdata,
+    //   wage: updatedWage,
+    console.log(value);
+  };
+
+  const handleLocationChange = (label: string) => {
+    // setFilterdata({ ...filterdata, location: label });
+    console.log(label);
+  };
+
   return (
     <div className=" flex items-center justify-center py-10 ">
       <div className="w-[300px] h-[400px] bg-slate-50 p-10 md:grid  gap-5 rounded-xl  sticky top-[20%] z-0">
@@ -26,7 +50,7 @@ export const FilterParentDrawer = () => {
           <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
             Цалин
           </p>
-          <Wage />
+          <Wage onChange={handleWageChange} />
         </div>
 
         <Separator />
@@ -35,7 +59,7 @@ export const FilterParentDrawer = () => {
           <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
             Байршил
           </p>
-          <LocationSelect />
+          <LocationSelect handleLoc={handleLocationChange} />
         </div>
 
         <Separator />

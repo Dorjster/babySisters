@@ -4,11 +4,15 @@ import React, { useState, useEffect } from "react";
 import { Rating, Box } from "@mui/material";
 import Image from "next/image";
 import { Skeleton } from "../../../ui";
-import { MdLocationOn, MdVerified, MdOutlineSmokeFree, MdBabyChangingStation } from "react-icons/md";
+import {
+  MdLocationOn,
+  MdVerified,
+  MdOutlineSmokeFree,
+  MdBabyChangingStation,
+} from "react-icons/md";
 import { TbCurrencyTugrik } from "react-icons/tb";
 import { FaCar, FaAddressCard, FaChild, FaBirthdayCake } from "react-icons/fa";
-
-
+import { ParentType } from "../../../../..";
 
 type CardProps = {
   data: ParentType;
@@ -29,8 +33,7 @@ export const Card: React.FC<CardProps> = ({ data }) => {
 
   const SkeletonLoader = () => (
     <Skeleton className="md:w-[450px] md:h-[220px] w-[260px] h-[450px] md:flex-row flex flex-col  rounded-2xl overflow-hidden shadow-xl bg-[#F6F9FA] mb-[40px] mx-[50px]">
-
-        {/* {data?.image ? (
+      {/* {data?.image ? (
           <Image
             src={data.image}
             className="w-[170px] h-[170px] mt-[25px] rounded-e-xl self-center justify-center items-center"
@@ -84,21 +87,17 @@ export const Card: React.FC<CardProps> = ({ data }) => {
                 {letter}
               </div>
             )}
-
-
           </div>
 
           <div className="w-[150px] h-[150px] ml-[5px] mt-[30px]">
-
             <div className="text-lg font-semibold text-[#31393F] w-[150px] flex flex-wrap">
               {data.name}
             </div>
 
-
             <Box
               sx={{
                 alignItems: "center",
-                paddingBottom: "10px"
+                paddingBottom: "10px",
               }}
             >
               <div className="flex gap-2">
@@ -119,7 +118,16 @@ export const Card: React.FC<CardProps> = ({ data }) => {
               </div>
             </Box>
 
-            <p style={{ width: '200px', paddingTop: "8px", textWrap: "wrap", overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis', }}>
+            <p
+              style={{
+                width: "200px",
+                paddingTop: "8px",
+                textWrap: "wrap",
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+                textOverflow: "ellipsis",
+              }}
+            >
               {data.job_description}
             </p>
           </div>
