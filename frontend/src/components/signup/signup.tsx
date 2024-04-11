@@ -31,6 +31,8 @@ export const Signup = () => {
     setUserdata({ ...userdata, [name]: value });
     console.log(userdata);
   };
+
+  
   const handleCreateParent = async () => {
     try {
       const emptyFields = Object.entries(userdata).filter(

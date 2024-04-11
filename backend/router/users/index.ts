@@ -11,6 +11,7 @@ import {
   deleteBabysitterController,
   deleteParentController,
   getUserIdFromTokenController,
+  verifyUserController,
 } from "../../controllers";
 import { getRefreshTokenService } from "../../controllers/user/refresh";
 // import { searchBabysitterController } from "../../controllers/babysitter/search";
@@ -35,5 +36,7 @@ userRouter.delete("/babysitter", deleteBabysitterController);
 userRouter.get("/refresh", getRefreshTokenService);
 
 userRouter.post("/getUserId", getUserIdFromTokenController);
+
+userRouter.get("/verifyUser", verifyUserController);
 
 // userRouter.post("/search", searchBabysitterController);
