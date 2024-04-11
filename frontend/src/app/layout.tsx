@@ -30,8 +30,7 @@ export default function RootLayout({
         <div className={roboto.className}>
           <DataProvider>
             <Header />
-
-            {children}
+              {children}
             <Footer />
           </DataProvider>
         </div>
