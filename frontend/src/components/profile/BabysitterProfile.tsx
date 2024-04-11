@@ -1,6 +1,6 @@
 "use client";
 import { AxiosInstance } from "@/utils/axiosInstance";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, ChangeEvent } from "react";
 import { TbCurrencyTugrik } from "react-icons/tb";
 import {
   FaAddressCard,
@@ -19,12 +19,15 @@ import Image from "next/image";
 import { Rating } from "@mui/material";
 import { CheckedSchedule } from "./CheckedSchedule";
 import { ProfileType } from "../../..";
+import React from "react";
+import { useData } from "@/context/userProvider";
 type All = {
   result: ProfileType[] & any;
+  babysitterId: string;
 };
 
-type ReviewType = {
-  point: string;
+export type ReviewType = {
+  point: number;
   description: string;
   parent_id: string;
   babysitter_id: string;
@@ -32,15 +35,42 @@ type ReviewType = {
 };
 
 export const BabysitterProfile = (props: All) => {
-  const { result } = props;
+  const { result, babysitterId } = props;
+  const { loggedInUserData } = useData();
+  const [comment, setComment] = useState("");
+  const [reviewValue, setReviewValue] = useState<number | null>(null);
+  console.log(loggedInUserData, "aa");
+
+  const sendComment = async () => {
+    try {
+      const { data } = await AxiosInstance.post("/review", {
+        babysitter_id: babysitterId,
+        parent_id: loggedInUserData._id,
+        point: reviewValue,
+        description: comment,
+      });
+
+      setComment(" ");
+      setReviewValue(0);
+      window.location.reload();
+      console.log(data, "data");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleRatingChange: (
+    event: React.SyntheticEvent,
+    value: number | null
+  ) => void = (event, newValue) => {
+    setReviewValue(newValue);
+  };
 
   const info = result[0].info_id[0];
-  const review = result[0].review;
-  console.log(result);
 
-  // useEffect(() => {
-  //   const token: string | null = localStorage.getItem("token");
-  // });
+  console.log(result[0]);
+
+  const review = result[0].review;
 
   return (
     <div className="bg-gradient-to-b m-auto   h-fit md:flex-row md:gap-[130px]  flex flex-col-reverse md:py-32 justify-center py-10 px-2">
@@ -115,23 +145,28 @@ export const BabysitterProfile = (props: All) => {
                 <div className="flex gap-2 ">
                   <div className="flex items-center justify-center">
                     <Image
-                      className="rounded-full"
-                      src="/Mother.avif"
-                      height={50}
-                      width={50}
+                      className="rounded-full w-[40px] h-[40px]"
+                      src={loggedInUserData.image}
+                      height={30}
+                      width={30}
                       alt="photo"
                     />
                   </div>
-                  <h1 className="text-[20px]"></h1>
+                  <h1 className="text-[16px] text-gray-700 font-medium">
+                    {loggedInUserData.name}
+                  </h1>
                 </div>
                 <Rating
                   // sx={{ color: "#59BEC9" }}
                   name="read-only"
                   readOnly
+                  value={el.point}
                 />
               </div>
               <p>{el.description}</p>
-              <div>{el.createdAt}</div>
+              <div className="text-[14px] text-gray-600 ">
+                {el.createdAt.split("T")[0]}
+              </div>
             </div>
           ))}
         </div>
@@ -141,9 +176,9 @@ export const BabysitterProfile = (props: All) => {
             <div>
               <Rating
                 sx={{ color: "#59BEC9" }}
-                name="read-only"
-                // value=""
-                readOnly
+                name="simple-controlled"
+                value={reviewValue}
+                onChange={handleRatingChange}
               />
             </div>
           </div>
@@ -152,8 +187,14 @@ export const BabysitterProfile = (props: All) => {
               className=" w-[450px] outline-none "
               placeholder="Comment"
               type="text "
+              name="comment"
+              onChange={(e) => setComment(e.target.value)}
+              value={comment}
             />
-            <button className="bg-[#389BA7] text-white rounded-xl py-[2px] px-4">
+            <button
+              onClick={sendComment}
+              className="bg-[#389BA7] text-white rounded-xl py-[2px] px-4"
+            >
               Илгээх
             </button>
           </div>
@@ -162,8 +203,8 @@ export const BabysitterProfile = (props: All) => {
       <div className=" flex flex-col items-center gap-10">
         <div className="">
           <Image
-            className="rounded-full"
-            src="/Mother.avif"
+            className="rounded-full w-[200px] h-[200px]"
+            src={result[0].image}
             height={200}
             width={200}
             alt="profile"

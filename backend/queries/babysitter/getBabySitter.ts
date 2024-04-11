@@ -45,6 +45,7 @@ export const getBabysitterQuery = async (req: Request) => {
           parent_id: 1,
           address: 1,
           gender: 1,
+          image: 1,
         },
       },
     ]);
