@@ -50,7 +50,7 @@ export const FilterParentDrawer = () => {
           <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
             Цалин
           </p>
-          <Wage onChange={handleWageChange} />
+          {/* <Wage onChange={handleWageChange} /> */}
         </div>
 
         <Separator />

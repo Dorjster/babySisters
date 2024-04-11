@@ -112,7 +112,7 @@ export const FilterDrawer = () => {
           <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
             Цалин
           </p>
-          <Wage onChange={handleWageChange} />
+          {/* <Wage onChange={handleWageChange} /> */}
         </div>
         <div className="grid gap-3">
           <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
@@ -195,7 +195,7 @@ export const FilterDrawer = () => {
           <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
             Нэмэлт мэдээлэл
           </p>
-          <Info onChange={handleInfoChange} />
+          {/* <Info onChange={handleInfoChange} /> */}
         </div>
         <button className="bg-[#389BA7] cursor-pointer text-white rounded-[20px] py-2 sticky  bottom-1 ">
           Хайх

@@ -10,78 +10,73 @@ import { Education } from "./Education";
 import { Info } from "./Info";
 import { Wage } from "./Wage";
 import RatingSlider from "./Rating";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { AxiosInstance } from "@/utils/axiosInstance";
 
+import { useFilterData } from "@/context/filterProvider";
+
 export type stateType = {
   location: string;
-
-  languages: string[];
+  language: string[];
   education: string;
   character: string[];
-  experience: number | number[];
-  additional: string[];
+  year_of_experience: number | number[];
+  additional: string | string[];
   skills: string[];
   wage: string | string[];
   rating: number | number[];
+  minWage: number;
+  maxWage: number;
 };
 
 export const FilterBabysitter = () => {
   const [sliderValue, setSliderValue] = useState<number>(2);
+  const { filterData, setFilterData } = useFilterData();
+  // const [filterdata, setFilterdata] = useState<stateType>({
+  //   location: "Улаанбаатар",
 
-  const [filterdata, setFilterdata] = useState<stateType>({
-    location: "Улаанбаатар",
-
-    languages: [],
-    education: "",
-    character: [],
-    experience: 2,
-    additional: [],
-    skills: [],
-    wage: [],
-    rating: 2,
-  });
+  //   language: [],
+  //   education: "",
+  //   character: [],
+  //   year_of_experience: 2,
+  //   additional: [],
+  //   skills: [],
+  //   wage: [],
+  //   rating: 2,
+  //   minWage: 0,
+  //   maxWage: 0,
+  // });
 
   const handleSliderChange = (value: number | number[]) => {
     setSliderValue(value as number);
-    setFilterdata({ ...filterdata, experience: value });
+    setFilterData({ ...filterData, year_of_experience: value });
   };
 
   const [sliderRatingValue, setSliderRatingValue] = useState<number>(2);
 
   const handleSliderRatingChange = (value: number | number[]) => {
     setSliderRatingValue(value as number);
-    setFilterdata({ ...filterdata, rating: value });
+    setFilterData({ ...filterData, rating: value });
   };
 
-  const handleWageChange = (value: string | string[]) => {
-    let updatedWage: string | string[];
-
-    if (typeof value === "string") {
-      updatedWage = value;
-    } else {
-      const currentWageArray = Array.isArray(filterdata.wage)
-        ? filterdata.wage
-        : [filterdata.wage];
-
-      updatedWage = [...currentWageArray, ...value];
-    }
-
-    setFilterdata((prevFilterdata) => ({
-      ...prevFilterdata,
-      wage: updatedWage,
-    }));
-  };
-
-  console.log(filterdata);
+  const handleWageChange = useCallback(
+    (min: number | null, max: number | null) => {
+      setFilterData((prevFilterData) => ({
+        ...prevFilterData,
+        minWage: min ?? NaN,
+        maxWage: max ?? NaN,
+      }));
+    },
+    [setFilterData]
+  );
 
   const handleLocationChange = (label: string) => {
-    setFilterdata({ ...filterdata, location: label });
+    setFilterData({ ...filterData, location: label });
   };
 
   const handleSki = (value: string) => {
-    setFilterdata((prevUserData) => {
+    setFilterData((prevUserData) => {
       const isSkillExist = prevUserData.skills.includes(value);
       let updatedSkills;
 
@@ -98,14 +93,14 @@ export const FilterBabysitter = () => {
     });
   };
   const handleLan = (value: string) => {
-    setFilterdata((prevUserData) => {
-      const isLanExist = prevUserData.languages.includes(value);
+    setFilterData((prevUserData) => {
+      const isLanExist = prevUserData.language.includes(value);
       let updatedLan;
 
       if (isLanExist) {
-        updatedLan = prevUserData.languages.filter((lan) => lan !== value);
+        updatedLan = prevUserData.language.filter((lan) => lan !== value);
       } else {
-        updatedLan = [...prevUserData.languages, value];
+        updatedLan = [...prevUserData.language, value];
       }
 
       return {
@@ -115,7 +110,7 @@ export const FilterBabysitter = () => {
     });
   };
   const handleChar = (value: string) => {
-    setFilterdata((prevUserData) => {
+    setFilterData((prevUserData) => {
       const isCharExist = prevUserData.character.includes(value);
       let updatedChar;
 
@@ -133,12 +128,23 @@ export const FilterBabysitter = () => {
   };
 
   const handleEdu = (label: string) => {
-    setFilterdata({ ...filterdata, education: label });
+    setFilterData({ ...filterData, education: label });
     console.log(label);
   };
+  const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
-  const handleInfoChange = (value: string[]) => {
-    setFilterdata({ ...filterdata, additional: value });
+  const handleInfoChange = (updatedData: {
+    selectedItems: string[];
+    additionalData: any;
+  }) => {
+    setSelectedItems(updatedData.selectedItems);
+
+    const selectedIds = updatedData.selectedItems;
+
+    setFilterData((prevFilterData) => ({
+      ...prevFilterData,
+      additional: selectedIds,
+    }));
   };
 
   return (
@@ -230,10 +236,10 @@ export const FilterBabysitter = () => {
         <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
           Нэмэлт мэдээлэл
         </p>
-        <Info onChange={handleInfoChange} />
+        <Info selectedItems={selectedItems} onChange={handleInfoChange} />
       </div>
       <button className="bg-[#389BA7] cursor-pointer text-white rounded-[20px] py-2 sticky bottom-1">
-        Хайх{" "}
+        clear{" "}
       </button>
     </div>
   );

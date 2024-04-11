@@ -5,7 +5,14 @@ type All = {
 };
 
 export const Skills = ({ handleSki }: All) => {
-  const skills = ["Зураг", "Гар урлал", "Хөгжим", "Хоол", "Спорт", "Бүжиг"];
+  const skills = [
+    "Зураг зурах",
+    "Гар урлал",
+    "Хөгжим тоглох",
+    "Хоол хийх",
+    "Спорт",
+    "Бүжиг",
+  ];
 
   const [buttonStates, setButtonStates] = useState(skills.map(() => false));
 

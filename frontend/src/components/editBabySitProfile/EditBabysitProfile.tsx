@@ -29,7 +29,7 @@ type stateType = {
   experience: string;
   additional: string[];
   skills: string[];
-  wage: string;
+  wage: number;
   schedule: Schedule;
   verificationCode: string;
 };
@@ -61,7 +61,7 @@ export const EditBabysitProfile = () => {
     experience: "",
     additional: [],
     skills: [],
-    wage: "",
+    wage: 0,
     schedule: {},
     verificationCode: ""
   });

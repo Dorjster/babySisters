@@ -25,7 +25,7 @@ userRouter.post("/get/parent", getParentController);
 userRouter.post("/get/babysitter", getBabysitterController);
 
 userRouter.get("/allParents", getAllParentsController);
-userRouter.get("/allBabysitters", getAllBabySittersController);
+userRouter.post("/allBabysitters", getAllBabySittersController);
 
 userRouter.post("/parentUpdate", updateParentController);
 userRouter.post("/babysitter", updateBabysitterController);

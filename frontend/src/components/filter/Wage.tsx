@@ -1,4 +1,4 @@
-// Wage.tsx
+"use client";
 import * as React from "react";
 import Box from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
@@ -9,12 +9,12 @@ import { createTheme } from "@mui/system";
 
 interface Range {
   name: string;
-  min: string;
-  max: string;
+  min: number;
+  max: number;
 }
 
 interface WageProps {
-  onChange: (value: string | string[]) => void;
+  onChange: (min: number | null, max: number | null) => void;
 }
 
 export const Wage: React.FC<WageProps> = ({ onChange }) => {
@@ -36,50 +36,59 @@ export const Wage: React.FC<WageProps> = ({ onChange }) => {
     range5: false,
   });
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, checked } = event.target;
-    setSelectedRanges({
-      ...selectedRanges,
-      [name]: checked,
-    });
-
-    const selectedRange = ranges.find((range) => range.name === name);
-
-    if (selectedRange) {
-      const selectedMin = checked ? selectedRange.min.toString() : "0";
-      const selectedMax = checked ? selectedRange.max.toString() : "0";
-
-      onChange([selectedMin, selectedMax]);
-    }
-  };
-
   const ranges: Range[] = [
     {
       name: "range1",
-      min: "5000",
-      max: "10000",
+      min: 5000,
+      max: 10000,
     },
     {
       name: "range2",
-      min: "10000",
-      max: "15000",
+      min: 10000,
+      max: 15000,
     },
     {
       name: "range3",
-      min: "15000",
-      max: "20000",
+      min: 15000,
+      max: 20000,
     },
     {
       name: "range4",
-      min: "20000",
-      max: "25000,",
+      min: 20000,
+      max: 25000,
     },
     {
       name: "range5",
-      min: "25000",
-      max: "30000",
+      min: 25000,
+      max: 30000,
     },
   ];
+
+  const handleCheckboxChange = (name: string) => {
+    setSelectedRanges((prevSelectedRanges) => {
+      const updatedSelectedRanges = {
+        ...prevSelectedRanges,
+        [name]: !prevSelectedRanges[name],
+      };
+
+      // Calculate the selected min and max values
+      const selectedRangesValues = Object.entries(updatedSelectedRanges)
+        .filter(([key, value]) => value)
+        .map(([key]) => {
+          const range = ranges.find((range) => range.name === key);
+          return range ? [range.min, range.max] : [];
+        })
+        .flat();
+
+      const min = Math.min(...selectedRangesValues);
+      const max = Math.max(...selectedRangesValues);
+
+      // Call the onChange callback with the selected min and max values
+      onChange(min === Infinity ? null : min, max === -Infinity ? null : max);
+
+      return updatedSelectedRanges;
+    });
+  };
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -91,7 +100,7 @@ export const Wage: React.FC<WageProps> = ({ onChange }) => {
               control={
                 <Checkbox
                   checked={selectedRanges[range.name]}
-                  onChange={handleChange}
+                  onChange={() => handleCheckboxChange(range.name)}
                   name={range.name}
                   sx={{
                     "& .MuiSvgIcon-root": {

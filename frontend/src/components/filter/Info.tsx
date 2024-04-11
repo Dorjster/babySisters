@@ -1,60 +1,3 @@
-// import {
-//   FaTransgender,
-//   FaAddressCard,
-//   FaBaby,
-//   FaCar,
-//   FaUserGraduate,
-// } from "react-icons/fa";
-// import { MdVerified, MdOutlineSmokeFree } from "react-icons/md";
-// import { Checkbox } from "../ui";
-
-// export const Info = () => {
-//   const info = [
-//     {
-//       icon: <MdVerified />,
-//       id: "verified",
-//       text: "Баталгаажсан",
-//     },
-//     {
-//       icon: <FaAddressCard />,
-//       id: "driver",
-//       text: "Жолооны үнэмлэхтэй",
-//     },
-//     {
-//       icon: <FaCar />,
-//       id: "hasCar",
-//       text: "Машинтай",
-//     },
-//     {
-//       icon: <FaBaby />,
-//       id: "hasChildren",
-//       text: "Хүүхэдтэй",
-//     },
-//     {
-//       icon: <MdOutlineSmokeFree />,
-//       id: "nonSmoker",
-//       text: "Тамхи татдаггүй",
-//     },
-//   ];
-//   return (
-//     <>
-//       {info.map((el, index) => (
-//         <div key={index} className="flex gap-3">
-//           <div className="flex items-center space-x-2">
-//             <Checkbox className="rounded-[4px]" id={el.id} />
-//           </div>
-//           <div className="flex gap-2">
-//             <p className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-//               {el.text}
-//             </p>
-//             {el.icon}
-//           </div>
-//         </div>
-//       ))}
-//     </>
-//   );
-// };
-
 import * as React from "react";
 import Box from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
@@ -66,10 +9,14 @@ import { FaTransgender, FaAddressCard, FaBaby, FaCar } from "react-icons/fa";
 import { MdVerified, MdOutlineSmokeFree } from "react-icons/md";
 
 interface InfoProps {
-  onChange: (value: string[]) => void;
+  selectedItems: string[];
+  onChange: (updatedData: {
+    selectedItems: string[];
+    additionalData: any;
+  }) => void;
 }
 
-export const Info: React.FC<InfoProps> = ({ onChange }) => {
+export const Info: React.FC<InfoProps> = ({ selectedItems, onChange }) => {
   const theme = createTheme({
     palette: {
       primary: {
@@ -106,28 +53,14 @@ export const Info: React.FC<InfoProps> = ({ onChange }) => {
     },
   ];
 
-  const [selectedInfo, setSelectedInfo] = React.useState<{
-    [key: string]: boolean;
-  }>({
-    verified: false,
-    driver: false,
-    hasCar: false,
-    hasChildren: false,
-    nonSmoker: false,
-  });
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, checked } = event.target;
-    setSelectedInfo({
-      ...selectedInfo,
-      [name]: checked,
+  const handleCheckboxChange = (id: string) => {
+    const updatedSelectedItems = selectedItems.includes(id)
+      ? selectedItems.filter((item) => item !== id)
+      : [...selectedItems, id];
+    onChange({
+      selectedItems: updatedSelectedItems,
+      additionalData: updatedSelectedItems,
     });
-
-    const selectedValues = Object.keys(selectedInfo).filter(
-      (key) => selectedInfo[key]
-    );
-
-    onChange(selectedValues);
   };
 
   return (
@@ -139,8 +72,8 @@ export const Info: React.FC<InfoProps> = ({ onChange }) => {
               key={item.id}
               control={
                 <Checkbox
-                  checked={selectedInfo[item.id]}
-                  onChange={handleChange}
+                  // checked={selectedItems.includes(item.id)}
+                  onChange={() => handleCheckboxChange(item.id)}
                   name={item.id}
                   sx={{
                     "& .MuiSvgIcon-root": {
