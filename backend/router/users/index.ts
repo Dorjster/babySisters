@@ -37,6 +37,6 @@ userRouter.get("/refresh", getRefreshTokenService);
 
 userRouter.post("/getUserId", getUserIdFromTokenController);
 
-userRouter.get("/verifyUser", verifyUserController);
+userRouter.post("/verifyUser", verifyUserController);
 
 // userRouter.post("/search", searchBabysitterController);
