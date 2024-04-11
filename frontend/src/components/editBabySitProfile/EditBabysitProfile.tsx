@@ -20,7 +20,6 @@ import { useData } from "@/context/userProvider";
 
 type stateType = {
   image: string;
-  register: string;
   about: string;
   location: string;
   birthdate: string;
@@ -32,6 +31,7 @@ type stateType = {
   skills: string[];
   wage: string;
   schedule: Schedule;
+  verificationCode: string;
 };
 
 type Schedule = {
@@ -52,7 +52,6 @@ export const EditBabysitProfile = () => {
 
   const [userdata, setUserdata] = useState<stateType>({
     image: "",
-    register: "",
     about: "",
     location: "Улаанбаатар",
     birthdate: "",
@@ -64,6 +63,7 @@ export const EditBabysitProfile = () => {
     skills: [],
     wage: "",
     schedule: {},
+    verificationCode: ""
   });
 
   const click = (day: string, timeValue: string) => {

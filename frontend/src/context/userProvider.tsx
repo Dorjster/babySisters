@@ -11,6 +11,7 @@ export type UserData = {
   password: string;
   role: string;
   image: string;
+  verification: boolean
 };
 
 type DataContextType = {
@@ -35,6 +36,7 @@ export const DataProvider = ({ children }: any) => {
     password: "",
     role: "",
     image: "",
+    verification: false
   });
 
   const accessToken =
