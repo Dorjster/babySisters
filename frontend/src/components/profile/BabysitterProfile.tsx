@@ -36,7 +36,7 @@ export const BabysitterProfile = (props: All) => {
 
   const info = result[0].info_id[0];
   const review = result[0].review;
-  console.log(review, "rev");
+  console.log(result);
 
   // useEffect(() => {
   //   const token: string | null = localStorage.getItem("token");
@@ -183,6 +183,7 @@ export const BabysitterProfile = (props: All) => {
                   // sx={{ color: "#59BEC9" }}
                   name="read-only"
                   defaultValue={info?.rating}
+                  value={info?.rating}
                   readOnly
                 />
               )}

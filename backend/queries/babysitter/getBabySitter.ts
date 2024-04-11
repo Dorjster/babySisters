@@ -24,9 +24,31 @@ export const getBabysitterQuery = async (req: Request) => {
           as: "review",
         },
       },
+      {
+        $lookup: {
+          from: "parents",
+          localField: "review.parent_id",
+          foreignField: "_id",
+          as: "parent_id",
+        },
+      },
+      {
+        $project: {
+          _id: 1,
+          role: 1,
+          name: 1,
+          email: 1,
+          phone: 1,
+          review: 1,
+          info_id: 1,
+          about: 1,
+          parent_id: 1,
+          address: 1,
+          gender: 1,
+        },
+      },
     ]);
 
-    console.log(babysitter_info);
     if (!babysitter_info) {
       throw new Error("Хэрэглэгч олдсонгүй");
     }
