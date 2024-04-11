@@ -49,6 +49,7 @@ export const AboutMe = (props: About) => {
     <div className="flex flex-col gap-4 mt-[45px]">
       <h3 className="text-2xl font-medium text-gray-700">Миний тухай</h3>
       <div className="flex flex-col gap-[45px] ">
+
         <div>
           <p className="text-gray-600 text-base font-[500] mb-[15px]">
             Регистрийн дугаар
@@ -64,6 +65,7 @@ export const AboutMe = (props: About) => {
             Регистрийн дугаарыг хийснээр таны хаяг баталгаажих болно
           </p>
         </div>
+        
         <div>
           <p className="text-gray-600 text-base font-[500] mb-[15px]">
             Өөрийнхөө тухай товч мэдээллийг бичнэ үү

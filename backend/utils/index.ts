@@ -32,6 +32,16 @@ export const getUserByEmail = async (email: string) => {
     return user;
   }
 };
+export const getUserById = async (id: string) => {
+  const user = await ParentModel.findOne({ _id: id });
+
+  if (!user) {
+    const user1 = await BabysitterModel.findOne({ _id: id });
+    return user1;
+  } else {
+    return user;
+  }
+};
 
 export const transformDataForAlgolia = (infoData: InfoModelType): any => {
   const transformedData: any = {
