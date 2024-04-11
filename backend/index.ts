@@ -2,14 +2,19 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 import { connectDb } from "./db";
-import { loginRouter, userRouter, forgotRouter, reviewRouter, messageRouter } from "./router";
+import {
+  loginRouter,
+  userRouter,
+  forgotRouter,
+  reviewRouter,
+  messageRouter,
+} from "./router";
 import { Imagerouter } from "./router/uploadImg";
 import { algoliaIndex } from "./algogia/algolia";
-import dotenv from "dotenv"
+import dotenv from "dotenv";
 import { app, server } from "./socket/socket";
-dotenv.config()
+dotenv.config();
 // const port = process.env.PORT;
-
 
 app.use(cors());
 app.use(express.json());
