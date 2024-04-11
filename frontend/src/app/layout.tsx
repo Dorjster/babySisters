@@ -5,7 +5,7 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Roboto } from "next/font/google";
 import { DataProvider } from "@/context/userProvider";
-import { UserProvider } from "@auth0/nextjs-auth0/client";
+import { FilterDataProvider } from "@/context/filterProvider";
 
 // Dem Font
 const roboto = Roboto({
@@ -25,19 +25,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <UserProvider>
+      {" "}
+      <body>
         {" "}
-        <body>
-          {" "}
-          <div className={roboto.className}>
-            <DataProvider>
+        <div className={roboto.className}>
+          <DataProvider>
+            <FilterDataProvider>
               <Header />
               {children}
               <Footer />
-            </DataProvider>
-          </div>
-        </body>
-      </UserProvider>
+            </FilterDataProvider>
+          </DataProvider>
+        </div>
+      </body>
     </html>
   );
 }

@@ -9,17 +9,21 @@ import { ProfileType } from "../../../../..";
 import Link from "next/link";
 import { MouseEvent } from "react";
 import { useRouter } from "next/navigation";
+import { useFilterData } from "@/context/filterProvider";
 const HomeProfile: React.FC = () => {
   const [babysitterData, setBabysitterData] = useState<ProfileType[]>([]);
   const [error, setError] = useState("");
   const [result, setResult] = useState("");
   const router = useRouter();
+  const { filterData, setFilterData } = useFilterData();
+  console.log(filterData);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await AxiosInstance.get<ProfileType[]>(
-          "/allBabysitters"
+        const { data } = await AxiosInstance.post<ProfileType[]>(
+          "/allBabysitters",
+          filterData
         );
         console.log(data);
 
@@ -30,7 +34,7 @@ const HomeProfile: React.FC = () => {
     };
 
     fetchData();
-  }, []);
+  }, [filterData]);
 
   const getIdHandle = async (event: MouseEvent<HTMLDivElement>) => {
     const { id: CardId } = event.currentTarget;

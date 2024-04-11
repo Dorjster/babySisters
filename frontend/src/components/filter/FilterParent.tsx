@@ -3,10 +3,38 @@
 import { Separator, Checkbox } from "@/components/ui";
 import { LocationSelect } from "./Location";
 import { Wage } from "./Wage";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { MdVerified } from "react-icons/md";
 
+export type stateType = {
+  location: string;
+  languages: string[];
+  education: string;
+  character: string[];
+  experience: number | number[];
+  additional: string[];
+  skills: string[];
+  wage: string | string[];
+  rating: number | number[];
+  minWage: number;
+  maxWage: number;
+};
+
 export const FilterParent = () => {
+  const [filterdata, setFilterdata] = useState<stateType>({
+    location: "Улаанбаатар",
+
+    languages: [],
+    education: "",
+    character: [],
+    experience: 2,
+    additional: [],
+    skills: [],
+    wage: [],
+    rating: 2,
+    minWage: 0,
+    maxWage: 0,
+  });
   const [sliderValue, setSliderValue] = useState<number>(2);
 
   const handleSliderChange = (value: number | number[]) => {
@@ -19,10 +47,15 @@ export const FilterParent = () => {
     setSliderRatingValue(value as number);
   };
 
-  const handleWageChange = (value: string | string[]) => {
-    // setFilterdata({ ...filterdata, wage: value });
-    console.log(value);
-  };
+  // const handleWageChange = useCallback();
+  // (min: number | null, max: number | null) => {
+  //   setFilterdata((prevFilterdata) => ({
+  //     ...prevFilterdata,
+  //     minWage: min ?? 0,
+  //     maxWage: max ?? 0,
+  //   }));
+  // },
+  //   [setFilterdata];
 
   const handleLocationChange = (label: string) => {
     // setFilterdata({ ...filterdata, location: label });
@@ -35,7 +68,7 @@ export const FilterParent = () => {
         <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
           Цалин
         </p>
-        <Wage onChange={handleWageChange} />
+        {/* <Wage onChange={handleWageChange} /> */}
       </div>
 
       <Separator />

@@ -1,3 +1,5 @@
+// "use client";
+
 import React from "react";
 import { BabysitterProfile } from "@/components/profile/BabysitterProfile";
 import { ReviewType } from "@/components/profile/BabysitterProfile";
