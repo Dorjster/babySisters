@@ -22,16 +22,16 @@ export const Footer = () => {
     <div
       className={`${
         pathname === "/"
-          ? " relative bottom-0 left-0 bg-[#c9e8ec]  w-screen h-full md:px-[120px] flex flex-col justify-center items-center text-black gap-[45px] px-[100px] py-[50px] "
+          ? " relative bottom-0 left-0 bg-[#c9e8ec]  w-screen h-full md:px-[120px] flex flex-col justify-center items-center text-black gap-[25px] px-[100px] py-[30px] "
           : "hidden"
       }`}
     >
-      <div className="flex justify-center items-center gap-10 text-[16px] font-[400] text-gray-700  ">
+      <div className="flex justify-center items-center gap-10 text-[16px] font-[400] text-gray-700 ">
         {FooterArray.map(({ href, title }, index) => (
           <Link
             href={href}
             key={index}
-            className={`cursor-default ${
+            className={`cursor-pointer  ${
               pathname === href
                 ? "text-[#389BA7] hover:text-[#008291]"
                 : "black hover:text-black"
@@ -45,15 +45,14 @@ export const Footer = () => {
         <div>
           <Image
             width={100}
-            height={200}
+            height={150}
             src="/barry_waving.webp"
             alt="barry waving"
           />
         </div>
       </div>
       <hr className="w-full border-white" />
-
-      <div>
+      <div className="">
         <RadioGroupRating />
       </div>
     </div>

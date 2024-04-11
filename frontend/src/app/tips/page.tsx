@@ -9,9 +9,6 @@ export default function Home() {
     <StrictMode>
       {" "}
       <Tips />
-      {/* <div>
-        <video src="https://youtu.be/moeLWAiFJFM">asd </video>
-      </div> */}
     </StrictMode>
   );
 }
