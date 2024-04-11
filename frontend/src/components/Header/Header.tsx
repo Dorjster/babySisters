@@ -18,6 +18,11 @@ type navigationItem = {
   label: string;
 };
 
+type navigationLogin = {
+  href: string;
+  label: string;
+};
+
 const navigationItems: navigationItem[] = [
   {
     href: "/",
@@ -34,6 +39,13 @@ const navigationItems: navigationItem[] = [
   {
     href: "/parent",
     label: "Эцэг эх",
+  },
+];
+
+const navigationLogin: navigationLogin[] = [
+  {
+    href: "/api/auth/login",
+    label: "Нэвтрэх",
   },
 ];
 
@@ -117,7 +129,8 @@ export const Header = () => {
         </div>
       ) : (
         <div className="flex justify-end items-center gap-4 cursor-pointer ">
-          <button
+          {/* Old Login Button ----- */}
+          {/* <button
             onClick={() => router.push("/login")}
             className="text-[16px] font-[400] cursor-pointer text-[#4d565e] md:flex hidden hover:text-black"
           >
@@ -129,7 +142,24 @@ export const Header = () => {
                 border: "0.5px solid gray",
               }}
             />
-          </button>
+          </button> */}
+
+          {/* New Login Button ----- */}
+          {navigationLogin.map(({ href, label }, index) => (
+            <button
+              // href={href}
+              onClick={() => handlePush(href)}
+              key={index}
+              style={{ cursor: "pointer" }}
+              className={`cursor-pointer ${
+                pathname === href
+                  ? "text-[#389BA7] hover:text-[#008291]"
+                  : "black hover:text-black"
+              }`}
+            >
+              {label}
+            </button>
+          ))}
           <button
             onClick={() => router.push("/signup")}
             className="text-[16px] cursor-pointer font-[400] p-2 text-white  rounded-[15px] bg-[#389BA7] md:flex hidden hover:bg-[#008291]"
