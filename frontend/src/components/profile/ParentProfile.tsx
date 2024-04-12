@@ -22,6 +22,7 @@ type All = {
 
 export const ParentProfile = (props: All) => {
   const { result } = props;
+  const letter = result.name.charAt(0);
 
   return (
     <div className="bg-gradient-to-b m-auto   h-fit md:flex-row md:gap-[130px]  flex flex-col-reverse md:py-32 justify-center py-10 px-4">
@@ -65,13 +66,26 @@ export const ParentProfile = (props: All) => {
       </div>
       <div className="flex flex-col items-center  gap-10">
         <div className="">
-          <Image
+          {/* <Image
             className="rounded-full"
             src="/Mother.avif"
             height={200}
             width={200}
             alt="profile"
-          />
+          /> */}
+          {result?.image ? (
+            <Image
+              src={result.image}
+              className="w-[200px] h-[200px] rounded-full"
+              alt=""
+              width={200}
+              height={200}
+            />
+          ) : (
+            <div className="w-[170px] h-[170px] mt-[25px] rounded-xl bg-gray-300 text-white text-[60px] flex self-center justify-center items-center">
+              {letter}
+            </div>
+          )}
         </div>
 
         <div className="bg-[#edf7f8] w-fill flex flex-col gap-3 rounded-2xl px-2 py-4 sticky top-24 ">
@@ -79,9 +93,9 @@ export const ParentProfile = (props: All) => {
             <TbCurrencyTugrik />
             {result?.wage}/цагт
           </h1>
-          <button className="text-white bg-[#008291] rounded-[20px] w-[200px] px-6 py-1 mx-10">
+          {/* <button className="text-white bg-[#008291] rounded-[20px] w-[200px] px-6 py-1 mx-10">
             Холбогдох {}
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

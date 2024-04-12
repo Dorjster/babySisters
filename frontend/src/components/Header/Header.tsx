@@ -44,7 +44,8 @@ const navigationItems: navigationItem[] = [
 
 const navigationLogin: navigationLogin[] = [
   {
-    href: "/api/auth/login",
+    // href: "/api/auth/login",
+    href: "/login",
     label: "Нэвтрэх",
   },
 ];

@@ -29,7 +29,7 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(3001, () => {
+app.listen(3001, () => {
   console.log("server is running");
 });
 
