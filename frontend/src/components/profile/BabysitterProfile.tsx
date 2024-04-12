@@ -52,7 +52,9 @@ export const BabysitterProfile = (props: All) => {
 
       setComment(" ");
       setReviewValue(0);
+
       window.location.reload();
+
       console.log(data, "data");
     } catch (error) {
       console.log(error);
