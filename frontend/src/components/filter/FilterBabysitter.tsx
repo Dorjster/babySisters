@@ -238,9 +238,9 @@ export const FilterBabysitter = () => {
         </p>
         <Info selectedItems={selectedItems} onChange={handleInfoChange} />
       </div>
-      <button className="bg-[#389BA7] cursor-pointer text-white rounded-[20px] py-2 sticky bottom-1">
+      {/* <button className="bg-[#389BA7] cursor-pointer text-white rounded-[20px] py-2 sticky bottom-1">
         clear{" "}
-      </button>
+      </button> */}
     </div>
   );
 };
