@@ -16,6 +16,7 @@ import { AxiosInstance } from "@/utils/axiosInstance";
 import { useData } from "@/context/userProvider";
 import VerifiedIcon from '@mui/icons-material/Verified';
 
+
 const locations = [
   { label: "Улаанбаатар" },
   { label: "Архангай" },
@@ -71,7 +72,6 @@ export const AboutMe = (props: About) => {
   };
 
 
-
   const handleVerifyUser = async () => {
     try {
       const { data } = await AxiosInstance.post<UserVerifyData>("/verifyUser", {
@@ -79,14 +79,14 @@ export const AboutMe = (props: About) => {
         verificationCode: userData.verificationCode
         
       });
+
+      window.location.href = "/edit-profile";
   
       return data;
     } catch (error: any) {
       setError(error.response.data);
     }
   };
-
-  
 
 
   return (

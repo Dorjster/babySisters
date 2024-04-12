@@ -28,11 +28,14 @@ export const verifyUser = async (req: Request) => {
     }
 
     if (role === "Parent") {
-      const babysitter = await ParentModel.findById({ _id: userId });
-      if (!babysitter) {
+      const parent = await ParentModel.findById({ _id: userId });
+      console.log(parent, "pareent");
+
+      if (!parent) {
         throw new Error("Бүртгэлгүй хэрэглэгч");
       }
-      const verifyCodeFromDb = babysitter?.verifyCode;
+
+      const verifyCodeFromDb = parent?.verifyCode;
 
       if (verificationCode === verifyCodeFromDb) {
         await ParentModel.findByIdAndUpdate(

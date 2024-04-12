@@ -13,6 +13,10 @@ import {
 } from "@/components/ui/select";
 import { MenuItem } from "@mui/base";
 import { Button } from "../ui";
+import { useData } from "@/context/userProvider";
+import VerifiedIcon from '@mui/icons-material/Verified';
+import { AxiosInstance } from "@/utils/axiosInstance";
+import AdsClickIcon from '@mui/icons-material/AdsClick';
 
 const locations = [
   { label: "Улаанбаатар" },
@@ -45,27 +49,95 @@ type About = {
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
 };
+
+interface UserVerifyData {
+  verificationCode?: string;
+}
 export const AboutParent = (props: About) => {
   const { hamndleLoc, handlechild, handleChange } = props;
+  const { loggedInUserData } = useData()
+
+  const [error, setError] = useState()
+  const [userData, setUserData] = useState<UserVerifyData>({
+    verificationCode: ""
+  });
+
+
+  const handleVerifyChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setUserData({
+      ...userData,
+      [name]: value,
+    });
+    console.log(userData, "userdata");
+  };
+
+
+  const handleVerifyUser = async () => {
+    try {
+      const { data } = await AxiosInstance.post<UserVerifyData>("/verifyUser", {
+        userId:loggedInUserData._id,
+        verificationCode: userData.verificationCode
+        
+      });
+
+      window.location.href = "/edit-profile";
+  
+      return data;
+    } catch (error: any) {
+      setError(error.response.data);
+    }
+  };
+
+  
   return (
     <div className="flex flex-col gap-4 mt-[45px]">
       <h3 className="text-2xl font-medium text-gray-700">Миний тухай</h3>
       <div className="flex flex-col gap-[45px] ">
-        <div>
-          <p className="text-gray-600 text-base font-[500] mb-[15px]">
-            Регистрийн дугаар
+
+     {loggedInUserData?.verification === true ?
+          <div>
+              <p className="text-gray-600 text-base font-[500] mb-[15px]">
+                Баталгаажуулах хэсэг
+              </p>
+             
+             <div className="text-[#60ADB7] flex gap-1">
+              <div className="text-[16px] font-semibold">Баталгаажсан</div>
+              <VerifiedIcon />
+          </div>
+
+          </div>
+        
+          :
+          <div>
+             <p className="text-gray-600 text-base font-[500] mb-[15px]">
+            Баталгаажуулах хэсэг
           </p>
-          <input
-            name="register"
-            className="w-[100%] border-[1px] h-[40px] p-2  rounded-2xl text-gray-800 border-zinc-200"
-            type="text"
-            placeholder="УУ:12345678"
-            onChange={handleChange}
-          />
+        
+
+          <div className="flex gap-4 items-center">
+            <input
+              name="verificationCode"
+              onChange={handleVerifyChange}
+              className="w-[120px] border-[1px] h-[40px] p-2  rounded-2xl text-gray-800 border-zinc-200"
+              type="text"
+              placeholder="Нууц үг"
+            />
+            <button className="w-[60px] h-[40px] rounded-xl bg-[#60ADB7] text-white" onClick={handleVerifyUser}><AdsClickIcon/></button>
+          </div>
+
+          {error && (
+            <p className="text-[12px] text-red-500  font-sans-serif">
+              {error}
+            </p>
+          )}
+
           <p className="text-gray-300">
-            Регистрийн дугаарыг хийснээр таны хаяг баталгаажих болно
+            Таны имэйл хаяг руу илгээсэн нууц үгийг хийснээр таны хаяг баталгаажих болно.
           </p>
-        </div>
+        </div>}
+
+
         <div>
           <p className="text-gray-600 text-base font-[500] mb-[15px]">
             Гэр бүлийнхээ талаар товч мэдээллийг бичнэ үү
