@@ -166,26 +166,27 @@ export const EditParent = () => {
       }}
     >
       <div
-        className="flex gap-[300px] p-[80px]
+        className="flex gap-[200px] p-[80px]
       "
       >
-        <div className="w-[300px]  object-fit flex flex-col items-center  gap-3 mb-[50px]">
+        <div className="w-[220px]  object-fit flex flex-col items-center  gap-3 mb-[50px]">
           {image && (
             <Image
               src={image ? URL.createObjectURL(image[0]) : ""}
               alt=""
-              width={300}
+              width={220}
               height={200}
-              className="w-[300px] h-[200px] border-[2px]"
+              className="w-[220px] h-[200px] border-[5px] "
             />
           )}
           {!image && (
             <div
               style={{
-                width: "300px",
+                width: "220px",
                 height: "200px",
                 backgroundColor: "#c9e8ec",
                 border: "1px solid #389BA7",
+                borderRadius: "5px",
               }}
             />
           )}
@@ -193,11 +194,11 @@ export const EditParent = () => {
           <input
             type="file"
             onChange={handleChangeImg}
-            className="text-[#389BA7]"
+            className="text-[#389BA7] text-[14px] ml-[50px]"
           />
           <Button
             onClick={uploadImage}
-            className="bg-[#389BA7] text-[#fff] w-full"
+            className="bg-[#389BA7] text-[#fff] rounded-[5px] w-full"
           >
             {loading ? "Loading" : "Submit"}{" "}
           </Button>
