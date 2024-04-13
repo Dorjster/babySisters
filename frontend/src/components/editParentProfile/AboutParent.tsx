@@ -17,6 +17,9 @@ import { useData } from "@/context/userProvider";
 import VerifiedIcon from '@mui/icons-material/Verified';
 import { AxiosInstance } from "@/utils/axiosInstance";
 import AdsClickIcon from '@mui/icons-material/AdsClick';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useRouter } from "next/navigation";
 
 const locations = [
   { label: "Улаанбаатар" },
@@ -56,11 +59,14 @@ interface UserVerifyData {
 export const AboutParent = (props: About) => {
   const { hamndleLoc, handlechild, handleChange } = props;
   const { loggedInUserData } = useData()
+  const { push } = useRouter()
 
   const [error, setError] = useState()
   const [userData, setUserData] = useState<UserVerifyData>({
     verificationCode: ""
   });
+
+  
 
 
   const handleVerifyChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -73,6 +79,8 @@ export const AboutParent = (props: About) => {
   };
 
 
+
+
   const handleVerifyUser = async () => {
     try {
       const { data } = await AxiosInstance.post<UserVerifyData>("/verifyUser", {
@@ -80,8 +88,23 @@ export const AboutParent = (props: About) => {
         verificationCode: userData.verificationCode
         
       });
+      
+      // push("/edit-profile")
 
-      window.location.href = "/edit-profile";
+
+      toast.success('Амжилттай баталгаажлаа!', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+
+      window.location.replace("/edit-profile");
+
   
       return data;
     } catch (error: any) {
@@ -122,8 +145,10 @@ export const AboutParent = (props: About) => {
               className="w-[120px] border-[1px] h-[40px] p-2  rounded-2xl text-gray-800 border-zinc-200"
               type="text"
               placeholder="Нууц үг"
-            />
-            <button className="w-[60px] h-[40px] rounded-xl bg-[#60ADB7] text-white" onClick={handleVerifyUser}><AdsClickIcon/></button>
+              />
+              <button className="w-[60px] h-[40px] rounded-xl bg-[#60ADB7] text-white" onClick={handleVerifyUser}><AdsClickIcon /></button>
+              <ToastContainer/>
+              
           </div>
 
           {error && (
