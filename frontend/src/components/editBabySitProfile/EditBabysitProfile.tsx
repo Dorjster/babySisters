@@ -17,6 +17,7 @@ import { AxiosInstance } from "@/utils/axiosInstance";
 import { Button } from "../ui";
 import { StepButton } from "@mui/material";
 import { useData } from "@/context/userProvider";
+import { Gender } from "../filter/Gender";
 
 type stateType = {
   image: string;
@@ -32,6 +33,7 @@ type stateType = {
   wage: number;
   schedule: Schedule;
   verificationCode: string;
+  gender: boolean
 };
 
 type Schedule = {
@@ -64,6 +66,7 @@ export const EditBabysitProfile = () => {
     wage: 0,
     schedule: {},
     verificationCode: "",
+    gender: false
   });
 
   const click = (day: string, timeValue: string) => {
@@ -236,6 +239,7 @@ export const EditBabysitProfile = () => {
         character: userdata.character,
         available_time: userdata.schedule,
         wage: userdata.wage,
+        gender: userdata.gender
       });
 
       console.log("User updated successfully:", response.data);
