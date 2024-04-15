@@ -15,7 +15,11 @@ import AdsClickIcon from '@mui/icons-material/AdsClick';
 import { AxiosInstance } from "@/utils/axiosInstance";
 import { useData } from "@/context/userProvider";
 import VerifiedIcon from '@mui/icons-material/Verified';
-
+import { Label } from "@/components/ui/label"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { RadioGroupIndicatorProps, RadioGroupItemProps, RadioGroupProps, RadioProps } from "@radix-ui/react-radio-group";
+import { ProfileType } from "../../..";
+ 
 
 const locations = [
   { label: "Улаанбаатар" },
@@ -52,6 +56,20 @@ type About = {
 interface UserVerifyData {
   verificationCode?: string;
 }
+
+// type GenderData = {
+//   result: ProfileType[] & any;
+//   babysitterId: string;
+// };
+
+
+interface GenderData {
+  gender?: boolean;
+}
+
+
+
+
 export const AboutMe = (props: About) => {
   const { loggedInUserData}= useData()
   const { hamndleLoc, handleChange } = props;
@@ -60,7 +78,6 @@ export const AboutMe = (props: About) => {
   const [userData, setUserData] = useState<UserVerifyData>({
     verificationCode: ""
   });
-  
 
   const handleVerifyChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -89,13 +106,24 @@ export const AboutMe = (props: About) => {
   };
 
 
+  // const [genderData, setGenderData] = useState<GenderData | null>(null)({
+  //   gender: false
+  // });
+
+  const [genderData, setGenderData] = useState<GenderData>({
+   gender: false
+  });
+
+
+  // const handleClick = () => {
+  //   setGenderData()
+  // }
+
+
   return (
     <div className="flex flex-col gap-4 mt-[45px]">
       <h3 className="text-2xl font-medium text-gray-700">Миний тухай</h3>
       <div className="flex flex-col gap-[45px] ">
-
-        
-
         {loggedInUserData?.verification === true ?
           <div>
               <p className="text-gray-600 text-base font-[500] mb-[15px]">
@@ -180,6 +208,20 @@ export const AboutMe = (props: About) => {
             className="w-[100%] rounded-2xl text-gray-500 text-lg border-zinc-200 "
             type="date"
           />
+        </div>
+
+        <div>
+          <div className="text-gray-600 text-base font-[500] mb-[15px]">Хүйс</div>
+             <RadioGroup defaultValue="comfortable">
+              <div className="flex items-center space-x-2">
+              <RadioGroupItem value="comfortable" id="r2" onClick={() => setGenderData(genderData)}/>
+                <Label htmlFor="r2" className="text-gray-500 text-lg">Эрэгтэй</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="compact" id="r3" onClick={() => setGenderData(genderData)}/>
+                <Label htmlFor="r3" className="text-gray-500 text-lg">Эмэгтэй</Label>
+              </div>
+            </RadioGroup>
         </div>
       </div>
     </div>
