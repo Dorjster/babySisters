@@ -27,7 +27,7 @@ export default function RatingSlider({ onChange }: RatingSliderProps) {
       <Slider
         className="text-[#389BA7] h-[8px]"
         aria-label="Small steps"
-        defaultValue={2}
+        defaultValue={0}
         onChange={handleChange}
         getAriaValueText={valuetext}
         step={0.5}

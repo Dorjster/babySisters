@@ -13,36 +13,43 @@ export const getAllBabySittersQuery = async (req: Request) => {
     language = [],
     address = "",
   } = req.body;
-  console.log(req.body, "asd");
 
   try {
-    let query = {};
-    let asd = {};
-
-    if (Object.keys(req.body).length > 0) {
-      query = {
-        $or: [
-          { year_of_experience: year_of_experience },
-          { education: education },
-          { character: { $in: character } },
-          { skills: { $in: skills } },
-          { language: { $in: language } },
-          { wage: { $gte: minWage, $lte: maxWage } },
-          // { car: additional.includes("hasCar") },
-          // { driver_license: additional.includes("driver") },
-          // { has_children: additional.includes("hasChildren") },
-          // { smoker: additional.includes("nonSmoker") },
-        ],
-      };
+    if (
+      !minWage &&
+      !maxWage &&
+      !year_of_experience &&
+      !education &&
+      character.length === 0 &&
+      additional.length === 0 &&
+      skills.length === 0 &&
+      language.length === 0 &&
+      !address
+    ) {
+      const allBabysitters = await BabysitterModel.find().populate("info_id");
+      return allBabysitters.filter((babysitter) => babysitter.info_id !== null);
     }
 
-    // Use the query in the find method
+    let query = {
+      $or: [
+        { year_of_experience: year_of_experience },
+        { education: education },
+        { character: { $in: character } },
+        { skills: { $in: skills } },
+        { language: { $in: language } },
+        { wage: { $gte: minWage, $lte: maxWage } },
+        // { car: additional.includes("hasCar") },
+        // { driver_license: additional.includes("driver") },
+        // { has_children: additional.includes("hasChildren") },
+        // { smoker: additional.includes("nonSmoker") },
+      ],
+    };
+
     const babysitters = await BabysitterModel.find().populate({
       path: "info_id",
       match: { ...query },
     });
 
-    // Filter out babysitters with null info_id
     const filteredBabysitters = babysitters.filter(
       (babysitter) => babysitter.info_id !== null
     );

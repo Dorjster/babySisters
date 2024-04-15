@@ -10,7 +10,7 @@ interface SliderProps {
   onChange: (value: number | number[]) => void;
 }
 export default function DiscreteSliderSteps({ onChange }: SliderProps) {
-  const [sliderValue, setSliderValue] = useState<number>(2);
+  const [sliderValue, setSliderValue] = useState<number>(0);
 
   const handleChange = (
     event: Event | React.SyntheticEvent,

@@ -40,7 +40,7 @@ export const Card: React.FC<CardProps> = ({
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowSkeleton(false);
-    }, 1800);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, []);

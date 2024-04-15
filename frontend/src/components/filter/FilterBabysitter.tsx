@@ -10,7 +10,7 @@ import { Education } from "./Education";
 import { Info } from "./Info";
 import { Wage } from "./Wage";
 import RatingSlider from "./Rating";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { AxiosInstance } from "@/utils/axiosInstance";
 
@@ -31,7 +31,7 @@ export type stateType = {
 };
 
 export const FilterBabysitter = () => {
-  const [sliderValue, setSliderValue] = useState<number>(2);
+  const [sliderValue, setSliderValue] = useState<number>(0);
   const { filterData, setFilterData } = useFilterData();
   // const [filterdata, setFilterdata] = useState<stateType>({
   //   location: "Улаанбаатар",
@@ -53,7 +53,7 @@ export const FilterBabysitter = () => {
     setFilterData({ ...filterData, year_of_experience: value });
   };
 
-  const [sliderRatingValue, setSliderRatingValue] = useState<number>(2);
+  const [sliderRatingValue, setSliderRatingValue] = useState<number>(0);
 
   const handleSliderRatingChange = (value: number | number[]) => {
     setSliderRatingValue(value as number);
@@ -147,11 +147,28 @@ export const FilterBabysitter = () => {
     }));
   };
 
+  const clearFilters = () => {
+    setFilterData({
+      location: "",
+      language: [],
+      education: "",
+      character: [],
+      year_of_experience: 0,
+      additional: [],
+      skills: [],
+      wage: "",
+      rating: 0,
+      minWage: 0,
+      maxWage: 0,
+    });
+    window.location.reload();
+  };
+
   return (
     <div className="w-[400px] h-[900px] bg-slate-50 p-10 gap-5 rounded-xl md:grid hidden pr-20 overflow-hidden hover:overflow-y-scroll  ">
       <div className="grid gap-3">
         <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-          Цалин
+          Цалин ₮
         </p>
         <Wage onChange={handleWageChange} />
       </div>
@@ -238,9 +255,12 @@ export const FilterBabysitter = () => {
         </p>
         <Info selectedItems={selectedItems} onChange={handleInfoChange} />
       </div>
-      {/* <button className="bg-[#389BA7] cursor-pointer text-white rounded-[20px] py-2 sticky bottom-1">
+      <button
+        onClick={clearFilters}
+        className="bg-[#389BA7] cursor-pointer text-white rounded-[20px] py-2 sticky bottom-1"
+      >
         clear{" "}
-      </button> */}
+      </button>
     </div>
   );
 };

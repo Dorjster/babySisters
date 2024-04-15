@@ -71,7 +71,6 @@ export const Wage: React.FC<WageProps> = ({ onChange }) => {
         [name]: !prevSelectedRanges[name],
       };
 
-      // Calculate the selected min and max values
       const selectedRangesValues = Object.entries(updatedSelectedRanges)
         .filter(([key, value]) => value)
         .map(([key]) => {
@@ -111,7 +110,7 @@ export const Wage: React.FC<WageProps> = ({ onChange }) => {
                   }}
                 />
               }
-              label={`${range.min}-с ${range.max}`}
+              label={`${range.min} - ${range.max}`}
             />
           ))}
         </FormGroup>
