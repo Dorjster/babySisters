@@ -22,7 +22,7 @@ export const Footer = () => {
     <div
       className={`${
         pathname === "/"
-          ? " relative bottom-0 left-0 bg-[#c9e8ec]  w-screen h-full md:px-[120px] flex flex-col justify-center items-center text-black gap-[45px] px-[100px] py-[50px] "
+          ? " relative bottom-0 left-0 bg-[#c9e8ec] dark:bg-[#4D565E]   w-screen h-full md:px-[120px] flex flex-col justify-center items-center text-black gap-[45px] px-[100px] py-[50px] "
           : "hidden"
       }`}
     >
@@ -31,7 +31,7 @@ export const Footer = () => {
           <Link
             href={href}
             key={index}
-            className={`cursor-default ${
+            className={`cursor-default dark:text-white ${
               pathname === href
                 ? "text-[#389BA7] hover:text-[#008291]"
                 : "black hover:text-black"
@@ -51,7 +51,7 @@ export const Footer = () => {
           />
         </div>
       </div>
-      <hr className="w-full border-white" />
+      <hr className="w-full border-white dark:border-slate-500" />
 
       <div>
         <RadioGroupRating />
