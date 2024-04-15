@@ -44,7 +44,7 @@ export const FilterDataProvider: React.FC<FilterDataProviderProps> = ({
     additional: [],
     skills: [],
     wage: [],
-    rating: 2,
+    rating: 0,
     minWage: 0,
     maxWage: 0,
   });
