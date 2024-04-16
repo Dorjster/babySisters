@@ -4,3 +4,4 @@ export * from "./forgot-password";
 export * from "./parent";
 export * from "./review";
 export * from "./message";
+export * from "./time";

@@ -25,6 +25,7 @@ import {
 } from "@radix-ui/react-radio-group";
 import { ProfileType } from "../../..";
 import { stateType } from "./EditBabysitProfile";
+import { useRouter } from "next/navigation";
 
 const locations = [
   { label: "Улаанбаатар" },
@@ -75,7 +76,7 @@ interface GenderData {
 export const AboutMe = (props: About) => {
   const { getData } = props;
   const { loggedInUserData } = useData();
-
+  const { push } = useRouter();
   const { hamndleLoc, handleChange } = props;
 
   const [error, setError] = useState();
@@ -98,8 +99,11 @@ export const AboutMe = (props: About) => {
         userId: loggedInUserData._id,
         verificationCode: userData.verificationCode,
       });
+      // location.reload();
+      
 
-      window.location.href = "/edit-profile";
+      // push("/edit-profile");
+      window.location.href = ("/edit-profile");
 
       return data;
     } catch (error: any) {

@@ -10,12 +10,14 @@ export const Profiles = () => {
   const { push } = useRouter();
   const { loggedInUserData } = useData();
   const { isLoggedIn } = useData();
+  console.log(isLoggedIn);
+  
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (isLoggedIn === false) {
       push("/");
     }
-  }, [isLoggedIn, push]);
+  }, [isLoggedIn]);
 
   const renderEditComponent = () => {
     if (loggedInUserData.role === "BabySitter") {
