@@ -63,7 +63,7 @@ export const FilterParent = () => {
   };
 
   return (
-    <div className="w-[300px]  bg-slate-50 p-10 md:grid hidden gap-5 rounded-xl h-fit sticky top-[20%]">
+    <div className="w-[300px] dark:bg-[#4D565E]  bg-slate-50 p-10 md:grid hidden gap-5 rounded-xl h-fit sticky top-[20%]">
       <div className="grid gap-3">
         <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
           Цалин

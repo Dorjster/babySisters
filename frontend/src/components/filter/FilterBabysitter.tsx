@@ -165,7 +165,7 @@ export const FilterBabysitter = () => {
   };
 
   return (
-    <div className="w-[400px] h-[900px] bg-slate-50 p-10 gap-5 rounded-xl md:grid hidden pr-20 overflow-hidden hover:overflow-y-scroll  ">
+    <div className="w-[400px] h-[900px] dark:bg-[#4D565E] bg-slate-50 p-10 gap-5 rounded-xl md:grid hidden pr-20 overflow-hidden hover:overflow-y-scroll  ">
       <div className="grid gap-3">
         <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
           Цалин ₮

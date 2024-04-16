@@ -115,17 +115,17 @@ export const AboutParent = (props: About) => {
   
   return (
     <div className="flex flex-col gap-4 mt-[45px]">
-      <h3 className="text-2xl font-medium text-gray-700">Миний тухай</h3>
+      <h3 className="text-2xl font-medium text-gray-700 dark:text-white">Миний тухай</h3>
       <div className="flex flex-col gap-[45px] ">
 
      {loggedInUserData?.verification === true ?
           <div>
-              <p className="text-gray-600 text-base font-[500] mb-[15px]">
+              <p className="text-gray-600 text-base font-[500] mb-[15px] dark:text-white">
                 Баталгаажуулах хэсэг
               </p>
              
              <div className="text-[#60ADB7] flex gap-1">
-              <div className="text-[16px] font-semibold">Баталгаажсан</div>
+              <div className="text-[16px] font-semibold dark:text-white">Баталгаажсан</div>
               <VerifiedIcon />
           </div>
 
@@ -133,20 +133,20 @@ export const AboutParent = (props: About) => {
         
           :
           <div>
-             <p className="text-gray-600 text-base font-[500] mb-[15px]">
+             <p className="text-gray-600 text-base font-[500] mb-[15px] dark:text-white">
             Баталгаажуулах хэсэг
           </p>
         
 
-          <div className="flex gap-4 items-center">
+          <div className="flex gap-4 items-center ">
             <input
               name="verificationCode"
               onChange={handleVerifyChange}
-              className="w-[120px] border-[1px] h-[40px] p-2  rounded-2xl text-gray-800 border-zinc-200"
+              className="w-[120px] border-[1px] h-[40px] p-2  rounded-2xl text-gray-800 dark:text-white border-zinc-200"
               type="text"
               placeholder="Нууц үг"
               />
-              <button className="w-[60px] h-[40px] rounded-xl bg-[#60ADB7] text-white" onClick={handleVerifyUser}><AdsClickIcon /></button>
+              <button className="w-[60px] h-[40px] dark:text-white rounded-xl bg-[#60ADB7] text-white" onClick={handleVerifyUser}><AdsClickIcon /></button>
               <ToastContainer/>
               
           </div>
@@ -164,28 +164,28 @@ export const AboutParent = (props: About) => {
 
 
         <div>
-          <p className="text-gray-600 text-base font-[500] mb-[15px]">
+          <p className="text-gray-600 text-base font-[500] dark:text-white  mb-[15px]">
             Гэр бүлийнхээ талаар товч мэдээллийг бичнэ үү
           </p>
           <textarea
             name="about"
             onChange={handleChange}
-            className="w-[100%] h-[130px] rounded-2xl border-zinc-200 border-[1px] p-3 "
+            className="w-[100%] h-[130px] rounded-2xl border-zinc-200 border-[1px] dark:text-white p-3 "
           />
         </div>
         <div>
-          <p className="text-gray-600 text-base font-[500] mb-[15px]">Хаяг</p>
+          <p className="text-gray-600 text-base font-[500] mb-[15px] dark:text-white">Хаяг</p>
           <Select onValueChange={hamndleLoc}>
-            <SelectTrigger className="w-[100%] border-zinc-200 rounded-2xl text-gray-500 ">
+            <SelectTrigger className="w-[100%] border-zinc-200 rounded-2xl text-gray-500 dark:text-white ">
               <SelectValue
                 placeholder="Улаанбаатар"
                 defaultValue="Улаанбаатар"
               />
             </SelectTrigger>
             <SelectContent>
-              <SelectGroup>
+              <SelectGroup >
                 {locations.map((el, index) => (
-                  <SelectItem key={index} value={el.label}>
+                  <SelectItem className="dark:text-black" key={index} value={el.label}>
                     {el.label}
                   </SelectItem>
                 ))}
@@ -194,14 +194,14 @@ export const AboutParent = (props: About) => {
           </Select>
         </div>
         <div>
-          <p className="text-gray-600 text-base font-[500] mb-[15px]">
+          <p className="text-gray-600 text-base font-[500] mb-[15px] dark:text-white">
             Хүүхдийн тоо
           </p>
           <Select onValueChange={handlechild}>
-            <SelectTrigger className="w-[100%] border-zinc-200 rounded-2xl text-gray-500 ">
+            <SelectTrigger className="w-[100%] border-zinc-200 rounded-2xl dark:text-white text-gray-500 ">
               <SelectValue placeholder="1" defaultValue="1" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="dark:text-black">
               <SelectItem value="1">1</SelectItem>
               <SelectItem value="2">2</SelectItem>
               <SelectItem value="3">3</SelectItem>

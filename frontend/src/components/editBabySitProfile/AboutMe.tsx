@@ -122,16 +122,16 @@ export const AboutMe = (props: About) => {
 
   return (
     <div className="flex flex-col gap-4 mt-[45px]">
-      <h3 className="text-2xl font-medium text-gray-700">Миний тухай</h3>
+      <h3 className="text-2xl font-medium text-gray-700 dark:text-white">Миний тухай</h3>
       <div className="flex flex-col gap-[45px] ">
         {loggedInUserData?.verification === true ?
           <div>
-              <p className="text-gray-600 text-base font-[500] mb-[15px]">
+              <p className="text-gray-600 text-base font-[500]  dark:text-white mb-[15px] ">
                 Баталгаажуулах хэсэг
               </p>
              
              <div className="text-[#60ADB7] flex gap-1">
-              <div className="text-[16px] font-semibold">Баталгаажсан</div>
+              <div className="text-[16px] font-semibold dark:text-white">Баталгаажсан</div>
               <VerifiedIcon />
           </div>
 
@@ -139,7 +139,7 @@ export const AboutMe = (props: About) => {
         
           :
           <div>
-             <p className="text-gray-600 text-base font-[500] mb-[15px]">
+             <p className="text-gray-600 text-base font-[500] mb-[15px] dark:text-white">
             Баталгаажуулах хэсэг
           </p>
         
@@ -148,7 +148,7 @@ export const AboutMe = (props: About) => {
             <input
               name="verificationCode"
               onChange={handleVerifyChange}
-              className="w-[120px] border-[1px] h-[40px] p-2  rounded-2xl text-gray-800 border-zinc-200"
+              className="w-[120px] border-[1px] h-[40px] p-2 dark:text-white  rounded-2xl text-gray-800 border-zinc-200"
               type="text"
               placeholder="Нууц үг"
             />
@@ -156,12 +156,12 @@ export const AboutMe = (props: About) => {
           </div>
 
           {error && (
-            <p className="text-[12px] text-red-500  font-sans-serif">
+            <p className="text-[12px] text-red-500  font-sans-serif dark:text-white">
               {error}
             </p>
           )}
 
-          <p className="text-gray-300">
+          <p className="text-gray-300 dark:text-white">
             Таны имэйл хаяг руу илгээсэн нууц үгийг хийснээр таны хаяг баталгаажих болно.
           </p>
         </div>}
@@ -169,26 +169,26 @@ export const AboutMe = (props: About) => {
      
         
         <div>
-          <p className="text-gray-600 text-base font-[500] mb-[15px]">
+          <p className="text-gray-600 text-base font-[500] mb-[15px] dark:text-white">
             Өөрийнхөө тухай товч мэдээллийг бичнэ үү
           </p>
           <textarea
             name="about"
             onChange={handleChange}
-            className="w-[100%] h-[130px] rounded-2xl border-zinc-200 border-[1px] p-3 "
+            className="w-[100%] h-[130px] rounded-2xl border-zinc-200 dark:text-white border-[1px] p-3 "
           />
         </div>
         <div>
-          <p className="text-gray-600 text-base font-[500] mb-[15px]">Хаяг</p>
+          <p className="text-gray-600 text-base font-[500] mb-[15px] dark:text-white">Хаяг</p>
           <Select onValueChange={hamndleLoc}>
-            <SelectTrigger className="w-[100%] border-zinc-200 rounded-2xl text-gray-500 ">
+            <SelectTrigger className="w-[100%] border-zinc-200 rounded-2xl text-gray-500 dark:text-white ">
               <SelectValue
                 placeholder="Улаанбаатар"
                 defaultValue="Улаанбаатар"
               />
             </SelectTrigger>
             <SelectContent>
-              <SelectGroup>
+              <SelectGroup className="dark:text-black">
                 {locations.map((el, index) => (
                   <SelectItem key={index} value={el.label}>
                     {el.label}
@@ -199,13 +199,13 @@ export const AboutMe = (props: About) => {
           </Select>
         </div>
         <div>
-          <p className="text-gray-600 text-base font-[500] mb-[15px]">
+          <p className="text-gray-600 text-base font-[500] mb-[15px] dark:text-white">
             Төрсөн өдөр
           </p>
           <Input
             name="birthdate"
             onChange={handleChange}
-            className="w-[100%] rounded-2xl text-gray-500 text-lg border-zinc-200 "
+            className="w-[100%] rounded-2xl text-gray-500 text-lg border-zinc-200 dark:text-white "
             type="date"
           />
         </div>

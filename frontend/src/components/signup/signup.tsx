@@ -78,7 +78,7 @@ export const Signup = () => {
     }
   };
   return (
-    <div>
+    <div className="dark:bg-[#31393F] h-screen md:py-[100px]">
       {page === 1 && (
         <div className="relative">
           <div className="absolute md:left-[20%] left-0 top-14">
@@ -87,7 +87,7 @@ export const Signup = () => {
 
           <div className="flex p-20 items-center justify-center h-[550px] gap-1 md:gap-8">
             <Button
-              className="border-[1px] border-[#c9e8ec] rounded-[20px] md:px-6 py-6 hover:bg-[#c9e8ec]"
+              className="border-[1px] border-[#c9e8ec] rounded-[20px] md:px-6 py-6  dark:hover:bg-[#4D565E] hover:bg-[#c9e8ec]"
               onClick={() => {
                 setPage(2);
               }}
@@ -95,7 +95,7 @@ export const Signup = () => {
               Эцэг эхээр бүртгүүлэх
             </Button>
             <Button
-              className="  rounded-[20px] md:px-6 py-6 border-[1px] border-[#c9e8ec] hover:bg-[#c9e8ec]"
+              className="  rounded-[20px] md:px-6 py-6 border-[1px] border-[#c9e8ec] dark:hover:bg-[#4D565E] hover:bg-[#c9e8ec]"
               onClick={() => {
                 setPage(3);
               }}

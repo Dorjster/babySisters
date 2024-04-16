@@ -6,6 +6,7 @@ import { Header } from "@/components/Header";
 import { Roboto } from "next/font/google";
 import { DataProvider } from "@/context/userProvider";
 import { FilterDataProvider } from "@/context/filterProvider";
+import { ThemeProvider } from "next-themes";
 
 // Dem Font
 const roboto = Roboto({
@@ -24,18 +25,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      {" "}
+    <html lang="en" className="dark">
       <body>
-        {" "}
         <div className={roboto.className}>
-          <DataProvider>
-            <FilterDataProvider>
-              <Header />
-              {children}
-              <Footer />
-            </FilterDataProvider>
-          </DataProvider>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem >
+            <DataProvider>
+              <FilterDataProvider>
+                <Header />
+
+                {children}
+                <Footer />
+              </FilterDataProvider>
+            </DataProvider>
+          </ThemeProvider>
         </div>
       </body>
     </html>

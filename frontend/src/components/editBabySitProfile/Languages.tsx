@@ -39,10 +39,10 @@ export const Languages = (props: All) => {
   return (
     <div className="flex flex-col gap-[45px] ">
       <div>
-        <p className="text-gray-600 text-base font-[500] mb-[15px]">
+        <p className="text-gray-600 text-base font-[500] mb-[15px] dark:text-white">
           Таны эзэмшсэн хэл?
         </p>
-        <div className="flex gap-3 ">
+        <div className="md:flex md:gap-3  flex flex-wrap gap-4  ">
           {languages.map((el, index) => (
             <div
               key={index}
@@ -50,11 +50,11 @@ export const Languages = (props: All) => {
                 handleLan(el);
                 handleClickButton(index);
               }}
-              className={`py-1 px-2 text-sm rounded-xl flex gap-2 bg-[#F6F9FA] items-center  ${
+              className={`py-1 px-2 text-sm rounded-xl dark:bg-[#389BA7] flex gap-2 bg-[#F6F9FA] items-center  ${
                 buttonStates[index] ? "bg-[#c9e8ec]  " : ""
               }`}
             >
-              <button className="text-gray-700">{el}</button>
+              <button className="text-gray-700 dark:text-white ">{el}</button>
               {buttonStates[index] ? (
                 <CloseIcon
                   className="w-[14px] h-[14px] cursor-pointer"
@@ -70,15 +70,15 @@ export const Languages = (props: All) => {
         </div>
       </div>
       <div>
-        <p className="text-gray-600 text-base font-[500] mb-[15px]">
+        <p className="text-gray-600 text-base font-[500] mb-[15px] dark:text-white">
           Таны боловсролын зэрэг?
         </p>
         <Select onValueChange={handleEdu}>
-          <SelectTrigger className="w-[100%] border-zinc-200 rounded-2xl text-gray-500 ">
+          <SelectTrigger className="w-[100%] border-zinc-200 dark:text-white rounded-2xl text-gray-500 ">
             <SelectValue placeholder="Боловсролын зэрэгээ сонгоно уу" />
           </SelectTrigger>
           <SelectContent>
-            <SelectGroup>
+            <SelectGroup className="dark:text-black">
               <SelectItem value="Бүрэн">Бүрэн</SelectItem>
               <SelectItem value="Бүрэн дунд">Бүрэн дунд</SelectItem>
               <SelectItem value="Бакалавр">Бакалавр</SelectItem>

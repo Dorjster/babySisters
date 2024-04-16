@@ -26,10 +26,10 @@ export const AgeChildren = (props: All) => {
   return (
     <div>
       <div className="">
-        <p className="text-gray-600 text-base font-[500] mb-[15px]">
+        <p className="text-gray-600 text-base font-[500] mb-[15px] dark:text-white">
           Хүүхдүүдийн нас
         </p>
-        <div className="flex gap-3 ">
+        <div className="md:flex md:gap-3 flex flex-wrap gap-4 ">
           {ages.map((el, index) => (
             <div
               key={index}
@@ -37,11 +37,11 @@ export const AgeChildren = (props: All) => {
                 handleCount(el);
                 handleClickButton(index);
               }}
-              className={`py-1 px-2 text-sm rounded-xl flex gap-2 bg-[#F6F9FA] items-center  ${
+              className={`py-1 px-2 text-sm rounded-xl dark:bg-[#389BA7] flex gap-2 bg-[#F6F9FA] items-center  ${
                 buttonStates[index] ? "bg-[#c9e8ec]  " : ""
               }`}
             >
-              <button className="text-gray-700">{el}</button>
+              <button className="text-gray-700 dark:text-white">{el}</button>
               {buttonStates[index] ? (
                 <CloseIcon
                   className="w-[14px] h-[14px] cursor-pointer"

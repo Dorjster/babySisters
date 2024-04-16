@@ -102,7 +102,8 @@ export default function AnchorTemporaryDrawer(props: any) {
   };
 
   return (
-    <Stack padding={""}>
+    <div className="" >
+  
       {(["right"] as const).map((anchor) => (
         <React.Fragment key={anchor}>
           <Button
@@ -116,14 +117,14 @@ export default function AnchorTemporaryDrawer(props: any) {
             open={state[anchor]}
             onClose={toggleDrawer(anchor, false)}
           >
-            <Stack height={"100vw"} width={"400px"}>
-              <Stack px={4} py="29px" direction={"row"} bgcolor={"#dcf2f5"}>
+            <div className="h-screen w-[400px] dark:bg-[#434C54] ">
+              <Stack className="dark:bg-[#31393F] " px={4} py="29px" direction={"row"} bgcolor={"#dcf2f5"}>
                 <div onClick={toggleDrawer(anchor, false)}>
-                  <ArrowBackIosIcon className="text-[#389BA7] justify-start" />
+                  <ArrowBackIosIcon className="text-[#389BA7] justify-start"  />
                 </div>
 
                 <Typography
-                  className="text-[#323940]"
+                  className="text-[#323940] dark:text-white "
                   sx={{
                     marginLeft: "120px",
                     fontSize: "20px",
@@ -147,7 +148,7 @@ export default function AnchorTemporaryDrawer(props: any) {
                     <Link href="/login">
                       <p
                         onClick={toggleDrawer(anchor, false)}
-                        className="font-bold underline underline-offset-1 cursor-default"
+                        className="font-bold underline underline-offset-1 cursor-default dark:text-white"
                       >
                         Нэвтрэх
                       </p>
@@ -160,6 +161,7 @@ export default function AnchorTemporaryDrawer(props: any) {
                         <Image
                           src={loggedInUserData.image}
                           alt=""
+                          
                           width={200}
                           height={200}
                         />
@@ -172,7 +174,7 @@ export default function AnchorTemporaryDrawer(props: any) {
                     <Link href="/edit-profile">
                       <p
                         onClick={toggleDrawer(anchor, false)}
-                        className="font-bold underline underline-offset-1 cursor-pointer"
+                        className="font-bold underline underline-offset-1 cursor-pointer dark:text-slate-300"
                       >
                         Хувийн мэдээлэл
                       </p>
@@ -180,21 +182,21 @@ export default function AnchorTemporaryDrawer(props: any) {
                   </div>
                 )}
               </Stack>
-              <div className="flex flex-col justify-center items-center gap-10 text-[16px] font-[400] text-gray-700   ">
+              <div className="flex flex-col justify-center items-center gap-10 text-[16px] font-[400]  text-gray-700   ">
                 {navigationItems.map(({ href, label }, index) => (
-                  <button
+                  <button 
                     onClick={() => {
                       handlePush(href);
                       toggleDrawer(anchor, false);
                     }}
-                    key={index}
-                    className={`cursor-pointer ${
+                    key={index} 
+                    className={`cursor-pointer  ${
                       pathname === href
                         ? "text-[#389BA7] hover:text-[#008291]"
-                        : "black hover:text-black"
+                        : "black hover:text-black " 
                     }`}
                   >
-                    <div className="bg-[#F7F9FA] p-3 rounded-[20px] flex items-center justify-center w-[300px] hover:bg-[#e3e7e8]">
+                    <div className="bg-[#F7F9FA] p-3 rounded-[20px] flex items-center dark:text-white justify-center w-[300px] dark:bg-[#407980] hover:bg-[#e3e7e8]">
                       {label}
                     </div>
                   </button>
@@ -203,17 +205,17 @@ export default function AnchorTemporaryDrawer(props: any) {
               <div>
                 <button
                   onClick={handleOpen}
-                  className="flex items-center justify-center w-full p-10 font-bold text-[16px] cursor-pointer"
+                  className="flex items-center justify-center w-full p-10 font-bold text-[16px] cursor-pointer dark:text-white"
                 >
                   Гарах
                 </button>
-                <Modal
+                <Modal className=""
                   open={open}
                   onClose={handleClose}
                   aria-labelledby="modal-modal-title"
                   aria-describedby="modal-modal-description"
                 >
-                  <Box sx={style}>
+                  <Box className="dark:bg-[#4D565E]" sx={style}>
                     <Typography
                       id="modal-modal-description"
                       sx={{ mt: 1, fontSize: "20px" }}
@@ -235,10 +237,10 @@ export default function AnchorTemporaryDrawer(props: any) {
                   </Box>
                 </Modal>
               </div>
-            </Stack>
+            </div>
           </Drawer>
         </React.Fragment>
       ))}
-    </Stack>
+    </div>
   );
 }

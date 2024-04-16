@@ -10,7 +10,10 @@ import PersonIcon from "@mui/icons-material/Person";
 import Button from "@mui/material/Button";
 import { useRouter } from "next/navigation";
 import { useData } from "@/context/userProvider";
-import { bgcolor } from "@mui/system";
+import { useEffect } from "react";
+import { useTheme } from "next-themes";
+import { IoSunnyOutline } from "react-icons/io5";
+import { RxMoon } from "react-icons/rx";
 
 // Navigation -----
 type navigationItem = {
@@ -56,8 +59,8 @@ export const Header = () => {
   const router = useRouter();
   const pathname = usePathname();
   const { push } = useRouter();
-
   const [TemporaryDrawer, setDrawer] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   const handleDrawer = () => {
     setDrawer(!TemporaryDrawer);
@@ -71,14 +74,14 @@ export const Header = () => {
     <div
       className={`${
         pathname === "/"
-          ? "flex justify-between items-center py-6 bg-[#c9e8ec]   sticky top-0 md:z-30"
-          : "flex justify-between items-center py-6 bg-[white] border-b-[0.5px] border-gray-300  sticky top-0 md:z-30"
+          ? "flex justify-between items-center py-6 bg-[#c9e8ec] dark:bg-[#4D565E]  sticky top-0 md:z-30"
+          : "flex justify-between items-center py-6 bg-[white] dark:bg-[#4D565E] dark:border-slate-500  border-b-[0.5px] border-gray-300  sticky top-0 md:z-30"
       }`}
     >
       <div className="flex  ml-[30px] ">
         <Image
           src="/babysits.logo.png"
-          alt="home.logo"
+          alt="home.logo  "
           width={107}
           height={61}
           onClick={() => {
@@ -87,7 +90,7 @@ export const Header = () => {
           className="cursor-pointer"
         />
       </div>
-      <div className="md:flex justify-center items-center gap-10 text-[16px] font-[400] text-gray-700 hidden">
+      <div className="md:flex justify-center items-center gap-10 text-[16px] font-[400] dark:text-[#E3E8EC] text-gray-700 hidden">
         {navigationItems.map(({ href, label }, index) => (
           <button
             // href={href}
@@ -96,7 +99,7 @@ export const Header = () => {
             style={{ cursor: "pointer" }}
             className={`cursor-pointer ${
               pathname === href
-                ? "text-[#389BA7] hover:text-[#008291]"
+                ? "text-[#389BA7]  hover:text-[#008291]"
                 : "black hover:text-black"
             }`}
           >
@@ -104,8 +107,16 @@ export const Header = () => {
           </button>
         ))}
       </div>
+
       {isLoggedIn ? (
-        <div className="flex justify-end items-center gap-4 md:">
+        <div className="flex justify-end items-center md:gap-4 ">
+          <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+            {theme === "dark" ? (
+              <RxMoon size={22} className="text-[#008291]" fillRule="evenodd"/>
+            ) : (
+              <IoSunnyOutline size={22} className=" text-secondary" fillRule="evenodd"/>
+            )}
+          </button>
           <Button
             onClick={() => {
               push("/edit-profile");
@@ -122,44 +133,38 @@ export const Header = () => {
               marginRight: "30px",
             }}
           >
-            {" "}
-            <PersonIcon sx={{ fontSize: "30px", color: "#389BA7" }} />
+            <PersonIcon sx={{ fontSize: "30px", color: "#389BA7" ,   }} fillRule="evenodd" />
             {loggedInUserData.name}
           </Button>
           <AnchorTemporaryDrawer />
         </div>
       ) : (
-        <div className="flex justify-end items-center gap-4 cursor-pointer ">
-          {/* Old Login Button ----- */}
-          {/* <button
-            onClick={() => router.push("/login")}
-            className="text-[16px] font-[400] cursor-pointer text-[#4d565e] md:flex hidden hover:text-black"
-          >
-            Нэвтрэх
-            <hr
-              style={{
-                color: "red",
-                backgroundColor: "red",
-                border: "0.5px solid gray",
-              }}
-            />
-          </button> */}
-
-          {/* New Login Button ----- */}
+        <div className="flex justify-end items-center md:gap-4 cursor-pointer ">
           {navigationLogin.map(({ href, label }, index) => (
-            <button
-              // href={href}
-              onClick={() => handlePush(href)}
-              key={index}
-              style={{ cursor: "pointer" }}
-              className={`cursor-pointer ${
-                pathname === href
-                  ? "text-[#389BA7] hover:text-[#008291]"
-                  : "black hover:text-black"
-              }`}
-            >
-              {label}
-            </button>
+            <div key={index} className="flex  gap-8">
+              <button
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              >
+                {theme === "dark" ? (
+                  <RxMoon size={22} className="text-white" fillRule="evenodd"/>
+                ) : (
+                  <IoSunnyOutline size={22} className="text-black"  fillRule="evenodd"/>
+                )}
+              </button>
+              <button
+                // href={href}
+                onClick={() => handlePush(href)}
+                key={index}
+                style={{ cursor: "pointer" }}
+                className={`cursor-pointer ${
+                  pathname === href
+                    ? "text-[#389BA7] hover:text-[#008291]"
+                    : "black hover:text-black"
+                }`}
+              >
+                {label}
+              </button>
+            </div>
           ))}
           <button
             onClick={() => router.push("/signup")}

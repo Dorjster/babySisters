@@ -29,12 +29,12 @@ export const ScheduleBaby = (props: ScheduleProps) => {
 
 
     return (
-      <div>
+      <div className="">
 
         <p className="text-gray-600 text-base font-[500] mb-[15px]">
           Ажиллах боломжтой цаг
         </p>
-        <Table className="w-[900px] h-[250px]">
+        <Table className="w-[900px] overflow-x-scroll  h-[250px]">
           <TableHeader>
             <TableRow>
               <TableHead className="text-gray-700">Цаг/Гариг</TableHead>

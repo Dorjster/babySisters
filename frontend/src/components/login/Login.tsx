@@ -76,7 +76,7 @@ export const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center py-14 mt-[100px] mb-[350px]">
+    <div className="flex items-center justify-center py-14  mb-[350px] h-screen dark:bg-[#31393F]">
       <Card className="w-[450px] h-fit divide-y-2 ">
         <CardHeader className="">
           <CardTitle className="text-center text-[26px] font-[500]">
@@ -122,14 +122,14 @@ export const Login = () => {
             </p>
           )}
           <div className="  flex justify-center gap-[10px] text-[black] mt-[10px]">
-            <p>Шинэ хэрэглэгч үүсгэх?</p>
+            <p className="dark:text-white">Шинэ хэрэглэгч үүсгэх?</p>
             <button
               onClick={() => {
                 push("/signup");
               }}
-              className="font-semibold"
+              className="font-semibold dark:text-slate-400"
             >
-              {" "}
+            
               Бүртгүүлэх
             </button>
           </div>
