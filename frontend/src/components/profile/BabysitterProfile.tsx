@@ -39,7 +39,7 @@ export const BabysitterProfile = (props: All) => {
   const { loggedInUserData } = useData();
   const [comment, setComment] = useState("");
   const [reviewValue, setReviewValue] = useState<number | null>(null);
-  console.log(loggedInUserData, "aa");
+  console.log(result, "aa");
 
   const sendComment = async () => {
     try {
@@ -75,10 +75,10 @@ export const BabysitterProfile = (props: All) => {
   const review = result[0].review;
 
   return (
-    <div className="bg-gradient-to-b m-auto   h-fit md:flex-row md:gap-[130px]  flex flex-col-reverse md:py-32 justify-center py-10 px-2">
+    <div className="bg-gradient-to-b m-auto dark:bg-[#31393F]   h-fit md:flex-row md:gap-[130px]  flex flex-col-reverse md:py-32 justify-center py-10 px-2">
       <div className="mt-[30px] md:w-[60%] md:mt-0">
         <div className="flex border-b-[0.5px] flex-col gap-4 border-gray-600 pb-[40px]">
-          <p className="text-[28px] text-gray-900 ">Миний тухай</p>
+          <p className="text-[28px] text-gray-900 dark:text-white ">Миний тухай</p>
           <p className="overflow-wrap break-word">{result[0]?.about}</p>
           <div className="flex gap-6 pt-4">
             <div className="flex md:gap-8 gap-3">
@@ -137,10 +137,11 @@ export const BabysitterProfile = (props: All) => {
         <div className="py-24">
           <CheckedSchedule />
         </div>
-        <div className="flex flex-wrap gap-8 border-t-[0.5px] border-gray-600 py-10">
+        <div className="flex flex-wrap gap-8 border-t-[0.5px]  border-gray-600 py-10 ">
+          
           {review.map((el: ReviewType, index: number) => (
             <div
-              className="flex flex-col gap-4 bg-[#EDF7F8] w-[380px] rounded-2xl p-4"
+              className="flex flex-col gap-4 bg-[#EDF7F8] w-[380px] dark:bg-[#434C54] rounded-2xl p-4"
               key={index}
             >
               <div className="flex justify-between">
@@ -148,10 +149,10 @@ export const BabysitterProfile = (props: All) => {
                   <div className="flex items-center justify-center">
                     <Image
                       className="rounded-full w-[40px] h-[40px]"
-                      src={loggedInUserData.image}
+                      src={result[0]?.image}
                       height={30}
                       width={30}
-                      alt="photo"
+                      alt=""
                     />
                   </div>
                   <h1 className="text-[16px] text-gray-700 font-medium">
@@ -232,7 +233,7 @@ export const BabysitterProfile = (props: All) => {
               )}
             </div>
           </div>
-          <div className="flex gap-4 bg-[#edf7f8] items-center justify-center rounded-2xl py-2 px-4 mt-[20px]">
+          <div className="flex gap-4 bg-[#edf7f8]  items-center justify-center rounded-2xl py-2 px-4 mt-[20px]">
             {info?.smoker === false && (
               <MdOutlineSmokeFree className="h-6 w-6 text-[#008291]" />
             )}
@@ -246,7 +247,7 @@ export const BabysitterProfile = (props: All) => {
           </div>
         </div>
 
-        <div className="bg-[#edf7f8] w-fill flex flex-col gap-3 rounded-2xl px-2 py-4 md:sticky md:top-24 ">
+        <div className="bg-[#edf7f8] dark:bg-[#434C54] w-fill flex flex-col gap-3 rounded-2xl px-2 py-4 md:sticky md:top-24 ">
           <h1 className="text-[20px] flex gap-1 items-center justify-center">
             <TbCurrencyTugrik />
             {info?.wage}/цагт

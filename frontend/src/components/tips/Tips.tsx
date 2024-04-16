@@ -15,7 +15,7 @@ function useParallax(value: MotionValue<number>, distance: number) {
   return useTransform(value, [0, 1], [-distance, distance]);
 }
 
-function Image({ id }: { id: number }) {
+function Images({ id }: { id: number }) {
   const text = [
     {
       idText: 6,
@@ -93,7 +93,7 @@ export default function Tips() {
   return (
     <>
       {[6, 7, 8, 9, 10, 11, 12].map((id) => (
-        <Image key={id} id={id} />
+        <Images key={id} id={id} />
       ))}
 
       <motion.div className="progress" style={{ scaleX }} />

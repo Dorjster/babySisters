@@ -5,9 +5,7 @@ import SitDrawer from "@/components/Drawer/sitDrawer";
 
 export default function babysitter() {
   return (
-    <div className="md:px-[120px] py-10 md:flex-row md:gap-10 dark:bg-[#31393F] h-fill flex flex-col ">
-      
-
+    <div className="py-10 md:flex-row md:gap-10 dark:bg-[#31393F] h-screen flex flex-col px-5 gap-4 md:px-20">
       <FilterBabysitter />
       <SitDrawer/>
       <HomeProfile />

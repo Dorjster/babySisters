@@ -28,10 +28,11 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body>
         <div className={roboto.className}>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem >
             <DataProvider>
               <FilterDataProvider>
                 <Header />
+
                 {children}
                 <Footer />
               </FilterDataProvider>

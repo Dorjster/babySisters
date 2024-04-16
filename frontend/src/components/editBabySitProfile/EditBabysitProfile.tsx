@@ -248,79 +248,76 @@ export const EditBabysitProfile = () => {
     }
   };
   return (
-    <Container
-      sx={{
-        marginTop: "60px",
-        marginBottom: "100px",
-      }}
-    >
-      <div
-        className="flex gap-[300px] p-[80px] 
+    <div className="flex flex-col place-items-center  md:px-20 py-12 px-10 dark:bg-[#31393F]">
+      <div className="flex flex-col place-items-start">
+        <div
+          className="md:flex-row md:max-w-[1100px] flex flex-col  justify-items-start gap-12
       "
-      >
-        <div className="w-[220px]  object-fit flex flex-col items-center  gap-3 mb-[50px]">
-          {image && (
-            <Image
-              src={image ? URL.createObjectURL(image[0]) : ""}
-              alt=""
-              width={220}
-              height={200}
-              className="w-[220px] h-[200px] border-[5px]"
-            />
-          )}
-          {!image && (
-            <div
-              style={{
-                width: "220px",
-                height: "200px",
-                backgroundColor: "#c9e8ec",
-                border: "1px solid #389BA7 ",
-                borderRadius: "5px",
-              }}
-            />
-          )}
+        >
+          <div className="w-[220px] gap-7 flex flex-col items-center  ">
+            {image && (
+              <Image
+                src={image ? URL.createObjectURL(image[0]) : ""}
+                alt=""
+                width={220}
+                height={200}
+                className="w-[220px] h-[200px] border-[5px]"
+              />
+            )}
+            {!image && (
+              <div
+                style={{
+                  width: "220px",
+                  height: "200px",
+                  backgroundColor: "#c9e8ec",
+                  border: "1px solid #389BA7 ",
+                  borderRadius: "5px",
+                }}
+              />
+            )}
 
-          <input
-            type="file"
-            onChange={handleChangeImg}
-            className="text-[#389BA7] text-[14px] ml-[50px]"
-          />
-          <Button
-            onClick={uploadImage}
-            className="bg-[#389BA7] text-[#fff] rounded-[5px] w-full"
-          >
-            {loading ? "Loading" : "Submit"}{" "}
-          </Button>
+            <input
+              type="file"
+              onChange={handleChangeImg}
+              className="text-[#389BA7] text-[14px] ml-[50px]"
+            />
+            <Button
+              onClick={uploadImage}
+              className="bg-[#389BA7] text-[#fff] rounded-[5px] w-full"
+            >
+              {loading ? "Loading" : "Submit"}{" "}
+            </Button>
+          </div>
+          <General />
         </div>
-        <General />
-      </div>
 
-      <hr />
-      <div className="flex flex-col gap-[45px] mb-[80px]">
-        <AboutMe
-          handleChange={handleChange}
-          hamndleLoc={handleLocationChange}
-        />
-        <Languages handleLan={handleLan} handleEdu={handleEdu} />
-        <Character handleChar={handleChar} />
+        <hr />
+        <div className="flex flex-col gap-[45px] mb-[80px] ">
+          <AboutMe
+            handleChange={handleChange}
+            hamndleLoc={handleLocationChange}
+          />
+          <Languages handleLan={handleLan} handleEdu={handleEdu} />
+          <Character handleChar={handleChar} />
+        </div>
+        <hr />
+        <div className=" flex flex-col gap-[25px] ">
+          <Experience handleExp={handleExp} />
+          <AddInformation handleAdd={handleAdd} />
+          <Skill handleSki={handleSki} />
+        </div>
+        <hr />
+        <div className="mt-[50px] flex flex-col gap-[45px] mb-[50px]">
+          <Condition handleChange={handleChange} />
+        </div>
+        {/* <ScheduleBaby handleClick={click} /> */}
+        <button
+          onClick={handleUpdate}
+          className="w-[100%] bg-[#389BA7] text-white rounded-3xl font-[400] text-[20px] mt-[65px] h-[40px] max-w-[400px] self-center"
+        >
+          Хадгалах
+        </button>
       </div>
-      <hr />
-      <div className="mt-[50px] flex flex-col gap-[45px] mb-[70px]">
-        <Experience handleExp={handleExp} />
-        <AddInformation handleAdd={handleAdd} />
-        <Skill handleSki={handleSki} />
-      </div>
-      <hr />
-      <div className="mt-[50px] flex flex-col gap-[45px] mb-[50px]">
-        <Condition handleChange={handleChange} />
-      </div>
-      <ScheduleBaby handleClick={click} />
-      <button
-        onClick={handleUpdate}
-        className="w-[100%] bg-[#389BA7] text-white rounded-3xl font-[400] text-[20px] mt-[65px] h-[40px]"
-      >
-        Хадгалах
-      </button>
-    </Container>
+    </div>
   );
 };

@@ -26,20 +26,20 @@ export const CheckedSchedule = (props: any) => {
     return (
         <div>
     
-        <p className="text-gray-600 text-base font-[500] mb-[15px]">
+        <p className="text-gray-600 text-base font-[500] mb-[15px] dark:text-white">
             Ажиллах боломжтой цаг
         </p>
         <Table className="w-[900px] h-[250px]">
             <TableHeader>
-            <TableRow>
-                <TableHead className="text-gray-700">Цаг/Гариг</TableHead>
-                <TableHead className="text-gray-700">Даваа</TableHead>
-                <TableHead className="text-gray-700">Мягмар</TableHead>
-                <TableHead className="text-gray-700">Лхагва</TableHead>
-                <TableHead className="text-gray-700">Пүрэв</TableHead>
-                <TableHead className="text-gray-700">Баасан</TableHead>
-                <TableHead className="text-gray-700">Бямба</TableHead>
-                <TableHead className="text-gray-700">Ням</TableHead>
+            <TableRow  >
+                <TableHead className="text-gray-700 dark:text-white">Цаг/Гариг</TableHead>
+                <TableHead className="text-gray-700 dark:text-white" >Даваа</TableHead>
+                <TableHead className="text-gray-700 dark:text-white" >Мягмар</TableHead>
+                <TableHead className="text-gray-700 dark:text-white" >Лхагва</TableHead>
+                <TableHead className="text-gray-700 dark:text-white" >Пүрэв</TableHead>
+                <TableHead className="text-gray-700 dark:text-white" >Баасан</TableHead>
+                <TableHead className="text-gray-700 dark:text-white" >Бямба</TableHead>
+                <TableHead className="text-gray-700 dark:text-white" >Ням</TableHead>
             </TableRow>
             </TableHeader>
             <TableBody>

@@ -45,7 +45,7 @@ const HomeProfile: React.FC = () => {
   };
 
   return (
-    <div className=" h-fit w-screen gap-[25px]  flex  flex-wrap p-10">
+    <div className=" h-fit w-screen gap-10 flex flex-wrap ">
       {babysitterData.map((babysitter) => (
         <div
           key={babysitter._id}

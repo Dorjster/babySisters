@@ -81,7 +81,7 @@ export const Header = () => {
       <div className="flex  ml-[30px] ">
         <Image
           src="/babysits.logo.png"
-          alt="home.logo"
+          alt="home.logo  "
           width={107}
           height={61}
           onClick={() => {
@@ -109,7 +109,14 @@ export const Header = () => {
       </div>
 
       {isLoggedIn ? (
-        <div className="flex justify-end items-center gap-4 md:">
+        <div className="flex justify-end items-center md:gap-4 ">
+          <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+            {theme === "dark" ? (
+              <RxMoon size={22} className="text-[#008291]" fillRule="evenodd"/>
+            ) : (
+              <IoSunnyOutline size={22} className=" text-secondary" fillRule="evenodd"/>
+            )}
+          </button>
           <Button
             onClick={() => {
               push("/edit-profile");
@@ -126,22 +133,22 @@ export const Header = () => {
               marginRight: "30px",
             }}
           >
-            <PersonIcon sx={{ fontSize: "30px", color: "#389BA7" }} />
+            <PersonIcon sx={{ fontSize: "30px", color: "#389BA7" ,   }} fillRule="evenodd" />
             {loggedInUserData.name}
           </Button>
           <AnchorTemporaryDrawer />
         </div>
       ) : (
-        <div className="flex justify-end items-center gap-4 cursor-pointer ">
+        <div className="flex justify-end items-center md:gap-4 cursor-pointer ">
           {navigationLogin.map(({ href, label }, index) => (
-            <div className="flex  gap-8">
+            <div key={index} className="flex  gap-8">
               <button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               >
                 {theme === "dark" ? (
-                  <RxMoon size={22} className="text-white" />
+                  <RxMoon size={22} className="text-white" fillRule="evenodd"/>
                 ) : (
-                  <IoSunnyOutline size={22} className="text-black" />
+                  <IoSunnyOutline size={22} className="text-black"  fillRule="evenodd"/>
                 )}
               </button>
               <button
