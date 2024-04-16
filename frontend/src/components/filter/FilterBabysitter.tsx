@@ -25,7 +25,7 @@ export type stateType = {
   additional: string | string[];
   skills: string[];
   wage: string | string[];
-
+  address: string;
   minWage: number;
   maxWage: number;
 };
@@ -72,7 +72,7 @@ export const FilterBabysitter = () => {
   );
 
   const handleLocationChange = (label: string) => {
-    setFilterData({ ...filterData, location: label });
+    setFilterData({ ...filterData, address: label });
   };
 
   const handleSki = (value: string) => {
@@ -150,7 +150,6 @@ export const FilterBabysitter = () => {
 
   const clearFilters = () => {
     setFilterData({
-      location: "",
       language: [],
       education: "",
       character: [],
@@ -158,7 +157,7 @@ export const FilterBabysitter = () => {
       additional: [],
       skills: [],
       wage: "",
-
+      address: "",
       minWage: 0,
       maxWage: 0,
     });

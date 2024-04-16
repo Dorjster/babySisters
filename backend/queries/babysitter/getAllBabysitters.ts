@@ -26,11 +26,12 @@ export const getAllBabySittersQuery = async (req: Request) => {
     let query: Query = {};
     let search = {};
 
-    if (address || verification) {
+    if (address) {
       search = {
-        $or: [{ address: address }, { verification: verification }],
+        $or: [{ address: address }],
       };
     }
+    console.log(search);
 
     if (
       minWage ||
@@ -39,8 +40,7 @@ export const getAllBabySittersQuery = async (req: Request) => {
       education ||
       character.length > 0 ||
       skills.length > 0 ||
-      language.length > 0 ||
-      address
+      language.length > 0
     ) {
       query = {
         $or: [
@@ -64,7 +64,7 @@ export const getAllBabySittersQuery = async (req: Request) => {
       );
     }
 
-    console.log("Constructed query:", query);
+    // console.log("Constructed query:", query, search);
 
     const babysitters = await BabysitterModel.find(search).populate({
       path: "info_id",
