@@ -107,95 +107,75 @@ export const Header = () => {
           </button>
         ))}
       </div>
-
-      {isLoggedIn ? (
-        <div className="flex justify-end items-center  gap-4 ">
-          <Button
-            onClick={() => {
-              push("/edit-profile");
-            }}
-            sx={{
-              fontWeight: "700px",
-              color: "#389BA7",
-              fontSize: "20px",
-              height: "20px",
-              width: "100px",
-              px: "20px",
-              display: "flex",
-              gap: "20px",
-              marginRight: "30px",
-            }}
-          >
-            {" "}
-            <div className="flex gap-3">
-              <button
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              >
-                {theme === "dark" ? (
-                  <RxMoon
-                    size={22}
-                    className="text-[#008291]"
-                    fillRule="evenodd"
-                  />
-                ) : (
-                  <IoSunnyOutline
-                    size={22}
-                    className=" text-secondary"
-                    fillRule="evenodd"
-                  />
-                )}
-              </button>
+      <div className="flex justify-between md:gap-10">
+        {" "}
+        <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+          {theme === "dark" ? (
+            <RxMoon size={22} className="text-[#008291]" fillRule="evenodd" />
+          ) : (
+            <IoSunnyOutline
+              size={22}
+              className=" text-secondary"
+              fillRule="evenodd"
+            />
+          )}
+        </button>
+        {isLoggedIn ? (
+          <div className="flex justify-end items-center md:gap-4 ">
+            <Button
+              onClick={() => {
+                push("/edit-profile");
+              }}
+              sx={{
+                fontWeight: "700px",
+                color: "#389BA7",
+                fontSize: "20px",
+                height: "20px",
+                width: "100px",
+                px: "20px",
+                display: "flex",
+                gap: "20px",
+                marginRight: "30px",
+              }}
+            >
               <PersonIcon
                 sx={{ fontSize: "30px", color: "#389BA7" }}
                 fillRule="evenodd"
               />
-            </div>
-            {loggedInUserData.name}
-          </Button>
-          <AnchorTemporaryDrawer />
-        </div>
-      ) : (
-        <div className="flex justify-end items-center md:gap-4 cursor-pointer ">
-          {navigationLogin.map(({ href, label }, index) => (
-            <div key={index} className="flex   gap-8">
-              <button
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              >
-                {theme === "dark" ? (
-                  <RxMoon size={22} className="text-white" fillRule="evenodd" />
-                ) : (
-                  <IoSunnyOutline
-                    size={22}
-                    className="text-black"
-                    fillRule="evenodd"
-                  />
-                )}
-              </button>
-              <button
-                // href={href}
-                onClick={() => handlePush(href)}
-                key={index}
-                style={{ cursor: "pointer" }}
-                className={`cursor-pointer ${
-                  pathname === href
-                    ? "text-[#389BA7] hover:text-[#008291]"
-                    : "black hover:text-black"
-                }`}
-              >
-                {label}
-              </button>
-            </div>
-          ))}
-          <button
-            onClick={() => router.push("/signup")}
-            className="text-[16px] cursor-pointer font-[400] p-2 text-white  rounded-[15px] bg-[#389BA7] md:flex hidden hover:bg-[#008291]"
-          >
-            Бүртгүүлэх
-          </button>
+              {loggedInUserData.name}
+            </Button>
+            <AnchorTemporaryDrawer />
+          </div>
+        ) : (
+          <div className="flex justify-end items-center md:gap-4 cursor-pointer ">
+            {navigationLogin.map(({ href, label }, index) => (
+              <div key={index} className="flex   gap-8">
+                <button
+                  // href={href}
+                  onClick={() => handlePush(href)}
+                  key={index}
+                  style={{ cursor: "pointer" }}
+                  className={`cursor-pointer ${
+                    pathname === href
+                      ? "text-[#389BA7] hover:text-[#008291]"
+                      : "black hover:text-black"
+                  }`}
+                >
+                  {label}
+                </button>
+              </div>
+            ))}
+            <button
+              onClick={() => router.push("/signup")}
+              className="text-[16px] cursor-pointer font-[400] p-2 text-white  rounded-[15px] bg-[#389BA7] md:flex hidden hover:bg-[#008291]"
+            >
+              Бүртгүүлэх
+            </button>
 
-          <AnchorTemporaryDrawer />
-        </div>
-      )}
+            <AnchorTemporaryDrawer />
+          </div>
+        )}
+      </div>
     </div>
   );
 };

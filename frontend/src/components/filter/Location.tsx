@@ -19,7 +19,7 @@ export function LocationSelect(props: All) {
         <SelectValue placeholder="Улаанбаатар" defaultValue="Улаанбаатар" />
       </SelectTrigger>
       <SelectContent className="z-50">
-        <SelectGroup>
+        <SelectGroup className="dark:text-black">
           {locations.map((el, index) => (
             <SelectItem key={index} value={el.label}>
               {el.label}
