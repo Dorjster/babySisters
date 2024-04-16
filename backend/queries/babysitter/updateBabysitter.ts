@@ -18,7 +18,7 @@ export const updateBabysitterQuery = async (req: Request) => {
       newPassword = "",
       address,
       about,
-      gender = "",
+      gender,
       image,
       verification = "",
       driver_license,
@@ -62,6 +62,7 @@ export const updateBabysitterQuery = async (req: Request) => {
           about: about,
           //   gender: gender,
           image: image,
+          gender: gender,
           //   verification: verification,
         },
       },
@@ -100,6 +101,7 @@ export const updateBabysitterQuery = async (req: Request) => {
       babysitter: updatedBabysitter,
       info: updatedInfo,
     };
+    console.log(populatedBabysitterInfo);
 
     if (updatedInfo && updatedBabysitter) {
       return populatedBabysitterInfo;

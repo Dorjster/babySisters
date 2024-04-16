@@ -34,6 +34,7 @@ export type stateType = {
   wage: number;
   schedule: Schedule;
   verificationCode: string;
+  gender: string;
 };
 
 type Schedule = {
@@ -252,6 +253,9 @@ export const EditBabysitProfile = () => {
       setLoading(false);
     }
   };
+  const handleGenderChange = (gen: string) => {
+    setUserdata({ ...userdata, gender: gen });
+  };
 
   const handleUpdate = async () => {
     try {
@@ -272,6 +276,7 @@ export const EditBabysitProfile = () => {
         character: userdata.character,
         available_time: userdata.schedule,
         wage: userdata.wage,
+        gender: userdata.gender,
       });
 
       console.log("User updated successfully:", response.data);
@@ -352,13 +357,9 @@ export const EditBabysitProfile = () => {
         <AboutMe
           handleChange={handleChange}
           hamndleLoc={handleLocationChange}
-          getData={getData}
+          onGenderChange={handleGenderChange}
         />
-        <Languages
-          getData={getData}
-          handleLan={handleLan}
-          handleEdu={handleEdu}
-        />
+        <Languages handleLan={handleLan} handleEdu={handleEdu} />
         <Character handleChar={handleChar} />
       </div>
       <hr />

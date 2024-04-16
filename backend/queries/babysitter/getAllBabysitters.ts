@@ -19,15 +19,18 @@ export const getAllBabySittersQuery = async (req: Request) => {
     skills = [],
     language = [],
     address = "",
+    verification = "",
   } = req.body;
 
   try {
     let query: Query = {};
     let search = {};
 
-    // search = {
-    //   $or: [{ address: "Улаанбаатар" }],
-    // };
+    if (address || verification) {
+      search = {
+        $or: [{ address: address }, { verification: verification }],
+      };
+    }
 
     if (
       minWage ||
@@ -63,7 +66,7 @@ export const getAllBabySittersQuery = async (req: Request) => {
 
     console.log("Constructed query:", query);
 
-    const babysitters = await BabysitterModel.find().populate({
+    const babysitters = await BabysitterModel.find(search).populate({
       path: "info_id",
       match: { ...query },
     });

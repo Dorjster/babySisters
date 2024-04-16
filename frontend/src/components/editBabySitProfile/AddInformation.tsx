@@ -2,12 +2,7 @@ import React from "react";
 import { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 
-const informations = [
-  "Жолооны үнэмлэхтэй",
-  "Машинтай",
-  "Хүүхэдтэй",
-  "Тамхи татдаг",
-];
+const informations = ["Жолооны үнэмлэхтэй", "Машинтай", "Хүүхэдтэй"];
 
 type All = {
   handleAdd: (value: string) => void;
