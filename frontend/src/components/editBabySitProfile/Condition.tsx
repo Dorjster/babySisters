@@ -31,7 +31,7 @@ export const Condition = (props: All) => {
             /цаг
           </div>
         </div>
-        <p className="text-gray-300">
+        <p className="text-gray-200">
           Бусад хүүхэд асрагч нарын үнэлгээ: 5,000₮ - 30,000₮
         </p>
       </div>
