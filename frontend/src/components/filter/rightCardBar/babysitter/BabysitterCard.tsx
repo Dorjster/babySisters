@@ -59,6 +59,7 @@ const HomeProfile: React.FC = () => {
             wage={babysitter.info_id.wage}
             rating={babysitter.info_id.rating}
             about={babysitter.about || ""}
+            language={babysitter.info_id.language}
             driver={babysitter.info_id.driver_license}
             car={babysitter.info_id.car}
             smoker={babysitter.info_id.smoker}

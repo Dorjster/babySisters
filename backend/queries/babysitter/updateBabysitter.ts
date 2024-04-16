@@ -3,9 +3,9 @@ import { BabysitterModel, InfoModel } from "../../db";
 import {
   passwordHash,
   compareHash,
-  transformDataForAlgolia,
+  // transformDataForAlgolia,
 } from "../../utils";
-import { algoliaIndex } from "../../algogia/algolia";
+// import { algoliaIndex } from "../../algogia/algolia";
 
 export const updateBabysitterQuery = async (req: Request) => {
   try {
@@ -25,7 +25,7 @@ export const updateBabysitterQuery = async (req: Request) => {
       has_children,
       education,
       car,
-      smoker,
+      smoker = "",
       language,
       skills,
       year_of_experience,
@@ -91,10 +91,10 @@ export const updateBabysitterQuery = async (req: Request) => {
       { new: true }
     );
 
-    if (updatedInfo) {
-      const transformedData = transformDataForAlgolia(updatedInfo);
-      await algoliaIndex.saveObject(transformedData);
-    }
+    // if (updatedInfo) {
+    //   const transformedData = transformDataForAlgolia(updatedInfo);
+    //   await algoliaIndex.saveObject(transformedData);
+    // }
 
     const populatedBabysitterInfo = {
       babysitter: updatedBabysitter,

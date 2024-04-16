@@ -46,11 +46,11 @@ export const Info: React.FC<InfoProps> = ({ selectedItems, onChange }) => {
       id: "hasChildren",
       text: "Хүүхэдтэй",
     },
-    {
-      icon: <MdOutlineSmokeFree />,
-      id: "nonSmoker",
-      text: "Тамхи татдаггүй",
-    },
+    // {
+    //   icon: <MdOutlineSmokeFree />,
+    //   id: "nonSmoker",
+    //   text: "Тамхи татдаггүй",
+    // },
   ];
 
   const handleCheckboxChange = (id: string) => {

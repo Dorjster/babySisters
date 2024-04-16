@@ -25,7 +25,7 @@ export type stateType = {
   additional: string | string[];
   skills: string[];
   wage: string | string[];
-  rating: number | number[];
+
   minWage: number;
   maxWage: number;
 };
@@ -57,7 +57,7 @@ export const FilterBabysitter = () => {
 
   const handleSliderRatingChange = (value: number | number[]) => {
     setSliderRatingValue(value as number);
-    setFilterData({ ...filterData, rating: value });
+    // setFilterData({ ...filterData, rating: value });
   };
 
   const handleWageChange = useCallback(
@@ -105,10 +105,11 @@ export const FilterBabysitter = () => {
 
       return {
         ...prevUserData,
-        languages: updatedLan,
+        language: updatedLan, // Change 'languages' to 'language' here
       };
     });
   };
+
   const handleChar = (value: string) => {
     setFilterData((prevUserData) => {
       const isCharExist = prevUserData.character.includes(value);
@@ -157,7 +158,7 @@ export const FilterBabysitter = () => {
       additional: [],
       skills: [],
       wage: "",
-      rating: 0,
+
       minWage: 0,
       maxWage: 0,
     });
@@ -172,7 +173,7 @@ export const FilterBabysitter = () => {
         </p>
         <Wage onChange={handleWageChange} />
       </div>
-      <div className="grid gap-3">
+      {/* <div className="grid gap-3">
         <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
           Үнэлгээ
         </p>
@@ -181,7 +182,7 @@ export const FilterBabysitter = () => {
           <FaStar />
         </div>
         <RatingSlider onChange={handleSliderRatingChange} />
-      </div>
+      </div> */}
 
       <Separator />
 
@@ -259,7 +260,7 @@ export const FilterBabysitter = () => {
         onClick={clearFilters}
         className="bg-[#389BA7] cursor-pointer text-white rounded-[20px] py-2 sticky bottom-1"
       >
-        clear{" "}
+        Reset{" "}
       </button>
     </div>
   );

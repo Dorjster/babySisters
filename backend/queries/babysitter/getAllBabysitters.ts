@@ -1,5 +1,12 @@
 import { Request } from "express";
 import { BabysitterModel } from "../../db";
+import { loginFirst } from "../login";
+
+interface Query {
+  $or?: {
+    [key: string]: any;
+  }[];
+}
 
 export const getAllBabySittersQuery = async (req: Request) => {
   const {
@@ -15,35 +22,46 @@ export const getAllBabySittersQuery = async (req: Request) => {
   } = req.body;
 
   try {
+    let query: Query = {};
+    let search = {};
+
+    // search = {
+    //   $or: [{ address: "Улаанбаатар" }],
+    // };
+
     if (
-      !minWage &&
-      !maxWage &&
-      !year_of_experience &&
-      !education &&
-      character.length === 0 &&
-      additional.length === 0 &&
-      skills.length === 0 &&
-      language.length === 0 &&
-      !address
+      minWage ||
+      maxWage ||
+      year_of_experience ||
+      education ||
+      character.length > 0 ||
+      skills.length > 0 ||
+      language.length > 0 ||
+      address
     ) {
-      const allBabysitters = await BabysitterModel.find().populate("info_id");
-      return allBabysitters.filter((babysitter) => babysitter.info_id !== null);
+      query = {
+        $or: [
+          { language: { $in: language } },
+          { year_of_experience: year_of_experience },
+          { education: education },
+          { character: { $in: character } },
+          { skills: { $in: skills } },
+          { wage: { $gte: minWage, $lte: maxWage } },
+        ],
+      };
     }
 
-    let query = {
-      $or: [
-        { year_of_experience: year_of_experience },
-        { education: education },
-        { character: { $in: character } },
-        { skills: { $in: skills } },
-        { language: { $in: language } },
-        { wage: { $gte: minWage, $lte: maxWage } },
-        // { car: additional.includes("hasCar") },
-        // { driver_license: additional.includes("driver") },
-        // { has_children: additional.includes("hasChildren") },
-        // { smoker: additional.includes("nonSmoker") },
-      ],
-    };
+    if (additional.length > 0) {
+      query["$or"] = query["$or"] || [];
+      query["$or"].push(
+        { car: additional?.includes("hasCar") },
+        { driver_license: additional?.includes("driver") },
+        { has_children: additional?.includes("hasChildren") }
+        // { smoker: additional?.includes("nonSmoker") }
+      );
+    }
+
+    console.log("Constructed query:", query);
 
     const babysitters = await BabysitterModel.find().populate({
       path: "info_id",
