@@ -31,6 +31,7 @@ type All = {
 export const Languages = (props: All) => {
   const { handleLan, handleEdu, getData } = props;
   const [buttonStates, setButtonStates] = useState(languages.map(() => false));
+  console.log(getData, "aa");
 
   const handleClickButton = (index: number) => {
     const updatedButtonStates = [...buttonStates];
