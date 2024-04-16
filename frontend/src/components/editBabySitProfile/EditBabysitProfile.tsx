@@ -29,7 +29,7 @@ export type stateType = {
   about: string;
   address: string;
   birthdate: string;
-  languages: string[];
+  language: string[];
   education: string;
   character: string[];
   experience: string;
@@ -39,6 +39,9 @@ export type stateType = {
   schedule: Schedule;
   verificationCode: string;
   gender: boolean
+};
+export type infoType = {
+  info_id: string[];
 };
 
 type Schedule = {
@@ -62,7 +65,7 @@ export const EditBabysitProfile = () => {
       about: "",
       address: "Улаанбаатар",
       birthdate: "",
-      languages: [],
+      language: [],
       education: "",
       character: [],
       experience: "",
@@ -71,6 +74,7 @@ export const EditBabysitProfile = () => {
       wage: 0,
       schedule: {},
       verificationCode: "",
+      info_id: [],
     },
   ]);
   const [userdata, setUserdata] = useState<stateType>({
@@ -78,7 +82,7 @@ export const EditBabysitProfile = () => {
     about: "",
     address: "Улаанбаатар",
     birthdate: "",
-    languages: [],
+    language: [],
     education: "",
     character: [],
     experience: "",
@@ -174,13 +178,13 @@ export const EditBabysitProfile = () => {
   };
   const handleLan = (value: string) => {
     setUserdata((prevUserData) => {
-      const isLanExist = prevUserData.languages.includes(value);
+      const isLanExist = prevUserData.language.includes(value);
       let updatedLan;
 
       if (isLanExist) {
-        updatedLan = prevUserData.languages.filter((lan) => lan !== value);
+        updatedLan = prevUserData.language.filter((lan) => lan !== value);
       } else {
-        updatedLan = [...prevUserData.languages, value];
+        updatedLan = [...prevUserData.language, value];
       }
 
       return {
@@ -269,7 +273,7 @@ export const EditBabysitProfile = () => {
         car: userdata.additional.includes("Машинтай"),
         smoker: userdata.additional.includes("Тамхи татдаг"),
         education: userdata.education,
-        language: userdata.languages,
+        language: userdata.language,
         skills: userdata.skills,
         year_of_experience: userdata.experience,
         character: userdata.character,
