@@ -112,7 +112,7 @@ export const AboutMe = (props: About) => {
   // });
 
   const [genderData, setGenderData] = useState<GenderData>({
-    gender: false,
+    gender: "",
   });
 
   // const handleClick = () => {
