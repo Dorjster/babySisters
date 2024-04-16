@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Select,
   SelectContent,
@@ -8,7 +8,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useState } from "react";
-
+import { stateType } from "./EditBabysitProfile";
 import CloseIcon from "@mui/icons-material/Close";
 
 const languages = [
@@ -25,11 +25,14 @@ const languages = [
 type All = {
   handleLan: (value: string) => void;
   handleEdu: (value: string) => void;
+  getData: stateType[] & any;
 };
 
 export const Languages = (props: All) => {
-  const { handleLan, handleEdu } = props;
+  const { handleLan, handleEdu, getData } = props;
   const [buttonStates, setButtonStates] = useState(languages.map(() => false));
+  console.log(getData, "aa");
+
   const handleClickButton = (index: number) => {
     const updatedButtonStates = [...buttonStates];
     updatedButtonStates[index] = !updatedButtonStates[index];
@@ -42,31 +45,34 @@ export const Languages = (props: All) => {
         <p className="text-gray-600 text-base font-[500] mb-[15px] dark:text-white">
           Таны эзэмшсэн хэл?
         </p>
-        <div className="md:flex md:gap-3  flex flex-wrap gap-4  ">
-          {languages.map((el, index) => (
-            <div
-              key={index}
-              onClick={() => {
-                handleLan(el);
-                handleClickButton(index);
-              }}
-              className={`py-1 px-2 text-sm rounded-xl dark:bg-[#389BA7] flex gap-2 bg-[#F6F9FA] items-center  ${
-                buttonStates[index] ? "bg-[#c9e8ec]  " : ""
-              }`}
-            >
-              <button className="text-gray-700 dark:text-white ">{el}</button>
-              {buttonStates[index] ? (
-                <CloseIcon
-                  className="w-[14px] h-[14px] cursor-pointer"
-                  onClick={() => {
-                    handleClickButton(index);
-                  }}
-                />
-              ) : (
-                ""
-              )}
-            </div>
-          ))}
+        <div className="flex gap-3 ">
+          {languages.map((el, index) => {
+            const isHeKnown = getData[0]?.info_id[0]?.language.includes(el);
+            return (
+              <div
+                key={index}
+                onClick={() => {
+                  handleLan(el);
+                  handleClickButton(index);
+                }}
+                className={`py-1 px-2 text-sm rounded-xl flex gap-2 bg-[#F6F9FA] items-center  ${
+                  buttonStates[index] || isHeKnown ? "bg-[#c9e8ec]" : ""
+                }`}
+              >
+                <button className="text-gray-700">{el}</button>
+                {buttonStates[index] || isHeKnown ? (
+                  <CloseIcon
+                    className="w-[14px] h-[14px] cursor-pointer"
+                    onClick={() => {
+                      handleClickButton(index);
+                    }}
+                  />
+                ) : (
+                  ""
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
       <div>

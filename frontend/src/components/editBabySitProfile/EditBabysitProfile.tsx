@@ -17,14 +17,15 @@ import { AxiosInstance } from "@/utils/axiosInstance";
 import { Button } from "../ui";
 import { StepButton } from "@mui/material";
 import { useData } from "@/context/userProvider";
-import { Gender } from "../filter/Gender";
+import { error } from "console";
+import { get } from "http";
 
-type stateType = {
+export type stateType = {
   image: string;
   about: string;
-  location: string;
+  address: string;
   birthdate: string;
-  languages: string[];
+  language: string[];
   education: string;
   character: string[];
   experience: string;
@@ -33,7 +34,6 @@ type stateType = {
   wage: number;
   schedule: Schedule;
   verificationCode: string;
-  gender: boolean
 };
 
 type Schedule = {
@@ -51,13 +51,29 @@ export const EditBabysitProfile = () => {
   const [image, setImage] = useState<FileList | null>(null);
   const [accessUrl, setAccessUrl] = useState<string>("");
   const [loading, setLoading] = useState(false);
-
+  const [getData, setGetData] = useState([
+    {
+      image: "",
+      about: "",
+      address: "Улаанбаатар",
+      birthdate: "",
+      language: [],
+      education: "",
+      character: [],
+      experience: "",
+      additional: [],
+      skills: [],
+      wage: 0,
+      schedule: {},
+      verificationCode: "",
+    },
+  ]);
   const [userdata, setUserdata] = useState<stateType>({
     image: "",
     about: "",
-    location: "Улаанбаатар",
+    address: "Улаанбаатар",
     birthdate: "",
-    languages: [],
+    language: [],
     education: "",
     character: [],
     experience: "",
@@ -66,8 +82,23 @@ export const EditBabysitProfile = () => {
     wage: 0,
     schedule: {},
     verificationCode: "",
-    gender: false
   });
+
+  useEffect(() => {
+    const getInfo = async () => {
+      try {
+        const { data } = await AxiosInstance.post("/get/babysitter", {
+          id: loggedInUserData._id,
+        });
+
+        setGetData(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getInfo();
+  }, []);
+  console.log(getData, "profile");
 
   const click = (day: string, timeValue: string) => {
     setUserdata((prevUserData) => {
@@ -104,10 +135,9 @@ export const EditBabysitProfile = () => {
     const { name, value } = e.target;
     setUserdata({ ...userdata, [name]: value });
   };
-  console.log(userdata);
 
   const handleLocationChange = (label: string) => {
-    setUserdata({ ...userdata, location: label });
+    setUserdata({ ...userdata, address: label });
     console.log(label);
   };
   const handleEdu = (label: string) => {
@@ -138,13 +168,13 @@ export const EditBabysitProfile = () => {
   };
   const handleLan = (value: string) => {
     setUserdata((prevUserData) => {
-      const isLanExist = prevUserData.languages.includes(value);
+      const isLanExist = prevUserData.language.includes(value);
       let updatedLan;
 
       if (isLanExist) {
-        updatedLan = prevUserData.languages.filter((lan) => lan !== value);
+        updatedLan = prevUserData.language.filter((lan) => lan !== value);
       } else {
-        updatedLan = [...prevUserData.languages, value];
+        updatedLan = [...prevUserData.language, value];
       }
 
       return {
@@ -225,7 +255,7 @@ export const EditBabysitProfile = () => {
       const response = await AxiosInstance.post("/babysitter", {
         id: loggedInUserData._id,
         email: loggedInUserData.email,
-        address: userdata.location,
+        address: userdata.address,
         about: userdata.about,
         image: userdata.image,
         driver_license: userdata.additional.includes("Жолооны үнэмлэхтэй"),
@@ -233,13 +263,12 @@ export const EditBabysitProfile = () => {
         car: userdata.additional.includes("Машинтай"),
         smoker: userdata.additional.includes("Тамхи татдаг"),
         education: userdata.education,
-        language: userdata.languages,
+        language: userdata.language,
         skills: userdata.skills,
         year_of_experience: userdata.experience,
         character: userdata.character,
         available_time: userdata.schedule,
         wage: userdata.wage,
-        gender: userdata.gender
       });
 
       console.log("User updated successfully:", response.data);
@@ -248,76 +277,104 @@ export const EditBabysitProfile = () => {
     }
   };
   return (
-    <div className="flex flex-col place-items-center  md:px-20 py-12 px-10 dark:bg-[#31393F]">
-      <div className="flex flex-col place-items-start">
-        <div
-          className="md:flex-row md:max-w-[1100px] flex flex-col  justify-items-start gap-12
+    <Container
+      sx={{
+        marginTop: "60px",
+        marginBottom: "100px",
+      }}
+    >
+      <div
+        className="flex gap-[300px] p-[80px] 
       "
-        >
-          <div className="w-[220px] gap-7 flex flex-col items-center  ">
-            {image && (
-              <Image
-                src={image ? URL.createObjectURL(image[0]) : ""}
-                alt=""
-                width={220}
-                height={200}
-                className="w-[220px] h-[200px] border-[5px]"
-              />
-            )}
-            {!image && (
-              <div
-                style={{
-                  width: "220px",
-                  height: "200px",
-                  backgroundColor: "#c9e8ec",
-                  border: "1px solid #389BA7 ",
-                  borderRadius: "5px",
-                }}
-              />
-            )}
-
-            <input
-              type="file"
-              onChange={handleChangeImg}
-              className="text-[#389BA7] text-[14px] ml-[50px]"
+      >
+        <div className="w-[220px]  object-fit flex flex-col items-center  gap-3 mb-[50px]">
+          {getData[0].image && (
+            <Image
+              src={image ? URL.createObjectURL(image[0]) : getData[0].image}
+              alt=""
+              width={220}
+              height={200}
+              className="w-[220px] h-[200px] border-[5px]"
             />
-            <Button
-              onClick={uploadImage}
-              className="bg-[#389BA7] text-[#fff] rounded-[5px] w-full"
-            >
-              {loading ? "Loading" : "Submit"}{" "}
-            </Button>
-          </div>
-          <General />
-        </div>
+          )}
+          {!getData[0].image && (
+            <div
+              style={{
+                width: "220px",
+                height: "200px",
+                backgroundColor: "#c9e8ec",
+                border: "1px solid #389BA7 ",
+                borderRadius: "5px",
+              }}
+            />
+          )}
+          {/* {image && (
+            <Image
+              src={image ? URL.createObjectURL(image[0]) : ""}
+              alt=""
+              width={220}
+              height={200}
+              className="w-[220px] h-[200px] border-[5px]"
+            />
+          )} */}
+          {/* {!image && (
+            <div
+              style={{
+                width: "220px",
+                height: "200px",
+                backgroundColor: "#c9e8ec",
+                border: "1px solid #389BA7 ",
+                borderRadius: "5px",
+              }}
+            />
+          )} */}
 
-        <hr />
-        <div className="flex flex-col gap-[45px] mb-[80px] ">
-          <AboutMe
-            handleChange={handleChange}
-            hamndleLoc={handleLocationChange}
+          <input
+            type="file"
+            onChange={handleChangeImg}
+            className="text-[#389BA7] text-[14px] ml-[50px]"
           />
-          <Languages handleLan={handleLan} handleEdu={handleEdu} />
-          <Character handleChar={handleChar} />
+          <Button
+            onClick={uploadImage}
+            className="bg-[#389BA7] text-[#fff] rounded-[5px] w-full"
+          >
+            {loading ? "Loading" : "Submit"}{" "}
+          </Button>
         </div>
-        <hr />
-        <div className=" flex flex-col gap-[25px] ">
-          <Experience handleExp={handleExp} />
-          <AddInformation handleAdd={handleAdd} />
-          <Skill handleSki={handleSki} />
-        </div>
-        <hr />
-        <div className="mt-[50px] flex flex-col gap-[45px] mb-[50px]">
-          <Condition handleChange={handleChange} />
-        </div>
-        {/* <ScheduleBaby handleClick={click} /> */}
-        <button
-          onClick={handleUpdate}
-          className="w-[100%] bg-[#389BA7] text-white rounded-3xl font-[400] text-[20px] mt-[65px] h-[40px] max-w-[400px] self-center"
-        >
-          Хадгалах
-        </button>
+        <General />
       </div>
-    </div>
+
+      <hr />
+      <div className="flex flex-col gap-[45px] mb-[80px]">
+        <AboutMe
+          handleChange={handleChange}
+          hamndleLoc={handleLocationChange}
+          getData={getData}
+        />
+        <Languages
+          getData={getData}
+          handleLan={handleLan}
+          handleEdu={handleEdu}
+        />
+        <Character handleChar={handleChar} />
+      </div>
+      <hr />
+      <div className="mt-[50px] flex flex-col gap-[45px] mb-[70px]">
+        <Experience handleExp={handleExp} />
+        <AddInformation handleAdd={handleAdd} />
+        <Skill handleSki={handleSki} />
+      </div>
+      <hr />
+      <div className="mt-[50px] flex flex-col gap-[45px] mb-[50px]">
+        <Condition handleChange={handleChange} />
+      </div>
+      <ScheduleBaby handleClick={click} />
+      <button
+        onClick={handleUpdate}
+        className="w-[100%] bg-[#389BA7] text-white rounded-3xl font-[400] text-[20px] mt-[65px] h-[40px]"
+      >
+        Хадгалах
+      </button>
+    </Container>
   );
 };

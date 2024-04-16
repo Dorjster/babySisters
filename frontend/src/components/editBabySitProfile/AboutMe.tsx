@@ -11,15 +11,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import AdsClickIcon from '@mui/icons-material/AdsClick';
+import AdsClickIcon from "@mui/icons-material/AdsClick";
 import { AxiosInstance } from "@/utils/axiosInstance";
 import { useData } from "@/context/userProvider";
-import VerifiedIcon from '@mui/icons-material/Verified';
-import { Label } from "@/components/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { RadioGroupIndicatorProps, RadioGroupItemProps, RadioGroupProps, RadioProps } from "@radix-ui/react-radio-group";
+import VerifiedIcon from "@mui/icons-material/Verified";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import {
+  RadioGroupIndicatorProps,
+  RadioGroupItemProps,
+  RadioGroupProps,
+  RadioProps,
+} from "@radix-ui/react-radio-group";
 import { ProfileType } from "../../..";
- 
+import { stateType } from "./EditBabysitProfile";
 
 const locations = [
   { label: "Улаанбаатар" },
@@ -47,7 +52,7 @@ const locations = [
 
 type About = {
   hamndleLoc: (label: string) => void;
-
+  getData: stateType[] & any;
   handleChange: (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
@@ -62,21 +67,19 @@ interface UserVerifyData {
 //   babysitterId: string;
 // };
 
-
 interface GenderData {
   gender?: boolean;
 }
 
-
-
-
 export const AboutMe = (props: About) => {
-  const { loggedInUserData}= useData()
+  const { getData } = props;
+  const { loggedInUserData } = useData();
+
   const { hamndleLoc, handleChange } = props;
 
-  const [error, setError] = useState()
+  const [error, setError] = useState();
   const [userData, setUserData] = useState<UserVerifyData>({
-    verificationCode: ""
+    verificationCode: "",
   });
 
   const handleVerifyChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -88,86 +91,87 @@ export const AboutMe = (props: About) => {
     console.log(userData, "userdata");
   };
 
-
   const handleVerifyUser = async () => {
     try {
       const { data } = await AxiosInstance.post<UserVerifyData>("/verifyUser", {
-        userId:loggedInUserData._id,
-        verificationCode: userData.verificationCode
-        
+        userId: loggedInUserData._id,
+        verificationCode: userData.verificationCode,
       });
 
       window.location.href = "/edit-profile";
-  
+
       return data;
     } catch (error: any) {
       setError(error.response.data);
     }
   };
 
-
   // const [genderData, setGenderData] = useState<GenderData | null>(null)({
   //   gender: false
   // });
 
   const [genderData, setGenderData] = useState<GenderData>({
-   gender: false
+    gender: false,
   });
-
 
   // const handleClick = () => {
   //   setGenderData()
   // }
 
-
   return (
     <div className="flex flex-col gap-4 mt-[45px]">
-      <h3 className="text-2xl font-medium text-gray-700 dark:text-white">Миний тухай</h3>
+      <h3 className="text-2xl font-medium text-gray-700 dark:text-white">
+        Миний тухай
+      </h3>
       <div className="flex flex-col gap-[45px] ">
-        {loggedInUserData?.verification === true ?
+        {loggedInUserData?.verification === true ? (
           <div>
-              <p className="text-gray-600 text-base font-[500]  dark:text-white mb-[15px] ">
-                Баталгаажуулах хэсэг
-              </p>
-             
-             <div className="text-[#60ADB7] flex gap-1">
-              <div className="text-[16px] font-semibold dark:text-white">Баталгаажсан</div>
-              <VerifiedIcon />
-          </div>
-
-          </div>
-        
-          :
-          <div>
-             <p className="text-gray-600 text-base font-[500] mb-[15px] dark:text-white">
-            Баталгаажуулах хэсэг
-          </p>
-        
-
-          <div className="flex gap-4 items-center">
-            <input
-              name="verificationCode"
-              onChange={handleVerifyChange}
-              className="w-[120px] border-[1px] h-[40px] p-2 dark:text-white  rounded-2xl text-gray-800 border-zinc-200"
-              type="text"
-              placeholder="Нууц үг"
-            />
-            <button className="w-[60px] h-[40px] rounded-xl bg-[#60ADB7] text-white" onClick={handleVerifyUser}><AdsClickIcon/></button>
-          </div>
-
-          {error && (
-            <p className="text-[12px] text-red-500  font-sans-serif dark:text-white">
-              {error}
+            <p className="text-gray-600 text-base font-[500]  dark:text-white mb-[15px] ">
+              Баталгаажуулах хэсэг
             </p>
-          )}
 
-          <p className="text-gray-300 dark:text-white">
-            Таны имэйл хаяг руу илгээсэн нууц үгийг хийснээр таны хаяг баталгаажих болно.
-          </p>
-        </div>}
+            <div className="text-[#60ADB7] flex gap-1">
+              <div className="text-[16px] font-semibold dark:text-white">
+                Баталгаажсан
+              </div>
+              <VerifiedIcon />
+            </div>
+          </div>
+        ) : (
+          <div>
+            <p className="text-gray-600 text-base font-[500] mb-[15px] dark:text-white">
+              Баталгаажуулах хэсэг
+            </p>
 
-     
-        
+            <div className="flex gap-4 items-center">
+              <input
+                name="verificationCode"
+                onChange={handleVerifyChange}
+                className="w-[120px] border-[1px] h-[40px] p-2 dark:text-white  rounded-2xl text-gray-800 border-zinc-200"
+                type="text"
+                placeholder="Нууц үг"
+              />
+              <button
+                className="w-[60px] h-[40px] rounded-xl bg-[#60ADB7] text-white"
+                onClick={handleVerifyUser}
+              >
+                <AdsClickIcon />
+              </button>
+            </div>
+
+            {error && (
+              <p className="text-[12px] text-red-500  font-sans-serif dark:text-white">
+                {error}
+              </p>
+            )}
+
+            <p className="text-gray-300 dark:text-white">
+              Таны имэйл хаяг руу илгээсэн нууц үгийг хийснээр таны хаяг
+              баталгаажих болно.
+            </p>
+          </div>
+        )}
+
         <div>
           <p className="text-gray-600 text-base font-[500] mb-[15px] dark:text-white">
             Өөрийнхөө тухай товч мэдээллийг бичнэ үү
@@ -179,11 +183,13 @@ export const AboutMe = (props: About) => {
           />
         </div>
         <div>
-          <p className="text-gray-600 text-base font-[500] mb-[15px] dark:text-white">Хаяг</p>
+          <p className="text-gray-600 text-base font-[500] mb-[15px] dark:text-white">
+            Хаяг
+          </p>
           <Select onValueChange={hamndleLoc}>
             <SelectTrigger className="w-[100%] border-zinc-200 rounded-2xl text-gray-500 dark:text-white ">
               <SelectValue
-                placeholder="Улаанбаатар"
+                placeholder={getData[0].address}
                 defaultValue="Улаанбаатар"
               />
             </SelectTrigger>
@@ -211,17 +217,31 @@ export const AboutMe = (props: About) => {
         </div>
 
         <div>
-          <div className="text-gray-600 text-base font-[500] mb-[15px]">Хүйс</div>
-             <RadioGroup defaultValue="comfortable">
-              <div className="flex items-center space-x-2">
-              <RadioGroupItem value="comfortable" id="r2" onClick={() => setGenderData(genderData)}/>
-                <Label htmlFor="r2" className="text-gray-500 text-lg">Эрэгтэй</Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="compact" id="r3" onClick={() => setGenderData(genderData)}/>
-                <Label htmlFor="r3" className="text-gray-500 text-lg">Эмэгтэй</Label>
-              </div>
-            </RadioGroup>
+          <div className="text-gray-600 text-base font-[500] mb-[15px]">
+            Хүйс
+          </div>
+          <RadioGroup defaultValue="comfortable">
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem
+                value="comfortable"
+                id="r2"
+                onClick={() => setGenderData(genderData)}
+              />
+              <Label htmlFor="r2" className="text-gray-500 text-lg">
+                Эрэгтэй
+              </Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem
+                value="compact"
+                id="r3"
+                onClick={() => setGenderData(genderData)}
+              />
+              <Label htmlFor="r3" className="text-gray-500 text-lg">
+                Эмэгтэй
+              </Label>
+            </div>
+          </RadioGroup>
         </div>
       </div>
     </div>
