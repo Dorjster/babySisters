@@ -352,33 +352,34 @@ export const EditBabysitProfile = () => {
         <General />
       </div>
 
-      <hr />
-      <div className="flex flex-col gap-[45px] mb-[80px]">
-        <AboutMe
-          handleChange={handleChange}
-          hamndleLoc={handleLocationChange}
-          onGenderChange={handleGenderChange}
-        />
-        <Languages handleLan={handleLan} handleEdu={handleEdu} />
-        <Character handleChar={handleChar} />
+        <hr />
+        <div className="flex flex-col gap-[45px] mb-[80px]">
+          <AboutMe
+            handleChange={handleChange}
+            hamndleLoc={handleLocationChange}
+            onGenderChange={handleGenderChange}
+          />
+          <Languages handleLan={handleLan} handleEdu={handleEdu} />
+          <Character handleChar={handleChar} />
+        </div>
+        <hr />
+        <div className="mt-[50px] flex flex-col gap-[45px] mb-[70px]">
+          <Experience handleExp={handleExp} />
+          <AddInformation handleAdd={handleAdd} />
+          <Skill handleSki={handleSki} />
+        </div>
+        <hr />
+        <div className="mt-[50px] flex flex-col gap-[45px] mb-[50px]">
+          <Condition handleChange={handleChange} />
+        </div>
+        <ScheduleBaby handleClick={click} />
+        <button
+          onClick={handleUpdate}
+          className="w-[100%] bg-[#389BA7] text-white rounded-3xl font-[400] text-[20px] mt-[65px] h-[40px]"
+        >
+          Хадгалах
+        </button>
       </div>
-      <hr />
-      <div className="mt-[50px] flex flex-col gap-[45px] mb-[70px]">
-        <Experience handleExp={handleExp} />
-        <AddInformation handleAdd={handleAdd} />
-        <Skill handleSki={handleSki} />
-      </div>
-      <hr />
-      <div className="mt-[50px] flex flex-col gap-[45px] mb-[50px]">
-        <Condition handleChange={handleChange} />
-      </div>
-      <ScheduleBaby handleClick={click} />
-      <button
-        onClick={handleUpdate}
-        className="w-[100%] bg-[#389BA7] text-white rounded-3xl font-[400] text-[20px] mt-[65px] h-[40px]"
-      >
-        Хадгалах
-      </button>
-    </Container>
+    </div>
   );
 };
