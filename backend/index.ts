@@ -13,6 +13,7 @@ import { Imagerouter } from "./router/uploadImg";
 import { algoliaIndex } from "./algogia/algolia";
 import dotenv from "dotenv";
 import { app, server } from "./socket/socket";
+import { timeRouter } from "./router/Time";
 dotenv.config();
 // const port = process.env.PORT;
 
@@ -24,6 +25,7 @@ app.use(loginRouter);
 app.use(forgotRouter);
 app.use(reviewRouter);
 app.use(Imagerouter);
+app.use(timeRouter);
 
 app.use("/api/messages", messageRouter);
 

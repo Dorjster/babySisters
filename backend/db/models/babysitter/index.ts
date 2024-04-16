@@ -18,6 +18,7 @@ export type BabysitterModelType = {
   otp?: string;
   info_id: Schema.Types.ObjectId;
   role: string;
+  availableTime: [];
 };
 
 const BabysitterSchema = new Schema<BabysitterModelType>(
@@ -36,6 +37,9 @@ const BabysitterSchema = new Schema<BabysitterModelType>(
     review: [{ type: Schema.Types.ObjectId, required: false, ref: "Review" }],
     otp: { type: String, required: false },
     info_id: { type: Schema.Types.ObjectId, ref: "Info", required: true },
+    availableTime: [
+      { type: Schema.Types.ObjectId, required: false, ref: "Available" },
+    ],
   },
   {
     timestamps: true,
