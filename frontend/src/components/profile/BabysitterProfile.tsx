@@ -89,10 +89,10 @@ export const BabysitterProfile = (props: All) => {
               </div>
               <div className="flex items-center gap-1 text-[18px]">
                 <FaTransgender className="text-[#008291]" size={24} />
-                {result[0]?.gender === true ? (
+                {result[0]?.gender === "Эрэгтэй" ? (
                   <div>Эмэгтэй</div>
                 ) : (
-                  <div>Эрэгтэй</div>
+                  <div>Эмэгтэй</div>
                 )}
               </div>
               <div className="flex items-center gap-1 text-[18px]">

@@ -23,6 +23,7 @@ type CardProps = {
   car: boolean | undefined;
   smoker: boolean | undefined;
   exp: number | undefined;
+  language: string[] | undefined;
 };
 
 export const Card: React.FC<CardProps> = ({
@@ -34,6 +35,7 @@ export const Card: React.FC<CardProps> = ({
   car,
   smoker,
   exp,
+  language,
 }) => {
   const [showSkeleton, setShowSkeleton] = useState(true);
 
@@ -46,6 +48,7 @@ export const Card: React.FC<CardProps> = ({
   }, []);
 
   const letter = data.name.charAt(0);
+  console.log(language);
 
   const SkeletonLoader = () => (
     <Skeleton className="md:w-[450px] dark:bg-[#4D565E]  w-[330px] md:h-[220px] h-[440px] md:flex-row flex flex-col rounded-2xl overflow-hidden shadow-xl bg-[#F6F9FA] mb-[40px]  ">

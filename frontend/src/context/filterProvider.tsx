@@ -11,7 +11,7 @@ export type StateType = {
   additional: string | string[];
   skills: string[];
   wage: string | string[];
-  rating: number | number[];
+
   minWage: number;
   maxWage: number;
 };
@@ -44,7 +44,7 @@ export const FilterDataProvider: React.FC<FilterDataProviderProps> = ({
     additional: [],
     skills: [],
     wage: [],
-    rating: 0,
+
     minWage: 0,
     maxWage: 0,
   });

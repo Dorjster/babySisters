@@ -56,6 +56,7 @@ type About = {
   handleChange: (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
+  onGenderChange: (gen: string) => void; // Add this line
 };
 
 interface UserVerifyData {
@@ -68,7 +69,7 @@ interface UserVerifyData {
 // };
 
 interface GenderData {
-  gender?: boolean;
+  gender?: string;
 }
 
 export const AboutMe = (props: About) => {
@@ -111,7 +112,7 @@ export const AboutMe = (props: About) => {
   // });
 
   const [genderData, setGenderData] = useState<GenderData>({
-    gender: false,
+    gender: "",
   });
 
   // const handleClick = () => {

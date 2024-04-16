@@ -34,6 +34,7 @@ export type stateType = {
   wage: number;
   schedule: Schedule;
   verificationCode: string;
+  gender: string;
 };
 
 type Schedule = {
@@ -83,6 +84,7 @@ export const EditBabysitProfile = () => {
     wage: 0,
     schedule: {},
     verificationCode: "",
+    gender: "",
   });
 
   useEffect(() => {
@@ -252,6 +254,9 @@ export const EditBabysitProfile = () => {
       setLoading(false);
     }
   };
+  const handleGenderChange = (gen: string) => {
+    setUserdata({ ...userdata, gender: gen });
+  };
 
   const handleUpdate = async () => {
     try {
@@ -272,6 +277,7 @@ export const EditBabysitProfile = () => {
         character: userdata.character,
         available_time: userdata.schedule,
         wage: userdata.wage,
+        gender: userdata.gender,
       });
 
       console.log("User updated successfully:", response.data);
@@ -352,12 +358,13 @@ export const EditBabysitProfile = () => {
         <AboutMe
           handleChange={handleChange}
           hamndleLoc={handleLocationChange}
+          onGenderChange={handleGenderChange}
           getData={getData}
         />
         <Languages
-          getData={getData}
           handleLan={handleLan}
           handleEdu={handleEdu}
+          getData={getData}
         />
         <Character handleChar={handleChar} />
       </div>
