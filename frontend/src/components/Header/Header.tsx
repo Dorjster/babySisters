@@ -109,14 +109,7 @@ export const Header = () => {
       </div>
 
       {isLoggedIn ? (
-        <div className="flex justify-end items-center md:gap-4 ">
-          <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
-            {theme === "dark" ? (
-              <RxMoon size={22} className="text-[#008291]" fillRule="evenodd"/>
-            ) : (
-              <IoSunnyOutline size={22} className=" text-secondary" fillRule="evenodd"/>
-            )}
-          </button>
+        <div className="flex justify-end items-center  gap-4 ">
           <Button
             onClick={() => {
               push("/edit-profile");
@@ -133,7 +126,30 @@ export const Header = () => {
               marginRight: "30px",
             }}
           >
-            <PersonIcon sx={{ fontSize: "30px", color: "#389BA7" ,   }} fillRule="evenodd" />
+            {" "}
+            <div className="flex gap-3">
+              <button
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              >
+                {theme === "dark" ? (
+                  <RxMoon
+                    size={22}
+                    className="text-[#008291]"
+                    fillRule="evenodd"
+                  />
+                ) : (
+                  <IoSunnyOutline
+                    size={22}
+                    className=" text-secondary"
+                    fillRule="evenodd"
+                  />
+                )}
+              </button>
+              <PersonIcon
+                sx={{ fontSize: "30px", color: "#389BA7" }}
+                fillRule="evenodd"
+              />
+            </div>
             {loggedInUserData.name}
           </Button>
           <AnchorTemporaryDrawer />
@@ -141,14 +157,18 @@ export const Header = () => {
       ) : (
         <div className="flex justify-end items-center md:gap-4 cursor-pointer ">
           {navigationLogin.map(({ href, label }, index) => (
-            <div key={index} className="flex  gap-8">
+            <div key={index} className="flex   gap-8">
               <button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               >
                 {theme === "dark" ? (
-                  <RxMoon size={22} className="text-white" fillRule="evenodd"/>
+                  <RxMoon size={22} className="text-white" fillRule="evenodd" />
                 ) : (
-                  <IoSunnyOutline size={22} className="text-black"  fillRule="evenodd"/>
+                  <IoSunnyOutline
+                    size={22}
+                    className="text-black"
+                    fillRule="evenodd"
+                  />
                 )}
               </button>
               <button
