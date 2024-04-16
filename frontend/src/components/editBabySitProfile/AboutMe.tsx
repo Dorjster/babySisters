@@ -11,7 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import AdsClickIcon from '@mui/icons-material/AdsClick';
+import AdsClickIcon from "@mui/icons-material/AdsClick";
 import { AxiosInstance } from "@/utils/axiosInstance";
 import { useData } from "@/context/userProvider";
 import VerifiedIcon from '@mui/icons-material/Verified';
@@ -47,7 +47,7 @@ const locations = [
 
 type About = {
   hamndleLoc: (label: string) => void;
-
+  getData: stateType[];
   handleChange: (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
@@ -71,12 +71,14 @@ interface GenderData {
 
 
 export const AboutMe = (props: About) => {
-  const { loggedInUserData}= useData()
+  const { getData } = props;
+  const { loggedInUserData } = useData();
+
   const { hamndleLoc, handleChange } = props;
 
-  const [error, setError] = useState()
+  const [error, setError] = useState();
   const [userData, setUserData] = useState<UserVerifyData>({
-    verificationCode: ""
+    verificationCode: "",
   });
 
   const handleVerifyChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -88,17 +90,15 @@ export const AboutMe = (props: About) => {
     console.log(userData, "userdata");
   };
 
-
   const handleVerifyUser = async () => {
     try {
       const { data } = await AxiosInstance.post<UserVerifyData>("/verifyUser", {
-        userId:loggedInUserData._id,
-        verificationCode: userData.verificationCode
-        
+        userId: loggedInUserData._id,
+        verificationCode: userData.verificationCode,
       });
 
       window.location.href = "/edit-profile";
-  
+
       return data;
     } catch (error: any) {
       setError(error.response.data);
@@ -133,11 +133,9 @@ export const AboutMe = (props: About) => {
              <div className="text-[#60ADB7] flex gap-1">
               <div className="text-[16px] font-semibold dark:text-white">Баталгаажсан</div>
               <VerifiedIcon />
+            </div>
           </div>
-
-          </div>
-        
-          :
+        ) : (
           <div>
              <p className="text-gray-600 text-base font-[500] mb-[15px] dark:text-white">
             Баталгаажуулах хэсэг
@@ -183,7 +181,7 @@ export const AboutMe = (props: About) => {
           <Select onValueChange={hamndleLoc}>
             <SelectTrigger className="w-[100%] border-zinc-200 rounded-2xl text-gray-500 dark:text-white ">
               <SelectValue
-                placeholder="Улаанбаатар"
+                placeholder={getData[0].address}
                 defaultValue="Улаанбаатар"
               />
             </SelectTrigger>

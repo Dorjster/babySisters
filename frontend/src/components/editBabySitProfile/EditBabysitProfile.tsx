@@ -17,12 +17,17 @@ import { AxiosInstance } from "@/utils/axiosInstance";
 import { Button } from "../ui";
 import { StepButton } from "@mui/material";
 import { useData } from "@/context/userProvider";
+<<<<<<< HEAD
 import { Gender } from "../filter/Gender";
+=======
+import { error } from "console";
+import { get } from "http";
+>>>>>>> 705a58c (april15)
 
-type stateType = {
+export type stateType = {
   image: string;
   about: string;
-  location: string;
+  address: string;
   birthdate: string;
   languages: string[];
   education: string;
@@ -51,11 +56,27 @@ export const EditBabysitProfile = () => {
   const [image, setImage] = useState<FileList | null>(null);
   const [accessUrl, setAccessUrl] = useState<string>("");
   const [loading, setLoading] = useState(false);
-
+  const [getData, setGetData] = useState([
+    {
+      image: "",
+      about: "",
+      address: "Улаанбаатар",
+      birthdate: "",
+      languages: [],
+      education: "",
+      character: [],
+      experience: "",
+      additional: [],
+      skills: [],
+      wage: 0,
+      schedule: {},
+      verificationCode: "",
+    },
+  ]);
   const [userdata, setUserdata] = useState<stateType>({
     image: "",
     about: "",
-    location: "Улаанбаатар",
+    address: "Улаанбаатар",
     birthdate: "",
     languages: [],
     education: "",
@@ -68,6 +89,22 @@ export const EditBabysitProfile = () => {
     verificationCode: "",
     gender: false
   });
+
+  useEffect(() => {
+    const getInfo = async () => {
+      try {
+        const { data } = await AxiosInstance.post("/get/babysitter", {
+          id: loggedInUserData._id,
+        });
+
+        setGetData(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getInfo();
+  }, []);
+  console.log(getData, "profile");
 
   const click = (day: string, timeValue: string) => {
     setUserdata((prevUserData) => {
@@ -104,10 +141,9 @@ export const EditBabysitProfile = () => {
     const { name, value } = e.target;
     setUserdata({ ...userdata, [name]: value });
   };
-  console.log(userdata);
 
   const handleLocationChange = (label: string) => {
-    setUserdata({ ...userdata, location: label });
+    setUserdata({ ...userdata, address: label });
     console.log(label);
   };
   const handleEdu = (label: string) => {
@@ -225,7 +261,7 @@ export const EditBabysitProfile = () => {
       const response = await AxiosInstance.post("/babysitter", {
         id: loggedInUserData._id,
         email: loggedInUserData.email,
-        address: userdata.location,
+        address: userdata.address,
         about: userdata.about,
         image: userdata.image,
         driver_license: userdata.additional.includes("Жолооны үнэмлэхтэй"),
@@ -253,6 +289,7 @@ export const EditBabysitProfile = () => {
         <div
           className="md:flex-row md:max-w-[1100px] flex flex-col  justify-items-start gap-12
       "
+<<<<<<< HEAD
         >
           <div className="w-[220px] gap-7 flex flex-col items-center  ">
             {image && (
@@ -290,6 +327,50 @@ export const EditBabysitProfile = () => {
           </div>
           <General />
         </div>
+=======
+      >
+        <div className="w-[220px]  object-fit flex flex-col items-center  gap-3 mb-[50px]">
+          {getData[0].image && (
+            <Image
+              src={image ? URL.createObjectURL(image[0]) : getData[0].image}
+              alt=""
+              width={220}
+              height={200}
+              className="w-[220px] h-[200px] border-[5px]"
+            />
+          )}
+          {!getData[0].image && (
+            <div
+              style={{
+                width: "220px",
+                height: "200px",
+                backgroundColor: "#c9e8ec",
+                border: "1px solid #389BA7 ",
+                borderRadius: "5px",
+              }}
+            />
+          )}
+          {/* {image && (
+            <Image
+              src={image ? URL.createObjectURL(image[0]) : ""}
+              alt=""
+              width={220}
+              height={200}
+              className="w-[220px] h-[200px] border-[5px]"
+            />
+          )} */}
+          {/* {!image && (
+            <div
+              style={{
+                width: "220px",
+                height: "200px",
+                backgroundColor: "#c9e8ec",
+                border: "1px solid #389BA7 ",
+                borderRadius: "5px",
+              }}
+            />
+          )} */}
+>>>>>>> 705a58c (april15)
 
         <hr />
         <div className="flex flex-col gap-[45px] mb-[80px] ">
@@ -300,6 +381,7 @@ export const EditBabysitProfile = () => {
           <Languages handleLan={handleLan} handleEdu={handleEdu} />
           <Character handleChar={handleChar} />
         </div>
+<<<<<<< HEAD
         <hr />
         <div className=" flex flex-col gap-[25px] ">
           <Experience handleExp={handleExp} />
@@ -317,6 +399,34 @@ export const EditBabysitProfile = () => {
         >
           Хадгалах
         </button>
+=======
+        <General />
+      </div>
+
+      <hr />
+      <div className="flex flex-col gap-[45px] mb-[80px]">
+        <AboutMe
+          handleChange={handleChange}
+          hamndleLoc={handleLocationChange}
+          getData={getData}
+        />
+        <Languages
+          getData={getData}
+          handleLan={handleLan}
+          handleEdu={handleEdu}
+        />
+        <Character handleChar={handleChar} />
+      </div>
+      <hr />
+      <div className="mt-[50px] flex flex-col gap-[45px] mb-[70px]">
+        <Experience handleExp={handleExp} />
+        <AddInformation handleAdd={handleAdd} />
+        <Skill handleSki={handleSki} />
+      </div>
+      <hr />
+      <div className="mt-[50px] flex flex-col gap-[45px] mb-[50px]">
+        <Condition handleChange={handleChange} />
+>>>>>>> 705a58c (april15)
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useState } from "react";
-
+import { stateType } from "./EditBabysitProfile";
 import CloseIcon from "@mui/icons-material/Close";
 
 const languages = [
@@ -25,10 +25,11 @@ const languages = [
 type All = {
   handleLan: (value: string) => void;
   handleEdu: (value: string) => void;
+  getData: stateType[];
 };
 
 export const Languages = (props: All) => {
-  const { handleLan, handleEdu } = props;
+  const { handleLan, handleEdu, getData } = props;
   const [buttonStates, setButtonStates] = useState(languages.map(() => false));
   const handleClickButton = (index: number) => {
     const updatedButtonStates = [...buttonStates];
