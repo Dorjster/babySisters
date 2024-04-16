@@ -39,7 +39,6 @@ export const BabysitterProfile = (props: All) => {
   const { loggedInUserData } = useData();
   const [comment, setComment] = useState("");
   const [reviewValue, setReviewValue] = useState<number | null>(null);
-  console.log(result, "aa");
 
   const sendComment = async () => {
     try {
@@ -78,7 +77,9 @@ export const BabysitterProfile = (props: All) => {
     <div className="bg-gradient-to-b m-auto dark:bg-[#31393F]   h-fit md:flex-row md:gap-[130px]  flex flex-col-reverse md:py-32 justify-center py-10 px-2">
       <div className="mt-[30px] md:w-[60%] md:mt-0">
         <div className="flex border-b-[0.5px] flex-col gap-4 border-gray-600 pb-[40px]">
-          <p className="text-[28px] text-gray-900 dark:text-white ">Миний тухай</p>
+          <p className="text-[28px] text-gray-900 dark:text-white ">
+            Миний тухай
+          </p>
           <p className="overflow-wrap break-word">{result[0]?.about}</p>
           <div className="flex gap-6 pt-4">
             <div className="flex md:gap-8 gap-3">
@@ -138,7 +139,6 @@ export const BabysitterProfile = (props: All) => {
           <CheckedSchedule />
         </div>
         <div className="flex flex-wrap gap-8 border-t-[0.5px]  border-gray-600 py-10 ">
-          
           {review.map((el: ReviewType, index: number) => (
             <div
               className="flex flex-col gap-4 bg-[#EDF7F8] w-[380px] dark:bg-[#434C54] rounded-2xl p-4"

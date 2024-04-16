@@ -55,7 +55,7 @@ export const EditBabysitProfile = () => {
     {
       image: "",
       about: "",
-      address: "Улаанбаатар",
+      address: "",
       birthdate: "",
       language: [],
       education: "",
@@ -66,6 +66,7 @@ export const EditBabysitProfile = () => {
       wage: 0,
       schedule: {},
       verificationCode: "",
+      info_id: [],
     },
   ]);
   const [userdata, setUserdata] = useState<stateType>({
@@ -90,6 +91,7 @@ export const EditBabysitProfile = () => {
         const { data } = await AxiosInstance.post("/get/babysitter", {
           id: loggedInUserData._id,
         });
+        console.log(data, "dataaaa");
 
         setGetData(data);
       } catch (error) {
@@ -97,8 +99,9 @@ export const EditBabysitProfile = () => {
       }
     };
     getInfo();
-  }, []);
-  console.log(getData, "profile");
+  }, [loggedInUserData]);
+
+  console.log(userdata);
 
   const click = (day: string, timeValue: string) => {
     setUserdata((prevUserData) => {
@@ -179,7 +182,7 @@ export const EditBabysitProfile = () => {
 
       return {
         ...prevUserData,
-        languages: updatedLan,
+        language: updatedLan,
       };
     });
   };
