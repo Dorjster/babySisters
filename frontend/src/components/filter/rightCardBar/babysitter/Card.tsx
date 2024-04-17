@@ -48,7 +48,6 @@ export const Card: React.FC<CardProps> = ({
   }, []);
 
   const letter = data.name.charAt(0);
-  console.log(language);
 
   const SkeletonLoader = () => (
     <Skeleton className="md:w-[450px] dark:bg-[#4D565E]  w-[330px] md:h-[220px] h-[440px] md:flex-row flex flex-col rounded-2xl overflow-hidden shadow-xl bg-[#F6F9FA] mb-[40px]  ">
@@ -146,9 +145,6 @@ export const Card: React.FC<CardProps> = ({
               {driver && <FaAddressCard className="h-6 w-6 text-[#008291]" />}
               {data.verification && (
                 <MdVerified className="h-6 w-6 text-[#008291]" />
-              )}
-              {!smoker && (
-                <MdOutlineSmokeFree className="h-6 w-6 text-[#008291]" />
               )}
             </div>
 

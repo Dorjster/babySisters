@@ -1,120 +1,49 @@
-"use client";
-import * as React from "react";
-import Box from "@mui/material/Box";
-import FormControl from "@mui/material/FormControl";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import { createTheme } from "@mui/system";
+import { cn } from "@/lib/utils";
+import { Slider } from "@/components/ui/slider";
+import React, { useEffect, useState } from "react";
+import { useFilterData } from "@/context/filterProvider";
+import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
 
-interface Range {
-  name: string;
-  min: number;
-  max: number;
-}
+type SliderProps = React.ComponentProps<typeof Slider>;
 
-interface WageProps {
-  onChange: (min: number | null, max: number | null) => void;
-}
+export function Wage({ className, ...props }: SliderProps) {
+  const { filterData, setFilterData } = useFilterData();
+  const [value, setValue] = useState<number[]>([0, 100000]);
 
-export const Wage: React.FC<WageProps> = ({ onChange }) => {
-  const theme = createTheme({
-    palette: {
-      primary: {
-        main: "#ff5722",
-      },
-    },
-  });
-
-  const [selectedRanges, setSelectedRanges] = React.useState<{
-    [key: string]: boolean;
-  }>({
-    range1: false,
-    range2: false,
-    range3: false,
-    range4: false,
-    range5: false,
-  });
-
-  const ranges: Range[] = [
-    {
-      name: "range1",
-      min: 5000,
-      max: 10000,
-    },
-    {
-      name: "range2",
-      min: 10000,
-      max: 15000,
-    },
-    {
-      name: "range3",
-      min: 15000,
-      max: 20000,
-    },
-    {
-      name: "range4",
-      min: 20000,
-      max: 25000,
-    },
-    {
-      name: "range5",
-      min: 25000,
-      max: 30000,
-    },
-  ];
-
-  const handleCheckboxChange = (name: string) => {
-    setSelectedRanges((prevSelectedRanges) => {
-      const updatedSelectedRanges = {
-        ...prevSelectedRanges,
-        [name]: !prevSelectedRanges[name],
-      };
-
-      const selectedRangesValues = Object.entries(updatedSelectedRanges)
-        .filter(([key, value]) => value)
-        .map(([key]) => {
-          const range = ranges.find((range) => range.name === key);
-          return range ? [range.min, range.max] : [];
-        })
-        .flat();
-
-      const min = Math.min(...selectedRangesValues);
-      const max = Math.max(...selectedRangesValues);
-
-      // Call the onChange callback with the selected min and max values
-      onChange(min === Infinity ? null : min, max === -Infinity ? null : max);
-
-      return updatedSelectedRanges;
-    });
+  const handleChange = (newValue: number | number[]) => {
+    setValue(newValue as number[]);
+    if (Array.isArray(newValue)) {
+      setValue(newValue);
+      setFilterData({
+        ...filterData,
+        minWage: newValue[0],
+        maxWage: newValue[1],
+      });
+    }
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
-      <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
-        <FormGroup>
-          {ranges.map((range) => (
-            <FormControlLabel
-              key={range.name}
-              control={
-                <Checkbox
-                  checked={selectedRanges[range.name]}
-                  onChange={() => handleCheckboxChange(range.name)}
-                  name={range.name}
-                  sx={{
-                    "& .MuiSvgIcon-root": {
-                      color: "#389BA7",
-                      fontSize: "25px",
-                      fontWeight: "100",
-                    },
-                  }}
-                />
-              }
-              label={`${range.min} - ${range.max}`}
-            />
-          ))}
-        </FormGroup>
-      </FormControl>
-    </Box>
+    <div className={cn("w-[100%] h-[100px]")}>
+      <Slider
+        value={value}
+        onValueChange={handleChange}
+        max={100000}
+        min={0}
+        step={500}
+        className={cn("w-full h-[80px]")}
+        {...props}
+      />
+      <div className="flex justify-between">
+        <span className="bg-slate-200 w-[95px] text-[18px] text-slate-500 rounded-[8px] text-center">
+          {value[0]}₮
+        </span>
+        <span>
+          <HorizontalRuleIcon className="text-slate-500" />
+        </span>
+        <span className="bg-slate-200 w-[95px] text-[22px] text-slate-500 rounded-[8px] text-center">
+          {value[1]}₮
+        </span>
+      </div>
+    </div>
   );
-};
+}

@@ -10,7 +10,7 @@ const server = http.createServer(app);
 
 const io = new WebSocketServer(server, {
   cors: {
-    origin: "hhtp://localhost:3000",
+    origin: "http://localhost:3000",
     methods: ["GET", "POST"],
   },
 });
@@ -29,8 +29,8 @@ io.on("connection", (socket) => {
   });
 });
 
-app.listen(3001, () => {
-  console.log("server is running");
-});
+// app.listen(3001, () => {
+//   console.log("server is running");
+// });
 
 export { app, io, server };

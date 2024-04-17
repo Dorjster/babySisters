@@ -7,6 +7,11 @@ interface Query {
     [key: string]: any;
   }[];
 }
+interface Search {
+  $or?: {
+    [key: string]: any;
+  }[];
+}
 
 export const getAllBabySittersQuery = async (req: Request) => {
   const {
@@ -20,15 +25,24 @@ export const getAllBabySittersQuery = async (req: Request) => {
     language = [],
     address = "",
     verification = "",
+    gender = "",
   } = req.body;
 
   try {
     let query: Query = {};
-    let search = {};
+    let search: Search = {};
 
-    if (address || verification) {
+    if (address || gender || verification) {
       search = {
-        $or: [{ address: address }, { verification: verification }],
+        $or: [
+          { address: address },
+          {
+            gender: gender,
+          },
+          {
+            verification: verification,
+          },
+        ],
       };
     }
 
@@ -39,8 +53,7 @@ export const getAllBabySittersQuery = async (req: Request) => {
       education ||
       character.length > 0 ||
       skills.length > 0 ||
-      language.length > 0 ||
-      address
+      language.length > 0
     ) {
       query = {
         $or: [
@@ -64,7 +77,7 @@ export const getAllBabySittersQuery = async (req: Request) => {
       );
     }
 
-    console.log("Constructed query:", query);
+    // console.log("Constructed query:", query, search);
 
     const babysitters = await BabysitterModel.find(search).populate({
       path: "info_id",

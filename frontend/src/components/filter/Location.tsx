@@ -14,7 +14,7 @@ type All = {
 export function LocationSelect(props: All) {
   const { handleLoc } = props;
   return (
-    <Select>
+    <Select onValueChange={handleLoc}>
       <SelectTrigger className="w-[180px] rounded-[8px]  ">
         <SelectValue placeholder="Улаанбаатар" defaultValue="Улаанбаатар" />
       </SelectTrigger>

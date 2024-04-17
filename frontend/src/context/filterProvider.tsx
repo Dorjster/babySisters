@@ -3,7 +3,6 @@ import React, { createContext, useContext, useState, ReactNode } from "react";
 
 // Define the type for your filter data
 export type StateType = {
-  location: string;
   language: string[];
   education: string;
   character: string[];
@@ -11,9 +10,11 @@ export type StateType = {
   additional: string | string[];
   skills: string[];
   wage: string | string[];
-
+  address: string;
   minWage: number;
   maxWage: number;
+  verification: boolean;
+  gender: string;
 };
 
 // Define the type for your context
@@ -36,7 +37,6 @@ export const FilterDataProvider: React.FC<FilterDataProviderProps> = ({
   children,
 }) => {
   const [filterData, setFilterData] = useState<StateType>({
-    location: "Улаанбаатар",
     language: [],
     education: "",
     character: [],
@@ -44,9 +44,11 @@ export const FilterDataProvider: React.FC<FilterDataProviderProps> = ({
     additional: [],
     skills: [],
     wage: [],
-
+    address: "",
     minWage: 0,
     maxWage: 0,
+    verification: false,
+    gender: "",
   });
 
   return (
@@ -56,7 +58,6 @@ export const FilterDataProvider: React.FC<FilterDataProviderProps> = ({
   );
 };
 
-// Custom hook to use the filter data context
 export const useFilterData = () => {
   const context = useContext(FilterDataContext);
   if (!context) {
