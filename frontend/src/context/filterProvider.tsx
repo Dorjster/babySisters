@@ -14,6 +14,7 @@ export type StateType = {
   minWage: number;
   maxWage: number;
   verification: boolean;
+  gender: string;
 };
 
 // Define the type for your context
@@ -47,6 +48,7 @@ export const FilterDataProvider: React.FC<FilterDataProviderProps> = ({
     minWage: 0,
     maxWage: 0,
     verification: false,
+    gender: "",
   });
 
   return (

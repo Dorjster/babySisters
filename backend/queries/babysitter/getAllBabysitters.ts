@@ -7,6 +7,11 @@ interface Query {
     [key: string]: any;
   }[];
 }
+interface Search {
+  $or?: {
+    [key: string]: any;
+  }[];
+}
 
 export const getAllBabySittersQuery = async (req: Request) => {
   const {
@@ -20,18 +25,26 @@ export const getAllBabySittersQuery = async (req: Request) => {
     language = [],
     address = "",
     verification = "",
+    gender = "",
   } = req.body;
 
   try {
     let query: Query = {};
-    let search = {};
+    let search: Search = {};
 
-    if (address) {
+    if (address || gender || verification) {
       search = {
-        $or: [{ address: address }],
+        $or: [
+          { address: address },
+          {
+            gender: gender,
+          },
+          {
+            verification: verification,
+          },
+        ],
       };
     }
-    console.log(search);
 
     if (
       minWage ||

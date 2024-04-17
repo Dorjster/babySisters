@@ -7,6 +7,7 @@ import Checkbox from "@mui/material/Checkbox";
 import { createTheme } from "@mui/system";
 import { FaTransgender, FaAddressCard, FaBaby, FaCar } from "react-icons/fa";
 import { MdVerified, MdOutlineSmokeFree } from "react-icons/md";
+import { useFilterData } from "@/context/filterProvider";
 
 interface InfoProps {
   selectedItems: string[];
@@ -17,6 +18,7 @@ interface InfoProps {
 }
 
 export const Info: React.FC<InfoProps> = ({ selectedItems, onChange }) => {
+  const { filterData, setFilterData } = useFilterData();
   const theme = createTheme({
     palette: {
       primary: {
@@ -24,7 +26,7 @@ export const Info: React.FC<InfoProps> = ({ selectedItems, onChange }) => {
       },
     },
   });
-
+  const [isVerifiedSelected, setIsVerifiedSelected] = React.useState(false);
   const info = [
     {
       icon: <MdVerified />,
@@ -54,13 +56,18 @@ export const Info: React.FC<InfoProps> = ({ selectedItems, onChange }) => {
   ];
 
   const handleCheckboxChange = (id: string) => {
-    const updatedSelectedItems = selectedItems.includes(id)
-      ? selectedItems.filter((item) => item !== id)
-      : [...selectedItems, id];
-    onChange({
-      selectedItems: updatedSelectedItems,
-      additionalData: updatedSelectedItems,
-    });
+    if (id === "verified") {
+      setIsVerifiedSelected(!isVerifiedSelected);
+      setFilterData({ ...filterData, verification: !isVerifiedSelected });
+    } else {
+      const updatedSelectedItems = selectedItems.includes(id)
+        ? selectedItems.filter((item) => item !== id)
+        : [...selectedItems, id];
+      onChange({
+        selectedItems: updatedSelectedItems,
+        additionalData: updatedSelectedItems,
+      });
+    }
   };
 
   return (

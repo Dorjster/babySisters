@@ -146,9 +146,6 @@ export const Card: React.FC<CardProps> = ({
               {data.verification && (
                 <MdVerified className="h-6 w-6 text-[#008291]" />
               )}
-              {!smoker && (
-                <MdOutlineSmokeFree className="h-6 w-6 text-[#008291]" />
-              )}
             </div>
 
             <p

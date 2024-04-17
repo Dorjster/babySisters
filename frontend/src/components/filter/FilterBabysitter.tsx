@@ -15,6 +15,8 @@ import { FaStar } from "react-icons/fa";
 import { AxiosInstance } from "@/utils/axiosInstance";
 
 import { useFilterData } from "@/context/filterProvider";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export type stateType = {
   location: string;
@@ -105,7 +107,7 @@ export const FilterBabysitter = () => {
 
       return {
         ...prevUserData,
-        language: updatedLan, // Change 'languages' to 'language' here
+        language: updatedLan,
       };
     });
   };
@@ -160,17 +162,26 @@ export const FilterBabysitter = () => {
       address: "",
       minWage: 0,
       maxWage: 0,
+      verification: false,
+      gender: "",
     });
-    window.location.reload();
+    notify();
   };
-
+  const notify = () => {
+    toast("Reset completed!", {
+      position: "top-center",
+      autoClose: 3000,
+      // hideProgressBar: true,
+      closeButton: false,
+    });
+  };
   return (
-    <div className="w-[400px] h-[900px] dark:bg-[#4D565E] bg-slate-50 p-10 gap-5 rounded-xl md:grid hidden pr-20 overflow-hidden hover:overflow-y-scroll  ">
+    <div className="w-[400px] h-[900px] dark:bg-[#4D565E] bg-slate-100 p-10 gap-5 rounded-xl md:grid hidden pr-20 overflow-hidden hover:overflow-y-scroll  ">
       <div className="grid gap-3">
         <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
           Цалин ₮
         </p>
-        <Wage onChange={handleWageChange} />
+        <Wage />
       </div>
       {/* <div className="grid gap-3">
         <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
@@ -261,6 +272,7 @@ export const FilterBabysitter = () => {
       >
         Reset{" "}
       </button>
+      <ToastContainer className="toast" />
     </div>
   );
 };
