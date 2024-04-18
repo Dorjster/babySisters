@@ -15,6 +15,8 @@ interface Search {
 
 export const getAllBabySittersQuery = async (req: Request) => {
   const {
+    page = 1,
+    pageSize = 9,
     minWage = "",
     maxWage = "",
     year_of_experience = "",
@@ -66,21 +68,24 @@ export const getAllBabySittersQuery = async (req: Request) => {
         query.$or.push({ driver_license: true });
       if (additional.includes("hasChildren"))
         query.$or.push({ has_children: true });
-      // Add other additional conditions as needed
     }
 
-    // console.log("Constructed query:", query, search);
+    const totalCount = await BabysitterModel.countDocuments(search);
+    const totalPages = Math.ceil(totalCount / pageSize);
 
-    const babysitters = await BabysitterModel.find(search).populate({
-      path: "info_id",
-      match: query,
-    });
+    const babysitters = await BabysitterModel.find(search)
+      .populate({
+        path: "info_id",
+        match: query,
+      })
+      .skip((page - 1) * pageSize)
+      .limit(pageSize);
 
     const filteredBabysitters = babysitters.filter(
       (babysitter) => babysitter.info_id !== null
     );
 
-    return filteredBabysitters;
+    return { filteredBabysitters, totalPages, totalCount };
   } catch (error: any) {
     throw new Error(error.message);
   }

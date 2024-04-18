@@ -169,11 +169,11 @@ export const FilterBabysitter = () => {
   };
   const notify = () => {
     toast("Reset completed!", {
-      position: "top-center",
-      autoClose: 3000,
+      position: "top-right",
+      autoClose: 2000,
       // hideProgressBar: true,
       closeButton: false,
-      className: "mt-[100px]",
+      className: "mt-[80px] ",
     });
   };
   return (
