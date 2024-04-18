@@ -34,13 +34,13 @@ export function Wage({ className, ...props }: SliderProps) {
         {...props}
       />
       <div className="flex justify-between">
-        <span className="bg-slate-200 w-[95px] text-[18px] text-slate-500 rounded-[8px] text-center">
+        <span className="bg-slate-200 w-[95px] text-[20px] text-slate-500 rounded-[8px] text-center">
           {value[0]}₮
         </span>
         <span>
           <HorizontalRuleIcon className="text-slate-500" />
         </span>
-        <span className="bg-slate-200 w-[95px] text-[22px] text-slate-500 rounded-[8px] text-center">
+        <span className="bg-slate-200 w-[95px] text-[20px] text-slate-500 rounded-[8px] text-center">
           {value[1]}₮
         </span>
       </div>

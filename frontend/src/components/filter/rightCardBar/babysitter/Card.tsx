@@ -50,9 +50,7 @@ export const Card: React.FC<CardProps> = ({
   const letter = data.name.charAt(0);
 
   const SkeletonLoader = () => (
-    <Skeleton className="md:w-[450px] dark:bg-[#4D565E]  w-[330px] md:h-[220px] h-[440px] md:flex-row flex flex-col rounded-2xl overflow-hidden shadow-xl bg-[#F6F9FA] mb-[40px]  ">
-    
-    </Skeleton>
+    <Skeleton className="md:w-[450px] dark:bg-[#4D565E]  w-[330px] md:h-[220px] h-[400px] md:flex-row flex flex-col rounded-2xl overflow-hidden shadow-xl bg-[#F6F9FA] mb-[40px]  "></Skeleton>
   );
 
   return (
@@ -60,7 +58,7 @@ export const Card: React.FC<CardProps> = ({
       {showSkeleton ? (
         <SkeletonLoader />
       ) : (
-        <div className=" md:w-[450px] dark:bg-[#4D565E] h-[400px] md:flex-row md:h-[230px] md:px-0 px-16 md:pb-0 flex flex-col items-center  rounded-2xl overflow-hidden shadow-xl bg-[#F6F9FA] mb-[40px] ">
+        <div className=" md:w-[450px] dark:bg-[#4D565E] h-[400px] md:flex-row md:h-[220px] md:px-0 px-16 md:pb-0 flex flex-col items-center  rounded-2xl overflow-hidden shadow-xl bg-[#F6F9FA] mb-[40px] ">
           <div className=" w-[200px] h-[220px] flex flex-col justify-between items-center">
             {data?.image ? (
               <div className="flex flex-col items-center justify-center">
@@ -82,18 +80,17 @@ export const Card: React.FC<CardProps> = ({
           <div className="w-[150px] h-[150px] ml-[5px] md:-mt-[24px] ">
             <div className="flex gap-5">
               <div className="text-lg font-semibold text-[#31393F] dark:text-white w-[150px] gap-2 flex flex-wrap">
-                {data.name} {data.verification && (
-                <MdVerified className="h-6 w-6 text-[#008291]" />
-              )}
+                {data.name}{" "}
+                {data.verification && (
+                  <MdVerified className="h-6 w-6 text-[#008291]" />
+                )}
               </div>
-             
             </div>
 
             <Box
               sx={{
                 alignItems: "center",
                 paddingBottom: "10px",
-                
               }}
             >
               <div className="flex  gap-2">
@@ -128,9 +125,7 @@ export const Card: React.FC<CardProps> = ({
               {about}
             </p>
           </div>
-      
         </div>
-      
       )}
     </div>
   );

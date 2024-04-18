@@ -11,6 +11,8 @@ import { Schedule } from "./Schedule";
 import { useData } from "@/context/userProvider";
 import { AxiosInstance } from "@/utils/axiosInstance";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Button } from "../ui";
 type stateType = {
   image: string;
@@ -152,11 +154,21 @@ export const EditParent = () => {
         available_time: userdata.schedule,
         wage: userdata.wage,
       });
-
+      notify();
+      window.location.href = "/";
       console.log("User updated successfully:", response.data);
     } catch (error) {
       console.error("Error updating user:", error);
     }
+  };
+  const notify = () => {
+    toast("Амжилттай хадгалагдлаа", {
+      position: "top-right",
+      autoClose: 2000,
+      // hideProgressBar: true,
+      closeButton: false,
+      className: "mt-[80px] ",
+    });
   };
   return (
     <div className="flex flex-col items-center justify-center md:py-20 py-8 px-6 dark:bg-[#31393F]">
@@ -225,6 +237,7 @@ export const EditParent = () => {
           Хадгалах
         </button>
       </div>
+      <ToastContainer />
     </div>
   );
 };

@@ -14,6 +14,7 @@ import { useEffect } from "react";
 import { useTheme } from "next-themes";
 import { IoSunnyOutline } from "react-icons/io5";
 import { RxMoon } from "react-icons/rx";
+import CircularProgress from "@mui/material/CircularProgress";
 
 // Navigation -----
 type navigationItem = {
@@ -61,6 +62,14 @@ export const Header = () => {
   const { push } = useRouter();
   const [TemporaryDrawer, setDrawer] = useState(false);
   const { theme, setTheme } = useTheme();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+    return () => clearTimeout(timeout);
+  }, [loggedInUserData]);
 
   const handleDrawer = () => {
     setDrawer(!TemporaryDrawer);
@@ -122,28 +131,34 @@ export const Header = () => {
         </button>
         {isLoggedIn ? (
           <div className="flex justify-end items-center md:gap-4 ">
-            <Button
-              onClick={() => {
-                push("/edit-profile");
-              }}
-              sx={{
-                fontWeight: "700px",
-                color: "#389BA7",
-                fontSize: "20px",
-                height: "20px",
-                width: "100px",
-                px: "20px",
-                display: "flex",
-                gap: "20px",
-                marginRight: "30px",
-              }}
-            >
-              <PersonIcon
-                sx={{ fontSize: "30px", color: "#389BA7" }}
-                fillRule="evenodd"
-              />
-              {loggedInUserData.name}
-            </Button>
+            {loading ? (
+              <CircularProgress size={20} className="w-[500px]" />
+            ) : (
+              <>
+                {loggedInUserData.name && (
+                  <Button
+                    onClick={() => push("/edit-profile")}
+                    sx={{
+                      fontWeight: "700px",
+                      color: "#389BA7",
+                      fontSize: "20px",
+                      height: "20px",
+                      width: "100px",
+                      px: "20px",
+                      display: "flex",
+                      gap: "20px",
+                      marginRight: "30px",
+                    }}
+                  >
+                    <PersonIcon
+                      sx={{ fontSize: "30px", color: "#389BA7" }}
+                      fillRule="evenodd"
+                    />
+                    {loggedInUserData.name}
+                  </Button>
+                )}
+              </>
+            )}
             <AnchorTemporaryDrawer />
           </div>
         ) : (

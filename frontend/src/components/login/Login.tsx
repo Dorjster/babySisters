@@ -67,7 +67,7 @@ export const Login = () => {
       // push("/");
       // window.location.reload();
 
-      window.location.href = "/";
+      window.location.href = "/edit-profile";
       return data;
     } catch (error: any) {
       setError(error.response.data);
@@ -129,7 +129,6 @@ export const Login = () => {
               }}
               className="font-semibold dark:text-slate-400"
             >
-            
               Бүртгүүлэх
             </button>
           </div>

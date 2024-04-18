@@ -20,6 +20,8 @@ import { useData } from "@/context/userProvider";
 import { error } from "console";
 import { get } from "http";
 import { TimeBabySit } from "./TimeBabySit";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export type stateType = {
   image: string;
@@ -92,7 +94,7 @@ export const EditBabysitProfile = () => {
     address: "Улаанбаатар",
     birthdate: "",
     language: [],
-    education: "",
+    education: "Бүрэн дунд",
     character: [],
     experience: "",
     additional: [],
@@ -100,7 +102,7 @@ export const EditBabysitProfile = () => {
     wage: 0,
     schedule: {},
     verificationCode: "",
-    gender: "",
+    gender: "Эрэгтэй",
   });
 
   useEffect(() => {
@@ -119,7 +121,7 @@ export const EditBabysitProfile = () => {
     getInfo();
   }, [loggedInUserData]);
 
-  // console.log(userdata);
+  // console.log(userdata, "asd");
 
   const click = (day: string, timeValue: string) => {
     setUserdata((prevUserData) => {
@@ -295,11 +297,22 @@ export const EditBabysitProfile = () => {
         wage: userdata.wage,
         gender: userdata.gender,
       });
-
+      notify();
+      window.location.href = "/";
       console.log("User updated successfully:", response.data);
     } catch (error) {
       console.error("Error updating user:", error);
     }
+  };
+
+  const notify = () => {
+    toast("Амжилттай хадгалагдлаа!", {
+      position: "top-right",
+      autoClose: 2000,
+      // hideProgressBar: true,
+      closeButton: false,
+      className: "mt-[80px] ",
+    });
   };
   return (
     <div className=" dark:bg-[#31393F] py-10">
@@ -380,6 +393,7 @@ export const EditBabysitProfile = () => {
             Хадгалах
           </button>
         </div>
+        <ToastContainer className="toast" />
       </Container>
     </div>
   );
