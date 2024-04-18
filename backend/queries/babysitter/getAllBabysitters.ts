@@ -60,12 +60,13 @@ export const getAllBabySittersQuery = async (req: Request) => {
 
     if (additional.length > 0) {
       query.$or = query.$or || [];
-      query.$or.push(
-        { car: additional.includes("hasCar") },
-        { driver_license: additional.includes("driver") },
-        { has_children: additional.includes("hasChildren") }
-        // { smoker: additional.includes("nonSmoker") }
-      );
+
+      if (additional.includes("hasCar")) query.$or.push({ car: true });
+      if (additional.includes("driver"))
+        query.$or.push({ driver_license: true });
+      if (additional.includes("hasChildren"))
+        query.$or.push({ has_children: true });
+      // Add other additional conditions as needed
     }
 
     // console.log("Constructed query:", query, search);

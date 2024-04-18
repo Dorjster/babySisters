@@ -173,6 +173,7 @@ export const FilterBabysitter = () => {
       autoClose: 3000,
       // hideProgressBar: true,
       closeButton: false,
+      className: "mt-[100px]",
     });
   };
   return (
