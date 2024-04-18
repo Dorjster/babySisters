@@ -22,6 +22,8 @@ export const verifyUser = async (req: Request) => {
           { verification: true },
           { new: true }
         );
+
+        return "Амжилттай баталгаажлаа !";
       } else {
         throw new Error("Нууц үг буруу байна!");
       }
@@ -43,6 +45,7 @@ export const verifyUser = async (req: Request) => {
           { verification: true },
           { new: true }
         );
+        return "Амжилттай баталгаажлаа !";
       } else {
         throw new Error("Нууц үг буруу байна!");
       }

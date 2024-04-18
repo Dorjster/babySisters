@@ -26,6 +26,8 @@ import {
 import { ProfileType } from "../../..";
 import { stateType } from "./EditBabysitProfile";
 import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const locations = [
   { label: "Улаанбаатар" },
@@ -57,7 +59,7 @@ type About = {
   handleChange: (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
-  onGenderChange: (gen: string) => void; // Add this line
+  onGenderChange: (gen: string) => void;
 };
 
 interface UserVerifyData {
@@ -78,11 +80,19 @@ export const AboutMe = (props: About) => {
   const { loggedInUserData } = useData();
   const { push } = useRouter();
   const { hamndleLoc, handleChange } = props;
-
+  const [toast1, setToast1] = useState("");
   const [error, setError] = useState();
   const [userData, setUserData] = useState<UserVerifyData>({
     verificationCode: "",
   });
+
+  const notify = () => {
+    toast(error, {
+      position: "top-center",
+      autoClose: 3000,
+      closeButton: false,
+    });
+  };
 
   const handleVerifyChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -95,16 +105,16 @@ export const AboutMe = (props: About) => {
 
   const handleVerifyUser = async () => {
     try {
-      const { data } = await AxiosInstance.post<UserVerifyData>("/verifyUser", {
+      const { data } = await AxiosInstance.post("/verifyUser", {
         userId: loggedInUserData._id,
         verificationCode: userData.verificationCode,
       });
-      // location.reload();
-      
 
       // push("/edit-profile");
-      window.location.href = ("/edit-profile");
+      setError(data);
+      notify();
 
+      window.location.reload();
       return data;
     } catch (error: any) {
       setError(error.response.data);
@@ -162,13 +172,14 @@ export const AboutMe = (props: About) => {
               >
                 <AdsClickIcon />
               </button>
+              <ToastContainer />
             </div>
 
-            {error && (
+            {/* {error && (
               <p className="text-[12px] text-red-500  font-sans-serif dark:text-white">
                 {error}
               </p>
-            )}
+            )} */}
 
             <p className="text-gray-300 dark:text-white">
               Таны имэйл хаяг руу илгээсэн нууц үгийг хийснээр таны хаяг
@@ -194,7 +205,7 @@ export const AboutMe = (props: About) => {
           <Select onValueChange={hamndleLoc}>
             <SelectTrigger className="w-[100%] border-zinc-200 rounded-2xl text-gray-500 dark:text-white ">
               <SelectValue
-                placeholder={getData[0].address}
+                placeholder={getData.address}
                 defaultValue="Улаанбаатар"
               />
             </SelectTrigger>

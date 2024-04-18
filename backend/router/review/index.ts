@@ -1,10 +1,7 @@
 import { Router } from "express";
-import {
-    createReviewController, getReviewController
-} from "../../controllers";
+import { createReviewController, getReviewController } from "../../controllers";
 
 export const reviewRouter = Router();
 
-reviewRouter.post("/review", createReviewController);
+reviewRouter.post("/Createreview", createReviewController);
 reviewRouter.get("/review", getReviewController);
-

@@ -1,8 +1,5 @@
-// "use client";
-
 import React from "react";
 import { BabysitterProfile } from "@/components/profile/BabysitterProfile";
-import { ReviewType } from "@/components/profile/BabysitterProfile";
 import { AxiosInstance } from "@/utils/axiosInstance";
 
 const page = async ({ params }: { params: { id: string } }) => {
@@ -20,7 +17,6 @@ const page = async ({ params }: { params: { id: string } }) => {
     }
   };
   const result = await getData();
-  const babysitterId = id;
 
   if (!result) {
     throw new Error("data irsengui aldaa garlaa");
@@ -28,7 +24,7 @@ const page = async ({ params }: { params: { id: string } }) => {
 
   return (
     <div>
-      <BabysitterProfile result={result} babysitterId={babysitterId} />
+      <BabysitterProfile result={result} babysitterId={id} />
     </div>
   );
 };
