@@ -132,8 +132,8 @@ export const BabysitterProfile = (props: All) => {
   }, [parentId]);
 
   return (
-    <div className="bg-gradient-to-b m-auto dark:bg-[#31393F]   h-fit md:flex-row md:gap-[130px]  flex flex-col-reverse md:py-32 justify-center py-10 px-2">
-      <div className="mt-[30px] md:w-[60%] md:mt-0">
+    <div className="bg-gradient-to-b m-auto dark:bg-[#31393F]   h-fit md:flex-row md:gap-[130px]  flex flex-col-reverse bg-[#F4FAFB]  justify-center py-10 px-2 ">
+      <div className="mt-[30px] md:w-[60%] md:mt-0 ">
         <div className="flex border-b-[0.5px] flex-col gap-4 border-gray-600 pb-[40px]">
           <p className="text-[28px] text-gray-900 dark:text-white ">
             Миний тухай
@@ -247,7 +247,7 @@ export const BabysitterProfile = (props: All) => {
           </div>
         </div>
       </div>
-      <div className=" flex flex-col items-center gap-10">
+      <div className=" flex flex-col items-center h-fit md:p-4 rounded-2xl gap-10 bg-[#F6F9FA] shadow-xl dark:bg-[#4D565E]">
         <div className="">
           <Image
             className="rounded-full w-[200px] h-[200px]"

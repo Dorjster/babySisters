@@ -40,7 +40,7 @@ export type ParentType = {
   job_description?: string;
   wage?: number;
   available_time?: object[];
-  image?: string;
+  image: string;
   number_of_children: string[];
   age_of_children: string[];
   verification?: boolean;

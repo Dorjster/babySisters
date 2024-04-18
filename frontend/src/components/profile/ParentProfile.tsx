@@ -22,14 +22,19 @@ type All = {
 
 export const ParentProfile = (props: All) => {
   const { result } = props;
-  const letter = result.name.charAt(0);
+  const letter = result?.name;
+  console.log(result, "result asd");
 
   return (
-    <div className="bg-gradient-to-b m-auto   h-fit md:flex-row md:gap-[130px] dark:bg-[#31393F]  flex flex-col-reverse md:py-32 justify-center py-10 px-4">
+    <div className="bg-gradient-to-b m-auto   h-fit md:flex-row md:gap-[130px] dark:bg-[#31393F] bg-[#F4FAFB] flex flex-col-reverse md:py-32 justify-center py-10 px-4">
       <div className="mt-[30px] md:w-[60%] md:mt-0">
         <div className="flex border-b-[0.5px] flex-col gap-4 border-gray-600 pb-[40px]">
-          <p className="text-[28px] text-gray-900 dark:text-white">Ажлын санал</p>
-          <p className="overflow-wrap break-word dark:text-white ">{result?.job_description}</p>
+          <p className="text-[28px] text-gray-900 dark:text-white">
+            Ажлын санал
+          </p>
+          <p className="overflow-wrap break-word dark:text-white ">
+            {result?.job_description}
+          </p>
           <div className="flex items-center gap-1 text-[18px] dark:text-white ">
             <MdLocationOn className="text-[#008291]" size={24} />
             {result?.address}
@@ -43,7 +48,9 @@ export const ParentProfile = (props: All) => {
                 {result.age_of_children.map((el: string, index: number) => (
                   <div key={index}>
                     <p className="text-[18px]">Хүүхдийн нас</p>
-                    <p className="text-[16px] text-gray-600 dark:text-white">{el}</p>
+                    <p className="text-[16px] text-gray-600 dark:text-white">
+                      {el}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -52,7 +59,9 @@ export const ParentProfile = (props: All) => {
                 {result.number_of_children.map((el: string, index: number) => (
                   <div key={index}>
                     <p className="text-[18px]">Хүүхдийн тоо</p>
-                    <p className="text-[16px] text-gray-600 dark:text-white">{el}</p>
+                    <p className="text-[16px] text-gray-600 dark:text-white">
+                      {el}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -64,31 +73,23 @@ export const ParentProfile = (props: All) => {
         </div>
         <div className="flex flex-wrap gap-8 border-t-[1px] border-black dark:border-slate-300 py-10"></div>
       </div>
-      <div className="flex flex-col items-center  gap-10">
+      <div className=" flex flex-col items-center h-fit md:p-8 rounded-2xl gap-4  bg-[#F6F9FA] shadow-xl dark:bg-[#4D565E]">
         <div className="">
-          {/* <Image
-            className="rounded-full"
-            src="/Mother.avif"
-            height={200}
-            width={200}
-            alt="profile"
-          /> */}
-          {result?.image ? (
             <Image
-              src={result.image}
               className="w-[200px] h-[200px] rounded-full"
+              src={result.image}
               alt=""
               width={200}
               height={200}
             />
-          ) : (
-            <div className="w-[170px] h-[170px] mt-[25px] rounded-xl bg-gray-300 text-white text-[60px] flex self-center justify-center items-center">
+          
+            <div className=" text-slate-700  dark:text-white text-2xl font-medium flex self-center justify-center items-center">
               {letter}
             </div>
-          )}
+         
         </div>
 
-        <div className="bg-[#edf7f8] dark:bg-[#434C54] w-fill flex flex-col gap-3 rounded-2xl px-2 py-4 sticky top-24 ">
+        <div className="bg-[#DAEFF1] dark:bg-[#434C54] w-fill flex flex-col gap-3 rounded-2xl px-2 py-4 ">
           <h1 className="text-[20px] flex gap-1 items-center justify-center">
             <TbCurrencyTugrik />
             {result?.wage}/цагт

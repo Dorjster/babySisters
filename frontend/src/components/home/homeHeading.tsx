@@ -17,11 +17,11 @@ const HomeHeading = () => {
           height={200}
           alt="Woman"
         />
-        <div className="rounded-full w-[300px] ml-[200px] mt-4 md:hidden flex">
+        <div className="rounded-full absolute   w-[400px] ml-[200px] mt-4 md:hidden flex">
           <Image
             className="z-30 "
-            src="/Market.png"
-            width={200}
+            src="/signImage3.png"
+            width={250}
             height={200}
             alt="Woman"
           />

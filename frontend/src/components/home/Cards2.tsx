@@ -2,7 +2,7 @@ import Image from "next/image";
 const Cards2 = () => {
   return (
     <div className=" md:flex-row md:gap-[50px] bg-white dark:bg-[#31393F]   w-screen flex flex-col  items-center justify-center w-screeen -mt-[10px] relative pt-10 ">
-      <div className=" shadow-lg w-[420px] h-fill rounded-2xl  flex flex-col items-center mt-[100px]  p-4">
+      <div className=" shadow-lg w-[400px] h-fill rounded-2xl  flex flex-col items-center mt-[100px]  p-4">
         <div className="bg-white rounded-full w-[100px] object-fill overflow-hidden h-[100px] flex items-center justify-center">
           <Image src="/family.png" height={160} width={160} alt="Photo" />
         </div>
@@ -16,7 +16,7 @@ const Cards2 = () => {
           болох хялбар тусалдаг.
         </p>
       </div>
-      <div className=" shadow-lg w-[420px] h-fill rounded-2xl  flex flex-col items-center mt-[100px]  p-4">
+      <div className=" shadow-lg w-[400px] h-fill rounded-2xl  flex flex-col items-center mt-[100px]  p-4">
         <div className="bg-white rounded-full w-[100px] object-fill overflow-hidden h-[100px] flex items-center justify-center">
           <Image src="/Son.png" height={160} width={160} alt="Photo" />
         </div>
@@ -29,7 +29,7 @@ const Cards2 = () => {
           гэр бүлийн аюулгүй байдлыг хангах нь бидний нэн тэргүүний зорилт юм.
         </p>
       </div>
-      <div className=" shadow-lg w-[420px] h-fill rounded-2xl  flex flex-col items-center mt-[100px]  p-4">
+      <div className=" shadow-lg w-[400px] h-fill rounded-2xl  flex flex-col items-center mt-[100px]  p-4">
         <div className="bg-white rounded-full w-[100px] object-fill overflow-hidden h-[100px] flex items-center justify-center">
           <Image src="/Mother.avif" height={160} width={160} alt="Photo" />
         </div>
