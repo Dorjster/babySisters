@@ -226,26 +226,39 @@ export const BabysitterProfile = (props: All) => {
             </div>
           ))}
         </div>
-        <div className="flex flex-col items-center md:items-start gap-3">
-          <h1 className="font-medium">Сэтгэгдэл үлдээх</h1>
-
-          <div className=" w-[300px] flex items-center py-2 border-2 rounded-2xl px-2 border-slate-300">
-            <input
-              className=" w-[450px] outline-none "
-              placeholder="Comment"
-              type="text "
-              name="comment"
-              onChange={(e) => setComment(e.target.value)}
-              value={comment}
-            />
-            <button
-              onClick={sendComment}
-              className="bg-[#389BA7] text-white rounded-xl py-[2px] px-4"
-            >
-              Илгээх
-            </button>
+        {loggedInUserData.role === "BabySitter" ? (
+          <div></div>
+        ) : (
+          <div className="flex flex-col items-center md:items-start">
+            <div>
+              <h1 className="font-medium">Сэтгэгдэл үлдээх</h1>
+              <div>
+                <Rating
+                  sx={{ color: "#59BEC9" }}
+                  name="simple-controlled"
+                  value={reviewValue}
+                  onChange={handleRatingChange}
+                />
+              </div>
+            </div>
+            <div className=" w-[300px] flex items-center py-2 border-2 rounded-2xl px-2 border-slate-300">
+              <input
+                className=" w-[450px] outline-none "
+                placeholder="Comment"
+                type="text "
+                name="comment"
+                onChange={(e) => setComment(e.target.value)}
+                value={comment}
+              />
+              <button
+                onClick={sendComment}
+                className="bg-[#389BA7] text-white rounded-xl py-[2px] px-4"
+              >
+                Илгээх
+              </button>
+            </div>
           </div>
-        </div>
+        )}
       </div>
       <div className=" flex flex-col items-center h-fit md:p-4 rounded-2xl gap-10 bg-[#F6F9FA] shadow-xl dark:bg-[#4D565E]">
         <div className="">
