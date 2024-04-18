@@ -1,10 +1,15 @@
 import { Router } from "express";
 import {
-  createAvailableController,
+  createParentTimeController,
   createBabySitterTimeController,
+  getBabySitterTimeController,
+  // getParentTimeController,
 } from "../../controllers/availableTime/time";
 
 export const timeRouter = Router();
 
-timeRouter.post("/ParentTime", createAvailableController);
+timeRouter.post("/ParentTime", createParentTimeController);
 timeRouter.post("/BabyTime", createBabySitterTimeController);
+
+timeRouter.post("/getBabySitterTime", getBabySitterTimeController);
+// timeRouter.get("/getParentTime", getParentTimeController);

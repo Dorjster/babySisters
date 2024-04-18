@@ -23,7 +23,7 @@ type All = {
 export const ParentProfile = (props: All) => {
   const { result } = props;
   const letter = result?.name;
-  console.log(result, "result asd");
+  // console.log(result, "result asd");
 
   return (
     <div className="bg-gradient-to-b m-auto   h-fit md:flex-row md:gap-[130px] dark:bg-[#31393F] bg-[#F4FAFB] flex flex-col-reverse md:py-32 justify-center py-10 px-4">
@@ -75,18 +75,17 @@ export const ParentProfile = (props: All) => {
       </div>
       <div className=" flex flex-col items-center h-fit md:p-8 rounded-2xl gap-4  bg-[#F6F9FA] shadow-xl dark:bg-[#4D565E]">
         <div className="">
-            <Image
-              className="w-[200px] h-[200px] rounded-full"
-              src={result.image}
-              alt=""
-              width={200}
-              height={200}
-            />
-          
-            <div className=" text-slate-700  dark:text-white text-2xl font-medium flex self-center justify-center items-center">
-              {letter}
-            </div>
-         
+          <Image
+            className="w-[200px] h-[200px] rounded-full"
+            src={result.image}
+            alt=""
+            width={200}
+            height={200}
+          />
+
+          <div className=" text-slate-700  dark:text-white text-2xl font-medium flex self-center justify-center items-center">
+            {letter}
+          </div>
         </div>
 
         <div className="bg-[#DAEFF1] dark:bg-[#434C54] w-fill flex flex-col gap-3 rounded-2xl px-2 py-4 ">

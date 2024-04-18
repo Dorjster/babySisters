@@ -46,11 +46,14 @@ export const TimeBabySit = () => {
   };
 
   return (
-    <div className="">
+    <div className="flex flex-col gap-5">
+      <div className="text-gray-600 text-base font-[500]">
+        Ажиллах боломжтой цаг
+      </div>
       <Card className="flex flex-col gap-[30px] py-[20px] dark:bg-[#4D565E] ">
         {days.map((el, index) => (
           <div
-            className="flex items-center w-[62%] justify-between  md:h-[40px] h-[130px] pl-[20px] "
+            className="flex items-center w-[62%] justify-between  md:h-[40px] h-[130px] pl-[20px]"
             key={index}
           >
             <div>
@@ -61,7 +64,7 @@ export const TimeBabySit = () => {
                     checked={checkedDays[el]}
                   />
                 }
-                className=" dark:text-white"
+                className="dark:text-white"
                 label={el}
               />
             </div>
@@ -90,7 +93,9 @@ export const TimeBabySit = () => {
             ) : (
               <div className=" md:w-[70%] w-full  bg-slate-50 dark:bg-gray-300 items-center flex  rounded-2xl gap-4 p-4 ">
                 <NightlightRoundIcon className="text-[#389BA7] " />
-                <p className="dark:text-black text-slate-600">Ажиллах боломжгүй</p>
+                <p className="dark:text-black text-slate-600">
+                  Ажиллах боломжгүй
+                </p>
               </div>
             )}
           </div>
