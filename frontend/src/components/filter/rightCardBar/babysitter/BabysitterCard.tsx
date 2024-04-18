@@ -46,6 +46,7 @@ const HomeProfile: React.FC = () => {
 
   return (
     <div className=" h-fit w-screen gap-10 flex flex-wrap ">
+      
       {babysitterData.map((babysitter) => (
         <div
           key={babysitter._id}
@@ -65,7 +66,9 @@ const HomeProfile: React.FC = () => {
             smoker={babysitter.info_id.smoker}
             exp={babysitter.info_id.year_of_experience}
           />
+          
         </div>
+        
       ))}
     </div>
   );

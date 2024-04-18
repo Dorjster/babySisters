@@ -36,7 +36,7 @@ const ParentCard = () => {
   };
 
   return (
-    <div className=" h-fit w-full mt-1 flex   flex-wrap">
+    <div className=" h-fit w-full mt-1 flex flex-wrap  pl-10  gap-8">
       {parentData.map((parent) => (
         <div
           key={parent._id}

@@ -15,6 +15,7 @@ import { borderRadius, display } from "@mui/system";
 import { AlignCenter } from "lucide-react";
 import { usePathname } from "next/navigation";
 
+
 type Anchor = "right";
 type navigationItem = {
   href: string;
@@ -209,6 +210,7 @@ export default function AnchorTemporaryDrawer(props: any) {
                 >
                   Гарах
                 </button>
+                
                 <Modal className=""
                   open={open}
                   onClose={handleClose}
@@ -222,6 +224,7 @@ export default function AnchorTemporaryDrawer(props: any) {
                     >
                       Гарахдаа итгэлтэй байна уу?
                     </Typography>
+                    
                     <div>
                       {" "}
                       <Button
@@ -233,6 +236,7 @@ export default function AnchorTemporaryDrawer(props: any) {
                         Тийм
                       </Button>
                       <Button onClick={handleClose}>Үгүй</Button>
+                      
                     </div>
                   </Box>
                 </Modal>

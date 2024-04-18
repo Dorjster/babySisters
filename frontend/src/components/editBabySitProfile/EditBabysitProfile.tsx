@@ -302,106 +302,85 @@ export const EditBabysitProfile = () => {
     }
   };
   return (
-    <Container
-      sx={{
-        marginTop: "60px",
-        marginBottom: "100px",
-      }}
-    >
-      <div
-        className="flex gap-[300px] p-[80px] 
-      "
-      >
-        <div className="w-[220px]  object-fit flex flex-col items-center  gap-3 mb-[50px]">
-          {getData?.image && (
-            <Image
-              src={image ? URL.createObjectURL(image[0]) : getData?.image}
-              alt=""
-              width={220}
-              height={200}
-              className="w-[220px] h-[200px] border-[5px]"
-            />
-          )}
-          {!getData?.image && (
-            <div
-              style={{
-                width: "220px",
-                height: "200px",
-                backgroundColor: "#c9e8ec",
-                border: "1px solid #389BA7 ",
-                borderRadius: "5px",
-              }}
-            />
-          )}
-          {/* {image && (
-            <Image
-              src={image ? URL.createObjectURL(image[0]) : ""}
-              alt=""
-              width={220}
-              height={200}
-              className="w-[220px] h-[200px] border-[5px]"
-            />
-          )} */}
-          {/* {!image && (
-            <div
-              style={{
-                width: "220px",
-                height: "200px",
-                backgroundColor: "#c9e8ec",
-                border: "1px solid #389BA7 ",
-                borderRadius: "5px",
-              }}
-            />
-          )} */}
-
-          <input
-            type="file"
-            onChange={handleChangeImg}
-            className="text-[#389BA7] text-[14px] ml-[50px]"
-          />
-          <Button
-            onClick={uploadImage}
-            className="bg-[#389BA7] text-[#fff] rounded-[5px] w-full"
+    <div className=" dark:bg-[#31393F] py-10">
+      <Container>
+        <div>
+          <div
+            className=" md:flex-row flex flex-col justify-between md:pr-60
+    "
           >
-            {loading ? "Loading" : "Submit"}{" "}
-          </Button>
-        </div>
-        <General />
-      </div>
+            <div className="w-[220px]  object-fit flex flex-col items-center  gap-3 mb-[50px]">
+              {getData?.image && (
+                <Image
+                  src={image ? URL.createObjectURL(image[0]) : getData?.image}
+                  alt=""
+                  width={220}
+                  height={200}
+                  className="w-[220px] h-[200px] border-[5px]"
+                />
+              )}
+              {!getData?.image && (
+                <div
+                  style={{
+                    width: "220px",
+                    height: "200px",
+                    backgroundColor: "#c9e8ec",
+                    border: "1px solid #389BA7 ",
+                    borderRadius: "5px",
+                  }}
+                />
+              )}
 
-      <hr />
-      <div className="flex flex-col gap-[45px] mb-[80px]">
-        <AboutMe
-          handleChange={handleChange}
-          hamndleLoc={handleLocationChange}
-          onGenderChange={handleGenderChange}
-          getData={getData}
-        />
-        <Languages
-          handleLan={handleLan}
-          handleEdu={handleEdu}
-          getData={getData}
-        />
-        <Character handleChar={handleChar} />
-      </div>
-      <hr />
-      <div className="mt-[50px] flex flex-col gap-[45px] mb-[70px]">
-        <Experience handleExp={handleExp} />
-        <AddInformation handleAdd={handleAdd} />
-        <Skill handleSki={handleSki} />
-      </div>
-      <hr />
-      <div className="mt-[50px] flex flex-col gap-[45px] mb-[50px]">
-        <Condition handleChange={handleChange} />
-      </div>
-      {/* <ScheduleBaby handleClick={click} /> */}
-      <TimeBabySit />
-      <button
-        onClick={handleUpdate}
-        className="w-[100%] bg-[#389BA7] text-white rounded-3xl font-[400] text-[20px] mt-[65px] h-[40px]"
-      >
-        Хадгалах
-      </button>
-    </Container>
+              <input
+                type="file"
+                onChange={handleChangeImg}
+                className="text-[#389BA7] text-[14px] ml-[50px]"
+              />
+              <Button
+                onClick={uploadImage}
+                className="bg-[#389BA7] text-[#fff] rounded-[5px] w-full"
+              >
+                {loading ? "Loading" : "Submit"}{" "}
+              </Button>
+            </div>
+            <General />
+          </div>
+
+          <hr />
+          <div className="flex flex-col gap-[45px] mb-[80px]">
+            <AboutMe
+              handleChange={handleChange}
+              hamndleLoc={handleLocationChange}
+              onGenderChange={handleGenderChange}
+              getData={getData}
+            />
+            <Languages
+              handleLan={handleLan}
+              handleEdu={handleEdu}
+              getData={getData}
+            />
+            <Character handleChar={handleChar} />
+          </div>
+          <hr />
+          <div className="mt-[50px] flex flex-col gap-[45px] mb-[70px]">
+            <Experience handleExp={handleExp} />
+            <AddInformation handleAdd={handleAdd} />
+            <Skill handleSki={handleSki} />
+          </div>
+          <hr />
+          <div className="mt-[50px] flex flex-col gap-[45px] mb-[50px]">
+            <Condition handleChange={handleChange} />
+          </div>
+          {/* <ScheduleBaby handleClick={click} /> */}
+          <TimeBabySit />
+          <button
+            onClick={handleUpdate}
+            className="w-[100%] bg-[#389BA7] text-white rounded-3xl font-[400] text-[20px] mt-[65px] h-[40px]"
+          >
+            Хадгалах
+          </button>
+        </div>
+      </Container>
+    </div>
   );
 };
