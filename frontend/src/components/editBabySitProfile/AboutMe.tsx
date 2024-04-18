@@ -79,7 +79,7 @@ export const AboutMe = (props: About) => {
   const { getData } = props;
   const { loggedInUserData } = useData();
   const { push } = useRouter();
-  const { hamndleLoc, handleChange } = props;
+  const { hamndleLoc, handleChange, onGenderChange } = props;
   const [toast1, setToast1] = useState("");
   const [error, setError] = useState();
   const [userData, setUserData] = useState<UserVerifyData>({
@@ -125,9 +125,7 @@ export const AboutMe = (props: About) => {
   //   gender: false
   // });
 
-  const [genderData, setGenderData] = useState<GenderData>({
-    gender: "",
-  });
+  const [genderData, setGenderData] = useState<string>("");
 
   // const handleClick = () => {
   //   setGenderData()
@@ -241,7 +239,7 @@ export const AboutMe = (props: About) => {
               <RadioGroupItem
                 value="comfortable"
                 id="r2"
-                onClick={() => setGenderData(genderData)}
+                onClick={() => onGenderChange("Эрэгтэй")}
               />
               <Label htmlFor="r2" className="text-gray-500 text-lg">
                 Эрэгтэй
@@ -251,7 +249,7 @@ export const AboutMe = (props: About) => {
               <RadioGroupItem
                 value="compact"
                 id="r3"
-                onClick={() => setGenderData(genderData)}
+                onClick={() => onGenderChange("Эмэгтэй")}
               />
               <Label htmlFor="r3" className="text-gray-500 text-lg">
                 Эмэгтэй

@@ -92,7 +92,7 @@ export const EditBabysitProfile = () => {
     address: "Улаанбаатар",
     birthdate: "",
     language: [],
-    education: "",
+    education: "Бүрэн дунд",
     character: [],
     experience: "",
     additional: [],
@@ -100,7 +100,7 @@ export const EditBabysitProfile = () => {
     wage: 0,
     schedule: {},
     verificationCode: "",
-    gender: "",
+    gender: "Эрэгтэй",
   });
 
   useEffect(() => {
@@ -119,7 +119,7 @@ export const EditBabysitProfile = () => {
     getInfo();
   }, [loggedInUserData]);
 
-  // console.log(userdata);
+  // console.log(userdata, "asd");
 
   const click = (day: string, timeValue: string) => {
     setUserdata((prevUserData) => {

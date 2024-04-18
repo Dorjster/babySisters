@@ -31,7 +31,6 @@ type All = {
 export const Languages = (props: All) => {
   const { handleLan, handleEdu, getData } = props;
   const [buttonStates, setButtonStates] = useState(languages.map(() => false));
-  console.log(getData, "aa");
 
   const handleClickButton = (index: number) => {
     const updatedButtonStates = [...buttonStates];
@@ -85,7 +84,6 @@ export const Languages = (props: All) => {
           </SelectTrigger>
           <SelectContent>
             <SelectGroup className="dark:text-black">
-              <SelectItem value="Бүрэн">Бүрэн</SelectItem>
               <SelectItem value="Бүрэн дунд">Бүрэн дунд</SelectItem>
               <SelectItem value="Бакалавр">Бакалавр</SelectItem>
               <SelectItem value="Магистр">Магистр</SelectItem>

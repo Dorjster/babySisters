@@ -16,7 +16,7 @@ const HomeProfile: React.FC = () => {
   const [result, setResult] = useState("");
   const router = useRouter();
   const { filterData, setFilterData } = useFilterData();
-  console.log(filterData);
+  console.log(filterData, "asdf");
 
   useEffect(() => {
     const fetchData = async () => {
