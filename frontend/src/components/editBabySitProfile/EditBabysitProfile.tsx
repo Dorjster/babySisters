@@ -19,6 +19,7 @@ import { StepButton } from "@mui/material";
 import { useData } from "@/context/userProvider";
 import { error } from "console";
 import { get } from "http";
+import { TimeBabySit } from "./TimeBabySit";
 
 export type stateType = {
   image: string;
@@ -378,7 +379,8 @@ export const EditBabysitProfile = () => {
       <div className="mt-[50px] flex flex-col gap-[45px] mb-[50px]">
         <Condition handleChange={handleChange} />
       </div>
-      <ScheduleBaby handleClick={click} />
+      {/* <ScheduleBaby handleClick={click} /> */}
+      <TimeBabySit />
       <button
         onClick={handleUpdate}
         className="w-[100%] bg-[#389BA7] text-white rounded-3xl font-[400] text-[20px] mt-[65px] h-[40px]"
