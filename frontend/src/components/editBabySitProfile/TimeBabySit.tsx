@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState } from "react";
 import { Label } from "@/components/ui/label";
 import dayjs, { Dayjs } from "dayjs";
@@ -30,57 +28,69 @@ const CyanSwitch = styled(Switch)(({ theme }) => ({
 const days = ["Даваа", "Мягмар", "Лхагва", "Пүрэв", "Баасан", "Бямба", "Ням"];
 
 export const TimeBabySit = () => {
-  const [fromValue, setFromValue] = React.useState<Dayjs | null>(
-    dayjs("2022-04-17T15:30")
+  const [fromValues, setFromValues] = useState<Record<string, Dayjs | null>>(
+    Object.fromEntries(days.map((day) => [day, dayjs("2022-04-17T15:30")]))
+  );
+  const [toValues, setToValues] = useState<Record<string, Dayjs | null>>(
+    Object.fromEntries(days.map((day) => [day, dayjs("2022-04-17T15:30")]))
+  );
+  const [checkedDays, setCheckedDays] = useState<Record<string, boolean>>(
+    Object.fromEntries(days.map((day) => [day, true])) // Initialize all days as checked
   );
 
-  const [toValue, setToValue] = React.useState<Dayjs | null>(
-    dayjs("2022-04-17T15:30")
-  );
-  const [checked, setChecked] = useState(false);
+  const handleDayToggle = (day: string) => {
+    setCheckedDays((prevState) => ({
+      ...prevState,
+      [day]: !prevState[day],
+    }));
+  };
 
   return (
     <div className="">
-      <Card className="flex flex-col gap-[20px] py-[20px]">
+      <Card className="flex flex-col gap-[30px] py-[20px] dark:bg-[#4D565E] ">
         {days.map((el, index) => (
           <div
-            className="flex items-center w-[62%] justify-between pl-[20px] "
+            className="flex items-center w-[62%] justify-between  md:h-[40px] h-[130px] pl-[20px] "
             key={index}
           >
             <div>
               <FormControlLabel
                 control={
                   <CyanSwitch
-                    onChange={() => setChecked(!checked)}
-                    checked={checked}
-                    defaultChecked
+                    onChange={() => handleDayToggle(el)}
+                    checked={checkedDays[el]}
                   />
                 }
-                className=""
+                className=" dark:text-white"
                 label={el}
               />
             </div>
 
-            {checked ? (
+            {checkedDays[el] ? (
               <div>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DemoContainer components={["TimePicker", "TimePicker"]}>
                     <TimePicker
                       label="from"
-                      value={fromValue}
-                      onChange={(newValue) => setFromValue(newValue)}
+                      value={fromValues[el]}
+                      onChange={(newValue) =>
+                        setFromValues({ ...fromValues, [el]: newValue })
+                      }
                     />
                     <TimePicker
                       label="to"
-                      value={toValue}
-                      onChange={(newValue) => setToValue(newValue)}
+                      value={toValues[el]}
+                      onChange={(newValue) =>
+                        setToValues({ ...toValues, [el]: newValue })
+                      }
                     />
                   </DemoContainer>
                 </LocalizationProvider>
               </div>
             ) : (
-              <div className="w-[70%] bg-gray-200 flex h-[50px]">
-                <NightlightRoundIcon /> <p>Ажиллах боломжгүй</p>
+              <div className=" md:w-[70%] w-full  bg-slate-50 dark:bg-gray-300 items-center flex  rounded-2xl gap-4 p-4 ">
+                <NightlightRoundIcon className="text-[#389BA7] " />
+                <p className="dark:text-black text-slate-600">Ажиллах боломжгүй</p>
               </div>
             )}
           </div>

@@ -45,7 +45,7 @@ export const Languages = (props: All) => {
         <p className="text-gray-600 text-base font-[500] mb-[15px] dark:text-white">
           Таны эзэмшсэн хэл?
         </p>
-        <div className="flex gap-3 ">
+        <div className="md:flex md:gap-3 flex flex-wrap gap-4 ">
           {languages.map((el, index) => {
             const isHeKnown = getData[0]?.info_id[0]?.language.includes(el);
             return (

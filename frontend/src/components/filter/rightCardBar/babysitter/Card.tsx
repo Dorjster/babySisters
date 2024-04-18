@@ -51,37 +51,7 @@ export const Card: React.FC<CardProps> = ({
 
   const SkeletonLoader = () => (
     <Skeleton className="md:w-[450px] dark:bg-[#4D565E]  w-[330px] md:h-[220px] h-[440px] md:flex-row flex flex-col rounded-2xl overflow-hidden shadow-xl bg-[#F6F9FA] mb-[40px]  ">
-      {/* {data?.image ? (
-          <Image
-            src={data.image}
-            className="w-[170px] h-[170px] mt-[25px] rounded-e-xl self-center justify-center items-center"
-            alt=""
-            width={230}
-            height={220}
-          />
-        ) : (
-          <div className="w-[170px] h-[170px] mt-[25px] rounded-xl bg-gray-300 text-white text-[60px] flex self-center justify-center items-center">
-            {letter}
-          </div>
-        )} */}
-
-      {/* <Skeleton className="w-[230px] h-full flex flex-col justify-between">
-        <Skeleton className="w-[230px] h-[180px] rounded-e-xl bg-gray-300 animate-pulse" />
-
-        <Box
-          sx={{
-            marginLeft: "30px",
-            "& > legend": { mt: 2 },
-          }}
-        >
-          <Rating sx={{ color: "#59BEC9" }} name="read-only" value={0} />
-        </Box>
-      </Skeleton> */}
-
-      {/* <Skeleton className="w-[150px] h-[150px] ml-4 mt-[10px]">
-        <Skeleton className="text-lg  font-semibold mb-5 text-[#31393F] animate-pulse " />
-        <Skeleton className="w-full h-[120px] text-[#222222]  animate-pulse" />
-      </Skeleton> */}
+    
     </Skeleton>
   );
 
@@ -90,7 +60,7 @@ export const Card: React.FC<CardProps> = ({
       {showSkeleton ? (
         <SkeletonLoader />
       ) : (
-        <div className=" md:w-[450px] dark:bg-[#4D565E] h-fill md:flex-row md:px-0 px-16 md:pb-0 flex flex-col items-center  rounded-2xl overflow-hidden shadow-xl bg-[#F6F9FA] mb-[40px] ">
+        <div className=" md:w-[450px] dark:bg-[#4D565E] h-[400px] md:flex-row md:h-[230px] md:px-0 px-16 md:pb-0 flex flex-col items-center  rounded-2xl overflow-hidden shadow-xl bg-[#F6F9FA] mb-[40px] ">
           <div className=" w-[200px] h-[220px] flex flex-col justify-between items-center">
             {data?.image ? (
               <div className="flex flex-col items-center justify-center">
@@ -123,18 +93,19 @@ export const Card: React.FC<CardProps> = ({
               sx={{
                 alignItems: "center",
                 paddingBottom: "10px",
+                
               }}
             >
-              <div className="flex gap-2">
-                <MdLocationOn className="self-center " />
+              <div className="flex  gap-2">
+                <MdLocationOn className="self-center text-[#008291] text-[20px] " />
                 <p className="">{data.address}</p>
               </div>
               <div className="flex gap-2">
-                <TbCurrencyTugrik className="self-center " />
+                <TbCurrencyTugrik className="self-center text-[#008291] text-[20px]" />
                 <p className="">{wage}/цагт</p>
               </div>
-              <div className="flex gap-2">
-                <MdBabyChangingStation className="self-center " />
+              <div className="flex gap-2 ml-1">
+                <MdBabyChangingStation className="self-center text-[#008291] text-[20px]" />
                 <p className="">{exp} жил</p>
               </div>
             </Box>
@@ -157,7 +128,9 @@ export const Card: React.FC<CardProps> = ({
               {about}
             </p>
           </div>
+      
         </div>
+      
       )}
     </div>
   );
