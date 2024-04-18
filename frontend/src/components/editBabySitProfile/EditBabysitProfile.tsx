@@ -42,6 +42,23 @@ type Schedule = {
   [day: string]: string[];
 };
 
+type Sitter = {
+  image: string;
+  about: string;
+  address: string;
+  birthdate: string;
+  language: string[];
+  education: string;
+  character: string[];
+  experience: string;
+  additional: string[];
+  skills: string[];
+  wage: number;
+  schedule: object;
+  verificationCode: string;
+  info_id: string[];
+};
+
 const getPresignedURL = async () => {
   const { data } = await AxiosInstance.get("/upload-image-into-r2");
 
@@ -53,24 +70,22 @@ export const EditBabysitProfile = () => {
   const [image, setImage] = useState<FileList | null>(null);
   const [accessUrl, setAccessUrl] = useState<string>("");
   const [loading, setLoading] = useState(false);
-  const [getData, setGetData] = useState([
-    {
-      image: "",
-      about: "",
-      address: "",
-      birthdate: "",
-      language: [],
-      education: "",
-      character: [],
-      experience: "",
-      additional: [],
-      skills: [],
-      wage: 0,
-      schedule: {},
-      verificationCode: "",
-      info_id: [],
-    },
-  ]);
+  const [getData, setGetData] = useState<Sitter>({
+    image: "",
+    about: "",
+    address: "",
+    birthdate: "",
+    language: [],
+    education: "",
+    character: [],
+    experience: "",
+    additional: [],
+    skills: [],
+    wage: 0,
+    schedule: {},
+    verificationCode: "",
+    info_id: [],
+  });
   const [userdata, setUserdata] = useState<stateType>({
     image: "",
     about: "",
@@ -104,7 +119,7 @@ export const EditBabysitProfile = () => {
     getInfo();
   }, [loggedInUserData]);
 
-  console.log(userdata);
+  // console.log(userdata);
 
   const click = (day: string, timeValue: string) => {
     setUserdata((prevUserData) => {
@@ -298,16 +313,16 @@ export const EditBabysitProfile = () => {
       "
       >
         <div className="w-[220px]  object-fit flex flex-col items-center  gap-3 mb-[50px]">
-          {getData[0].image && (
+          {getData?.image && (
             <Image
-              src={image ? URL.createObjectURL(image[0]) : getData[0].image}
+              src={image ? URL.createObjectURL(image[0]) : getData?.image}
               alt=""
               width={220}
               height={200}
               className="w-[220px] h-[200px] border-[5px]"
             />
           )}
-          {!getData[0].image && (
+          {!getData?.image && (
             <div
               style={{
                 width: "220px",

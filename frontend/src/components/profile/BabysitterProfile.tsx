@@ -18,20 +18,46 @@ import {
 import Image from "next/image";
 import { Rating } from "@mui/material";
 import { CheckedSchedule } from "./CheckedSchedule";
-import { ProfileType } from "../../..";
+import { ParentType, ProfileType } from "../../..";
 import React from "react";
 import { useData } from "@/context/userProvider";
+import { Description } from "@radix-ui/react-toast";
 type All = {
   result: ProfileType[] & any;
   babysitterId: string;
 };
 
+type Parent = {
+  name: string;
+  image: string;
+};
+
 export type ReviewType = {
   point: number;
   description: string;
-  parent_id: string;
+  parent_id: Parent;
   babysitter_id: string;
   createdAt: string;
+  _id: string;
+};
+
+type State = {
+  _id: string;
+  role: string;
+  name: string;
+  email: string;
+  phone: string;
+  password: string;
+  available_time: string[];
+  number_of_children: string[];
+  age_of_children: string[];
+  verification: boolean;
+  availableTime: string[];
+  image: string;
+};
+
+type Review = {
+  parent_id: string;
 };
 
 export const BabysitterProfile = (props: All) => {
@@ -39,10 +65,29 @@ export const BabysitterProfile = (props: All) => {
   const { loggedInUserData } = useData();
   const [comment, setComment] = useState("");
   const [reviewValue, setReviewValue] = useState<number | null>(null);
+  const [parentId, setParentId] = useState<Review>({
+    parent_id: "",
+  });
+  console.log(result, "result");
+
+  const [parent, setParent] = useState<State>({
+    _id: "",
+    role: "",
+    name: "",
+    email: "",
+    phone: "",
+    password: "",
+    available_time: [],
+    number_of_children: [],
+    age_of_children: [],
+    verification: false,
+    availableTime: [],
+    image: "",
+  });
 
   const sendComment = async () => {
     try {
-      const { data } = await AxiosInstance.post("/review", {
+      const { data } = await AxiosInstance.post("/Createreview", {
         babysitter_id: babysitterId,
         parent_id: loggedInUserData._id,
         point: reviewValue,
@@ -53,8 +98,6 @@ export const BabysitterProfile = (props: All) => {
       setReviewValue(0);
 
       window.location.reload();
-
-      console.log(data, "data");
     } catch (error) {
       console.log(error);
     }
@@ -67,11 +110,26 @@ export const BabysitterProfile = (props: All) => {
     setReviewValue(newValue);
   };
 
-  const info = result[0].info_id[0];
+  const reviews = result?.review;
+  // console.log(reviews, "asd");
 
-  console.log(result[0]);
+  const info = result.info_id;
+  console.log(info, "info asd");
 
-  const review = result[0].review;
+  useEffect(() => {
+    const CommentedUser = async () => {
+      try {
+        const { data } = await AxiosInstance.post("/get/parent", {
+          id: parentId.parent_id,
+        });
+        setParent(data);
+        return data;
+      } catch (er: any) {
+        console.error(er.message);
+      }
+    };
+    CommentedUser();
+  }, [parentId]);
 
   return (
     <div className="bg-gradient-to-b m-auto dark:bg-[#31393F]   h-fit md:flex-row md:gap-[130px]  flex flex-col-reverse md:py-32 justify-center py-10 px-2">
@@ -80,7 +138,7 @@ export const BabysitterProfile = (props: All) => {
           <p className="text-[28px] text-gray-900 dark:text-white ">
             Миний тухай
           </p>
-          <p className="overflow-wrap break-word">{result[0]?.about}</p>
+          <p className="overflow-wrap break-word">{result?.about}</p>
           <div className="flex gap-6 pt-4">
             <div className="flex md:gap-8 gap-3">
               <div className="flex items-center gap-1 text-[18px] ">
@@ -89,7 +147,7 @@ export const BabysitterProfile = (props: All) => {
               </div>
               <div className="flex items-center gap-1 text-[18px]">
                 <FaTransgender className="text-[#008291]" size={24} />
-                {result[0]?.gender === "Эрэгтэй" ? (
+                {result?.gender === "Эрэгтэй" ? (
                   <div>Эмэгтэй</div>
                 ) : (
                   <div>Эмэгтэй</div>
@@ -97,16 +155,17 @@ export const BabysitterProfile = (props: All) => {
               </div>
               <div className="flex items-center gap-1 text-[18px]">
                 <MdLocationOn className="text-[#008291]" size={24} />
-                {result[0]?.address}
+                {result?.address}
               </div>
               <div className="flex items-center gap-1 text-[18px]">
                 <FaUserGraduate className="text-[#008291] ]" size={22} />
-                {info?.education}
+                {result?.education}
               </div>
             </div>
             <div></div>
           </div>
         </div>
+
         <div className="border-b-[0.5px] border-gray-600 py-10 md:flex  gap-10">
           <div>
             <h1 className="text-[23px] pb-5 ml-[20px]">Ур чадвар</h1>
@@ -139,52 +198,37 @@ export const BabysitterProfile = (props: All) => {
           <CheckedSchedule />
         </div>
         <div className="flex flex-wrap gap-8 border-t-[0.5px]  border-gray-600 py-10 ">
-          {review.map((el: ReviewType, index: number) => (
+          {reviews.map((el: ReviewType, index: number) => (
             <div
-              className="flex flex-col gap-4 bg-[#EDF7F8] w-[380px] dark:bg-[#434C54] rounded-2xl p-4"
-              key={index}
+              className="flex flex-col gap-4 bg-[#EDF7F8] w-[280px] dark:bg-[#434C54] rounded-2xl p-4 h-fit"
+              key={el._id}
             >
-              <div className="flex justify-between">
-                <div className="flex gap-2 ">
+              <div className="flex justify-between items-center">
+                <div className="flex gap-2 items-center">
                   <div className="flex items-center justify-center">
                     <Image
                       className="rounded-full w-[40px] h-[40px]"
-                      src={result[0]?.image}
+                      src={el.parent_id?.image}
                       height={30}
                       width={30}
                       alt=""
                     />
                   </div>
                   <h1 className="text-[16px] text-gray-700 font-medium">
-                    {loggedInUserData.name}
+                    {el.parent_id?.name}
                   </h1>
                 </div>
-                <Rating
-                  // sx={{ color: "#59BEC9" }}
-                  name="read-only"
-                  readOnly
-                  value={el.point}
-                />
+                <div className="text-[14px] text-gray-600 ">
+                  {el.createdAt.split("T")[0]}
+                </div>
               </div>
-              <p>{el.description}</p>
-              <div className="text-[14px] text-gray-600 ">
-                {el.createdAt.split("T")[0]}
-              </div>
+              <p className="text-gray-600">{el.description}</p>
             </div>
           ))}
         </div>
-        <div className="flex flex-col items-center md:items-start">
-          <div>
-            <h1 className="font-medium">Сэтгэгдэл үлдээх</h1>
-            <div>
-              <Rating
-                sx={{ color: "#59BEC9" }}
-                name="simple-controlled"
-                value={reviewValue}
-                onChange={handleRatingChange}
-              />
-            </div>
-          </div>
+        <div className="flex flex-col items-center md:items-start gap-3">
+          <h1 className="font-medium">Сэтгэгдэл үлдээх</h1>
+
           <div className=" w-[300px] flex items-center py-2 border-2 rounded-2xl px-2 border-slate-300">
             <input
               className=" w-[450px] outline-none "
@@ -207,7 +251,7 @@ export const BabysitterProfile = (props: All) => {
         <div className="">
           <Image
             className="rounded-full w-[200px] h-[200px]"
-            src={result[0].image}
+            src={result.image}
             height={200}
             width={200}
             alt="profile"
@@ -215,8 +259,8 @@ export const BabysitterProfile = (props: All) => {
         </div>
         <div className="text-[18px]">
           <div className="flex items-center justify-center gap-4 ">
-            <h1 className="text-[26px]">{result[0]?.name}</h1>
-            {result[0]?.verification && (
+            <h1 className="text-[26px]">{result?.name}</h1>
+            {result?.verification && (
               <MdVerified className="text-[#008291]" size={25} />
             )}
           </div>
