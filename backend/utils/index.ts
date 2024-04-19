@@ -57,7 +57,7 @@ export const transformDataForAlgolia = (infoData: InfoModelType): any => {
     year_of_experience: infoData.year_of_experience,
     character: infoData.character,
     // rating: infoData.rating,
-    available_time: infoData.available_time,
+    // available_time: infoData.available_time,
     wage: infoData.wage,
   };
 

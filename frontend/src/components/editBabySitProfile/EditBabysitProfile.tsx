@@ -21,6 +21,7 @@ import { get } from "http";
 import { TimeBabySit } from "./TimeBabySit";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import babysitter from "@/app/babysitter/page";
 
 export type stateType = {
   image: string;
@@ -112,7 +113,7 @@ export const EditBabysitProfile = () => {
         const { data } = await AxiosInstance.post("/get/babysitter", {
           id: loggedInUserData._id,
         });
-        console.log(data, "get babySitter Data");
+        // console.log(data, "get babySitter Data");
 
         setGetData(data);
       } catch (error) {
@@ -131,9 +132,7 @@ export const EditBabysitProfile = () => {
         }
 
         const { data } = await AxiosInstance.post("/getBabySitterTime", {
-          params: {
-            id: loggedInUserData._id,
-          },
+          id: loggedInUserData._id,
         });
         console.log(data, "get availableTime Data");
 

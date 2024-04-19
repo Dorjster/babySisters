@@ -32,7 +32,6 @@ export const Signup = () => {
     console.log(userdata);
   };
 
-  
   const handleCreateParent = async () => {
     try {
       const emptyFields = Object.entries(userdata).filter(
@@ -74,7 +73,7 @@ export const Signup = () => {
       }
     } catch (error: any) {
       console.error(error.message);
-      setError(error.response.data);
+      setError(error.message);
     }
   };
   return (

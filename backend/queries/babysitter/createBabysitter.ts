@@ -1,5 +1,5 @@
 import { Request } from "express";
-import { BabysitterModel, InfoModel } from "../../db";
+import { AvailableModel, BabysitterModel, InfoModel } from "../../db";
 import { passwordHash, getUserByEmail } from "../../utils";
 import nodemailer from "nodemailer";
 
@@ -15,6 +15,7 @@ export const createBabysitterQuery = async (req: Request) => {
       throw new Error("Бүртгэлтэй хэрэглэгч байна");
     }
     const info = await InfoModel.create({});
+    const available = await AvailableModel.create({});
 
     const transporter = nodemailer.createTransport({
       service: "Gmail",
@@ -43,6 +44,7 @@ export const createBabysitterQuery = async (req: Request) => {
       password: hash,
       info_id: info._id,
       verifyCode: code,
+      availableTime: available._id,
     });
 
     await transporter.sendMail(options);

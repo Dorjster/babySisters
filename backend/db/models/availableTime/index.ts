@@ -1,7 +1,7 @@
 import { model, Schema, models, Model } from "mongoose";
 
 export type AvailableModelType = {
-  _id?: Schema.Types.ObjectId;
+  _id: Schema.Types.ObjectId;
   togle: boolean;
   monday?: {
     from: string;
@@ -31,8 +31,8 @@ export type AvailableModelType = {
     from: string;
     to: string;
   };
-  parent_id?: Schema.Types.ObjectId;
-  babysitter_id?: Schema.Types.ObjectId;
+  // parent_id?: Schema.Types.ObjectId;
+  // babysitter_id?: Schema.Types.ObjectId;
 };
 
 const TimeSchema = new Schema<AvailableModelType>(
@@ -65,12 +65,12 @@ const TimeSchema = new Schema<AvailableModelType>(
       from: { type: String, required: false },
       to: { type: String, required: false },
     },
-    parent_id: { type: Schema.Types.ObjectId, ref: "Parent", required: false },
-    babysitter_id: {
-      type: Schema.Types.ObjectId,
-      ref: "Babysitter",
-      required: false,
-    },
+    // parent_id: { type: Schema.Types.ObjectId, ref: "Parent", required: false },
+    // babysitter_id: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: "Babysitter",
+    //   required: false,
+    // },
     togle: { type: Boolean, required: false, default: true },
   },
   {
