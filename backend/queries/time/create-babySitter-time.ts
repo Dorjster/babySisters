@@ -33,6 +33,14 @@ export const createBabySitterTimeQuery = async (req: Request) => {
         },
       }
     );
+
+    const populatedBabySitter = await AvailableModel.find().populate(
+      "babysitter_id"
+    );
+
+    if (!populatedBabySitter) {
+      throw new Error("babySitter time population failed");
+    }
     return time;
   } catch (error: any) {
     throw new Error(error.message);

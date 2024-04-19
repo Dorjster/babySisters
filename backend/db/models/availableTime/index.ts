@@ -2,6 +2,7 @@ import { model, Schema, models, Model } from "mongoose";
 
 export type AvailableModelType = {
   _id?: Schema.Types.ObjectId;
+  togle: boolean;
   monday?: {
     from: string;
     to: string;
@@ -70,6 +71,7 @@ const TimeSchema = new Schema<AvailableModelType>(
       ref: "Babysitter",
       required: false,
     },
+    togle: { type: Boolean, required: false, default: true },
   },
   {
     timestamps: true,

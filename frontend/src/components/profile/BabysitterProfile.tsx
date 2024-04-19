@@ -17,11 +17,11 @@ import {
 } from "react-icons/md";
 import Image from "next/image";
 import { Rating } from "@mui/material";
-import { CheckedSchedule } from "./CheckedSchedule";
 import { ParentType, ProfileType } from "../../..";
 import React from "react";
 import { useData } from "@/context/userProvider";
 import { Description } from "@radix-ui/react-toast";
+import { TimeBabySit } from "../editBabySitProfile/TimeBabySit";
 type All = {
   result: ProfileType[] & any;
   babysitterId: string;
@@ -114,7 +114,7 @@ export const BabysitterProfile = (props: All) => {
   // console.log(reviews, "asd");
 
   const info = result.info_id;
-  console.log(info, "info asd");
+  // console.log(info, "info asd");
 
   useEffect(() => {
     const CommentedUser = async () => {
@@ -195,7 +195,8 @@ export const BabysitterProfile = (props: All) => {
           </div>
         </div>
         <div className="py-24">
-          <CheckedSchedule />
+          <TimeBabySit />
+          {/* <CheckedSchedule /> */}
         </div>
         <div className="flex flex-wrap gap-8 border-t-[0.5px]  border-gray-600 py-10 ">
           {reviews.map((el: ReviewType, index: number) => (

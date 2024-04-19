@@ -11,7 +11,6 @@ import { Skill } from "./Skill";
 import { Condition } from "./Condition";
 import { General } from "./General";
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
-import { ScheduleBaby } from "./ScheduleBaby";
 import axios from "axios";
 import { AxiosInstance } from "@/utils/axiosInstance";
 import { Button } from "../ui";
@@ -35,14 +34,14 @@ export type stateType = {
   additional: string[];
   skills: string[];
   wage: number;
-  schedule: Schedule;
+  // schedule: Schedule;
   verificationCode: string;
   gender: string;
 };
 
-type Schedule = {
-  [day: string]: string[];
-};
+// type Schedule = {
+//   [day: string]: string[];
+// };
 
 type Sitter = {
   image: string;
@@ -100,10 +99,12 @@ export const EditBabysitProfile = () => {
     additional: [],
     skills: [],
     wage: 0,
-    schedule: {},
+    // schedule: {},
     verificationCode: "",
     gender: "Эрэгтэй",
   });
+
+  const [availabeTime, setAvailableTime] = useState({});
 
   useEffect(() => {
     const getInfo = async () => {
@@ -111,7 +112,7 @@ export const EditBabysitProfile = () => {
         const { data } = await AxiosInstance.post("/get/babysitter", {
           id: loggedInUserData._id,
         });
-        console.log(data, "dataaaa");
+        console.log(data, "get babySitter Data");
 
         setGetData(data);
       } catch (error) {
@@ -121,36 +122,60 @@ export const EditBabysitProfile = () => {
     getInfo();
   }, [loggedInUserData]);
 
-  // console.log(userdata, "asd");
+  useEffect(() => {
+    const getAvailableTimeInfo = async () => {
+      try {
+        if (!loggedInUserData || !loggedInUserData._id) {
+          console.error("User data or user ID is missing.");
+          return;
+        }
 
-  const click = (day: string, timeValue: string) => {
-    setUserdata((prevUserData) => {
-      const { schedule } = prevUserData;
-      const existingTimes = schedule[day] || [];
+        const { data } = await AxiosInstance.post("/getBabySitterTime", {
+          params: {
+            id: loggedInUserData._id,
+          },
+        });
+        console.log(data, "get availableTime Data");
 
-      let updatedTimes;
-      if (existingTimes.includes(timeValue)) {
-        updatedTimes = existingTimes.filter((time) => time !== timeValue);
-      } else {
-        updatedTimes = [...existingTimes, timeValue];
+        setAvailableTime(data);
+      } catch (error) {
+        console.log(error);
       }
+    };
 
-      const updatedSchedule = {
-        ...schedule,
-      };
+    getAvailableTimeInfo();
+  }, [loggedInUserData]);
 
-      if (updatedTimes.length > 0) {
-        updatedSchedule[day] = updatedTimes;
-      } else {
-        delete updatedSchedule[day];
-      }
+  // console.log(userdata);
 
-      return {
-        ...prevUserData,
-        schedule: updatedSchedule,
-      };
-    });
-  };
+  // const click = (day: string, timeValue: string) => {
+  //   setUserdata((prevUserData) => {
+  //     const { schedule } = prevUserData;
+  //     const existingTimes = schedule[day] || [];
+
+  //     let updatedTimes;
+  //     if (existingTimes.includes(timeValue)) {
+  //       updatedTimes = existingTimes.filter((time) => time !== timeValue);
+  //     } else {
+  //       updatedTimes = [...existingTimes, timeValue];
+  //     }
+
+  //     const updatedSchedule = {
+  //       ...schedule,
+  //     };
+
+  //     if (updatedTimes.length > 0) {
+  //       updatedSchedule[day] = updatedTimes;
+  //     } else {
+  //       delete updatedSchedule[day];
+  //     }
+
+  //     return {
+  //       ...prevUserData,
+  //       schedule: updatedSchedule,
+  //     };
+  //   });
+  // };
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -293,7 +318,7 @@ export const EditBabysitProfile = () => {
         skills: userdata.skills,
         year_of_experience: userdata.experience,
         character: userdata.character,
-        available_time: userdata.schedule,
+        // available_time: userdata.schedule,
         wage: userdata.wage,
         gender: userdata.gender,
       });
@@ -384,7 +409,6 @@ export const EditBabysitProfile = () => {
           <div className="mt-[50px] flex flex-col gap-[45px] mb-[50px]">
             <Condition handleChange={handleChange} />
           </div>
-          {/* <ScheduleBaby handleClick={click} /> */}
           <TimeBabySit />
           <button
             onClick={handleUpdate}
