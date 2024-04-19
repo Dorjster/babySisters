@@ -64,7 +64,7 @@ export const Login = () => {
       console.log(data);
       localStorage.setItem("token", data);
 
-      // push("/");
+      // push("/edit-profile");
       // window.location.reload();
 
       window.location.href = "/edit-profile";

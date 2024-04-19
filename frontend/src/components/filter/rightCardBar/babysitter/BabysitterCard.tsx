@@ -82,7 +82,7 @@ const HomeProfile: React.FC = () => {
         </>
       )}
       {totalPages > 1 && (
-        <Pagination className="absolute bottom-[230px] right-[20px] ">
+        <Pagination className="absolute bottom-[200px] right-[20px] ">
           <PaginationContent>
             <PaginationItem className="cursor-pointer ">
               <PaginationPrevious

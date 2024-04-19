@@ -271,7 +271,7 @@ export const FilterBabysitter = () => {
         onClick={clearFilters}
         className="bg-[#389BA7] cursor-pointer text-white rounded-[20px] py-2 sticky bottom-1"
       >
-        Reset{" "}
+        Шинэчлэх
       </button>
       <ToastContainer className="toast" />
     </div>

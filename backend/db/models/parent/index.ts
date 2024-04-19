@@ -11,7 +11,7 @@ export type ParentModelType = {
   address?: string;
   job_description?: string;
   wage?: string;
-  availableTime?: object[];
+  availableTime?: Schema.Types.ObjectId;
   number_of_children?: string[];
   age_of_children?: string[];
   image?: string;
@@ -31,7 +31,11 @@ const ParentSchema = new Schema<ParentModelType>(
     address: { type: String, required: false },
     job_description: { type: String, required: false },
     wage: { type: String, required: false },
-    availableTime: { type: [Object], required: false },
+    availableTime: {
+      type: Schema.Types.ObjectId,
+      required: false,
+      ref: "Available",
+    },
     number_of_children: { type: [String], required: false },
     age_of_children: { type: [String], required: false },
     image: { type: String, required: false },
