@@ -12,7 +12,7 @@ const ConversationSchema = new Schema<ConversationModelType>(
       babySitter: { type: Schema.Types.ObjectId, ref: "Babysitter" },
       parent: { type: Schema.Types.ObjectId, ref: "Parent" },
     },
-    messages: [{ type: Schema.Types.ObjectId, ref: "Message", default: [] }],
+    messages: [{ type: [Schema.Types.ObjectId], ref: "Message" }],
   },
   {
     timestamps: true,

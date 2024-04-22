@@ -1,10 +1,12 @@
-import { Chat } from "@/components/chat"
+import { MainChat } from "@/components/chat/mainChat";
+import React from "react";
 
 const page = () => {
-    return(
-        <div>
-            <Chat />
-        </div>
-    )
-}
+  return (
+    <div>
+      <MainChat />
+    </div>
+  );
+};
+
 export default page;

@@ -39,6 +39,7 @@ import { Card } from "@mui/material";
 
 import TextField from "@mui/material/TextField";
 
+import { useRouter } from "next/navigation";
 type All = {
   result: ProfileType[] & any;
   babysitterId: string;
@@ -97,6 +98,7 @@ type Review = {
 // const days = ["Даваа", "Мягмар", "Лхагва", "Пүрэв", "Баасан", "Бямба", "Ням"];
 
 export const BabysitterProfile = (props: All) => {
+  const { push } = useRouter();
   const { result, babysitterId } = props;
   const { loggedInUserData } = useData();
   const [comment, setComment] = useState("");
@@ -408,7 +410,12 @@ export const BabysitterProfile = (props: All) => {
             <TbCurrencyTugrik />
             {info?.wage}/цагт
           </h1>
-          <button className="text-white bg-[#008291] rounded-[20px] w-[200px] px-6 py-1 mx-10">
+          <button
+            onClick={() => {
+              push(`/chat?id=${babysitterId}`);
+            }}
+            className="text-white bg-[#008291] rounded-[20px] w-[200px] px-6 py-1 mx-10"
+          >
             Холбогдох {}
           </button>
         </div>

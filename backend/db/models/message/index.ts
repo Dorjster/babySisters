@@ -6,18 +6,18 @@ export type MessageModelType = {
   senderId: Schema.Types.ObjectId;
   receiverId: Schema.Types.ObjectId;
   message: string;
+  time: string;
 };
 
-const MessageSchema = new Schema<MessageModelType>(
-  {
-    senderId: { type: Schema.Types.ObjectId, ref: "Parent" },
-    receiverId: { type: Schema.Types.ObjectId, ref: "Babysitter"},
-    message: {type: String, required: true}
+const MessageSchema = new Schema<MessageModelType>({
+  senderId: { type: Schema.Types.ObjectId, ref: "Parent" },
+  receiverId: { type: Schema.Types.ObjectId, ref: "Babysitter" },
+  message: { type: String, required: true },
+  time: {
+    type: String,
+    required: true,
   },
-  {
-    timestamps: true,
-  }
-);
+});
 
 export const MessageModel: Model<MessageModelType> =
   models["Message"] || model("Message", MessageSchema);
