@@ -118,16 +118,16 @@ export default function AnchorTemporaryDrawer(props: any) {
             open={state[anchor]}
             onClose={toggleDrawer(anchor, false)}
           >
-            <div className="h-screen w-[400px] dark:bg-[#434C54] ">
-              <Stack className="dark:bg-[#31393F] " px={4} py="29px" direction={"row"} bgcolor={"#dcf2f5"}>
+            <div className="h-screen w-[400px] dark:bg-[#2b313a] ">
+              <Stack className="dark:bg-[#31363F] " px={4} py="29px" direction={"row"} bgcolor={"#dcf2f5"}>
                 <div onClick={toggleDrawer(anchor, false)}>
                   <ArrowBackIosIcon className="text-[#389BA7] justify-start"  />
                 </div>
 
                 <Typography
-                  className="text-[#323940] dark:text-white "
+                  className="text-[#323940] dark:text-white"
                   sx={{
-                    marginLeft: "120px",
+                    marginLeft: "100px",
                     fontSize: "20px",
                     cursor: "default",
                   }}
@@ -204,12 +204,15 @@ export default function AnchorTemporaryDrawer(props: any) {
                 ))}
               </div>
               <div>
+                {isTokenValid === "" ?
+                <div></div> :
                 <button
                   onClick={handleOpen}
                   className="flex items-center justify-center w-full p-10 font-bold text-[16px] cursor-pointer dark:text-white"
                 >
                   Гарах
-                </button>
+                </button> 
+                }
                 
                 <Modal className=""
                   open={open}

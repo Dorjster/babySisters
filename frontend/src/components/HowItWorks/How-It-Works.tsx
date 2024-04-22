@@ -46,13 +46,13 @@ function Image({ id }: { id: number }) {
   const currentText = text.find((item) => item.idText === id)?.content || "";
 
   return (
-    <div className="dark:bg-[#31393F]">
+    <div className="dark:bg-[#31363F]">
       <section>
         <div ref={ref} className={""}>
           <img id="imgHIW" src={`/${id}.jpeg`} alt="A London skyscraper" />
         </div>
         <motion.div
-          className="dark:bg-[#4D565E] rounded-2xl px-[20px]  "
+          className="dark:bg-transparent rounded-2xl px-[20px]  "
           style={{ y: useParallax(scrollYProgress, 300) }}
         >
           <motion.h2 className="dark:text-slate-200">

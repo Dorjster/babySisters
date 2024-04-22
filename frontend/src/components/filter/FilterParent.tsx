@@ -5,6 +5,7 @@ import { LocationSelect } from "./Location";
 import { Wage } from "./Wage";
 import { useCallback, useState } from "react";
 import { MdVerified } from "react-icons/md";
+import KidsNumber from "./KidsNumber";
 
 export type stateType = {
   location: string;
@@ -23,7 +24,6 @@ export type stateType = {
 export const FilterParent = () => {
   const [filterdata, setFilterdata] = useState<stateType>({
     location: "Улаанбаатар",
-
     languages: [],
     education: "",
     character: [],
@@ -63,11 +63,12 @@ export const FilterParent = () => {
   };
 
   return (
-    <div className="w-[300px] dark:bg-[#4D565E]  bg-slate-100 p-10 md:grid hidden gap-5 rounded-xl h-fit md:-ml-20 sticky top-[30%]">
+    <div className="w-[300px] dark:bg-[#2b313a]  bg-slate-100 p-10 md:grid hidden gap-5 rounded-xl h-fit md:-ml-20 ">
       <div className="grid gap-3">
         <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
           Цалин
         </p>
+        <Wage/>
         {/* <Wage onChange={handleWageChange} /> */}
       </div>
 
@@ -78,6 +79,16 @@ export const FilterParent = () => {
           Байршил
         </p>
         <LocationSelect handleLoc={handleLocationChange} />
+      </div>
+
+      <Separator />
+
+      <div className="grid gap-3 py-2">
+        <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+          Хүүхдийн тоо
+        </p>
+        <p>{sliderValue}-аас 4+ </p>
+        <KidsNumber onChange={handleSliderChange} />
       </div>
 
       <Separator />

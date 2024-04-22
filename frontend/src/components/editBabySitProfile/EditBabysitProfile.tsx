@@ -616,7 +616,7 @@ export const EditBabysitProfile = () => {
   };
 
   return (
-    <div className=" dark:bg-[#31393F] py-10">
+    <div className=" dark:bg-[#31363F] py-10">
       <Container>
         <div>
           <div

@@ -22,7 +22,7 @@ export const Footer = () => {
     <div
       className={`${
         pathname === "/"
-          ? " relative bottom-0 left-0 bg-[#c9e8ec] dark:bg-[#4D565E]   w-screen h-full md:px-[120px] flex flex-col justify-center items-center text-black gap-[45px] px-[100px] py-[50px] "
+          ? " relative bottom-0 left-0 bg-[#c9e8ec] dark:bg-[#31363F]   w-screen h-full md:px-[120px] flex flex-col justify-center items-center text-black gap-[45px] px-[100px] py-[50px] "
           : "hidden"
       }`}
     >

@@ -36,7 +36,7 @@ export const Gender = () => {
           id="r2"
           onClick={() => setFilterData({ ...filterData, gender: "Эрэгтэй" })}
         />
-        <Label htmlFor="r2" className="text-gray-500 text-lg">
+        <Label htmlFor="r2" className="text-black dark:text-white text-sm">
           Эрэгтэй
         </Label>
       </div>
@@ -46,7 +46,7 @@ export const Gender = () => {
           id="r3"
           onClick={() => setFilterData({ ...filterData, gender: "Эмэгтэй" })}
         />
-        <Label htmlFor="r3" className="text-gray-500 text-lg">
+        <Label htmlFor="r3" className="text-black dark:text-white text-sm">
           Эмэгтэй
         </Label>
       </div>

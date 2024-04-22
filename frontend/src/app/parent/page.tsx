@@ -4,7 +4,7 @@ import ParentDrawer from "@/components/Drawer/ParentDrawer";
 export default function parent() {
   return (
     <div className="relative md:overflow-hidden   ">
-      <div className="md:px-40 py-10 dark:bg-[#31393F] h-screen md:flex-row md:gap-8 p-4 flex flex-col relative z-10 ">
+      <div className="md:px-40 py-10 dark:bg-[#31363F] h-screen md:flex-row md:gap-8 p-4 flex flex-col relative z-10 ">
         <FilterParent />
         <ParentDrawer />
         <ParentCard />

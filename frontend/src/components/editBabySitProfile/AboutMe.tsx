@@ -2,6 +2,7 @@ import React, { ChangeEvent } from "react";
 import { Input } from "../ui/input";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { MdFileDownloadDone } from "react-icons/md";
 import {
   Select,
   SelectContent,
@@ -163,26 +164,26 @@ export const AboutMe = (props: About) => {
               <input
                 name="verificationCode"
                 onChange={handleVerifyChange}
-                className="w-[120px] border-[1px] h-[40px] p-2 dark:text-white  rounded-2xl text-gray-800 border-zinc-200"
+                className="w-[160px] border-[1px] h-[40px] p-2 text-black bg-white rounded-xl  border-zinc-200"
                 type="text"
                 placeholder="Нууц үг"
               />
               <button
-                className="w-[60px] h-[40px] rounded-xl bg-[#60ADB7] text-white"
+                className="w-[60px] h-[40px] text-white"
                 onClick={handleVerifyUser}
               >
-                <AdsClickIcon />
+                <MdFileDownloadDone className="w-[40px] h-[40px]"/>
               </button>
+            {error && (
+              <p className="text-[12px] text-red-500  font-sans-serif">
+                {error}
+              </p>
+            )}
               <ToastContainer />
             </div>
 
-            {/* {error && (
-              <p className="text-[12px] text-red-500  font-sans-serif dark:text-white">
-                {error}
-              </p>
-            )} */}
 
-            <p className="text-gray-300 dark:text-white">
+            <p className="text-gray-300 dark:text-white pt-2 text-sm">
               Таны имэйл хаяг руу илгээсэн нууц үгийг хийснээр таны хаяг
               баталгаажих болно.
             </p>
@@ -196,7 +197,7 @@ export const AboutMe = (props: About) => {
           <textarea
             name="about"
             onChange={handleChange}
-            className="w-[100%] h-[130px] rounded-2xl border-zinc-200 dark:text-white border-[1px] p-3 "
+            className="w-[100%] h-[130px] rounded-2xl border-zinc-200 bg-white border-[1px] p-3 text-black"
           />
         </div>
         <div>
@@ -234,7 +235,7 @@ export const AboutMe = (props: About) => {
         </div>
 
         <div>
-          <div className="text-gray-600 text-base font-[500] mb-[15px]">
+          <div className="dark:text-white text-gray-600 text-base font-[500] mb-[15px]">
             Хүйс
           </div>
           <RadioGroup defaultValue="comfortable">
@@ -244,7 +245,7 @@ export const AboutMe = (props: About) => {
                 id="r2"
                 onClick={() => onGenderChange("Эрэгтэй")}
               />
-              <Label htmlFor="r2" className="text-gray-500 text-lg">
+              <Label htmlFor="r2" className="text-gray-500 text-base dark:text-white">
                 Эрэгтэй
               </Label>
             </div>
@@ -254,7 +255,7 @@ export const AboutMe = (props: About) => {
                 id="r3"
                 onClick={() => onGenderChange("Эмэгтэй")}
               />
-              <Label htmlFor="r3" className="text-gray-500 text-lg">
+              <Label htmlFor="r3" className="text-gray-500 text-base dark:text-white">
                 Эмэгтэй
               </Label>
             </div>
