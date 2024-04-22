@@ -39,8 +39,8 @@ const BabysitterSchema = new Schema<BabysitterModelType>(
     info_id: { type: Schema.Types.ObjectId, ref: "Info", required: true },
     availableTime: {
       type: Schema.Types.ObjectId,
-      required: true,
       ref: "Available",
+      required: true,
     },
   },
   {
