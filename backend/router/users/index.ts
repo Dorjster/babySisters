@@ -1,5 +1,7 @@
 import { Router } from "express";
 import {
+  CreateParentbyClerkController,
+  CreateBabysitterbyClerkController,
   createBabyController,
   createParentController,
   getParentController,
@@ -18,9 +20,11 @@ import { getRefreshTokenService } from "../../controllers/user/refresh";
 
 export const userRouter = Router();
 
+userRouter.post("/signupBabysitterbyClerk", CreateBabysitterbyClerkController);
 userRouter.post("/signup", createBabyController);
 userRouter.post("/parent/signup", createParentController);
 
+userRouter.post("/signupParentbyClerk", CreateParentbyClerkController);
 userRouter.post("/get/parent", getParentController);
 userRouter.post("/get/babysitter", getBabysitterController);
 

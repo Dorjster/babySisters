@@ -1,3 +1,4 @@
+export * from "./createParent-Clerk";
 export * from "./createParent";
 export * from "./getParent";
 export * from "./getAllParents";

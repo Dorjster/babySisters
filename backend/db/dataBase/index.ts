@@ -2,15 +2,14 @@ import { connect, set } from "mongoose";
 // import dotenv from "dotenv";
 // dotenv.config();
 
-const CONNECTION_STRING: string =
-  "mongodb+srv://bbaatarnya:3UDcI42R3XAatdNq@babysitter.lcdb9h6.mongodb.net/";
+type CONNECTION_STRING = string;
 
 export const connectDb = async () => {
+  set("strictQuery", false);
   try {
-    set("strictQuery", false);
-    await connect(CONNECTION_STRING),
-      console.log("DB tei holbogdsoon huurhnuudee");
+    await connect(process.env.CONNECTION_STRING as CONNECTION_STRING);
+    console.log("Database tei holbogdsoon huurhnuudee? kek");
   } catch (error) {
-    console.log("Db connect is unsuccessfully ");
+    console.log("Database connection is unsuccessful how sad.");
   }
 };
