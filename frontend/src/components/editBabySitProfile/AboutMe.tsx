@@ -86,13 +86,13 @@ export const AboutMe = (props: About) => {
     verificationCode: "",
   });
 
-  const notify = () => {
-    toast(error, {
-      position: "top-center",
-      autoClose: 3000,
-      closeButton: false,
-    });
-  };
+  // const notify = () => {
+  //   toast(error, {
+  //     position: "top-center",
+  //     autoClose: 3000,
+  //     closeButton: false,
+  //   });
+  // };
 
   const handleVerifyChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -100,7 +100,7 @@ export const AboutMe = (props: About) => {
       ...userData,
       [name]: value,
     });
-    console.log(userData, "userdata");
+    // console.log(userData, "userdata");
   };
 
   const handleVerifyUser = async () => {
@@ -109,10 +109,13 @@ export const AboutMe = (props: About) => {
         userId: loggedInUserData._id,
         verificationCode: userData.verificationCode,
       });
+      console.log(data, "asd");
 
       // push("/edit-profile");
       setError(data);
-      notify();
+      console.log(error, "asdfa");
+
+      // notify();
 
       window.location.reload();
       return data;

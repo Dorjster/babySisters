@@ -4,7 +4,6 @@ import { AvailableModel, ParentModel, BabysitterModel } from "../../db";
 export const createBabySitterTimeQuery = async (req: Request) => {
   try {
     const {
-      babysitter_id,
       monday = {},
       tuesday = {},
       wednesday = {},
@@ -12,9 +11,20 @@ export const createBabySitterTimeQuery = async (req: Request) => {
       friday = {},
       saturday = {},
       sunday = {},
+      email,
     } = req.body;
+    console.log(req.body, "body");
+
+    const babysitter = await BabysitterModel.findOne({ email: email });
+    // console.log(babysitter, "asd");
+    if (!babysitter) {
+      throw new Error("user not found");
+    }
+
+    const babysitter_id = babysitter._id;
 
     const time = await AvailableModel.create({
+      // babysitter_id: babysitter_id,
       monday: monday,
       tuesday: tuesday,
       wednesday: wednesday,
@@ -22,25 +32,24 @@ export const createBabySitterTimeQuery = async (req: Request) => {
       friday: friday,
       saturday: saturday,
       sunday: sunday,
-      babysitter_id: babysitter_id,
     });
 
     await BabysitterModel.findByIdAndUpdate(
-      { _id: babysitter_id },
+      babysitter_id, // Directly pass the ID
       {
         $addToSet: {
-          availableTime: time._id,
+          availableTime: time,
         },
       }
     );
 
-    const populatedBabySitter = await AvailableModel.find().populate(
-      "babysitter_id"
-    );
+    // const populatedBabySitter = await AvailableModel.find().populate(
+    //   "babysitter_id"
+    // );
 
-    if (!populatedBabySitter) {
-      throw new Error("babySitter time population failed");
-    }
+    // if (!populatedBabySitter) {
+    //   throw new Error("babySitter time population failed");
+    // }
     return time;
   } catch (error: any) {
     throw new Error(error.message);
