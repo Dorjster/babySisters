@@ -109,11 +109,11 @@ export const AboutMe = (props: About) => {
         userId: loggedInUserData._id,
         verificationCode: userData.verificationCode,
       });
-      console.log(data, "asd");
+      // console.log(data, "asd");
 
       // push("/edit-profile");
       setError(data);
-      console.log(error, "asdfa");
+      // console.log(error, "asdfa");
 
       // notify();
 

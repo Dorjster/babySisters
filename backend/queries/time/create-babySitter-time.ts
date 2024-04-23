@@ -34,14 +34,14 @@ export const createBabySitterTimeQuery = async (req: Request) => {
       sunday: sunday,
     });
 
-    await BabysitterModel.findByIdAndUpdate(
-      babysitter_id, // Directly pass the ID
-      {
-        $addToSet: {
-          availableTime: time,
-        },
-      }
-    );
+    // await BabysitterModel.findByIdAndUpdate(
+    //   babysitter_id, // Directly pass the ID
+    //   {
+    //     $addToSet: {
+    //       availableTime: time,
+    //     },
+    //   }
+    // );
 
     // const populatedBabySitter = await AvailableModel.find().populate(
     //   "babysitter_id"
