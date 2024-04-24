@@ -3,37 +3,41 @@ import { model, Schema, models, Model } from "mongoose";
 export type AvailableModelType = [
   {
     _id: Schema.Types.ObjectId;
-    togle: boolean;
     monday: {
-      from: string;
-      to: string;
+      togle: boolean;
+      from: { clock: string; AM: string; PM: string };
+      to: { clock: string; AM: string; PM: string };
     };
     tuesday: {
-      from: string;
-      to: string;
+      togle: boolean;
+      from: { clock: string; AM: string; PM: string };
+      to: { clock: string; AM: string; PM: string };
     };
     wednesday: {
-      from: string;
-      to: string;
+      togle: boolean;
+      from: { clock: string; AM: string; PM: string };
+      to: { clock: string; AM: string; PM: string };
     };
     thursday: {
-      from: string;
-      to: string;
+      togle: boolean;
+      from: { clock: string; AM: string; PM: string };
+      to: { clock: string; AM: string; PM: string };
     };
     friday: {
-      from: string;
-      to: string;
+      togle: boolean;
+      from: { clock: string; AM: string; PM: string };
+      to: { clock: string; AM: string; PM: string };
     };
     saturday: {
-      from: string;
-      to: string;
+      togle: boolean;
+      from: { clock: string; AM: string; PM: string };
+      to: { clock: string; AM: string; PM: string };
     };
     sunday: {
-      from: string;
-      to: string;
+      togle: boolean;
+      from: { clock: string; AM: string; PM: string };
+      to: { clock: string; AM: string; PM: string };
     };
-    // parent_id?: Schema.Types.ObjectId;
-    // babysitter_id?: Schema.Types.ObjectId;
   }
 ];
 
@@ -41,40 +45,96 @@ const TimeSchema = new Schema<AvailableModelType>(
   [
     {
       monday: {
-        from: { type: String, required: false },
-        to: { type: String, required: false },
+        from: [
+          { clock: { type: String, required: false } },
+          { AM: { type: String, required: false } },
+          { PM: { type: String, required: false } },
+        ],
+        to: [
+          { clock: { type: String, required: false } },
+          { AM: { type: String, required: false } },
+          { PM: { type: String, required: false } },
+        ],
+        togle: { type: Boolean, required: false, default: true },
       },
       tuesday: {
-        from: { type: String, required: false },
-        to: { type: String, required: false },
+        from: [
+          { clock: { type: String, required: false } },
+          { AM: { type: String, required: false } },
+          { PM: { type: String, required: false } },
+        ],
+        to: [
+          { clock: { type: String, required: false } },
+          { AM: { type: String, required: false } },
+          { PM: { type: String, required: false } },
+        ],
+        togle: { type: Boolean, required: false, default: true },
       },
       wednesday: {
-        from: { type: String, required: false },
-        to: { type: String, required: false },
+        from: [
+          { clock: { type: String, required: false } },
+          { AM: { type: String, required: false } },
+          { PM: { type: String, required: false } },
+        ],
+        to: [
+          { clock: { type: String, required: false } },
+          { AM: { type: String, required: false } },
+          { PM: { type: String, required: false } },
+        ],
+        togle: { type: Boolean, required: false, default: true },
       },
       thursday: {
-        from: { type: String, required: false },
-        to: { type: String, required: false },
+        from: [
+          { clock: { type: String, required: false } },
+          { AM: { type: String, required: false } },
+          { PM: { type: String, required: false } },
+        ],
+        to: [
+          { clock: { type: String, required: false } },
+          { AM: { type: String, required: false } },
+          { PM: { type: String, required: false } },
+        ],
+        togle: { type: Boolean, required: false, default: true },
       },
       friday: {
-        from: { type: String, required: false },
-        to: { type: String, required: false },
+        from: [
+          { clock: { type: String, required: false } },
+          { AM: { type: String, required: false } },
+          { PM: { type: String, required: false } },
+        ],
+        to: [
+          { clock: { type: String, required: false } },
+          { AM: { type: String, required: false } },
+          { PM: { type: String, required: false } },
+        ],
+        togle: { type: Boolean, required: false, default: true },
       },
       saturday: {
-        from: { type: String, required: false },
-        to: { type: String, required: false },
+        from: [
+          { clock: { type: String, required: false } },
+          { AM: { type: String, required: false } },
+          { PM: { type: String, required: false } },
+        ],
+        to: [
+          { clock: { type: String, required: false } },
+          { AM: { type: String, required: false } },
+          { PM: { type: String, required: false } },
+        ],
+        togle: { type: Boolean, required: false, default: true },
       },
       sunday: {
-        from: { type: String, required: false },
-        to: { type: String, required: false },
+        from: [
+          { clock: { type: String, required: false } },
+          { AM: { type: String, required: false } },
+          { PM: { type: String, required: false } },
+        ],
+        to: [
+          { clock: { type: String, required: false } },
+          { AM: { type: String, required: false } },
+          { PM: { type: String, required: false } },
+        ],
+        togle: { type: Boolean, required: false, default: true },
       },
-      // parent_id: { type: Schema.Types.ObjectId, ref: "Parent", required: false },
-      // babysitter_id: {
-      //   type: Schema.Types.ObjectId,
-      //   ref: "Babysitter",
-      //   required: false,
-      // },
-      togle: { type: Boolean, required: false, default: true },
     },
   ],
   {

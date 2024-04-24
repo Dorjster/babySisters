@@ -22,6 +22,8 @@ import { TimeBabySit } from "./TimeBabySit";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import babysitter from "@/app/babysitter/page";
+import { Monda } from "next/font/google";
+import { Dayjs } from "dayjs";
 
 export type stateType = {
   image: string;
@@ -38,6 +40,126 @@ export type stateType = {
   // schedule: Schedule;
   verificationCode: string;
   gender: string;
+
+  // [day: string]: {
+  //   togle: boolean;
+  //   from: {
+  //     clock: string;
+  //     AM: string;
+  //     PM: string;
+  //   };
+  //   to: {
+  //     clock: string;
+  //     AM: string;
+  //     PM: string;
+  //   };
+  // };
+
+  monday: {
+    togle: boolean;
+    from: {
+      clock: string;
+      AM: string;
+      PM: string;
+    };
+    to: {
+      clock: string;
+      AM: string;
+      PM: string;
+    };
+  };
+  tuesday: {
+    togle: boolean;
+    from: {
+      clock: string;
+      AM: string;
+      PM: string;
+    };
+    to: {
+      clock: string;
+      AM: string;
+      PM: string;
+    };
+  };
+  wednesday: {
+    togle: boolean;
+    from: {
+      clock: string;
+      AM: string;
+      PM: string;
+    };
+    to: {
+      clock: string;
+      AM: string;
+      PM: string;
+    };
+  };
+  thursday: {
+    togle: boolean;
+    from: {
+      clock: string;
+      AM: string;
+      PM: string;
+    };
+    to: {
+      clock: string;
+      AM: string;
+      PM: string;
+    };
+  };
+  friday: {
+    togle: boolean;
+    from: {
+      clock: string;
+      AM: string;
+      PM: string;
+    };
+    to: {
+      clock: string;
+      AM: string;
+      PM: string;
+    };
+  };
+  saturday: {
+    togle: boolean;
+    from: {
+      clock: string;
+      AM: string;
+      PM: string;
+    };
+    to: {
+      clock: string;
+      AM: string;
+      PM: string;
+    };
+  };
+  sunday: {
+    togle: boolean;
+    from: {
+      clock: string;
+      AM: string;
+      PM: string;
+    };
+    to: {
+      clock: string;
+      AM: string;
+      PM: string;
+    };
+  };
+};
+
+type DayObject = {
+  togle: boolean;
+  from: {
+    clock: string;
+    AM: string;
+    PM: string;
+  };
+  to: {
+    clock: string;
+    AM: string;
+    PM: string;
+  };
 };
 
 // type Schedule = {
@@ -68,6 +190,7 @@ const getPresignedURL = async () => {
 };
 
 export const EditBabysitProfile = () => {
+  // const { hamndleLoc, handleChange, onGenderChange } = props;
   const { loggedInUserData } = useData();
   const [image, setImage] = useState<FileList | null>(null);
   const [accessUrl, setAccessUrl] = useState<string>("");
@@ -88,6 +211,7 @@ export const EditBabysitProfile = () => {
     verificationCode: "",
     info_id: [],
   });
+
   const [userdata, setUserdata] = useState<stateType>({
     image: "",
     about: "",
@@ -103,9 +227,122 @@ export const EditBabysitProfile = () => {
     // schedule: {},
     verificationCode: "",
     gender: "Эрэгтэй",
+    monday: {
+      togle: true,
+      from: {
+        clock: "",
+        AM: "",
+        PM: "",
+      },
+      to: {
+        clock: "",
+        AM: "",
+        PM: "",
+      },
+    },
+    tuesday: {
+      togle: true,
+      from: {
+        clock: "",
+        AM: "",
+        PM: "",
+      },
+      to: {
+        clock: "",
+        AM: "",
+        PM: "",
+      },
+    },
+    wednesday: {
+      togle: true,
+      from: {
+        clock: "",
+        AM: "",
+        PM: "",
+      },
+      to: {
+        clock: "",
+        AM: "",
+        PM: "",
+      },
+    },
+    thursday: {
+      togle: true,
+      from: {
+        clock: "",
+        AM: "",
+        PM: "",
+      },
+      to: {
+        clock: "",
+        AM: "",
+        PM: "",
+      },
+    },
+    friday: {
+      togle: true,
+      from: {
+        clock: "",
+        AM: "",
+        PM: "",
+      },
+      to: {
+        clock: "",
+        AM: "",
+        PM: "",
+      },
+    },
+    saturday: {
+      togle: true,
+      from: {
+        clock: "",
+        AM: "",
+        PM: "",
+      },
+      to: {
+        clock: "",
+        AM: "",
+        PM: "",
+      },
+    },
+    sunday: {
+      togle: true,
+      from: {
+        clock: "",
+        AM: "",
+        PM: "",
+      },
+      to: {
+        clock: "",
+        AM: "",
+        PM: "",
+      },
+    },
   });
 
-  const [availabeTime, setAvailableTime] = useState({});
+  type DayOfWeek =
+    | "monday"
+    | "tuesday"
+    | "wednesday"
+    | "thursday"
+    | "friday"
+    | "saturday"
+    | "sunday";
+
+  const handleDayTimeChange = (
+    day: DayOfWeek,
+    from: Dayjs | null,
+    to: Dayjs | null
+  ) => {
+    setUserdata((prevUserData) => ({
+      ...prevUserData,
+      [day]: {
+        ...prevUserData[day],
+        from: from ? from.format("HH:mm") : "",
+        to: to ? to.format("HH:mm") : "",
+      },
+    }));
+  };
 
   useEffect(() => {
     const getInfo = async () => {
@@ -123,65 +360,13 @@ export const EditBabysitProfile = () => {
     getInfo();
   }, [loggedInUserData]);
 
-  useEffect(() => {
-    const getAvailableTimeInfo = async () => {
-      try {
-        if (!loggedInUserData || !loggedInUserData._id) {
-          console.error("User data or user ID is missing.");
-          return;
-        }
-
-        const { data } = await AxiosInstance.post("/getBabySitterTime", {
-          id: loggedInUserData._id,
-        });
-        console.log(data, "get availableTime Data");
-
-        setAvailableTime(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    getAvailableTimeInfo();
-  }, [loggedInUserData]);
-
-  // console.log(userdata);
-
-  // const click = (day: string, timeValue: string) => {
-  //   setUserdata((prevUserData) => {
-  //     const { schedule } = prevUserData;
-  //     const existingTimes = schedule[day] || [];
-
-  //     let updatedTimes;
-  //     if (existingTimes.includes(timeValue)) {
-  //       updatedTimes = existingTimes.filter((time) => time !== timeValue);
-  //     } else {
-  //       updatedTimes = [...existingTimes, timeValue];
-  //     }
-
-  //     const updatedSchedule = {
-  //       ...schedule,
-  //     };
-
-  //     if (updatedTimes.length > 0) {
-  //       updatedSchedule[day] = updatedTimes;
-  //     } else {
-  //       delete updatedSchedule[day];
-  //     }
-
-  //     return {
-  //       ...prevUserData,
-  //       schedule: updatedSchedule,
-  //     };
-  //   });
-  // };
-
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setUserdata({ ...userdata, [name]: value });
   };
+  console.log(userdata);
 
   const handleLocationChange = (label: string) => {
     setUserdata({ ...userdata, address: label });
@@ -320,12 +505,103 @@ export const EditBabysitProfile = () => {
         // available_time: userdata.schedule,
         wage: userdata.wage,
         gender: userdata.gender,
+        monday: {
+          togle: userdata.monday.togle,
+          from: {
+            clock: userdata.monday.from.clock,
+            AM: userdata.monday.from.AM,
+            PM: userdata.monday.from.PM,
+          },
+          to: {
+            clock: userdata.monday.to.clock,
+            AM: userdata.monday.to.AM,
+            PM: userdata.monday.to.PM,
+          },
+        },
+        tuesday: {
+          togle: userdata.tuesday.togle,
+          from: {
+            clock: userdata.tuesday.from.clock,
+            AM: userdata.tuesday.from.AM,
+            PM: userdata.tuesday.from.PM,
+          },
+          to: {
+            clock: userdata.tuesday.to.clock,
+            AM: userdata.tuesday.to.AM,
+            PM: userdata.tuesday.to.PM,
+          },
+        },
+        wednesday: {
+          togle: userdata.wednesday.togle,
+          from: {
+            clock: userdata.wednesday.from.clock,
+            AM: userdata.wednesday.from.AM,
+            PM: userdata.wednesday.from.PM,
+          },
+          to: {
+            clock: userdata.wednesday.to.clock,
+            AM: userdata.wednesday.to.AM,
+            PM: userdata.wednesday.to.PM,
+          },
+        },
+        thursday: {
+          togle: userdata.thursday.togle,
+          from: {
+            clock: userdata.thursday.from.clock,
+            AM: userdata.thursday.from.AM,
+            PM: userdata.thursday.from.PM,
+          },
+          to: {
+            clock: userdata.thursday.to.clock,
+            AM: userdata.thursday.to.AM,
+            PM: userdata.thursday.to.PM,
+          },
+        },
+        friday: {
+          togle: userdata.friday.togle,
+          from: {
+            clock: userdata.friday.from.clock,
+            AM: userdata.friday.from.AM,
+            PM: userdata.friday.from.PM,
+          },
+          to: {
+            clock: userdata.friday.to.clock,
+            AM: userdata.friday.to.AM,
+            PM: userdata.friday.to.PM,
+          },
+        },
+        saturday: {
+          togle: userdata.saturday.togle,
+          from: {
+            clock: userdata.saturday.from.clock,
+            AM: userdata.saturday.from.AM,
+            PM: userdata.saturday.from.PM,
+          },
+          to: {
+            clock: userdata.saturday.to.clock,
+            AM: userdata.saturday.to.AM,
+            PM: userdata.saturday.to.PM,
+          },
+        },
+        sunday: {
+          togle: userdata.sunday.togle,
+          from: {
+            clock: userdata.sunday.from.clock,
+            AM: userdata.sunday.from.AM,
+            PM: userdata.sunday.from.PM,
+          },
+          to: {
+            clock: userdata.sunday.to.clock,
+            AM: userdata.sunday.to.AM,
+            PM: userdata.sunday.to.PM,
+          },
+        },
       });
       notify();
       window.location.href = "/";
       console.log("User updated successfully:", response.data);
-    } catch (error) {
-      console.error("Error updating user:", error);
+    } catch (error: any) {
+      console.error("Error updating user:", error.message);
     }
   };
 
@@ -338,6 +614,7 @@ export const EditBabysitProfile = () => {
       className: "mt-[80px] ",
     });
   };
+
   return (
     <div className=" dark:bg-[#31393F] py-10">
       <Container>
@@ -408,7 +685,7 @@ export const EditBabysitProfile = () => {
           <div className="mt-[50px] flex flex-col gap-[45px] mb-[50px]">
             <Condition handleChange={handleChange} />
           </div>
-          <TimeBabySit />
+          <TimeBabySit handleDayTimeChange={handleDayTimeChange} />
           <button
             onClick={handleUpdate}
             className="w-[100%] bg-[#389BA7] text-white rounded-3xl font-[400] text-[20px] mt-[65px] h-[40px]"

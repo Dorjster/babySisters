@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Label } from "@/components/ui/label";
-import dayjs, { Dayjs } from "dayjs";
+import { Dayjs } from "dayjs";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -27,15 +26,15 @@ const CyanSwitch = styled(Switch)(({ theme }) => ({
 
 const days = ["Даваа", "Мягмар", "Лхагва", "Пүрэв", "Баасан", "Бямба", "Ням"];
 
-export const TimeBabySit = () => {
+export const TimeBabySit = ({ handleDayTimeChange }: any) => {
   const [fromValues, setFromValues] = useState<Record<string, Dayjs | null>>(
-    Object.fromEntries(days.map((day) => [day, dayjs("2022-04-17T15:30")]))
+    Object.fromEntries(days.map((day) => [day, null]))
   );
   const [toValues, setToValues] = useState<Record<string, Dayjs | null>>(
-    Object.fromEntries(days.map((day) => [day, dayjs("2022-04-17T15:30")]))
+    Object.fromEntries(days.map((day) => [day, null]))
   );
   const [checkedDays, setCheckedDays] = useState<Record<string, boolean>>(
-    Object.fromEntries(days.map((day) => [day, true])) // Initialize all days as checked
+    Object.fromEntries(days.map((day) => [day, true]))
   );
 
   const handleDayToggle = (day: string) => {
@@ -53,7 +52,7 @@ export const TimeBabySit = () => {
       <Card className="flex flex-col gap-[30px] py-[20px] bg-[#f8f8f8] dark:bg-[#4D565E]">
         {days.map((el, index) => (
           <div
-            className="flex items-center w-[62%] justify-between  md:h-[40px] h-[130px] pl-[20px]"
+            className="flex items-center w-[62%] justify-between md:h-[40px] h-[130px] pl-[20px]"
             key={index}
           >
             <div>
@@ -76,22 +75,24 @@ export const TimeBabySit = () => {
                     <TimePicker
                       label="from"
                       value={fromValues[el]}
-                      onChange={(newValue) =>
-                        setFromValues({ ...fromValues, [el]: newValue })
-                      }
+                      onChange={(newValue) => {
+                        setFromValues({ ...fromValues, [el]: newValue });
+                        handleDayTimeChange(el, newValue, toValues[el]);
+                      }}
                     />
                     <TimePicker
                       label="to"
                       value={toValues[el]}
-                      onChange={(newValue) =>
-                        setToValues({ ...toValues, [el]: newValue })
-                      }
+                      onChange={(newValue) => {
+                        setToValues({ ...toValues, [el]: newValue });
+                        handleDayTimeChange(el, fromValues[el], newValue);
+                      }}
                     />
                   </DemoContainer>
                 </LocalizationProvider>
               </div>
             ) : (
-              <div className=" md:w-[70%] w-full  bg-slate-50 dark:bg-gray-300 items-center flex  rounded-2xl gap-4 p-4 ">
+              <div className="md:w-[70%] w-full bg-slate-50 dark:bg-gray-300 items-center flex rounded-2xl gap-4 p-4 ">
                 <NightlightRoundIcon className="text-[#389BA7] " />
                 <p className="dark:text-black text-slate-600">
                   Ажиллах боломжгүй
