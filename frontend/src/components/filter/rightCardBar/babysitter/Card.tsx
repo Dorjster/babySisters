@@ -58,7 +58,7 @@ export const Card: React.FC<CardProps> = ({
       {showSkeleton ? (
         <SkeletonLoader />
       ) : (
-        <div className=" md:w-[450px] dark:bg-[#4D565E] h-[400px] md:flex-row md:h-[220px] md:px-0 px-16 md:pb-0 flex flex-col items-center  rounded-2xl overflow-hidden shadow-xl bg-[#F6F9FA] mb-[40px] ">
+        <div className=" md:w-[450px] dark:bg-[#2b313a] h-[400px] md:flex-row md:h-[220px] md:px-0 px-16 md:pb-0 flex flex-col items-center  rounded-2xl overflow-hidden shadow-xl bg-[#F6F9FA] mb-[40px] ">
           <div className=" w-[200px] h-[220px] flex flex-col justify-between items-center">
             {data?.image ? (
               <div className="flex flex-col items-center justify-center">

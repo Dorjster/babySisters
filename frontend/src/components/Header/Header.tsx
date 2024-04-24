@@ -13,7 +13,7 @@ import { useData } from "@/context/userProvider";
 import { useEffect } from "react";
 import { useTheme } from "next-themes";
 import { IoSunnyOutline } from "react-icons/io5";
-import { RxMoon } from "react-icons/rx";
+import { IoMoon } from "react-icons/io5";
 import CircularProgress from "@mui/material/CircularProgress";
 
 // Navigation -----
@@ -83,8 +83,8 @@ export const Header = () => {
     <div
       className={`${
         pathname === "/"
-          ? "flex justify-between items-center py-6 bg-[#c9e8ec] dark:bg-[#4D565E]  sticky top-0 md:z-30"
-          : "flex justify-between items-center py-6 bg-[white] dark:bg-[#4D565E] dark:border-slate-500  border-b-[0.5px] border-gray-300  sticky top-0 md:z-30"
+          ? "flex justify-between items-center py-6 bg-[#c9e8ec] dark:bg-[#31363F]  sticky top-0 md:z-30"
+          : "flex justify-between items-center py-6 bg-[white] dark:bg-[#31363F] dark:border-slate-500  border-b-[0.5px] border-gray-300  sticky top-0 md:z-30"
       }`}
     >
       <div className="flex  ml-[30px] ">
@@ -120,11 +120,11 @@ export const Header = () => {
         {" "}
         <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
           {theme === "dark" ? (
-            <RxMoon size={22} className="text-[#008291]" fillRule="evenodd" />
+            <IoMoon size={22} className="text-[#389BA7] " fillRule="evenodd" />
           ) : (
             <IoSunnyOutline
               size={22}
-              className=" text-secondary"
+              className=" text-[#389BA7]"
               fillRule="evenodd"
             />
           )}

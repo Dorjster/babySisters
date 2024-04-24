@@ -1,7 +1,7 @@
 import Image from "next/image";
 const Steps = () => {
   return (
-    <div className="flex flex-col items-center justify-center pb-[100px]  ">
+    <div className="flex flex-col items-center justify-center pb-[100px] dark:bg-[#222831] ">
       <h1 className="text-[25px] text-[#31393F] dark:text-white p-20">
         Хүүхэд асрагч эсвэл ажил хурдан олох
       </h1>

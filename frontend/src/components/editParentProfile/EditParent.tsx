@@ -171,7 +171,7 @@ export const EditParent = () => {
     });
   };
   return (
-    <div className="flex flex-col items-center justify-center md:py-20 py-8 px-6 dark:bg-[#31393F]">
+    <div className="flex flex-col items-center justify-center md:py-20 py-8 px-6 dark:bg-[#31363F]">
       <div>
         <div
           className="md:flex-row md:flex md:justify-between 

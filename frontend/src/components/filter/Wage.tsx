@@ -30,17 +30,17 @@ export function Wage({ className, ...props }: SliderProps) {
         max={100000}
         min={0}
         step={500}
-        className={cn("w-full h-[80px]")}
+        className={cn("w-full h-[100px] mt-[-30px] mb-[-20px]")}
         {...props}
       />
       <div className="flex justify-between">
-        <span className="bg-slate-200 w-[95px] text-[20px] text-slate-500 rounded-[8px] text-center">
+        <span className="bg-slate-200 w-[95px] text-sm text-black rounded-[4px] text-center pt-1">
           {value[0]}₮
         </span>
         <span>
           <HorizontalRuleIcon className="text-slate-500" />
         </span>
-        <span className="bg-slate-200 w-[95px] text-[20px] text-slate-500 rounded-[8px] text-center">
+        <span className="bg-slate-200 w-[95px] text-sm text-black rounded-[4px] text-center pt-1">
           {value[1]}₮
         </span>
       </div>

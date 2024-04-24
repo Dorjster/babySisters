@@ -45,11 +45,11 @@ export const TimeBabySit = ({ handleDayTimeChange }: any) => {
   };
 
   return (
-    <div className="flex flex-col gap-5">
-      <div className="text-gray-600 text-base font-[500]">
+    <div className="flex flex-col gap-5 ">
+      <div className="text-gray-600 dark:text-white text-base font-[500]">
         Ажиллах боломжтой цаг
       </div>
-      <Card className="flex flex-col gap-[30px] py-[20px] bg-[#f8f8f8] dark:bg-[#4D565E]">
+      <Card className="flex flex-col gap-[30px] py-[20px] dark:bg-[#2b313a] dark:text-white ">
         {days.map((el, index) => (
           <div
             className="flex items-center w-[62%] justify-between md:h-[40px] h-[130px] pl-[20px]"

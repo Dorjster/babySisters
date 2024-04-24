@@ -54,11 +54,11 @@ export const Languages = (props: All) => {
                   handleLan(el);
                   handleClickButton(index);
                 }}
-                className={`py-1 px-2 text-sm rounded-xl flex gap-2 bg-[#F6F9FA] items-center  ${
+                className={`py-1 px-2 dark:bg-[#c9e8ec] text-sm rounded-xl flex gap-2 bg-[#F6F9FA] items-center  ${
                   buttonStates[index] || isHeKnown ? "bg-[#c9e8ec]" : ""
                 }`}
               >
-                <button className="text-gray-700">{el}</button>
+                <button className="text-gray-700 dark:text-black">{el}</button>
                 {buttonStates[index] || isHeKnown ? (
                   <CloseIcon
                     className="w-[14px] h-[14px] cursor-pointer"

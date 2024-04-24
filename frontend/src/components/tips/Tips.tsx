@@ -10,6 +10,7 @@ import {
   useTransform,
   MotionValue,
 } from "framer-motion";
+import { bgcolor } from "@mui/system";
 
 function useParallax(value: MotionValue<number>, distance: number) {
   return useTransform(value, [0, 1], [-distance, distance]);
@@ -70,10 +71,10 @@ function Images({ id }: { id: number }) {
   return (
     <section>
       <div ref={ref}>
-        <img id="imgHIW" src={`/${id}.jpeg`} alt="A London skyscraper" />
+        <img id="imgHIW" src={`/${id}.jpeg`} alt="A London skyscraper" className=""/>
       </div>
-      <motion.div style={{ y: useParallax(scrollYProgress, 300) }}>
-        <motion.h2>
+      <motion.div style={{ y: useParallax(scrollYProgress, 300) }} className="bg-transparent">
+        <motion.h2 className="dark:text-white">
           <p>{currentTips}</p>
           <p>{currentText}</p>
         </motion.h2>
@@ -91,12 +92,12 @@ export default function Tips() {
   });
 
   return (
-    <>
+    <div className="dark:bg-[#31363F]">
       {[6, 7, 8, 9, 10, 11, 12].map((id) => (
         <Images key={id} id={id} />
       ))}
 
       <motion.div className="progress" style={{ scaleX }} />
-    </>
+    </div>
   );
 }
