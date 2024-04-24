@@ -38,7 +38,7 @@ type DayOfWeek =
   | "Бямба"
   | "Ням";
 
-type stateType = {
+export type stateType = {
   image: string;
   about: string;
   address: string;
