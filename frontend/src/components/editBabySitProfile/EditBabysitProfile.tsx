@@ -25,7 +25,20 @@ import babysitter from "@/app/babysitter/page";
 import { Monda } from "next/font/google";
 import { Dayjs } from "dayjs";
 
-export type stateType = {
+type DayObject = {
+  from: string;
+  to: string;
+};
+type DayOfWeek =
+  | "Даваа"
+  | "Мягмар"
+  | "Лхагва"
+  | "Пүрэв"
+  | "Баасан"
+  | "Бямба"
+  | "Ням";
+
+type stateType = {
   image: string;
   about: string;
   address: string;
@@ -37,134 +50,10 @@ export type stateType = {
   additional: string[];
   skills: string[];
   wage: number;
-  // schedule: Schedule;
   verificationCode: string;
   gender: string;
-
-  // [day: string]: {
-  //   togle: boolean;
-  //   from: {
-  //     clock: string;
-  //     AM: string;
-  //     PM: string;
-  //   };
-  //   to: {
-  //     clock: string;
-  //     AM: string;
-  //     PM: string;
-  //   };
-  // };
-
-  monday: {
-    togle: boolean;
-    from: {
-      clock: string;
-      AM: string;
-      PM: string;
-    };
-    to: {
-      clock: string;
-      AM: string;
-      PM: string;
-    };
-  };
-  tuesday: {
-    togle: boolean;
-    from: {
-      clock: string;
-      AM: string;
-      PM: string;
-    };
-    to: {
-      clock: string;
-      AM: string;
-      PM: string;
-    };
-  };
-  wednesday: {
-    togle: boolean;
-    from: {
-      clock: string;
-      AM: string;
-      PM: string;
-    };
-    to: {
-      clock: string;
-      AM: string;
-      PM: string;
-    };
-  };
-  thursday: {
-    togle: boolean;
-    from: {
-      clock: string;
-      AM: string;
-      PM: string;
-    };
-    to: {
-      clock: string;
-      AM: string;
-      PM: string;
-    };
-  };
-  friday: {
-    togle: boolean;
-    from: {
-      clock: string;
-      AM: string;
-      PM: string;
-    };
-    to: {
-      clock: string;
-      AM: string;
-      PM: string;
-    };
-  };
-  saturday: {
-    togle: boolean;
-    from: {
-      clock: string;
-      AM: string;
-      PM: string;
-    };
-    to: {
-      clock: string;
-      AM: string;
-      PM: string;
-    };
-  };
-  sunday: {
-    togle: boolean;
-    from: {
-      clock: string;
-      AM: string;
-      PM: string;
-    };
-    to: {
-      clock: string;
-      AM: string;
-      PM: string;
-    };
-  };
+  availables: { [key in DayOfWeek]: DayObject };
 };
-
-type DayObject = {
-  togle: boolean;
-  from: {
-    clock: string;
-    AM: string;
-    PM: string;
-  };
-  to: {
-    clock: string;
-    AM: string;
-    PM: string;
-  };
-};
-
-// type Schedule = {
-//   [day: string]: string[];
-// };
 
 type Sitter = {
   image: string;
@@ -178,7 +67,6 @@ type Sitter = {
   additional: string[];
   skills: string[];
   wage: number;
-  schedule: object;
   verificationCode: string;
   info_id: string[];
 };
@@ -207,7 +95,6 @@ export const EditBabysitProfile = () => {
     additional: [],
     skills: [],
     wage: 0,
-    schedule: {},
     verificationCode: "",
     info_id: [],
   });
@@ -224,110 +111,19 @@ export const EditBabysitProfile = () => {
     additional: [],
     skills: [],
     wage: 0,
-    // schedule: {},
     verificationCode: "",
     gender: "Эрэгтэй",
-    monday: {
-      togle: true,
-      from: {
-        clock: "",
-        AM: "",
-        PM: "",
-      },
-      to: {
-        clock: "",
-        AM: "",
-        PM: "",
-      },
-    },
-    tuesday: {
-      togle: true,
-      from: {
-        clock: "",
-        AM: "",
-        PM: "",
-      },
-      to: {
-        clock: "",
-        AM: "",
-        PM: "",
-      },
-    },
-    wednesday: {
-      togle: true,
-      from: {
-        clock: "",
-        AM: "",
-        PM: "",
-      },
-      to: {
-        clock: "",
-        AM: "",
-        PM: "",
-      },
-    },
-    thursday: {
-      togle: true,
-      from: {
-        clock: "",
-        AM: "",
-        PM: "",
-      },
-      to: {
-        clock: "",
-        AM: "",
-        PM: "",
-      },
-    },
-    friday: {
-      togle: true,
-      from: {
-        clock: "",
-        AM: "",
-        PM: "",
-      },
-      to: {
-        clock: "",
-        AM: "",
-        PM: "",
-      },
-    },
-    saturday: {
-      togle: true,
-      from: {
-        clock: "",
-        AM: "",
-        PM: "",
-      },
-      to: {
-        clock: "",
-        AM: "",
-        PM: "",
-      },
-    },
-    sunday: {
-      togle: true,
-      from: {
-        clock: "",
-        AM: "",
-        PM: "",
-      },
-      to: {
-        clock: "",
-        AM: "",
-        PM: "",
-      },
+    availables: {
+      Даваа: { from: "", to: "" },
+      Мягмар: { from: "", to: "" },
+      Лхагва: { from: "", to: "" },
+      Пүрэв: { from: "", to: "" },
+      Баасан: { from: "", to: "" },
+      Бямба: { from: "", to: "" },
+      Ням: { from: "", to: "" },
     },
   });
-
-  type DayOfWeek =
-    | "monday"
-    | "tuesday"
-    | "wednesday"
-    | "thursday"
-    | "friday"
-    | "saturday"
-    | "sunday";
+  console.log(userdata, "userdata");
 
   const handleDayTimeChange = (
     day: DayOfWeek,
@@ -336,10 +132,13 @@ export const EditBabysitProfile = () => {
   ) => {
     setUserdata((prevUserData) => ({
       ...prevUserData,
-      [day]: {
-        ...prevUserData[day],
-        from: from ? from.format("HH:mm") : "",
-        to: to ? to.format("HH:mm") : "",
+      availables: {
+        ...prevUserData.availables,
+        [day]: {
+          ...prevUserData.availables[day],
+          from: from ? from.format("HH:mm") : "",
+          to: to ? to.format("HH:mm") : "",
+        },
       },
     }));
   };
@@ -502,100 +301,18 @@ export const EditBabysitProfile = () => {
         skills: userdata.skills,
         year_of_experience: userdata.experience,
         character: userdata.character,
-        // available_time: userdata.schedule,
         wage: userdata.wage,
         gender: userdata.gender,
-        monday: {
-          togle: userdata.monday.togle,
-          from: {
-            clock: userdata.monday.from.clock,
-            AM: userdata.monday.from.AM,
-            PM: userdata.monday.from.PM,
-          },
-          to: {
-            clock: userdata.monday.to.clock,
-            AM: userdata.monday.to.AM,
-            PM: userdata.monday.to.PM,
-          },
-        },
-        tuesday: {
-          togle: userdata.tuesday.togle,
-          from: {
-            clock: userdata.tuesday.from.clock,
-            AM: userdata.tuesday.from.AM,
-            PM: userdata.tuesday.from.PM,
-          },
-          to: {
-            clock: userdata.tuesday.to.clock,
-            AM: userdata.tuesday.to.AM,
-            PM: userdata.tuesday.to.PM,
-          },
-        },
-        wednesday: {
-          togle: userdata.wednesday.togle,
-          from: {
-            clock: userdata.wednesday.from.clock,
-            AM: userdata.wednesday.from.AM,
-            PM: userdata.wednesday.from.PM,
-          },
-          to: {
-            clock: userdata.wednesday.to.clock,
-            AM: userdata.wednesday.to.AM,
-            PM: userdata.wednesday.to.PM,
-          },
-        },
-        thursday: {
-          togle: userdata.thursday.togle,
-          from: {
-            clock: userdata.thursday.from.clock,
-            AM: userdata.thursday.from.AM,
-            PM: userdata.thursday.from.PM,
-          },
-          to: {
-            clock: userdata.thursday.to.clock,
-            AM: userdata.thursday.to.AM,
-            PM: userdata.thursday.to.PM,
-          },
-        },
-        friday: {
-          togle: userdata.friday.togle,
-          from: {
-            clock: userdata.friday.from.clock,
-            AM: userdata.friday.from.AM,
-            PM: userdata.friday.from.PM,
-          },
-          to: {
-            clock: userdata.friday.to.clock,
-            AM: userdata.friday.to.AM,
-            PM: userdata.friday.to.PM,
-          },
-        },
-        saturday: {
-          togle: userdata.saturday.togle,
-          from: {
-            clock: userdata.saturday.from.clock,
-            AM: userdata.saturday.from.AM,
-            PM: userdata.saturday.from.PM,
-          },
-          to: {
-            clock: userdata.saturday.to.clock,
-            AM: userdata.saturday.to.AM,
-            PM: userdata.saturday.to.PM,
-          },
-        },
-        sunday: {
-          togle: userdata.sunday.togle,
-          from: {
-            clock: userdata.sunday.from.clock,
-            AM: userdata.sunday.from.AM,
-            PM: userdata.sunday.from.PM,
-          },
-          to: {
-            clock: userdata.sunday.to.clock,
-            AM: userdata.sunday.to.AM,
-            PM: userdata.sunday.to.PM,
-          },
-        },
+        availableTime: userdata.availables,
+
+        //     Даваа.from && to
+        // }  &&
+        //     Мягмар: { from: "", to: "" }&&
+        //     Лхагва: { from: "", to: "" }&&
+        //     Пүрэв: { from: "", to: "" }&&
+        //     Баасан: { from: "", to: "" }&&
+        //     Бямба: { from: "", to: "" }&&
+        //     Ням: { from: "", to: "" }
       });
       notify();
       window.location.href = "/";

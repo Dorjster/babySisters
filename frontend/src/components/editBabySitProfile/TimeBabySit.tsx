@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Dayjs } from "dayjs";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -43,6 +43,17 @@ export const TimeBabySit = ({ handleDayTimeChange }: any) => {
       [day]: !prevState[day],
     }));
   };
+  // console.log(checkedDays, "checkeddays");
+
+  // useEffect(() => {
+  //   const togleCheck = () => {
+  //     if (checkedDays?.Даваа === true) {
+  //       console.log(fromValues, "from values");
+  //       console.log(toValues, "to values");
+  //     }
+  //   };
+  //   togleCheck();
+  // }, [checkedDays]);
 
   return (
     <div className="flex flex-col gap-5 ">
