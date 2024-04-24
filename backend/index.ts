@@ -118,7 +118,7 @@ connectDb();
 //   // transports: ["websocket", "polling", "flashsocket"],
 // });
 
-const io = new WebSocketServer(server, {
+const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
     origin: "http://localhost:3000",
@@ -130,7 +130,7 @@ const io = new WebSocketServer(server, {
   transports: ["websocket", "polling"],
 });
 
-io.on("connection", (socket) => {
+io.on("connection", (socket: any) => {
   console.log(`User connected: ${socket.id}`);
 
   socket.on("join_room", (room: string) => {

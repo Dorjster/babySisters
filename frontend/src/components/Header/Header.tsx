@@ -109,7 +109,7 @@ export const Header = () => {
             className={`cursor-pointer ${
               pathname === href
                 ? "text-[#389BA7]  hover:text-[#008291]"
-                : "black hover:text-black"
+                : "black hover:text-[#389BA7]"
             }`}
           >
             {label}
@@ -124,15 +124,23 @@ export const Header = () => {
           ) : (
             <IoSunnyOutline
               size={22}
-              className=" text-[#389BA7]"
+              className=" text-[#389BA7] absolute right-[280px] top-[33px]"
               fillRule="evenodd"
             />
           )}
         </button>
+        <div
+          className="absolute right-[700px] cursor-pointer"
+          onClick={() => {
+            push("/chat");
+          }}
+        >
+          chalchih
+        </div>
         {isLoggedIn ? (
           <div className="flex justify-end items-center md:gap-4 ">
             {loading ? (
-              <CircularProgress size={20} className="w-[500px]" />
+              <CircularProgress size={20} className="mx-[40px]" />
             ) : (
               <>
                 {loggedInUserData.name && (

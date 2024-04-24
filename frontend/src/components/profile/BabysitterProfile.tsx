@@ -99,6 +99,7 @@ type Review = {
 
 export const BabysitterProfile = (props: All) => {
   const { push } = useRouter();
+  // const { profile } = router.query;
   const { result, babysitterId } = props;
   const { loggedInUserData } = useData();
   const [comment, setComment] = useState("");
@@ -106,10 +107,8 @@ export const BabysitterProfile = (props: All) => {
   const [parentId, setParentId] = useState<Review>({
     parent_id: "",
   });
-
-  // const [availableDays, setAvailableDays] = useState<AvailableDay>([]);
-
-  console.log(result, "result");
+  // console.log(result, "result");
+  // console.log(profile, "url");
 
   const [parent, setParent] = useState<State>({
     _id: "",
@@ -136,7 +135,7 @@ export const BabysitterProfile = (props: All) => {
 
       setComment(" ");
       setReviewValue(0);
-
+      return data;
       window.location.reload();
     } catch (error) {
       console.log(error);
@@ -410,14 +409,16 @@ export const BabysitterProfile = (props: All) => {
             <TbCurrencyTugrik />
             {info?.wage}/цагт
           </h1>
-          <button
-            onClick={() => {
-              push(`/chat?id=${babysitterId}`);
-            }}
-            className="text-white bg-[#008291] rounded-[20px] w-[200px] px-6 py-1 mx-10"
-          >
-            Холбогдох {}
-          </button>
+          {loggedInUserData.role === "BabySitter" ? (
+            <div></div>
+          ) : (
+            <button
+              onClick={Chat}
+              className="text-white bg-[#008291] rounded-[20px] w-[200px] px-6 py-1 mx-10"
+            >
+              Холбогдох {}
+            </button>
+          )}
         </div>
       </div>
     </div>

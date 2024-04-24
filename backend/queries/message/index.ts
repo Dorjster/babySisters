@@ -55,16 +55,17 @@ import { ConversationModel, MessageModel, MessageModelType } from "../../db";
 // };
 
 export const createMessageQuery = async (req: Request) => {
-  const { message, senderId, receiverId, time } = req.body;
+  const { message, author, time } = req.body;
+  // console.log(req.body, "asd");
+
   try {
     const msg = await MessageModel.create({
       message,
-      senderId,
-      receiverId,
+      author,
       time,
     });
     return msg;
   } catch (err: any) {
-    throw new Error(err.msg);
+    throw new Error(err.message);
   }
 };
