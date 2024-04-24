@@ -1,146 +1,79 @@
 import { model, Schema, models, Model } from "mongoose";
 
-export type AvailableModelType = [
-  {
-    _id: Schema.Types.ObjectId;
-    monday: {
-      togle: boolean;
-      from: { clock: string; AM: string; PM: string };
-      to: { clock: string; AM: string; PM: string };
+export type AvailableModelType = {
+  _id: Schema.Types.ObjectId;
+  availables: {
+    // weekday: string[];
+    // from: Date[];
+    // to: Date[];
+    Даваа: {
+      from: string;
+      to: string;
     };
-    tuesday: {
-      togle: boolean;
-      from: { clock: string; AM: string; PM: string };
-      to: { clock: string; AM: string; PM: string };
+    Мягмар: {
+      from: string;
+      to: string;
     };
-    wednesday: {
-      togle: boolean;
-      from: { clock: string; AM: string; PM: string };
-      to: { clock: string; AM: string; PM: string };
+    Лхагва: {
+      from: string;
+      to: string;
     };
-    thursday: {
-      togle: boolean;
-      from: { clock: string; AM: string; PM: string };
-      to: { clock: string; AM: string; PM: string };
+    Пүрэв: {
+      from: string;
+      to: string;
     };
-    friday: {
-      togle: boolean;
-      from: { clock: string; AM: string; PM: string };
-      to: { clock: string; AM: string; PM: string };
+    Баасан: {
+      from: string;
+      to: string;
     };
-    saturday: {
-      togle: boolean;
-      from: { clock: string; AM: string; PM: string };
-      to: { clock: string; AM: string; PM: string };
+    Бямба: {
+      from: string;
+      to: string;
     };
-    sunday: {
-      togle: boolean;
-      from: { clock: string; AM: string; PM: string };
-      to: { clock: string; AM: string; PM: string };
+    Ням: {
+      from: string;
+      to: string;
     };
-  }
-];
+  }[];
+};
 
-const TimeSchema = new Schema<AvailableModelType>(
-  [
+const TimeSchema = new Schema<AvailableModelType>({
+  availables: [
     {
-      monday: {
-        from: [
-          { clock: { type: String, required: false } },
-          { AM: { type: String, required: false } },
-          { PM: { type: String, required: false } },
-        ],
-        to: [
-          { clock: { type: String, required: false } },
-          { AM: { type: String, required: false } },
-          { PM: { type: String, required: false } },
-        ],
-        togle: { type: Boolean, required: false, default: true },
+      // weekday: [{ type: String, required: true }],
+      // from: [{ type: String, required: true }],
+      // to: [{ type: String, required: true }],
+      Даваа: {
+        from: { type: String, required: false },
+        to: { type: String, required: false },
       },
-      tuesday: {
-        from: [
-          { clock: { type: String, required: false } },
-          { AM: { type: String, required: false } },
-          { PM: { type: String, required: false } },
-        ],
-        to: [
-          { clock: { type: String, required: false } },
-          { AM: { type: String, required: false } },
-          { PM: { type: String, required: false } },
-        ],
-        togle: { type: Boolean, required: false, default: true },
+      Мягмар: {
+        from: { type: String, required: false },
+        to: { type: String, required: false },
       },
-      wednesday: {
-        from: [
-          { clock: { type: String, required: false } },
-          { AM: { type: String, required: false } },
-          { PM: { type: String, required: false } },
-        ],
-        to: [
-          { clock: { type: String, required: false } },
-          { AM: { type: String, required: false } },
-          { PM: { type: String, required: false } },
-        ],
-        togle: { type: Boolean, required: false, default: true },
+      Лхагва: {
+        from: { type: String, required: false },
+        to: { type: String, required: false },
       },
-      thursday: {
-        from: [
-          { clock: { type: String, required: false } },
-          { AM: { type: String, required: false } },
-          { PM: { type: String, required: false } },
-        ],
-        to: [
-          { clock: { type: String, required: false } },
-          { AM: { type: String, required: false } },
-          { PM: { type: String, required: false } },
-        ],
-        togle: { type: Boolean, required: false, default: true },
+      Пүрэв: {
+        from: { type: String, required: false },
+        to: { type: String, required: false },
       },
-      friday: {
-        from: [
-          { clock: { type: String, required: false } },
-          { AM: { type: String, required: false } },
-          { PM: { type: String, required: false } },
-        ],
-        to: [
-          { clock: { type: String, required: false } },
-          { AM: { type: String, required: false } },
-          { PM: { type: String, required: false } },
-        ],
-        togle: { type: Boolean, required: false, default: true },
+      Баасан: {
+        from: { type: String, required: false },
+        to: { type: String, required: false },
       },
-      saturday: {
-        from: [
-          { clock: { type: String, required: false } },
-          { AM: { type: String, required: false } },
-          { PM: { type: String, required: false } },
-        ],
-        to: [
-          { clock: { type: String, required: false } },
-          { AM: { type: String, required: false } },
-          { PM: { type: String, required: false } },
-        ],
-        togle: { type: Boolean, required: false, default: true },
+      Бямба: {
+        from: { type: String, required: false },
+        to: { type: String, required: false },
       },
-      sunday: {
-        from: [
-          { clock: { type: String, required: false } },
-          { AM: { type: String, required: false } },
-          { PM: { type: String, required: false } },
-        ],
-        to: [
-          { clock: { type: String, required: false } },
-          { AM: { type: String, required: false } },
-          { PM: { type: String, required: false } },
-        ],
-        togle: { type: Boolean, required: false, default: true },
+      Ням: {
+        from: { type: String, required: false },
+        to: { type: String, required: false },
       },
     },
   ],
-  {
-    timestamps: true,
-  }
-);
+});
 
 export const AvailableModel: Model<AvailableModelType> =
   models["Available"] || model("Available", TimeSchema);

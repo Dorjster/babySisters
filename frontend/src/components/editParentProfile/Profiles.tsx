@@ -10,8 +10,7 @@ export const Profiles = () => {
   const { push } = useRouter();
   const { loggedInUserData } = useData();
   const { isLoggedIn } = useData();
-  console.log(isLoggedIn);
-  
+  // console.log(isLoggedIn);
 
   useEffect(() => {
     if (isLoggedIn === false) {
