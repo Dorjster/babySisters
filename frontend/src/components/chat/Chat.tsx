@@ -45,11 +45,11 @@ export const Chat = ({ socket, username, roomId }: any) => {
       } else {
         setImage(messages?.data?.babySitter?.image);
       }
-      scrollToBottom();
+      // scrollToBottom();
     };
 
     getMessages(roomId);
-  }, [roomId, chat]);
+  }, [roomId, chat, socket, loggedInUserData.role]);
 
   const scrollToBottom = () => {
     if (messagesEndRef.current) {
@@ -112,7 +112,7 @@ export const Chat = ({ socket, username, roomId }: any) => {
     <div className="w-[80%] flex h-full mt-[50px] ">
       <div className="w-full flex flex-col items-start h-full rounded-l-none">
         <div className="w-full flex items-center justify-start p-[30px] rounded-tr-xl rounded-l-none  top-[100px] bg-[white] border border-gray-200">
-          {image && name ? (
+          {image && name && name.trim() !== "" ? (
             <Image
               src={image}
               alt={name}
@@ -123,17 +123,16 @@ export const Chat = ({ socket, username, roomId }: any) => {
           ) : (
             <div
               className={`
-             
-              bg-gray-200 w-10 h-10 rounded-full flex items-center justify-center text-gray-600 text-xl font-bold mr-4`}
+      w-10 h-10 rounded-full flex items-center justify-center text-gray-600 text-xl font-bold mr-4`}
             >
-              {name ? name.charAt(0).toUpperCase() : ""}
+              {name && name.trim() !== "" ? name.charAt(0).toUpperCase() : ""}
             </div>
           )}
           <p className="text-[20px] font-bold text-black">{name}</p>
         </div>
 
-        <div className="w-full h-full flex flex-col rounded-xl justify-end rounded-t-none rounded-l-none  px-[20px] border-t border-l border-r border-gray-300  ">
-          <div className="w-full h-[800px] flex  flex-col  overflow-y-scroll scrollbar-hide ">
+        <div className="w-full h-[70vh] flex flex-col rounded-xl justify-end rounded-t-none rounded-l-none  px-[20px] border-t border-l border-r border-gray-300  ">
+          <div className="w-full flex  flex-col  overflow-y-scroll scrollbar-hide ">
             {chat &&
               chat.map(({ id, author, message, time }, key) => (
                 <ul
@@ -147,11 +146,12 @@ export const Chat = ({ socket, username, roomId }: any) => {
                       author={author}
                       message={message}
                       time={time}
+                      image={image}
                     />
                   )}
                 </ul>
               ))}
-            <div ref={messagesEndRef} />
+            <div ref={messagesEndRef} className="mb-[80px] " />
           </div>
           <div className="w-full flex gap-[20px] items-center mb-[10px]">
             <form
@@ -166,6 +166,7 @@ export const Chat = ({ socket, username, roomId }: any) => {
                 onChange={(e) => setCurrentMsg(e.target.value)}
                 autoFocus
               />
+
               {currentMsg.trim() !== "" && (
                 <button className="w-[10%] flex items-center justify-center rounded-full p-2 font-bold text-blue-500 text-[18px] absolute right-[110px]">
                   {/* <IoIosSend className="text-white text-[26px]" /> */}

@@ -7,8 +7,10 @@ import { useRouter } from "next/navigation";
 import { ParentType } from "../../../../..";
 
 import { MouseEvent } from "react";
+import { useData } from "@/context/userProvider";
 
 const ParentCard = () => {
+  const { loggedInUserData } = useData();
   const [parentData, setParentData] = useState<ParentType[]>([]);
   const router = useRouter();
 
@@ -16,16 +18,21 @@ const ParentCard = () => {
     const fetchData = async () => {
       try {
         const { data } = await AxiosInstance.get<ParentType[]>("/allParents");
-        console.log(data);
+        console.log(data, "full");
 
-        setParentData(data);
+        const filteredData = data.filter(
+          (parent) => parent._id !== loggedInUserData._id
+        );
+        console.log(filteredData, "asd");
+
+        setParentData(filteredData);
       } catch (error: any) {
         console.log(error);
       }
     };
 
     fetchData();
-  }, []);
+  }, [loggedInUserData]);
   const getIdHandle = async (event: MouseEvent<HTMLDivElement>) => {
     const { id: CardId } = event.currentTarget;
 
