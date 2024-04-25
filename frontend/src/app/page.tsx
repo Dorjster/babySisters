@@ -1,3 +1,4 @@
+"use client"
 import RealHome from "@/components/home/realHome";
 import Image from "next/image";
 import React from "react";
