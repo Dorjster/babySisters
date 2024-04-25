@@ -43,17 +43,6 @@ export const TimeBabySit = ({ handleDayTimeChange }: any) => {
       [day]: !prevState[day],
     }));
   };
-  // console.log(checkedDays, "checkeddays");
-
-  // useEffect(() => {
-  //   const togleCheck = () => {
-  //     if (checkedDays?.Даваа === true) {
-  //       console.log(fromValues, "from values");
-  //       console.log(toValues, "to values");
-  //     }
-  //   };
-  //   togleCheck();
-  // }, [checkedDays]);
 
   return (
     <div className="flex flex-col gap-5 ">

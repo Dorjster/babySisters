@@ -28,6 +28,7 @@ export type ProfileType = {
   review?: string[];
   otp?: string;
   role: string;
+  availables: {};
 };
 
 export type ParentType = {
