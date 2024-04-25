@@ -7,6 +7,7 @@ import { Roboto } from "next/font/google";
 import { DataProvider } from "@/context/userProvider";
 import { FilterDataProvider } from "@/context/filterProvider";
 import { ThemeProvider } from "next-themes";
+import { ClerkProvider } from "@clerk/nextjs";
 
 // Dem Font
 const roboto = Roboto({
@@ -28,15 +29,17 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body>
         <div className={roboto.className}>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem >
-            <DataProvider>
-              <FilterDataProvider>
-                <Header />
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <ClerkProvider>
+              <DataProvider>
+                <FilterDataProvider>
+                  <Header />
 
-                {children}
-                <Footer />
-              </FilterDataProvider>
-            </DataProvider>
+                  {children}
+                  <Footer />
+                </FilterDataProvider>
+              </DataProvider>
+            </ClerkProvider>
           </ThemeProvider>
         </div>
       </body>

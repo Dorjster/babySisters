@@ -29,6 +29,9 @@ export const Login = () => {
     setUserdata({ ...userdata, [name]: value });
     console.log(userdata);
   };
+  const handleChangeWithGoogle = () => {
+    push("/sign-in");
+  };
   useEffect(() => {
     if (isLoggedIn) {
       push("/");
@@ -115,6 +118,13 @@ export const Login = () => {
             className="bg-[#389ba7] w-full text-white text-[18px] font-[300] h-[50px] rounded-[25px] hover:bg-[#008291] hover:text-white hover:border-none "
           >
             Үргэлжлүүлэх
+          </Button>
+          <Button
+            onClick={handleChangeWithGoogle}
+            variant="outline"
+            className="bg-[#389ba7] w-full text-white text-[18px] font-[300] h-[50px] rounded-[25px] hover:bg-[#008291] hover:text-white hover:border-none "
+          >
+            Continue with Google
           </Button>
           {error && (
             <p className="text-center text-red-500 font-sans-serif pt-[-5x]">
