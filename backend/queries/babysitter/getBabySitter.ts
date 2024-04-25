@@ -1,7 +1,6 @@
 import { Request } from "express";
 import { Types } from "mongoose";
 import { BabysitterModel } from "../../db";
-import { AvailableModel } from "../../db";
 
 export const getBabysitterQuery = async (req: Request) => {
   try {
@@ -16,7 +15,8 @@ export const getBabysitterQuery = async (req: Request) => {
           path: "parent_id",
         },
       })
-      .populate("info_id");
+      .populate("info_id")
+      .populate("availableTime");
     // .populate("babysitter_id");
 
     if (!babysitter_info) {

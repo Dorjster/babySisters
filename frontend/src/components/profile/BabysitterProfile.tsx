@@ -22,6 +22,22 @@ import React from "react";
 import { useData } from "@/context/userProvider";
 import { Description } from "@radix-ui/react-toast";
 import { TimeBabySit } from "../editBabySitProfile/TimeBabySit";
+import { constants } from "buffer";
+import { Dayjs } from "dayjs";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { TimePicker } from "@mui/x-date-pickers/TimePicker";
+import NightlightRoundIcon from "@mui/icons-material/NightlightRound";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Switch from "@mui/material/Switch";
+import { alpha, styled } from "@mui/material/styles";
+import { cyan } from "@mui/material/colors";
+import { Card } from "@mui/material";
+
+import TextField from "@mui/material/TextField";
+
 type All = {
   result: ProfileType[] & any;
   babysitterId: string;
@@ -48,7 +64,6 @@ type State = {
   email: string;
   phone: string;
   password: string;
-  available_time: string[];
   number_of_children: string[];
   age_of_children: string[];
   verification: boolean;
@@ -59,6 +74,20 @@ type State = {
 type Review = {
   parent_id: string;
 };
+
+const CyanSwitch = styled(Switch)(({ theme }) => ({
+  "& .MuiSwitch-switchBase.Mui-checked": {
+    color: cyan[600],
+    "&:hover": {
+      backgroundColor: alpha(cyan[600], theme.palette.action.hoverOpacity),
+    },
+  },
+  "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
+    backgroundColor: cyan[600],
+  },
+}));
+
+const days = ["Даваа", "Мягмар", "Лхагва", "Пүрэв", "Баасан", "Бямба", "Ням"];
 
 export const BabysitterProfile = (props: All) => {
   const { result, babysitterId } = props;
@@ -77,7 +106,6 @@ export const BabysitterProfile = (props: All) => {
     email: "",
     phone: "",
     password: "",
-    available_time: [],
     number_of_children: [],
     age_of_children: [],
     verification: false,
@@ -130,6 +158,39 @@ export const BabysitterProfile = (props: All) => {
     };
     CommentedUser();
   }, [parentId]);
+
+  const available = result.availableTime?.availables[0];
+
+  const newData = days.map((el) => {
+    return { day: el, [el]: available[el] };
+  });
+
+  console.log(newData, "newDatanewDatanewData");
+
+  const newDataChecked = newData.filter((available: {}) => {
+    return available;
+  });
+
+  console.log(newDataChecked, "hahahah");
+
+  const [checkedDays, setCheckedDays] = useState<Record<string, boolean>>(
+    Object.fromEntries(days.map((day) => [day, true]))
+  );
+
+  useEffect(() => {
+    if (newData !== undefined) {
+      // setCheckedDays(Object.fromEntries(days.map((day) => [day, true])));
+    } else {
+      // setCheckedDays(Object.fromEntries(days.map((day) => [day, false])));
+    }
+  }, [newData, days]);
+
+  // const handleDayToggle = (day: string) => {
+  //   setCheckedDays((prevState) => ({
+  //     ...prevState,
+  //     [day]: !prevState[day],
+  //   }));
+  // };
 
   return (
     <div className="bg-gradient-to-b m-auto dark:bg-[#31393F]   h-fit md:flex-row md:gap-[130px]  flex flex-col-reverse bg-[#F4FAFB]  justify-center py-10 px-2 ">
@@ -194,10 +255,57 @@ export const BabysitterProfile = (props: All) => {
             </div>
           </div>
         </div>
-        <div className="py-24">
-          <TimeBabySit />
-          {/* <CheckedSchedule /> */}
+
+        <div className="py-5 flex flex-col gap-5 ">
+          <div className="text-gray-600 dark:text-white text-base font-[500]">
+            Ажиллах боломжтой цаг
+          </div>
+          <Card className="flex flex-col gap-[30px] py-[20px] dark:bg-[#2b313a] dark:text-white ">
+            {newData.map((el, index) => (
+              <div
+                className="flex items-center w-[62%] justify-between md:h-[40px] h-[130px] pl-[20px]"
+                key={index}
+              >
+                <div>
+                  <FormControlLabel
+                    control={
+                      <CyanSwitch
+                        // onChange={() => handleDayToggle(el.day)}
+                        checked={checkedDays[el.day]}
+                      />
+                    }
+                    className="dark:text-white"
+                    label={el.day}
+                  />
+                </div>
+                {checkedDays[el.day] ? (
+                  <div className="flex md:gap-8 gap-2">
+                    <TextField
+                      id="outlined-basic"
+                      label="From"
+                      variant="outlined"
+                      defaultValue={el[el.day].from}
+                    />
+                    <TextField
+                      id="outlined-basic"
+                      label="To"
+                      variant="outlined"
+                      defaultValue={el[el.day].to}
+                    />
+                  </div>
+                ) : (
+                  <div className="md:w-[70%] w-full bg-slate-50 dark:bg-gray-300 items-center flex rounded-2xl gap-4 p-4 ">
+                    <NightlightRoundIcon className="text-[#389BA7] " />
+                    <p className="dark:text-black text-slate-600">
+                      Ажиллах боломжгүй
+                    </p>
+                  </div>
+                )}
+              </div>
+            ))}
+          </Card>
         </div>
+
         <div className="flex flex-wrap gap-8 border-t-[0.5px]  border-gray-600 py-10 ">
           {reviews.map((el: ReviewType, index: number) => (
             <div

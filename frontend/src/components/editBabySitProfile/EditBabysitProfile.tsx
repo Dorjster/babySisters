@@ -149,7 +149,7 @@ export const EditBabysitProfile = () => {
         const { data } = await AxiosInstance.post("/get/babysitter", {
           id: loggedInUserData._id,
         });
-        // console.log(data, "get babySitter Data");
+        console.log(data, "get babySitter Data");
 
         setGetData(data);
       } catch (error) {
