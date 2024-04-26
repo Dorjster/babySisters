@@ -2,6 +2,7 @@
 import { AxiosInstance } from "@/utils/axiosInstance";
 import { useContext, useEffect, useState, ChangeEvent } from "react";
 import { TbCurrencyTugrik } from "react-icons/tb";
+
 import {
   FaAddressCard,
   FaCar,
@@ -75,19 +76,25 @@ type Review = {
   parent_id: string;
 };
 
-const CyanSwitch = styled(Switch)(({ theme }) => ({
-  "& .MuiSwitch-switchBase.Mui-checked": {
-    color: cyan[600],
-    "&:hover": {
-      backgroundColor: alpha(cyan[600], theme.palette.action.hoverOpacity),
-    },
-  },
-  "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
-    backgroundColor: cyan[600],
-  },
-}));
+// type AvailableDay = {
+//   weekday: string;
+//   from: string;
+//   to: string;
+// }[];
 
-const days = ["Даваа", "Мягмар", "Лхагва", "Пүрэв", "Баасан", "Бямба", "Ням"];
+// const CyanSwitch = styled(Switch)(({ theme }) => ({
+//   "& .MuiSwitch-switchBase.Mui-checked": {
+//     color: cyan[600],
+//     "&:hover": {
+//       backgroundColor: alpha(cyan[600], theme.palette.action.hoverOpacity),
+//     },
+//   },
+//   "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
+//     backgroundColor: cyan[600],
+//   },
+// }));
+
+// const days = ["Даваа", "Мягмар", "Лхагва", "Пүрэв", "Баасан", "Бямба", "Ням"];
 
 export const BabysitterProfile = (props: All) => {
   const { result, babysitterId } = props;
@@ -97,6 +104,9 @@ export const BabysitterProfile = (props: All) => {
   const [parentId, setParentId] = useState<Review>({
     parent_id: "",
   });
+
+  // const [availableDays, setAvailableDays] = useState<AvailableDay>([]);
+
   console.log(result, "result");
 
   const [parent, setParent] = useState<State>({
@@ -159,38 +169,39 @@ export const BabysitterProfile = (props: All) => {
     CommentedUser();
   }, [parentId]);
 
-  const available = result.availableTime?.availables[0];
+  // const available = result.availableTime?.availables[0];
 
-  const newData = days.map((el) => {
-    return { day: el, [el]: available[el] };
-  });
+  // console.log(available, "newDatadata");
 
-  console.log(newData, "newDatanewDatanewData");
+  // const newDataChecked = newData.filter((available) => {
+  //   return available;
+  // });
+  // console.log(newDataChecked, "data checked asdd");
 
-  const newDataChecked = newData.filter((available: {}) => {
-    return available;
-  });
+  // useEffect(() => {
+  //   if (newData !== undefined) {
+  //     setCheckedDays(Object.fromEntries(days.map((day) => [day, true])));
+  //   } else {
+  //     setCheckedDays(Object.fromEntries(days.map((day) => [day, false])));
+  //   }
+  // }, [newData, days]);
 
-  console.log(newDataChecked, "hahahah");
+  // const handleGetDate = (event: ChangeEvent<HTMLInputElement>) => {
+  //   const { name, value } = event.target;
+  //   console.log(name, value);
 
-  const [checkedDays, setCheckedDays] = useState<Record<string, boolean>>(
-    Object.fromEntries(days.map((day) => [day, true]))
-  );
-
-  useEffect(() => {
-    if (newData !== undefined) {
-      // setCheckedDays(Object.fromEntries(days.map((day) => [day, true])));
-    } else {
-      // setCheckedDays(Object.fromEntries(days.map((day) => [day, false])));
-    }
-  }, [newData, days]);
-
-  // const handleDayToggle = (day: string) => {
-  //   setCheckedDays((prevState) => ({
-  //     ...prevState,
-  //     [day]: !prevState[day],
-  //   }));
+  //   setAvailableDays((previous) => {
+  //     if (name === "From") {
+  //       return [...previous, { from: value }];
+  //     } else if (name === "To") {
+  //       return [...previous, { to: value }];
+  //     } else {
+  //       return [...previous, { weekday: value }];
+  //     }
+  //   });
   // };
+
+  // console.log(availableDays);
 
   return (
     <div className="bg-gradient-to-b m-auto dark:bg-[#31393F]   h-fit md:flex-row md:gap-[130px]  flex flex-col-reverse bg-[#F4FAFB]  justify-center py-10 px-2 ">
@@ -260,50 +271,29 @@ export const BabysitterProfile = (props: All) => {
           <div className="text-gray-600 dark:text-white text-base font-[500]">
             Ажиллах боломжтой цаг
           </div>
-          <Card className="flex flex-col gap-[30px] py-[20px] dark:bg-[#2b313a] dark:text-white ">
-            {newData.map((el, index) => (
-              <div
-                className="flex items-center w-[62%] justify-between md:h-[40px] h-[130px] pl-[20px]"
-                key={index}
-              >
-                <div>
-                  <FormControlLabel
-                    control={
-                      <CyanSwitch
-                        // onChange={() => handleDayToggle(el.day)}
-                        checked={checkedDays[el.day]}
-                      />
-                    }
-                    className="dark:text-white"
-                    label={el.day}
-                  />
+          {/* <Card className="flex flex-col gap-[30px] py-[20px] dark:bg-[#2b313a] dark:text-white ">
+            {days.map((el, index) => {
+              const existing = availableDays.find(
+                ({ weekday }) => weekday === el
+              );
+              console.log(existing);
+              return (
+                <div
+                  className="flex items-center w-[62%] justify-between md:h-[40px] h-[130px] pl-[20px]"
+                  key={index}
+                >
+                  <div>
+                    <input
+                      type="date"
+                      name=""
+                      placeholder="Select date"
+                      id=""
+                    />
+                  </div>
                 </div>
-                {checkedDays[el.day] ? (
-                  <div className="flex md:gap-8 gap-2">
-                    <TextField
-                      id="outlined-basic"
-                      label="From"
-                      variant="outlined"
-                      defaultValue={el[el.day].from}
-                    />
-                    <TextField
-                      id="outlined-basic"
-                      label="To"
-                      variant="outlined"
-                      defaultValue={el[el.day].to}
-                    />
-                  </div>
-                ) : (
-                  <div className="md:w-[70%] w-full bg-slate-50 dark:bg-gray-300 items-center flex rounded-2xl gap-4 p-4 ">
-                    <NightlightRoundIcon className="text-[#389BA7] " />
-                    <p className="dark:text-black text-slate-600">
-                      Ажиллах боломжгүй
-                    </p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </Card>
+              );
+            })}
+          </Card> */}
         </div>
 
         <div className="flex flex-wrap gap-8 border-t-[0.5px]  border-gray-600 py-10 ">

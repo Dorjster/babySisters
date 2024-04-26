@@ -3,16 +3,7 @@ import { AvailableModel, ParentModel, BabysitterModel } from "../../db";
 
 export const createBabySitterTimeQuery = async (req: Request) => {
   try {
-    const {
-      monday = {},
-      tuesday = {},
-      wednesday = {},
-      thursday = {},
-      friday = {},
-      saturday = {},
-      sunday = {},
-      email,
-    } = req.body;
+    const { availables, email } = req.body;
     console.log(req.body, "body");
 
     const babysitter = await BabysitterModel.findOne({ email: email });
@@ -24,14 +15,7 @@ export const createBabySitterTimeQuery = async (req: Request) => {
     const babysitter_id = babysitter._id;
 
     const time = await AvailableModel.create({
-      // babysitter_id: babysitter_id,
-      monday: monday,
-      tuesday: tuesday,
-      wednesday: wednesday,
-      thursday: thursday,
-      friday: friday,
-      saturday: saturday,
-      sunday: sunday,
+      availables,
     });
 
     // await BabysitterModel.findByIdAndUpdate(
