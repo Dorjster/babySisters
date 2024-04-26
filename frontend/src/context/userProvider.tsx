@@ -11,7 +11,7 @@ export type UserData = {
   password: string;
   role: string;
   image: string;
-  verification: boolean
+  verification: boolean;
 };
 
 type DataContextType = {
@@ -36,7 +36,7 @@ export const DataProvider = ({ children }: any) => {
     password: "",
     role: "",
     image: "",
-    verification: false
+    verification: false,
   });
 
   const accessToken =
@@ -52,8 +52,6 @@ export const DataProvider = ({ children }: any) => {
               Authorization: `Bearer ${accessToken}`,
             },
           });
-
-          console.log("logged user", data);
 
           setIsLoggedIn(true);
           setLoggedInUserData(data);

@@ -25,18 +25,18 @@ import babysitter from "@/app/babysitter/page";
 import { Monda } from "next/font/google";
 import { Dayjs } from "dayjs";
 
-type DayObject = {
-  from: string;
-  to: string;
-};
-type DayOfWeek =
-  | "Даваа"
-  | "Мягмар"
-  | "Лхагва"
-  | "Пүрэв"
-  | "Баасан"
-  | "Бямба"
-  | "Ням";
+// type DayObject = {
+//   from: string;
+//   to: string;
+// };
+// type DayOfWeek =
+//   | "Даваа"
+//   | "Мягмар"
+//   | "Лхагва"
+//   | "Пүрэв"
+//   | "Баасан"
+//   | "Бямба"
+//   | "Ням";
 
 export type stateType = {
   image: string;
@@ -52,7 +52,7 @@ export type stateType = {
   wage: number;
   verificationCode: string;
   gender: string;
-  availables: { [key in DayOfWeek]: DayObject };
+  // availables: { [key in DayOfWeek]: DayObject };
 };
 
 type Sitter = {
@@ -113,35 +113,35 @@ export const EditBabysitProfile = () => {
     wage: 0,
     verificationCode: "",
     gender: "Эрэгтэй",
-    availables: {
-      Даваа: { from: "", to: "" },
-      Мягмар: { from: "", to: "" },
-      Лхагва: { from: "", to: "" },
-      Пүрэв: { from: "", to: "" },
-      Баасан: { from: "", to: "" },
-      Бямба: { from: "", to: "" },
-      Ням: { from: "", to: "" },
-    },
+    // availables: {
+    //   Даваа: { from: "", to: "" },
+    //   Мягмар: { from: "", to: "" },
+    //   Лхагва: { from: "", to: "" },
+    //   Пүрэв: { from: "", to: "" },
+    //   Баасан: { from: "", to: "" },
+    //   Бямба: { from: "", to: "" },
+    //   Ням: { from: "", to: "" },
+    // },
   });
-  console.log(userdata, "userdata");
+  // console.log(userdata, "userdata");
 
-  const handleDayTimeChange = (
-    day: DayOfWeek,
-    from: Dayjs | null,
-    to: Dayjs | null
-  ) => {
-    setUserdata((prevUserData) => ({
-      ...prevUserData,
-      availables: {
-        ...prevUserData.availables,
-        [day]: {
-          ...prevUserData.availables[day],
-          from: from ? from.format("HH:mm") : "",
-          to: to ? to.format("HH:mm") : "",
-        },
-      },
-    }));
-  };
+  // const handleDayTimeChange = (
+  //   day: DayOfWeek,
+  //   from: Dayjs | null,
+  //   to: Dayjs | null
+  // ) => {
+  //   setUserdata((prevUserData) => ({
+  //     ...prevUserData,
+  //     availables: {
+  //       ...prevUserData.availables,
+  //       [day]: {
+  //         ...prevUserData.availables[day],
+  //         from: from ? from.format("HH:mm") : "",
+  //         to: to ? to.format("HH:mm") : "",
+  //       },
+  //     },
+  //   }));
+  // };
 
   useEffect(() => {
     const getInfo = async () => {
@@ -303,16 +303,7 @@ export const EditBabysitProfile = () => {
         character: userdata.character,
         wage: userdata.wage,
         gender: userdata.gender,
-        availableTime: userdata.availables,
-
-        //     Даваа.from && to
-        // }  &&
-        //     Мягмар: { from: "", to: "" }&&
-        //     Лхагва: { from: "", to: "" }&&
-        //     Пүрэв: { from: "", to: "" }&&
-        //     Баасан: { from: "", to: "" }&&
-        //     Бямба: { from: "", to: "" }&&
-        //     Ням: { from: "", to: "" }
+        // availableTime: userdata.availables,
       });
       notify();
       window.location.href = "/";
@@ -402,7 +393,7 @@ export const EditBabysitProfile = () => {
           <div className="mt-[50px] flex flex-col gap-[45px] mb-[50px]">
             <Condition handleChange={handleChange} />
           </div>
-          <TimeBabySit handleDayTimeChange={handleDayTimeChange} />
+          {/* <TimeBabySit handleDayTimeChange={handleDayTimeChange} /> */}
           <button
             onClick={handleUpdate}
             className="w-[100%] bg-[#389BA7] text-white rounded-3xl font-[400] text-[20px] mt-[65px] h-[40px]"
