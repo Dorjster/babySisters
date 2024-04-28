@@ -1,42 +1,36 @@
-"use client"
+// "use client";
 // import NotFound from "@/components/Icons/NotFound";
 import RealHome from "@/components/home/realHome";
 import Image from "next/image";
 import React from "react";
 import { useEffect } from "react";
 import axios from "axios";
-import { currentUser, auth } from "@clerk/nextjs";
+// import { currentUser, auth } from "@clerk/nextjs";
+import { AxiosInstance } from "@/utils/axiosInstance";
 
 // env.local dotor bga production id url + /api \\
-let url: string = process.env.NEXT_PUBLIC_PRODUCTION!;
+// let url: string = process.env.NEXT_PUBLIC_PRODUCTION!;
 
-// Export create account through google login. \\
 export default function Home() {
-  useEffect(() => {
-    const getAllCategories = async () => {
-      try {
-        const result = await axios.get(url);
+  // useEffect(() => {
+  //   const getAllCategories = async () => {
+  //     try {
+  //       const result = await AxiosInstance.get(url);
 
-    
+  //       const { data } = await AxiosInstance.post("/signupBabysitterbyClerk", {
+  //         name: result.data?.user.name,
+  //         email: result.data?.user.emailAddresses[0].emailAddress,
+  //       });
 
-        const { data } = await axios.post(
-          " deployed url + createbyclerk page ni link nemeerei ",
-          {
-            name: result.data?.user.name,
-            email: result.data?.user.emailAddresses[0].emailAddress,
-          }
-        );
-
-     
-        if (typeof window !== "undefined") {
-          localStorage.setItem("token", data);
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getAllCategories();
-  }, []);
+  //       if (typeof window !== "undefined") {
+  //         localStorage.setItem("token", data);
+  //       }
+  //     } catch (err) {
+  //       console.log(err, "asd");
+  //     }
+  //   };
+  //   getAllCategories();
+  // }, []);
 
   return (
     <div className="flex-col gap-10">

@@ -15,7 +15,6 @@ import { borderRadius, display } from "@mui/system";
 import { AlignCenter } from "lucide-react";
 import { usePathname } from "next/navigation";
 
-
 type Anchor = "right";
 type navigationItem = {
   href: string;
@@ -103,8 +102,7 @@ export default function AnchorTemporaryDrawer(props: any) {
   };
 
   return (
-    <div className="" >
-  
+    <div className="">
       {(["right"] as const).map((anchor) => (
         <React.Fragment key={anchor}>
           <Button
@@ -119,9 +117,15 @@ export default function AnchorTemporaryDrawer(props: any) {
             onClose={toggleDrawer(anchor, false)}
           >
             <div className="h-screen w-[400px] dark:bg-[#2b313a] ">
-              <Stack className="dark:bg-[#31363F] " px={4} py="29px" direction={"row"} bgcolor={"#dcf2f5"}>
+              <Stack
+                className="dark:bg-[#31363F] "
+                px={4}
+                py="29px"
+                direction={"row"}
+                bgcolor={"#dcf2f5"}
+              >
                 <div onClick={toggleDrawer(anchor, false)}>
-                  <ArrowBackIosIcon className="text-[#389BA7] justify-start"  />
+                  <ArrowBackIosIcon className="text-[#389BA7] justify-start" />
                 </div>
 
                 <Typography
@@ -162,7 +166,6 @@ export default function AnchorTemporaryDrawer(props: any) {
                         <Image
                           src={loggedInUserData.image}
                           alt=""
-                          
                           width={200}
                           height={200}
                         />
@@ -185,16 +188,16 @@ export default function AnchorTemporaryDrawer(props: any) {
               </Stack>
               <div className="flex flex-col justify-center items-center gap-10 text-[16px] font-[400]  text-gray-700   ">
                 {navigationItems.map(({ href, label }, index) => (
-                  <button 
+                  <button
                     onClick={() => {
                       handlePush(href);
                       toggleDrawer(anchor, false);
                     }}
-                    key={index} 
+                    key={index}
                     className={`cursor-pointer  ${
                       pathname === href
                         ? "text-[#389BA7] hover:text-[#008291]"
-                        : "black hover:text-black " 
+                        : "black hover:text-black "
                     }`}
                   >
                     <div className="bg-[#F7F9FA] p-3 rounded-[20px] flex items-center dark:text-white justify-center w-[300px] dark:bg-[#407980] hover:bg-[#e3e7e8]">
@@ -204,17 +207,19 @@ export default function AnchorTemporaryDrawer(props: any) {
                 ))}
               </div>
               <div>
-                {isTokenValid === "" ?
-                <div></div> :
-                <button
-                  onClick={handleOpen}
-                  className="flex items-center justify-center w-full p-10 font-bold text-[16px] cursor-pointer dark:text-white"
-                >
-                  Гарах
-                </button> 
-                }
-                
-                <Modal className=""
+                {isTokenValid === "" ? (
+                  <div></div>
+                ) : (
+                  <button
+                    onClick={handleOpen}
+                    className="flex items-center justify-center w-full p-10 font-bold text-[16px] cursor-pointer dark:text-white"
+                  >
+                    Гарах
+                  </button>
+                )}
+
+                <Modal
+                  className=""
                   open={open}
                   onClose={handleClose}
                   aria-labelledby="modal-modal-title"
@@ -223,11 +228,11 @@ export default function AnchorTemporaryDrawer(props: any) {
                   <Box className="dark:bg-[#4D565E]" sx={style}>
                     <Typography
                       id="modal-modal-description"
-                      sx={{ mt: 1, fontSize: "20px" }}
+                      sx={{ mt: 1, fontSize: "20px", color: "black" }}
                     >
                       Гарахдаа итгэлтэй байна уу?
                     </Typography>
-                    
+
                     <div>
                       {" "}
                       <Button
@@ -239,7 +244,6 @@ export default function AnchorTemporaryDrawer(props: any) {
                         Тийм
                       </Button>
                       <Button onClick={handleClose}>Үгүй</Button>
-                      
                     </div>
                   </Box>
                 </Modal>

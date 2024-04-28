@@ -28,7 +28,7 @@ userRouter.post("/signupParentbyClerk", CreateParentbyClerkController);
 userRouter.post("/get/parent", getParentController);
 userRouter.post("/get/babysitter", getBabysitterController);
 
-userRouter.get("/allParents", getAllParentsController);
+userRouter.post("/allParents", getAllParentsController);
 userRouter.post("/allBabysitters", getAllBabySittersController);
 
 userRouter.post("/parentUpdate", updateParentController);

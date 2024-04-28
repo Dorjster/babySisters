@@ -1,42 +1,19 @@
 "use client";
-
 import { Separator, Checkbox } from "@/components/ui";
 import { LocationSelect } from "./Location";
 import { Wage } from "./Wage";
-import { useCallback, useState } from "react";
+import { ChangeEvent, FormEvent, useCallback, useRef, useState } from "react";
 import { MdVerified } from "react-icons/md";
-import KidsNumber from "./KidsNumber";
-
-export type stateType = {
-  location: string;
-  languages: string[];
-  education: string;
-  character: string[];
-  experience: number | number[];
-  additional: string[];
-  skills: string[];
-  wage: string | string[];
-  rating: number | number[];
-  minWage: number;
-  maxWage: number;
-};
+// import KidsNumber from "./KidsNumber";
+import { WageParent } from "./WageParent";
+import { LocationSelectParent } from "./LocationParent";
+import { useParentFilter } from "@/context/parentProvider";
+import { clear } from "console";
 
 export const FilterParent = () => {
-  const [filterdata, setFilterdata] = useState<stateType>({
-    location: "Улаанбаатар",
-    languages: [],
-    education: "",
-    character: [],
-    experience: 2,
-    additional: [],
-    skills: [],
-    wage: [],
-    rating: 2,
-    minWage: 0,
-    maxWage: 0,
-  });
   const [sliderValue, setSliderValue] = useState<number>(2);
-
+  const { setParentFilter, parentFilter } = useParentFilter();
+  const [verified, setVerified] = useState(false);
   const handleSliderChange = (value: number | number[]) => {
     setSliderValue(value as number);
   };
@@ -47,19 +24,18 @@ export const FilterParent = () => {
     setSliderRatingValue(value as number);
   };
 
-  // const handleWageChange = useCallback();
-  // (min: number | null, max: number | null) => {
-  //   setFilterdata((prevFilterdata) => ({
-  //     ...prevFilterdata,
-  //     minWage: min ?? 0,
-  //     maxWage: max ?? 0,
-  //   }));
-  // },
-  //   [setFilterdata];
-
   const handleLocationChange = (label: string) => {
-    // setFilterdata({ ...filterdata, location: label });
+    setParentFilter({ ...parentFilter, address: label });
     console.log(label);
+  };
+
+  const clearFilters = () => {
+    setParentFilter({
+      address: "",
+      minWage: 0,
+      maxWage: 0,
+      verification: false,
+    });
   };
 
   return (
@@ -68,7 +44,7 @@ export const FilterParent = () => {
         <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
           Цалин
         </p>
-        <Wage/>
+        <WageParent />
         {/* <Wage onChange={handleWageChange} /> */}
       </div>
 
@@ -78,18 +54,18 @@ export const FilterParent = () => {
         <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
           Байршил
         </p>
-        <LocationSelect handleLoc={handleLocationChange} />
+        <LocationSelectParent handleLoc={handleLocationChange} />
       </div>
 
       <Separator />
 
-      <div className="grid gap-3 py-2">
+      {/* <div className="grid gap-3 py-2">
         <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
           Хүүхдийн тоо
         </p>
         <p>{sliderValue}-аас 4+ </p>
         <KidsNumber onChange={handleSliderChange} />
-      </div>
+      </div> */}
 
       <Separator />
 
@@ -99,7 +75,22 @@ export const FilterParent = () => {
         </p>
         <div className="flex gap-3">
           <div className="flex items-center space-x-2">
-            <Checkbox className="rounded-[4px]" />
+            {/* <Checkbox
+              className="rounded-[4px]"
+              checked={parentFilter.verification || false} // Set initial checked state based on parentFilter.verification
+              onChange={handleVerificationChange}
+            /> */}
+            <Checkbox
+              className="rounded-[4px]"
+              onClick={() => {
+                const isCheckboxChecked = !verified;
+                setVerified(isCheckboxChecked);
+                setParentFilter({
+                  ...parentFilter,
+                  verification: isCheckboxChecked,
+                });
+              }}
+            />
           </div>
           <div className="flex gap-2">
             <p className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
@@ -109,8 +100,11 @@ export const FilterParent = () => {
           </div>
         </div>
       </div>
-      <button className="bg-[#389BA7] cursor-pointer text-white rounded-[20px] py-2 sticky bottom-3">
-        Хайх{" "}
+      <button
+        onClick={clearFilters}
+        className="bg-[#389BA7] cursor-pointer text-white rounded-[20px] py-2 sticky bottom-3"
+      >
+        Clear{" "}
       </button>
     </div>
   );

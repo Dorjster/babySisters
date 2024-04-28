@@ -17,7 +17,6 @@ export type StateType = {
   gender: string;
 };
 
-// Define the type for your context
 type FilterDataContextType = {
   filterData: StateType;
   setFilterData: React.Dispatch<React.SetStateAction<StateType>>;
@@ -28,7 +27,6 @@ const FilterDataContext = createContext<FilterDataContextType | undefined>(
   undefined
 );
 
-// Create the provider component
 type FilterDataProviderProps = {
   children: ReactNode;
 };
