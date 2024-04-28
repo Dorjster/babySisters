@@ -103,8 +103,8 @@ export const ChatMain = ({ socket }: Props) => {
 
   const filteredConvers = convers.filter(
     (conversation) =>
-      conversation.parent._id === loggedInUserData._id ||
-      conversation.babySitter._id === loggedInUserData._id
+      conversation?.parent?._id === loggedInUserData._id ||
+      conversation?.babySitter?._id === loggedInUserData._id
   );
 
   return (

@@ -2,7 +2,7 @@
 
 import { Separator, Checkbox } from "@/components/ui";
 import { LocationSelect } from "./Location";
-import { Wage } from "./Wage";
+import { WageParent } from "./WageParent";
 import { useState } from "react";
 import { MdVerified } from "react-icons/md";
 
@@ -48,9 +48,9 @@ export const FilterParentDrawer = () => {
       <div className="w-[300px] h-[400px] bg-slate-50 p-10 md:grid  gap-5 rounded-xl  sticky top-[20%] z-0">
         <div className="grid gap-3">
           <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-            Цалин
+            Цалин asd
           </p>
-          {/* <Wage onChange={handleWageChange} /> */}
+          <WageParent />
         </div>
 
         <Separator />

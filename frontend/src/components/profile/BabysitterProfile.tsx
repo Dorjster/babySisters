@@ -17,7 +17,7 @@ import {
   MdBabyChangingStation,
 } from "react-icons/md";
 import Image from "next/image";
-import { Rating } from "@mui/material";
+import { Box, Button, Rating, Typography } from "@mui/material";
 import { ParentType, ProfileType } from "../../..";
 import React from "react";
 import { useData } from "@/context/userProvider";
@@ -40,6 +40,7 @@ import { Card } from "@mui/material";
 import TextField from "@mui/material/TextField";
 
 import { useRouter } from "next/navigation";
+import { Modal } from "@mui/base";
 type All = {
   result: ProfileType[] & any;
   babysitterId: string;
@@ -77,23 +78,35 @@ type Review = {
   parent_id: string;
 };
 
-// type AvailableDay = {
-//   weekday: string;
-//   from: string;
-//   to: string;
-// }[];
+const style = {
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 500,
+  height: 200,
+  bgcolor: "background.paper",
+  // border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+  borderRadius: "20px",
+  display: "flex",
+  flexDirection: "column",
+  gap: "20px",
+  alignItems: "center",
+};
 
-// const CyanSwitch = styled(Switch)(({ theme }) => ({
-//   "& .MuiSwitch-switchBase.Mui-checked": {
-//     color: cyan[600],
-//     "&:hover": {
-//       backgroundColor: alpha(cyan[600], theme.palette.action.hoverOpacity),
-//     },
-//   },
-//   "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
-//     backgroundColor: cyan[600],
-//   },
-// }));
+const CyanSwitch = styled(Switch)(({ theme }) => ({
+  "& .MuiSwitch-switchBase.Mui-checked": {
+    color: cyan[600],
+    "&:hover": {
+      backgroundColor: alpha(cyan[600], theme.palette.action.hoverOpacity),
+    },
+  },
+  "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
+    backgroundColor: cyan[600],
+  },
+}));
 
 // const days = ["Даваа", "Мягмар", "Лхагва", "Пүрэв", "Баасан", "Бямба", "Ням"];
 
@@ -171,19 +184,29 @@ export const BabysitterProfile = (props: All) => {
   }, [parentId]);
 
   // const available = result.availableTime?.availables[0];
+  // const available = result.availableTime?.availables[0];
 
-  // console.log(available, "newDatadata");
+  // const newData = days?.map((el) => {
+  //   return { day: el, [el]: available[el] };
+  // });
 
-  // const newDataChecked = newData.filter((available) => {
+  // console.log(newData, "newDatanewDatanewData");
+
+  // const newDataChecked = newData?.filter((available: {}) => {
   //   return available;
   // });
-  // console.log(newDataChecked, "data checked asdd");
+
+  // console.log(newDataChecked, "hahahah");
+
+  // const [checkedDays, setCheckedDays] = useState<Record<string, boolean>>(
+  //   Object.fromEntries(days.map((day) => [day, true]))
+  // );
 
   // useEffect(() => {
   //   if (newData !== undefined) {
-  //     setCheckedDays(Object.fromEntries(days.map((day) => [day, true])));
+  //     // setCheckedDays(Object.fromEntries(days.map((day) => [day, true])));
   //   } else {
-  //     setCheckedDays(Object.fromEntries(days.map((day) => [day, false])));
+  //     // setCheckedDays(Object.fromEntries(days.map((day) => [day, false])));
   //   }
   // }, [newData, days]);
 
@@ -202,7 +225,22 @@ export const BabysitterProfile = (props: All) => {
   //   });
   // };
 
-  // console.log(availableDays);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const Chat = async () => {
+    try {
+      const { data } = await AxiosInstance.post("/createConversation", {
+        senderId: loggedInUserData._id,
+        recieverId: babysitterId,
+      });
+      push(`/chat?id=${data.roomId}`);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="bg-gradient-to-b m-auto dark:bg-[#31393F]   h-fit md:flex-row md:gap-[130px]  flex flex-col-reverse bg-[#F4FAFB]  justify-center py-10 px-2 ">
@@ -273,27 +311,48 @@ export const BabysitterProfile = (props: All) => {
             Ажиллах боломжтой цаг
           </div>
           {/* <Card className="flex flex-col gap-[30px] py-[20px] dark:bg-[#2b313a] dark:text-white ">
-            {days.map((el, index) => {
-              const existing = availableDays.find(
-                ({ weekday }) => weekday === el
-              );
-              console.log(existing);
-              return (
-                <div
-                  className="flex items-center w-[62%] justify-between md:h-[40px] h-[130px] pl-[20px]"
-                  key={index}
-                >
-                  <div>
-                    <input
-                      type="date"
-                      name=""
-                      placeholder="Select date"
-                      id=""
+            {newData?.map((el, index) => (
+              <div
+                className="flex items-center w-[62%] justify-between md:h-[40px] h-[130px] pl-[20px]"
+                key={index}
+              >
+                <div>
+                  <FormControlLabel
+                    control={
+                      <CyanSwitch
+                        // onChange={() => handleDayToggle(el.day)}
+                        checked={checkedDays[el.day]}
+                      />
+                    }
+                    className="dark:text-white"
+                    label={el.day}
+                  />
+                </div>
+                {checkedDays[el.day] ? (
+                  <div className="flex md:gap-8 gap-2">
+                    <TextField
+                      id="outlined-basic"
+                      label="From"
+                      variant="outlined"
+                      defaultValue={el[el.day].from}
+                    />
+                    <TextField
+                      id="outlined-basic"
+                      label="To"
+                      variant="outlined"
+                      defaultValue={el[el.day].to}
                     />
                   </div>
-                </div>
-              );
-            })}
+                ) : (
+                  <div className="md:w-[70%] w-full bg-slate-50 dark:bg-gray-300 items-center flex rounded-2xl gap-4 p-4 ">
+                    <NightlightRoundIcon className="text-[#389BA7] " />
+                    <p className="dark:text-black text-slate-600">
+                      Ажиллах боломжгүй
+                    </p>
+                  </div>
+                )}
+              </div>
+            ))}
           </Card> */}
         </div>
 
@@ -413,13 +472,49 @@ export const BabysitterProfile = (props: All) => {
             <div></div>
           ) : (
             <button
-              onClick={Chat}
+              onClick={handleOpen}
               className="text-white bg-[#008291] rounded-[20px] w-[200px] px-6 py-1 mx-10"
             >
               Холбогдох {}
             </button>
           )}
         </div>
+        <Modal
+          className=""
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box className="dark:bg-[#4D565E]" sx={style}>
+            <Button onClick={handleClose} className="absolute right-0 top-2">
+              x
+            </Button>
+            <Typography
+              id="modal-modal-description"
+              sx={{ mt: 1, fontSize: "20px" }}
+            >
+              Холбогдох
+            </Typography>
+
+            <div className="flex flex-col gap-[20px]">
+              {" "}
+              <Typography className="flex gap-[5px]">
+                {" "}
+                <p className="font-bold">Утасны дугаар :</p>
+                {loggedInUserData.phone}
+              </Typography>
+              <Button
+                onClick={() => {
+                  Chat();
+                  handleClose;
+                }}
+              >
+                Энэ хүнтэй чалчих
+              </Button>
+            </div>
+          </Box>
+        </Modal>
       </div>
     </div>
   );

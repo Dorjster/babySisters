@@ -44,10 +44,10 @@ export const ParentProfile = (props: All) => {
           <div className="flex gap-6 pt-4 ">
             <div className="flex gap-8 flex-col">
               <div className="flex items-center gap-3 text-[20px]  ">
+                <p className="text-[18px]">Хүүхдийн нас</p>
                 <FaChildren className="text-[#008291]" size={24} />
                 {result.age_of_children.map((el: string, index: number) => (
                   <div key={index}>
-                    <p className="text-[18px]">Хүүхдийн нас</p>
                     <p className="text-[16px] text-gray-600 dark:text-white">
                       {el}
                     </p>

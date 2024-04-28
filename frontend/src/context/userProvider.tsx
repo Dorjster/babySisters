@@ -41,6 +41,7 @@ export const DataProvider = ({ children }: any) => {
 
   const accessToken =
     typeof window !== "undefined" && localStorage.getItem("token");
+  console.log(accessToken, "token");
 
   useEffect(() => {
     if (accessToken) {

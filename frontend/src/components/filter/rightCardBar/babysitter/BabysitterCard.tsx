@@ -7,6 +7,7 @@ import { AxiosInstance } from "@/utils/axiosInstance";
 import { ProfileType } from "../../../../..";
 import { useRouter } from "next/navigation";
 import { useFilterData } from "@/context/filterProvider";
+import { Modal, Box, Typography, Button } from "@mui/material";
 import {
   Pagination,
   PaginationContent,
@@ -20,13 +21,34 @@ import Image from "next/image";
 import { useData } from "@/context/userProvider";
 
 const HomeProfile: React.FC = () => {
-  const { loggedInUserData } = useData();
+  const { loggedInUserData, isLoggedIn } = useData();
   const [babysitterData, setBabysitterData] = useState<ProfileType[]>([]);
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const { filterData } = useFilterData();
   const { push } = useRouter();
 
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const style = {
+    position: "absolute" as "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 800,
+
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+    borderRadius: "20px",
+    display: "flex",
+    flexDirection: "column",
+    gap: "20px",
+    alignItems: "center",
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -52,7 +74,11 @@ const HomeProfile: React.FC = () => {
   };
 
   const getIdHandle = (CardId: string) => {
-    push(`/profile/${CardId}`);
+    if (!isLoggedIn) {
+      handleOpen(); // Open the modal if the user is not logged in
+    } else {
+      push(`/profile/${CardId}`);
+    }
   };
 
   return (
@@ -78,8 +104,9 @@ const HomeProfile: React.FC = () => {
                 about={babysitter.about || ""}
                 language={babysitter.info_id.language}
                 driver={babysitter.info_id.driver_license}
+                has_children={babysitter.info_id.has_children}
                 car={babysitter.info_id.car}
-                smoker={babysitter.info_id.smoker}
+                // smoker={babysitter.info_id.smoker}
                 exp={babysitter.info_id.year_of_experience}
               />
             </div>
@@ -129,6 +156,30 @@ const HomeProfile: React.FC = () => {
           </PaginationContent>
         </Pagination>
       )}
+      <Modal
+        className=""
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <h2 id="modal-modal-title" className="text-lg font-bold mb-4">
+            Та бүртгэлгүй байна.
+          </h2>
+          <p id="modal-modal-description" className="mb-4">
+            Та хэрэглэгчдийн мэдээллийг харахыг хүсвэл бүртгүүлэх эсвэл
+            нэвтэрсэн байх ёстой.
+          </p>
+          <Button
+            className="bg-[#389BA7]"
+            onClick={() => push("/login")}
+            variant="contained"
+          >
+            Нэвтрэх
+          </Button>
+        </Box>
+      </Modal>
     </div>
   );
 };

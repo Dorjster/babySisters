@@ -15,7 +15,9 @@ import { useTheme } from "next-themes";
 import { IoSunnyOutline } from "react-icons/io5";
 import { IoMoon } from "react-icons/io5";
 import CircularProgress from "@mui/material/CircularProgress";
-
+import { BsChatDots } from "react-icons/bs";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // Navigation -----
 type navigationItem = {
   href: string;
@@ -67,7 +69,7 @@ export const Header = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setLoading(false);
-    }, 1000);
+    }, 500);
     return () => clearTimeout(timeout);
   }, [loggedInUserData]);
 
@@ -77,6 +79,17 @@ export const Header = () => {
 
   const handlePush = (href: string) => {
     window.location.href = `${href}`;
+  };
+
+  const handleChatClick = () => {
+    if (!isLoggedIn) {
+      toast.error("Та эхлээд нэвтрэх шаардлагатай.", {
+        position: "top-center",
+        style: { position: "absolute" },
+      });
+    } else {
+      push("/chat");
+    }
   };
 
   return (
@@ -115,27 +128,30 @@ export const Header = () => {
             {label}
           </button>
         ))}
+        <ToastContainer />
       </div>
       <div className="flex justify-between md:gap-10">
         {" "}
         <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
           {theme === "dark" ? (
-            <IoMoon size={22} className="text-[#389BA7] " fillRule="evenodd" />
+            <IoMoon
+              size={22}
+              className="text-[#389BA7] absolute right-[330px] top-[33px]"
+              fillRule="evenodd"
+            />
           ) : (
             <IoSunnyOutline
               size={22}
-              className=" text-[#389BA7] absolute right-[280px] top-[33px]"
+              className=" text-[#389BA7] absolute right-[330px] top-[33px]"
               fillRule="evenodd"
             />
           )}
         </button>
         <div
-          className="absolute right-[700px] cursor-pointer"
-          onClick={() => {
-            push("/chat");
-          }}
+          className="absolute right-[280px] mt-[6px] cursor-pointer"
+          onClick={handleChatClick}
         >
-          chalchih
+          <BsChatDots size={25} color="#389BA7" />
         </div>
         {isLoggedIn ? (
           <div className="flex justify-end items-center md:gap-4 ">

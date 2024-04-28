@@ -10,7 +10,7 @@ export type ParentModelType = {
   password: string;
   address?: string;
   job_description?: string;
-  wage?: string;
+  wage?: number;
   availableTime?: Schema.Types.ObjectId;
   number_of_children?: string[];
   age_of_children?: string[];
@@ -30,7 +30,7 @@ const ParentSchema = new Schema<ParentModelType>(
     password: { type: String, required: true },
     address: { type: String, required: false },
     job_description: { type: String, required: false },
-    wage: { type: String, required: false },
+    wage: { type: Number, required: false },
     availableTime: {
       type: Schema.Types.ObjectId,
       required: false,

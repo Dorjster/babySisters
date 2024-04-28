@@ -32,9 +32,7 @@ export const Card: React.FC<CardProps> = ({ data }) => {
   const letter = data.name.charAt(0);
 
   const SkeletonLoader = () => (
-    <Skeleton className="md:w-[450px] md:h-[220px] dark:bg-[#4D565E] w-[330px] h-[450px] md:flex-row flex flex-col  rounded-2xl overflow-hidden shadow-xl bg-[#F6F9FA] mb-[40px] ">
-     
-    </Skeleton>
+    <Skeleton className="md:w-[450px] md:h-[220px] dark:bg-[#4D565E] w-[330px] h-[450px] md:flex-row flex flex-col  rounded-2xl overflow-hidden shadow-xl bg-[#F6F9FA] mb-[40px] "></Skeleton>
   );
 
   return (
@@ -42,15 +40,15 @@ export const Card: React.FC<CardProps> = ({ data }) => {
       {showSkeleton ? (
         <SkeletonLoader />
       ) : (
-        <div className="md:w-[450px] md:h-[220px] dark:bg-[#2b313a] md:pb-0 pb-[40px]  md:flex-row flex flex-col rounded-2xl overflow-hidden shadow-xl px-10 bg-[#F6F9FA] mb-[40px] ">
-          <div className="w-[220px] h-[220px] flex flex-col justify-between items-center">
+        <div className="md:w-[450px] md:h-[220px] dark:bg-[#2b313a] md:pb-0 pb-[40px]  md:flex-row flex flex-col rounded-2xl overflow-hidden shadow-xl  bg-[#F6F9FA] mb-[40px]  ">
+          <div className="w-[200px] h-[220px] flex flex-col justify-between items-center ">
             {data?.image ? (
               <Image
                 src={data.image}
-                className="w-[170px] h-[170px] mt-[25px] rounded-e-xl self-center justify-center items-center"
+                className="w-[170px] h-[170px] mt-[25px] rounded-xl self-center justify-center items-center"
                 alt=""
-                width={230}
-                height={220}
+                width={170}
+                height={170}
               />
             ) : (
               <div className="w-[170px] h-[170px] mt-[25px] rounded-xl bg-gray-300 text-white text-[60px] flex self-center justify-center items-center">
@@ -59,9 +57,12 @@ export const Card: React.FC<CardProps> = ({ data }) => {
             )}
           </div>
 
-          <div className="w-[150px] h-[150px] ml-[5px] mt-[30px]">
-            <div className="text-lg font-semibold text-[#31393F] dark:text-slate-200 w-[150px] flex flex-wrap">
-              {data.name}
+          <div className="w-[150px] h-[150px] ml-[0px] mt-[30px]">
+            <div className="text-lg font-semibold text-[#31393F] dark:text-white w-[150px] gap-2 flex flex-wrap">
+              {data.name}{" "}
+              {data.verification && (
+                <MdVerified className="h-6 w-6 text-[#008291]" />
+              )}
             </div>
 
             <Box
@@ -82,10 +83,10 @@ export const Card: React.FC<CardProps> = ({ data }) => {
                 <FaChild className="self-center text-[#008291] " />
                 <p className="">{data.number_of_children}</p>
               </div>
-              <div className="flex gap-2">
+              {/* <div className="flex gap-2">
                 <FaBirthdayCake className="self-center text-[#008291]" />
                 <p className="">{data.age_of_children} настай</p>
-              </div>
+              </div> */}
             </Box>
 
             <p

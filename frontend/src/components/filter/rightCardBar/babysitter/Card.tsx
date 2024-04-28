@@ -11,9 +11,9 @@ import {
   MdBabyChangingStation,
 } from "react-icons/md";
 import { TbCurrencyTugrik } from "react-icons/tb";
-import { FaCar, FaAddressCard } from "react-icons/fa";
+import { FaCar, FaAddressCard, FaBaby } from "react-icons/fa";
 import { ProfileType } from "../../../../..";
-
+import Tooltip from "@mui/material/Tooltip";
 type CardProps = {
   data: ProfileType;
   rating: number | undefined;
@@ -21,9 +21,10 @@ type CardProps = {
   wage: number | undefined;
   driver: boolean | undefined;
   car: boolean | undefined;
-  smoker: boolean | undefined;
+  // smoker: boolean | undefined;
   exp: number | undefined;
   language: string[] | undefined;
+  has_children?: boolean | undefined;
 };
 
 export const Card: React.FC<CardProps> = ({
@@ -33,9 +34,10 @@ export const Card: React.FC<CardProps> = ({
   wage,
   driver,
   car,
-  smoker,
+  // smoker,
   exp,
   language,
+  has_children,
 }) => {
   const [showSkeleton, setShowSkeleton] = useState(true);
 
@@ -93,23 +95,56 @@ export const Card: React.FC<CardProps> = ({
                 paddingBottom: "10px",
               }}
             >
+              {" "}
               <div className="flex  gap-2">
-                <MdLocationOn className="self-center text-[#008291] text-[20px] " />
-                <p className="">{data.address}</p>
+                <Tooltip title="Байршил" arrow>
+                  <div className="flex items-center">
+                    {" "}
+                    <MdLocationOn className="self-center text-[#008291] text-[20px] " />
+                    <p className="ml-[4px]">{data.address}</p>
+                  </div>
+                </Tooltip>
               </div>
-              <div className="flex gap-2">
-                <TbCurrencyTugrik className="self-center text-[#008291] text-[20px]" />
-                <p className="">{wage}/цагт</p>
+              <div className="flex  gap-2">
+                <Tooltip title="Цалин" arrow>
+                  <div className="flex items-center">
+                    <TbCurrencyTugrik className="self-center text-[#008291] text-[20px]" />
+                    <p className="ml-[4px]">{wage}/цагт</p>
+                  </div>
+                </Tooltip>
               </div>
-              <div className="flex gap-2 ml-1">
-                <MdBabyChangingStation className="self-center text-[#008291] text-[20px]" />
-                <p className="">{exp} жил</p>
+              <div className="flex gap-2 ml-[2px]">
+                <Tooltip title="Туршлага" arrow>
+                  <div className="flex items-center">
+                    <MdBabyChangingStation className="self-center text-[#008291] text-[20px] " />
+                    <p className="ml-[4px]">{exp} жил</p>
+                  </div>
+                </Tooltip>
               </div>
             </Box>
 
             <div className="flex gap-4">
-              {car && <FaCar className="h-6 w-6 text-[#008291]" />}
-              {driver && <FaAddressCard className="h-6 w-6 text-[#008291]" />}
+              {car === true && (
+                <Tooltip title="Машинтай">
+                  <div>
+                    <FaCar className="h-6 w-6 text-[#008291]" />
+                  </div>
+                </Tooltip>
+              )}
+              {driver === true && (
+                <Tooltip title="Жолооны үнэмлэхтэй" arrow>
+                  <div>
+                    <FaAddressCard className="h-6 w-6 text-[#008291]" />
+                  </div>
+                </Tooltip>
+              )}
+              {has_children === true && (
+                <Tooltip title="Хүүхэдтэй">
+                  <div>
+                    <FaBaby className="h-6 w-6 text-[#008291]" />
+                  </div>
+                </Tooltip>
+              )}
             </div>
 
             <p

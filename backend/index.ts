@@ -118,10 +118,12 @@ connectDb();
 //   // transports: ["websocket", "polling", "flashsocket"],
 // });
 
+const URL = process.env.FRONT_URL;
+
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "http://localhost:3000",
+    origin: URL,
     credentials: true,
     methods: ["GET", "POST"],
     optionsSuccessStatus: 200,
