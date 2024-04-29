@@ -16,35 +16,35 @@ import {
   LinearProgress,
 } from "@mui/material";
 import {
-    Pagination,
-    PaginationContent,
-    PaginationItem,
-    PaginationLink,
-    PaginationPrevious,
-    PaginationNext,
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationPrevious,
+  PaginationNext,
 } from "@/components/ui/pagination";
 import { Pointer } from "lucide-react";
 import Image from "next/image";
 import { useData } from "@/context/userProvider";
 
 const HomeProfile: React.FC = () => {
-    const { loggedInUserData, isLoggedIn } = useData();
-    const [babysitterData, setBabysitterData] = useState<ProfileType[]>([]);
-    const [totalPages, setTotalPages] = useState(0);
-    const [currentPage, setCurrentPage] = useState(1);
-    const { filterData } = useFilterData();
-    const { push } = useRouter();
+  const { loggedInUserData, isLoggedIn } = useData();
+  const [babysitterData, setBabysitterData] = useState<ProfileType[]>([]);
+  const [totalPages, setTotalPages] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const { filterData } = useFilterData();
+  const { push } = useRouter();
   const [isLoading, setIsLoading] = useState(true);
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
-    const style = {
-        position: "absolute" as "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        width: 800,
+  const style = {
+    position: "absolute" as "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 800,
 
     bgcolor: "background.paper",
     border: "2px solid #000",
@@ -76,24 +76,28 @@ const HomeProfile: React.FC = () => {
     fetchData();
   }, [filterData, currentPage, loggedInUserData]);
 
-    const handlePagination = (page: number) => {
-        setCurrentPage(page);
-    };
+  const handlePagination = (page: number) => {
+    setCurrentPage(page);
+  };
 
-    const getIdHandle = (CardId: string) => {
-        if (!isLoggedIn) {
-            handleOpen(); // Open the modal if the user is not logged in
-        } else {
-            push(`/profile/${CardId}`);
-        }
-    };
+  const getIdHandle = (CardId: string) => {
+    if (!isLoggedIn) {
+      handleOpen(); // Open the modal if the user is not logged in
+    } else {
+      push(`/profile/${CardId}`);
+    }
+  };
 
   return (
     <div className="h-fit w-screen gap-10 flex flex-wrap">
-      {babysitterData.length === 0 ? (
-        <div className=" flex flex-col items-center w-full justify-center">
-          {/* <p className="text-[30px] text-[#389BA7]">Илэрц олдсонгүй</p> */}
-          <Image src="/not.png" width={600} height={600} alt="" />
+      {isLoading ? (
+        <div className="flex justify-center items-center h-full">
+          {/* Choose your preferred progress indicator */}
+          {/* <LinearProgress color="primary" /> */}
+          <CircularProgress
+            color="primary"
+            className="absolute flex justify-center  top-[50%] left-[50%] "
+          />
         </div>
       ) : (
         <>
@@ -121,19 +125,20 @@ const HomeProfile: React.FC = () => {
         </>
       )}
       {totalPages > 1 && (
-        <Pagination className="absolute bottom-[200px] right-[20px] ">
+        <Pagination className="absolute bottom-[200px] right-[20px]">
           <PaginationContent>
-            <PaginationItem className="cursor-pointer ">
-              <PaginationPrevious
-                style={{
-                  cursor: "pointer",
-                  color: "#389BA7",
-                  fontSize: "22px",
-                }}
-                className={currentPage === 1 ? "disabled" : ""}
-                onClick={() => handlePagination(currentPage - 1)}
-              />
-            </PaginationItem>
+            {currentPage > 1 && (
+              <PaginationItem className="cursor-pointer">
+                <PaginationPrevious
+                  style={{
+                    cursor: "pointer",
+                    color: "#389BA7",
+                    fontSize: "22px",
+                  }}
+                  onClick={() => handlePagination(currentPage - 1)}
+                />
+              </PaginationItem>
+            )}
             {[...Array(totalPages)].map((_, index) => (
               <PaginationItem key={index}>
                 <PaginationLink
@@ -149,17 +154,18 @@ const HomeProfile: React.FC = () => {
                 </PaginationLink>
               </PaginationItem>
             ))}
-            <PaginationItem>
-              <PaginationNext
-                style={{
-                  cursor: "pointer",
-                  color: "#389BA7",
-                  fontSize: "22px",
-                }}
-                className={currentPage === totalPages ? "disabled " : ""}
-                onClick={() => handlePagination(currentPage + 1)}
-              />
-            </PaginationItem>
+            {currentPage < totalPages && (
+              <PaginationItem>
+                <PaginationNext
+                  style={{
+                    cursor: "pointer",
+                    color: "#389BA7",
+                    fontSize: "22px",
+                  }}
+                  onClick={() => handlePagination(currentPage + 1)}
+                />
+              </PaginationItem>
+            )}
           </PaginationContent>
         </Pagination>
       )}
