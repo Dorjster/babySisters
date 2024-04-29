@@ -58,6 +58,7 @@ const HomeProfile: React.FC = () => {
   };
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
       try {
         const { data } = await AxiosInstance.post<{
           filteredBabysitters: ProfileType[];
@@ -70,6 +71,8 @@ const HomeProfile: React.FC = () => {
         setTotalPages(data.totalPages);
       } catch (error: any) {
         console.log(error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -125,7 +128,7 @@ const HomeProfile: React.FC = () => {
         </>
       )}
       {totalPages > 1 && (
-        <Pagination className="absolute bottom-[200px] right-[20px]">
+        <Pagination className="absolute bottom-[150px] right-[20px]">
           <PaginationContent>
             {currentPage > 1 && (
               <PaginationItem className="cursor-pointer">
