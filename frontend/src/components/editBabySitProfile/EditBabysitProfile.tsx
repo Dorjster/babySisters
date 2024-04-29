@@ -309,7 +309,6 @@ export const EditBabysitProfile = () => {
       });
       toast.success("Амжилттай хадгалагдлаа!");
       push("/");
-      console.log("User updated successfully:", response.data);
     } catch (error: any) {
       console.error("Error updating user:", error.message);
     }

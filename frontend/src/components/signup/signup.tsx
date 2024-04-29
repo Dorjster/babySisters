@@ -55,6 +55,7 @@ export const Signup = () => {
       console.error(error.message);
     }
   };
+
   const handleCreateNanny = async () => {
     try {
       const emptyFields = Object.entries(userdata).filter(
@@ -76,6 +77,9 @@ export const Signup = () => {
       setError(error.message);
     }
   };
+
+
+
   return (
     <div className="dark:bg-[#31393F] h-screen md:py-[100px]">
       {page === 1 && (
@@ -172,6 +176,7 @@ export const Signup = () => {
               )}
             </CardContent>
           </Card>
+
         </div>
       )}
       {page === 3 && (
