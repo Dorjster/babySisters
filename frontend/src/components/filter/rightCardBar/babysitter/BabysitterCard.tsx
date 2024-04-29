@@ -16,35 +16,35 @@ import {
   LinearProgress,
 } from "@mui/material";
 import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationPrevious,
-  PaginationNext,
+    Pagination,
+    PaginationContent,
+    PaginationItem,
+    PaginationLink,
+    PaginationPrevious,
+    PaginationNext,
 } from "@/components/ui/pagination";
 import { Pointer } from "lucide-react";
 import Image from "next/image";
 import { useData } from "@/context/userProvider";
 
 const HomeProfile: React.FC = () => {
-  const { loggedInUserData, isLoggedIn } = useData();
-  const [babysitterData, setBabysitterData] = useState<ProfileType[]>([]);
-  const [totalPages, setTotalPages] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
-  const { filterData } = useFilterData();
-  const { push } = useRouter();
+    const { loggedInUserData, isLoggedIn } = useData();
+    const [babysitterData, setBabysitterData] = useState<ProfileType[]>([]);
+    const [totalPages, setTotalPages] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const { filterData } = useFilterData();
+    const { push } = useRouter();
   const [isLoading, setIsLoading] = useState(true);
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
-  const style = {
-    position: "absolute" as "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 800,
+    const style = {
+        position: "absolute" as "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        width: 800,
 
     bgcolor: "background.paper",
     border: "2px solid #000",
@@ -58,7 +58,6 @@ const HomeProfile: React.FC = () => {
   };
   useEffect(() => {
     const fetchData = async () => {
-      setIsLoading(true); // Set loading state to true before fetching data
       try {
         const { data } = await AxiosInstance.post<{
           filteredBabysitters: ProfileType[];
@@ -71,37 +70,27 @@ const HomeProfile: React.FC = () => {
         setTotalPages(data.totalPages);
       } catch (error: any) {
         console.log(error);
-      } finally {
-        setIsLoading(false); // Set loading state to false after fetching data
       }
     };
+
     fetchData();
   }, [filterData, currentPage, loggedInUserData]);
 
-  const handlePagination = (page: number) => {
-    setCurrentPage(page);
-  };
+    const handlePagination = (page: number) => {
+        setCurrentPage(page);
+    };
 
-  const getIdHandle = (CardId: string) => {
-    if (!isLoggedIn) {
-      handleOpen(); // Open the modal if the user is not logged in
-    } else {
-      push(`/profile/${CardId}`);
-    }
-  };
+    const getIdHandle = (CardId: string) => {
+        if (!isLoggedIn) {
+            handleOpen(); // Open the modal if the user is not logged in
+        } else {
+            push(`/profile/${CardId}`);
+        }
+    };
 
   return (
     <div className="h-fit w-screen gap-10 flex flex-wrap">
-      {isLoading ? (
-        <div className="flex justify-center items-center h-full">
-          {/* Choose your preferred progress indicator */}
-          {/* <LinearProgress color="primary" /> */}
-          <CircularProgress
-            color="primary"
-            className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
-          />
-        </div>
-      ) : babysitterData.length === 0 ? (
+      {babysitterData.length === 0 ? (
         <div className=" flex flex-col items-center w-full justify-center">
           {/* <p className="text-[30px] text-[#389BA7]">Илэрц олдсонгүй</p> */}
           <Image src="/not.png" width={600} height={600} alt="" />
@@ -132,7 +121,7 @@ const HomeProfile: React.FC = () => {
         </>
       )}
       {totalPages > 1 && (
-        <Pagination className="absolute bottom-[150px] right-[20px] ">
+        <Pagination className="absolute bottom-[200px] right-[20px] ">
           <PaginationContent>
             <PaginationItem className="cursor-pointer ">
               <PaginationPrevious
