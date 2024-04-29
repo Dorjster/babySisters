@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import axios from "axios";
 // import { currentUser, auth } from "@clerk/nextjs";
 import { AxiosInstance } from "@/utils/axiosInstance";
+import Head from "next/head";
 
 // env.local dotor bga production id url + /api \\
 // let url: string = process.env.NEXT_PUBLIC_PRODUCTION!;
@@ -35,6 +36,9 @@ export default function Home() {
   return (
     <div className="flex-col gap-10">
       <RealHome />
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       {/* <NotFound/> */}
     </div>
   );

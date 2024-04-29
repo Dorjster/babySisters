@@ -8,6 +8,7 @@ import { DataProvider } from "@/context/userProvider";
 import { FilterDataProvider } from "@/context/filterProvider";
 import { ParentFilterProvider } from "@/context/parentProvider";
 import { ThemeProvider } from "next-themes";
+import Head from "next/head";
 // import { ClerkProvider } from "@clerk/nextjs";
 
 // Dem Font
@@ -19,6 +20,7 @@ const roboto = Roboto({
 export const metadata: Metadata = {
   title: "Babysitter",
   description: "Babysitters by Babies.",
+  icons: "/favicon.ico",
 };
 
 export default function RootLayout({

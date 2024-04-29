@@ -29,6 +29,7 @@ import { stateType } from "./EditBabysitProfile";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { IoCheckmarkDone } from "react-icons/io5";
 
 const locations = [
   { label: "Улаанбаатар" },
@@ -151,7 +152,7 @@ export const AboutMe = (props: About) => {
               <div className="text-[16px] font-semibold dark:text-white">
                 Баталгаажсан
               </div>
-              <VerifiedIcon />
+              <VerifiedIcon className=" text-black" />
             </div>
           </div>
         ) : (
@@ -169,10 +170,10 @@ export const AboutMe = (props: About) => {
                 placeholder="Нууц үг"
               />
               <button
-                className="w-[60px] h-[40px] text-white"
+                className="w-[60px] h-[40px]  "
                 onClick={handleVerifyUser}
               >
-                <MdFileDownloadDone className="w-[40px] h-[40px]" />
+                <IoCheckmarkDone size={20} color="#60ADB7" />
               </button>
               {error && (
                 <p className="text-[12px] text-red-500  font-sans-serif">

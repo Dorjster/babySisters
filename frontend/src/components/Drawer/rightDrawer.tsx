@@ -116,8 +116,8 @@ export default function AnchorTemporaryDrawer(props: any) {
             open={state[anchor]}
             onClose={toggleDrawer(anchor, false)}
           >
-            <div className="h-screen w-[400px] dark:bg-[#2b313a] ">
-              <Stack
+            <div className="h-screen w-[400px] dark:bg-[#2b313a] pt-[100px] ">
+              {/* <Stack
                 className="dark:bg-[#31363F] "
                 px={4}
                 py="29px"
@@ -138,8 +138,8 @@ export default function AnchorTemporaryDrawer(props: any) {
                 >
                   Хэрэглэгч
                 </Typography>
-              </Stack>
-              <Stack alignItems={"center"} gap={"15px"} py={4} px={"25px"}>
+              </Stack> */}
+              {/* <Stack alignItems={"center"} gap={"15px"} py={4} px={"25px"}>
                 {isTokenValid === "" ? (
                   <div className="flex flex-col items-center gap-[25px]">
                     <div className="w-[100px] h-[100px] flex   justify-center overflow-hidden rounded-full ">
@@ -185,7 +185,7 @@ export default function AnchorTemporaryDrawer(props: any) {
                     </Link>
                   </div>
                 )}
-              </Stack>
+              </Stack> */}
               <div className="flex flex-col justify-center items-center gap-10 text-[16px] font-[400]  text-gray-700   ">
                 {navigationItems.map(({ href, label }, index) => (
                   <button
