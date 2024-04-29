@@ -93,7 +93,6 @@ export const AboutParent = (props: About) => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "light",
       });
 
       window.location.replace("/edit-profile");
@@ -166,7 +165,7 @@ export const AboutParent = (props: About) => {
           <textarea
             name="about"
             onChange={handleChange}
-            className="w-[100%] h-[130px] rounded-2xl border-zinc-200 border-[1px] dark:text-white p-3 bg-white"
+            className="w-[100%] h-[130px] text-black rounded-2xl border-zinc-200 border-[1px] dark:text-black p-3 bg-white"
           />
         </div>
         <div>

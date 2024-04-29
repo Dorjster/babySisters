@@ -24,6 +24,7 @@ import "react-toastify/dist/ReactToastify.css";
 import babysitter from "@/app/babysitter/page";
 import { Monda } from "next/font/google";
 import { Dayjs } from "dayjs";
+import { useRouter } from "next/navigation";
 
 // type DayObject = {
 //   from: string;
@@ -79,6 +80,7 @@ const getPresignedURL = async () => {
 
 export const EditBabysitProfile = () => {
   // const { hamndleLoc, handleChange, onGenderChange } = props;
+  const { push } = useRouter();
   const { loggedInUserData } = useData();
   const [image, setImage] = useState<FileList | null>(null);
   const [accessUrl, setAccessUrl] = useState<string>("");
@@ -276,7 +278,7 @@ export const EditBabysitProfile = () => {
       });
 
       setAccessUrl(accessUrls);
-
+      toast.success("Зураг амжилттай хадгалагдлаа!");
       setLoading(false);
     }
   };
@@ -305,8 +307,8 @@ export const EditBabysitProfile = () => {
         gender: userdata.gender,
         // availableTime: userdata.availables,
       });
-      notify();
-      window.location.href = "/";
+      toast.success("Амжилттай хадгалагдлаа!");
+      push("/");
       console.log("User updated successfully:", response.data);
     } catch (error: any) {
       console.error("Error updating user:", error.message);

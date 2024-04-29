@@ -113,12 +113,12 @@ export const AboutMe = (props: About) => {
       // console.log(data, "asd");
 
       // push("/edit-profile");
-      setError(data);
-      // console.log(error, "asdfa");
 
-      // notify();
+      // Verification successful
+      setError(undefined);
+      toast.success("Амжилттай баталгаажlaa!");
 
-      window.location.reload();
+      // window.location.reload();
       return data;
     } catch (error: any) {
       setError(error.response.data);
@@ -172,16 +172,15 @@ export const AboutMe = (props: About) => {
                 className="w-[60px] h-[40px] text-white"
                 onClick={handleVerifyUser}
               >
-                <MdFileDownloadDone className="w-[40px] h-[40px]"/>
+                <MdFileDownloadDone className="w-[40px] h-[40px]" />
               </button>
-            {error && (
-              <p className="text-[12px] text-red-500  font-sans-serif">
-                {error}
-              </p>
-            )}
+              {error && (
+                <p className="text-[12px] text-red-500  font-sans-serif">
+                  {error}
+                </p>
+              )}
               <ToastContainer />
             </div>
-
 
             <p className="text-gray-300 dark:text-white pt-2 text-sm">
               Таны имэйл хаяг руу илгээсэн нууц үгийг хийснээр таны хаяг
@@ -245,7 +244,10 @@ export const AboutMe = (props: About) => {
                 id="r2"
                 onClick={() => onGenderChange("Эрэгтэй")}
               />
-              <Label htmlFor="r2" className="text-gray-500 text-base dark:text-white">
+              <Label
+                htmlFor="r2"
+                className="text-gray-500 text-base dark:text-white"
+              >
                 Эрэгтэй
               </Label>
             </div>
@@ -255,7 +257,10 @@ export const AboutMe = (props: About) => {
                 id="r3"
                 onClick={() => onGenderChange("Эмэгтэй")}
               />
-              <Label htmlFor="r3" className="text-gray-500 text-base dark:text-white">
+              <Label
+                htmlFor="r3"
+                className="text-gray-500 text-base dark:text-white"
+              >
                 Эмэгтэй
               </Label>
             </div>

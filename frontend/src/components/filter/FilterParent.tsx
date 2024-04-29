@@ -67,8 +67,6 @@ export const FilterParent = () => {
         <KidsNumber onChange={handleSliderChange} />
       </div> */}
 
-      <Separator />
-
       <div className="grid gap-3">
         <p className="text-m font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
           Нэмэлт
@@ -96,7 +94,7 @@ export const FilterParent = () => {
             <p className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
               Баталгаажсан
             </p>
-            <MdVerified />
+            <MdVerified color="#389BA7" />
           </div>
         </div>
       </div>
