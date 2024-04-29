@@ -12,18 +12,18 @@ export const RecievedChat = (props: RecievedChatProps) => {
   const { message, time, author, image } = props;
   return (
     <li className="w-fit max-w-[90%] self-start ">
-      <span className="text-xs text-slate-500 font-bold ml-[8px]">
+      <span className="text-xs text-slate-500 font-bold ml-[5px]">
         {author}
       </span>
 
-      <div className="flex items-center">
+      <div className="rounded-full  flex items-center">
         {image ? (
           <Image
             src={image}
             alt={author}
-            className="max-w-[80px] h-auto object-contain mr-2 rounded-full "
-            width={40}
-            height={40}
+            className="w-10 h-10 object-cover rounded-full mr-[10px]"
+            width={20}
+            height={20}
           />
         ) : (
           <div className="w-10 h-10 flex justify-center items-center bg-gray-300 rounded-full text-black mr-2">

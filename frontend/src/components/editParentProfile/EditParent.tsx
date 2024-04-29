@@ -42,7 +42,7 @@ export const EditParent = () => {
     image: "",
     register: "",
     about: "",
-    location: "",
+    location: "Улаанбаатар",
     child: "",
     childAge: [],
     wage: "",

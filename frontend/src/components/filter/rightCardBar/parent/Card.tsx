@@ -13,6 +13,7 @@ import {
 import { TbCurrencyTugrik } from "react-icons/tb";
 import { FaCar, FaAddressCard, FaChild, FaBirthdayCake } from "react-icons/fa";
 import { ParentType } from "../../../../..";
+import Tooltip from "@mui/material/Tooltip";
 
 type CardProps = {
   data: ParentType;
@@ -72,16 +73,28 @@ export const Card: React.FC<CardProps> = ({ data }) => {
               }}
             >
               <div className="flex gap-2">
-                <MdLocationOn className="self-center text-[#008291]" />
-                <p className="">{data.address}</p>
+                <Tooltip title="Ажлын газар">
+                  <div className="flex items-center gap-[5px]">
+                    <MdLocationOn className="self-center text-[#008291]" />
+                    <p className="">{data.address}</p>
+                  </div>
+                </Tooltip>
               </div>
               <div className="flex gap-2">
-                <TbCurrencyTugrik className="self-center text-[#008291] " />
-                <p className="">{data.wage}/цагт</p>
+                <Tooltip title="Цалин">
+                  <div className="flex items-center gap-[5px]">
+                    <TbCurrencyTugrik className="self-center text-[#008291] " />
+                    <p className="">{data.wage}/цагт</p>
+                  </div>
+                </Tooltip>
               </div>
               <div className="flex gap-2">
-                <FaChild className="self-center text-[#008291] " />
-                <p className="">{data.number_of_children}</p>
+                <Tooltip title="Хүүхдийн тоо">
+                  <div className="flex items-center gap-[5px]">
+                    <FaChild className="self-center text-[#008291] " />
+                    <p className="">{data.number_of_children}</p>
+                  </div>
+                </Tooltip>
               </div>
               {/* <div className="flex gap-2">
                 <FaBirthdayCake className="self-center text-[#008291]" />

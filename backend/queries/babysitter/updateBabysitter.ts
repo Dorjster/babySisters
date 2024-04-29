@@ -42,7 +42,7 @@ export const updateBabysitterQuery = async (req: Request) => {
       character,
       rating = "",
       wage,
-      availableTime,
+      // availableTime,
     } = req.body;
     console.log(req.body, "boduy");
 
@@ -87,55 +87,55 @@ export const updateBabysitterQuery = async (req: Request) => {
       { new: true }
     );
 
-    const availableTimeId = babysitter?.availableTime;
-    // console.log(availableTimeId, "id");
+    // const availableTimeId = babysitter?.availableTime;
+    // // console.log(availableTimeId, "id");
 
-    const updatedAvailableTime = await AvailableModel.findByIdAndUpdate(
-      { _id: availableTimeId },
-      {
-        $set: {
-          availables: {
-            Даваа: {
-              from: availableTime.Даваа.from,
-              to: availableTime.Даваа.to,
-            },
-            Мягмар: {
-              from: availableTime.Мягмар.from,
-              to: availableTime.Мягмар.to,
-            },
-            Лхагва: {
-              from: availableTime.Лхагва.from,
-              to: availableTime.Лхагва.to,
-            },
-            Пүрэв: {
-              from: availableTime.Пүрэв.from,
-              to: availableTime.Пүрэв.to,
-            },
-            Баасан: {
-              from: availableTime.Баасан.from,
-              to: availableTime.Баасан.to,
-            },
-            Бямба: {
-              from: availableTime.Бямба.from,
-              to: availableTime.Бямба.to,
-            },
-            Ням: {
-              from: availableTime.Ням.from,
-              to: availableTime.Ням.to,
-            },
-          },
-        },
-      },
-      { new: true }
-    );
+    // const updatedAvailableTime = await AvailableModel.findByIdAndUpdate(
+    //   { _id: availableTimeId },
+    //   {
+    //     $set: {
+    //       availables: {
+    //         Даваа: {
+    //           from: availableTime.Даваа.from,
+    //           to: availableTime.Даваа.to,
+    //         },
+    //         Мягмар: {
+    //           from: availableTime.Мягмар.from,
+    //           to: availableTime.Мягмар.to,
+    //         },
+    //         Лхагва: {
+    //           from: availableTime.Лхагва.from,
+    //           to: availableTime.Лхагва.to,
+    //         },
+    //         Пүрэв: {
+    //           from: availableTime.Пүрэв.from,
+    //           to: availableTime.Пүрэв.to,
+    //         },
+    //         Баасан: {
+    //           from: availableTime.Баасан.from,
+    //           to: availableTime.Баасан.to,
+    //         },
+    //         Бямба: {
+    //           from: availableTime.Бямба.from,
+    //           to: availableTime.Бямба.to,
+    //         },
+    //         Ням: {
+    //           from: availableTime.Ням.from,
+    //           to: availableTime.Ням.to,
+    //         },
+    //       },
+    //     },
+    //   },
+    //   { new: true }
+    // );
     const populatedBabysitterInfo = {
       babysitter: updatedBabysitter,
       info: updatedInfo,
-      availableTime: updatedAvailableTime,
+      // availableTime: updatedAvailableTime,
     };
     console.log(populatedBabysitterInfo);
 
-    if (updatedInfo || updatedBabysitter || updatedAvailableTime) {
+    if (updatedInfo || updatedBabysitter) {
       return populatedBabysitterInfo;
     }
   } catch (error: any) {
