@@ -78,7 +78,7 @@ export const Header = () => {
   };
 
   const handlePush = (href: string) => {
-    window.location.href = `${href}`;
+    location.href = `${href}`;
   };
 
   const handleChatClick = () => {
@@ -100,19 +100,19 @@ export const Header = () => {
           : "flex justify-between items-center py-6 bg-[white] dark:bg-[#31363F] dark:border-slate-500  border-b-[0.5px] border-gray-300  sticky top-0 md:z-30"
       }`}
     >
-      <div className="flex  ml-[30px] ">
+      <div className="flex  ml-[30px]  relative">
         <Image
           src="/babysits.logo.png"
           alt="home.logo  "
           width={107}
-          height={61}
+          height={30}
           onClick={() => {
             window.location.href = "/";
           }}
           className="cursor-pointer"
         />
       </div>
-      <div className="md:flex justify-center items-center gap-10 text-[16px] font-[400] dark:text-[#E3E8EC] text-gray-700 hidden">
+      <div className="md:flex justify-center items-center gap-10 text-[16px] font-[400] dark:text-[#E3E8EC] text-gray-700 hidden absolute right-[850px]">
         {navigationItems.map(({ href, label }, index) => (
           <button
             // href={href}
@@ -156,7 +156,10 @@ export const Header = () => {
         {isLoggedIn ? (
           <div className="flex justify-end items-center md:gap-4 ">
             {loading ? (
-              <CircularProgress size={20} className="mx-[40px]" />
+              <CircularProgress
+                size={20}
+                className="mx-[40px] absolute right-[100px]"
+              />
             ) : (
               <>
                 {loggedInUserData.name && (
@@ -186,7 +189,7 @@ export const Header = () => {
             <AnchorTemporaryDrawer />
           </div>
         ) : (
-          <div className="flex justify-end items-center md:gap-4 cursor-pointer ">
+          <div className="flex justify-end items-center md:gap-4 cursor-pointer  right-[10px]">
             {navigationLogin.map(({ href, label }, index) => (
               <div key={index} className="flex   gap-8">
                 <button

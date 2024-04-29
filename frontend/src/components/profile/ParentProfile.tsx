@@ -26,13 +26,13 @@ export const ParentProfile = (props: All) => {
   // console.log(result, "result asd");
 
   return (
-    <div className="bg-gradient-to-b m-auto   h-fit md:flex-row md:gap-[130px] dark:bg-[#31393F] bg-[#F4FAFB] flex flex-col-reverse md:py-32 justify-center py-10 px-4">
+    <div className="bg-gradient-to-b m-auto   h-[1000px] md:flex-row md:gap-[130px] dark:bg-[#31393F] bg-[#F4FAFB] flex flex-col-reverse md:py-32 justify-center py-10 px-4">
       <div className="mt-[30px] md:w-[60%] md:mt-0">
         <div className="flex border-b-[0.5px] flex-col gap-4 border-gray-600 pb-[40px]">
           <p className="text-[28px] text-gray-900 dark:text-white">
             Ажлын санал
           </p>
-          <p className="overflow-wrap break-word dark:text-white ">
+          <p className="overflow-wrap break-word dark:text-white  ">
             {result?.job_description}
           </p>
           <div className="flex items-center gap-1 text-[18px] dark:text-white ">
@@ -48,7 +48,7 @@ export const ParentProfile = (props: All) => {
                 <FaChildren className="text-[#008291]" size={24} />
                 {result.age_of_children.map((el: string, index: number) => (
                   <div key={index}>
-                    <p className="text-[16px] text-gray-600 dark:text-white">
+                    <p className="text-[16px] text-gray-600 dark:text-white font-bold">
                       {el}
                     </p>
                   </div>
@@ -57,9 +57,9 @@ export const ParentProfile = (props: All) => {
               <div className="flex items-center gap-3 text-[20px]">
                 <FaCakeCandles className="text-[#008291]" size={24} />
                 {result.number_of_children.map((el: string, index: number) => (
-                  <div key={index}>
+                  <div key={index} className="flex gap-[20px] items-center">
                     <p className="text-[18px]">Хүүхдийн тоо</p>
-                    <p className="text-[16px] text-gray-600 dark:text-white">
+                    <p className="text-[16px] text-gray-600 dark:text-white font-bold">
                       {el}
                     </p>
                   </div>
@@ -68,10 +68,10 @@ export const ParentProfile = (props: All) => {
             </div>
           </div>
         </div>
-        <div className="py-24">
+        {/* <div className="py-24">
           <CheckedSchedule />
         </div>
-        <div className="flex flex-wrap gap-8 border-t-[1px] border-black dark:border-slate-300 py-10"></div>
+        <div className="flex flex-wrap gap-8 border-t-[1px] border-black dark:border-slate-300 py-10"></div> */}
       </div>
       <div className=" flex flex-col items-center h-fit md:p-8 rounded-2xl gap-4  bg-[#F6F9FA] shadow-xl dark:bg-[#4D565E]">
         <div className="">

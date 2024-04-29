@@ -220,7 +220,7 @@ export const Signup = () => {
               <Input
                 required
                 name="rePassword"
-                type="rePassword"
+                type="password"
                 placeholder="Нууц үг давтах"
                 className="h-[50px] rounded-[20px] border-1px"
                 onChange={handleChange}

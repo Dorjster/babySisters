@@ -137,6 +137,21 @@ export const BabysitterProfile = (props: All) => {
     image: "",
   });
 
+  useEffect(() => {
+    const CommentedUser = async () => {
+      try {
+        const { data } = await AxiosInstance.post("/get/parent", {
+          id: parentId.parent_id,
+        });
+        setParent(data);
+        return data;
+      } catch (er: any) {
+        console.error(er.message);
+      }
+    };
+    CommentedUser();
+  }, [parentId]);
+
   const sendComment = async () => {
     try {
       const { data } = await AxiosInstance.post("/Createreview", {
@@ -148,6 +163,7 @@ export const BabysitterProfile = (props: All) => {
 
       setComment(" ");
       setReviewValue(0);
+      location.reload();
       return data;
       window.location.reload();
     } catch (error) {
@@ -167,21 +183,6 @@ export const BabysitterProfile = (props: All) => {
 
   const info = result.info_id;
   // console.log(info, "info asd");
-
-  useEffect(() => {
-    const CommentedUser = async () => {
-      try {
-        const { data } = await AxiosInstance.post("/get/parent", {
-          id: parentId.parent_id,
-        });
-        setParent(data);
-        return data;
-      } catch (er: any) {
-        console.error(er.message);
-      }
-    };
-    CommentedUser();
-  }, [parentId]);
 
   // const available = result.availableTime?.availables[0];
   // const available = result.availableTime?.availables[0];
@@ -305,12 +306,12 @@ export const BabysitterProfile = (props: All) => {
             </div>
           </div>
         </div>
-
+        {/* 
         <div className="py-5 flex flex-col gap-5 ">
           <div className="text-gray-600 dark:text-white text-base font-[500]">
             Ажиллах боломжтой цаг
           </div>
-          {/* <Card className="flex flex-col gap-[30px] py-[20px] dark:bg-[#2b313a] dark:text-white ">
+          <Card className="flex flex-col gap-[30px] py-[20px] dark:bg-[#2b313a] dark:text-white ">
             {newData?.map((el, index) => (
               <div
                 className="flex items-center w-[62%] justify-between md:h-[40px] h-[130px] pl-[20px]"
@@ -353,8 +354,8 @@ export const BabysitterProfile = (props: All) => {
                 )}
               </div>
             ))}
-          </Card> */}
-        </div>
+          </Card>
+        </div> */}
 
         <div className="flex flex-wrap gap-8 border-t-[0.5px]  border-gray-600 py-10 ">
           {reviews.map((el: ReviewType, index: number) => (
@@ -391,18 +392,18 @@ export const BabysitterProfile = (props: All) => {
           <div className="flex flex-col items-center md:items-start">
             <div>
               <h1 className="font-medium">Сэтгэгдэл үлдээх</h1>
-              <div>
+              {/* <div>
                 <Rating
                   sx={{ color: "#59BEC9" }}
                   name="simple-controlled"
                   value={reviewValue}
                   onChange={handleRatingChange}
                 />
-              </div>
+              </div> */}
             </div>
-            <div className=" w-[300px] flex items-center py-2 border-2 rounded-2xl px-2 border-slate-300">
+            <div className=" w-[300px] flex items-center py-2 border-2 rounded-2xl px-2  ">
               <input
-                className=" w-[450px] outline-none "
+                className="w-[450px] py-[10px] bg-transparent"
                 placeholder="Comment"
                 type="text "
                 name="comment"

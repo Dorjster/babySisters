@@ -16,7 +16,7 @@ interface Search {
 export const getAllBabySittersQuery = async (req: Request) => {
   const {
     page = 1,
-    pageSize = 9,
+    pageSize = 6,
     minWage = "",
     maxWage = "",
     year_of_experience = "",
