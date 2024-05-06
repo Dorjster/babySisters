@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Container } from "@mui/system";
 import { AboutMe } from "./AboutMe";
 import { Languages } from "./Languages";
-import { Character } from "./ Character";
+import { Character } from "./_Character";
 import { Experience } from "./Experience";
 import { AddInformation } from "./AddInformation";
 import { Skill } from "./Skill";
